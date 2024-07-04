@@ -320,8 +320,8 @@ AS
 		e.engineer_name AS 'Engineer name',
 		ISNULL(e.engineer_contact, 'Has no contact registered') AS 'Engineer contact',
 		
-		IIF(COUNT(rp.id_engineer) > 0, CAST(COUNT(rp.id_engineer) AS VARCHAR), 'No reports') AS 'Amount of prepared reports',
-		IIF(COUNT(rp.id_engineer) > 0, (SELECT ct.client_name FROM report.client_table ct WHERE ct.id_client = report.GET_WORK_MOST_WITH_CLIENT(e.id_engineer)), 'No reports') AS 'Has worked most with',
+		IIF(COUNT(rp.id_engineer) > 0, CAST(COUNT(rp.id_engineer) AS VARCHAR), 'No reports') AS 'The amount of reports made by this engineer',
+		IIF(COUNT(rp.id_engineer) > 0, (SELECT ct.client_name FROM report.client_table ct WHERE ct.id_client = report.GET_WORK_MOST_WITH_CLIENT(e.id_engineer)), 'No reports') AS 'Has worked most with this client',
 		
 		ISNULL(CAST((SELECT CAST(rt.report_date AS DATE) 
 										FROM report.report_table rt
