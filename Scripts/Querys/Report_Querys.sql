@@ -213,6 +213,38 @@ AS
 		END;
 	END;
 
+CREATE OR ALTER FUNCTION report.MOST_RECENT_REPORT_BY_ENGINEER(@engineer VARCHAR(150))
+RETURNS INT
+AS
+	BEGIN
+		DECLARE 
+			@id_engineer AS INT,
+			@to_return AS INT
+		
+		BEGIN
+			IF (TRY_CAST(@engineer AS INT) IS NOT NULL)
+				SET @id_engineer = ISNULL((SELECT et.id_engineer FROM report.engineer_table et WHERE et.id_engineer = @engineer), NULL);
+			ELSE IF (TRY_CAST(@engineer AS VARCHAR) IS NOT NULL)
+				SET @id_engineer = ISNULL((SELECT et.id_engineer FROM report.engineer_table et WHERE et.engineer_name = report.CORRECT_GRAMMAR(@engineer, 'name')), NULL);
+		END
+		
+		BEGIN
+			IF (@id_engineer IS NOT NULL)
+				BEGIN
+					SET @to_return = (SELECT TOP 1 rt.id_report
+									FROM report.report_table rt
+										LEFT JOIN report.report_preparation_table rpt ON rt.id_report = rpt.id_report
+										LEFT JOIN report.engineer_table et ON et.id_engineer = rpt.id_engineer
+									WHERE et.id_engineer = @id_engineer
+									ORDER BY rt.report_date DESC);
+				END;
+			ELSE
+				SET @to_return = NULL;
+		END;
+		RETURN @to_return;
+	END;
+	
+
 CREATE OR ALTER FUNCTION report.GET_CLIENT_OF_MOST_RECENT_REPORT(@id_plant AS INT)
 RETURNS VARCHAR(200)
 AS
@@ -262,8 +294,9 @@ CREATE OR ALTER FUNCTION report.GET_WORK_MOST_WITH_CLIENT(@engineer VARCHAR(150)
 RETURNS INT
 AS 
 	BEGIN
-		DECLARE @id_engineer AS INT
-		DECLARE @to_return AS INT
+		DECLARE 
+			@id_engineer AS INT,
+			@to_return AS INT;
 		
 		BEGIN
 			IF (TRY_CAST(@engineer AS INT) IS NOT NULL)
@@ -296,9 +329,40 @@ SELECT
 	e.id_engineer AS 'ID engineer',
 	e.engineer_name AS 'Engineer name',
 	ISNULL(e.engineer_contact, 'Has no contact registered') AS 'Engineer contact',
+	
 	IIF(COUNT(rp.id_engineer) > 0, CAST(COUNT(rp.id_engineer) AS VARCHAR), 'No reports') AS 'Amount of prepared reports',
-	IIF(COUNT(rp.id_engineer) > 0, (SELECT ct.client_name FROM report.client_table ct WHERE ct.id_client = report.GET_WORK_MOST_WITH_CLIENT(e.id_engineer)), 'No reports') AS 'Has worked most with'
+	IIF(COUNT(rp.id_engineer) > 0, (SELECT ct.client_name FROM report.client_table ct WHERE ct.id_client = report.GET_WORK_MOST_WITH_CLIENT(e.id_engineer)), 'No reports') AS 'Has worked most with',
+	
+	ISNULL(CAST((SELECT CAST(rt.report_date AS DATE) 
+									FROM report.report_table rt
+									WHERE rt.id_report = report.MOST_RECENT_REPORT_BY_ENGINEER(e.id_engineer)) AS VARCHAR(20)), 'No reports') AS 'Date of the newest report made by the engineer',
+									
+	IIF(COUNT(rp.id_engineer) > 0, CONCAT('Client who requested the report: "', (SELECT DISTINCT ct.client_name
+																					FROM report.report_table rt
+																						LEFT JOIN report.client_table ct ON rt.id_client = ct.id_client
+																					WHERE rt.id_report = report.MOST_RECENT_REPORT_BY_ENGINEER(e.id_engineer)),
+											'", plant of the report: "', IIF((SELECT DISTINCT pt.plant_name
+																				FROM report.report_table rt
+																					LEFT JOIN report.plant_table pt ON rt.id_plant = pt.id_plant
+																				WHERE rt.id_report = report.MOST_RECENT_REPORT_BY_ENGINEER(e.id_engineer)) = (SELECT DISTINCT pt.plant_account_name
+																																								FROM report.report_table rt
+																																									LEFT JOIN report.plant_table pt ON rt.id_plant = pt.id_plant
+																																								WHERE rt.id_report = report.MOST_RECENT_REPORT_BY_ENGINEER(e.id_engineer)), (SELECT DISTINCT pt.plant_name
+																																																												FROM report.report_table rt
+																																																													LEFT JOIN report.plant_table pt ON rt.id_plant = pt.id_plant
+																																																												WHERE rt.id_report = report.MOST_RECENT_REPORT_BY_ENGINEER(e.id_engineer)), 
+																																																											CONCAT((SELECT DISTINCT pt.plant_account_name
+																																																														FROM report.report_table rt
+																																																															LEFT JOIN report.plant_table pt ON rt.id_plant = pt.id_plant
+																																																														WHERE rt.id_report = report.MOST_RECENT_REPORT_BY_ENGINEER(e.id_engineer)), ', ',
+																																																													(SELECT DISTINCT pt.plant_name
+																																																														FROM report.report_table rt
+																																																															LEFT JOIN report.plant_table pt ON rt.id_plant = pt.id_plant
+																																																														WHERE rt.id_report = report.MOST_RECENT_REPORT_BY_ENGINEER(e.id_engineer))) 
+																			), 
+											'"'),
+		  'No reports') AS 'Information about the newest report made by the engineer'
 FROM report.engineer_table e
 	LEFT JOIN report.report_preparation_table rp ON e.id_engineer = rp.id_engineer
 GROUP BY e.id_engineer, e.engineer_name, e.engineer_contact, rp.id_engineer
-ORDER BY e.id_engineer ASC
+ORDER BY e.id_engineer ASC;
