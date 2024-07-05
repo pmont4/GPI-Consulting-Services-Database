@@ -212,12 +212,12 @@ CREATE OR ALTER FUNCTION report.CONVERT_COORDS(@value VARCHAR(20), @coord_type V
 RETURNS FLOAT
 AS
 	BEGIN
-		IF (@value LIKE '%°%' AND @value LIKE '%m%' AND @value LIKE '%s%')
+		IF (@value LIKE '%ï¿½%' AND @value LIKE '%m%' AND @value LIKE '%s%')
 			BEGIN
 				SET @value = report.REMOVE_EXTRA_SPACES(@value);
 				DECLARE
-					@grades AS FLOAT = CAST(SUBSTRING(@value, 1, CHARINDEX('°', @value) - 1) AS FLOAT),
-					@minutes AS FLOAT = CAST(TRIM('m' FROM SUBSTRING(@value, CHARINDEX('°', @value) + 1, CHARINDEX('m', @value) - 4)) AS FLOAT),
+					@grades AS FLOAT = CAST(SUBSTRING(@value, 1, CHARINDEX('ï¿½', @value) - 1) AS FLOAT),
+					@minutes AS FLOAT = CAST(TRIM('m' FROM SUBSTRING(@value, CHARINDEX('ï¿½', @value) + 1, CHARINDEX('m', @value) - 4)) AS FLOAT),
 					@seconds AS FLOAT = CAST(TRIM('s' FROM SUBSTRING(@value, CHARINDEX('m', @value) + 1, CHARINDEX('s', @value))) AS FLOAT);
 
 				DECLARE @result AS FLOAT = @grades + (@minutes / 60.0) + (@seconds / 3600.0);
@@ -231,8 +231,44 @@ AS
 		RETURN 0.0000
 	END;
 
-SELECT report.CONVERT_COORDS('14°40m15.51s', 'latitude')
-SELECT FORMAT(report.CONVERT_COORDS('14°40m15.51s', 'latitude'), 'N6');
+CREATE OR ALTER FUNCTION report.CALCULATE_LOSS_VALUE(@value VARCHAR(30))
+RETURNS DECIMAL(19, 2)
+AS
+	BEGIN
+		DECLARE
+			@currency AS VARCHAR(1),
+			@amount AS DECIMAL(19, 2),
+			@to_return AS DECIMAL(19, 2);
+		
+		BEGIN
+			IF (@value LIKE '%,%')
+				BEGIN
+					DECLARE @value_to_evaluate AS VARCHAR(30)
+					DECLARE cur CURSOR DYNAMIC FORWARD_ONLY
+								FOR SELECT * FROM STRING_SPLIT(@value, ',');
+					OPEN cur;
+					FETCH NEXT FROM cur INTO @value_to_evaluate;
+					WHILE @@FETCH_STATUS = 0
+						BEGIN
+							IF (TRY_CAST(@value_to_evaluate AS DECIMAL) IS NOT NULL)
+								SET @amount = CAST(@value_to_evaluate AS DECIMAL(19, 2));
+							ELSE IF (TRY_CAST(@value_to_evaluate AS DECIMAL) IS NULL)
+								SET @currency = @value_to_evaluate
+							FETCH NEXT FROM cur INTO @value_to_evaluate;
+						END;
+					CLOSE cur;
+					DEALLOCATE cur;
+					BEGIN
+						SET @to_return = (SELECT CASE
+													WHEN @currency = 'Q' THEN @amount / 7.5
+													WHEN @currency = '$' THEN @amount
+													ELSE @amount
+												END);
+					END
+				END;
+		END;
+		RETURN @to_return;
+	END;
 
 -- ------------------------------------
 
@@ -1135,16 +1171,16 @@ CREATE OR ALTER PROCEDURE report.proc_insert_loss_scenario_table
 	@id_report AS INT,
 	@client AS VARCHAR(100),
 	@plant AS VARCHAR(100),
-	@material_damage_amount AS DECIMAL(19, 2),
+	@material_damage_amount AS VARCHAR(30),
 	@material_damage_percentage AS FLOAT(2),
-	@business_interruption_amount AS DECIMAL(19, 2),
+	@business_interruption_amount AS VARCHAR(30),
 	@business_interruption_percentage AS FLOAT(2),
-	@buildings_amount AS DECIMAL(19, 2),
-	@machinary_equipment AS DECIMAL(19, 2),
-	@electronic_equipment AS DECIMAL(19, 2),
-	@expansions_investment_works_amount AS DECIMAL(19, 2),
-	@stock_amount AS DECIMAL(19, 2),
-	@total_insured_values AS DECIMAL(19, 2),
+	@buildings_amount AS VARCHAR(30),
+	@machinary_equipment AS VARCHAR(30),
+	@electronic_equipment AS VARCHAR(30),
+	@expansions_investment_works_amount AS VARCHAR(30),
+	@stock_amount AS VARCHAR(30),
+	@total_insured_values AS VARCHAR(30),
 	@pml_percentage AS FLOAT(2),
 	@mfl AS FLOAT(2)
 AS
@@ -1218,16 +1254,16 @@ AS
 										@pml_percentage_to_save AS FLOAT(2),
 										@mfl_to_save AS FLOAT(2);
 
-									SET @material_damage_amount_to_save = ISNULL(@material_damage_amount, 0);
+									SET @material_damage_amount_to_save = ISNULL(report.CALCULATE_LOSS_VALUE(@material_damage_amount), 0);
 									SET @material_damage_percentage_to_save = ISNULL(@material_damage_percentage, 0);
-									SET @business_interruption_amount_to_save = ISNULL(@business_interruption_amount, 0);
+									SET @business_interruption_amount_to_save = ISNULL(report.CALCULATE_LOSS_VALUE(@business_interruption_amount), 0);
 									SET @business_interruption_percentage_to_save = ISNULL(@business_interruption_percentage, 0);
-									SET @buildings_amount_to_save = ISNULL(@buildings_amount, 0);
-									SET @machinary_equipment_to_save  = ISNULL(@machinary_equipment, 0);
-									SET @electronic_equipment_to_save = ISNULL(@electronic_equipment, 0);
-									SET @expansions_investment_works_amount_to_save = ISNULL(@expansions_investment_works_amount, 0);
-									SET @stock_amount_to_save = ISNULL(@stock_amount, 0);
-									SET @total_insured_values_to_save = ISNULL(@total_insured_values, 0);
+									SET @buildings_amount_to_save = ISNULL(report.CALCULATE_LOSS_VALUE(@buildings_amount), 0);
+									SET @machinary_equipment_to_save  = ISNULL(report.CALCULATE_LOSS_VALUE(@machinary_equipment), 0);
+									SET @electronic_equipment_to_save = ISNULL(report.CALCULATE_LOSS_VALUE(@electronic_equipment), 0);
+									SET @expansions_investment_works_amount_to_save = ISNULL(report.CALCULATE_LOSS_VALUE(@expansions_investment_works_amount), 0);
+									SET @stock_amount_to_save = ISNULL(report.CALCULATE_LOSS_VALUE(@stock_amount), 0);
+									SET @total_insured_values_to_save = ISNULL(report.CALCULATE_LOSS_VALUE(@total_insured_values), 0);
 									SET @pml_percentage_to_save = ISNULL(@pml_percentage, 0);
 									SET @mfl_to_save = ISNULL(@mfl, 0);
 
