@@ -250,18 +250,18 @@ EXEC report.proc_insert_perils_and_risk_table 2027, 2029, 2, 'none', 1, 1.5, 2.5
 --
 -- You can leave the material damage and the total insured values in blank if you want, just be aware of giving all the values to the command so the database can calculate those values for you.
 
-EXEC report.proc_insert_loss_scenario_table 1001, 'Unity Promotores, S.A.', 1001, 15963716.63, 85, 9129876, 75, 2343287.10, 3620429.53, null, null, 0, 25093592.63, 82, null;
-EXEC report.proc_insert_loss_scenario_table 1006, 'Tecniseguros, Corredores de Seguros, S.A.', 1003, 331598607.86, 100, 82150542.25, 100, 57169151.84, 274429456.02, null, null, 0, 413749150.11, 100, null;
-EXEC report.proc_insert_loss_scenario_table 1008, 'Tecniseguros, Corredores de Seguros, S.A.', 1004, 331598607.86, 100, 82150542.25, 100, 57169151.84, 274429456.02, null, null, 0, 413749150.11, 100, null;
-EXEC report.proc_insert_loss_scenario_table 1010, 'Reasinter, Intermadiario de Reaseguro, S.A.', 1005, 68358191, 100, 18916000, null, 0, 0, null, null, 0, 0, 100, null;
-EXEC report.proc_insert_loss_scenario_table 2011, 'Unity Promotores, S.A.', 2012, 2712108.27, null, 4933333, null, 0, 0, null, null, 700413.33, null, null, 91; 
+EXEC report.proc_insert_loss_scenario_table 1001, 'Unity Promotores, S.A.', 1001, '$,15963716.63', 85, '$,9129876', 75, '$,2343287.10', '$,3620429.53', null, null, 0, '$,25093592.63', 82, null;
+EXEC report.proc_insert_loss_scenario_table 1006, 'Tecniseguros, Corredores de Seguros, S.A.', 1003, '$,331598607.86', 100, '$,82150542.25', 100, '$,57169151.84', '$,274429456.02', null, null, 0, '$,413749150.11', 100, null;
+EXEC report.proc_insert_loss_scenario_table 1008, 'Tecniseguros, Corredores de Seguros, S.A.', 1004, '$,331598607.86', 100, '$,82150542.25', 100, '$,57169151.84', '$,274429456.02', null, null, 0, '$,413749150.11', 100, null;
+EXEC report.proc_insert_loss_scenario_table 1010, 'Reasinter, Intermadiario de Reaseguro, S.A.', 1005, '$,68358191', 100, '$,18916000', null, 0, 0, null, null, 0, 0, 100, null;
+EXEC report.proc_insert_loss_scenario_table 2011, 'Unity Promotores, S.A.', 2012, '$,2712108.27', null, '$,4933333', null, 0, 0, null, null, '$,700413.33', null, null, 91; 
 EXEC report.proc_insert_loss_scenario_table 2014, 'Grupo Protegemos Asesores', 2015, null, 90, null, 100, 0, 0, null, null, null, null, null, null; 
-EXEC report.proc_insert_loss_scenario_table 2016, 'Redbridge | assurance business support', 2018, 54950000, 100, 13000000, null, 9000000, 41650000, null, null, 4000000, null, 100, null; 
-EXEC report.proc_insert_loss_scenario_table 2017, 'Almacenadora Integrada, S.A.', 2019, 325992761.76, 100, 349992761.76, null, 59663073.02, 3000000, 1371314, null, 250000000, null, 100, null; 
-EXEC report.proc_insert_loss_scenario_table 2018, 'Seguros Agromercantil, S.A.', 2020, 172725000.00, 0, 2500000, null, 32725000, null, null, null, 140000000, null, null, 33; 
-EXEC report.proc_insert_loss_scenario_table 2019, 'Seguros Agromercantil, S.A.', 2021, 172725000.00, 0, 2500000, null, 32725000, null, null, null, 140000000, null, null, 33;
-EXEC report.proc_insert_loss_scenario_table 2020, 'Seguros Agromercantil, S.A.', 2022, 220000000.00, 0, null, null, 18000000.00, 2000000.00, null, null, 200000000.00, null, null, 85;
-EXEC report.proc_insert_loss_scenario_table 2022, 'Seguros Agromercantil, S.A.', 2024, 113630105.49, 0, 6000000.00, null, 14330105.49, 40700000.00, null, null, 58000000.00, null, null, 82;
-EXEC report.proc_insert_loss_scenario_table 2025, 'Reasinter, Intermadiario de Reaseguro, S.A.', 2027, 167575939.00, 57, 22782498.00, 100, 58197034.00, 92485539, null, null, 13969986.00, null, 62, null;
-EXEC report.proc_insert_loss_scenario_table 2026, 'Reasinter, Intermadiario de Reaseguro, S.A.', 2028, 64560067.00, 100, 8514462.00, 100, 29038613.00, 34808809, null, null, 230686, null, 100, null;
-EXEC report.proc_insert_loss_scenario_table 2027, 'Unity Promotores, S.A.', 2029, 66738683.00, 100, 142000000.00, 100, 14000000.00, 52538683.00, 200000, null, null, null, 100, null;
+EXEC report.proc_insert_loss_scenario_table 2016, 'Redbridge | assurance business support', 2018, '$,54950000', 100, '$,13000000', null, '$,9000000', '$,41650000', null, null, '$,4000000', null, 100, null; 
+EXEC report.proc_insert_loss_scenario_table 2017, 'Almacenadora Integrada, S.A.', 2019, 'Q,325992761.76', 100, 'Q,349992761.76', null, 'Q,59663073.02', 'Q,3000000', 'Q,1371314', null, 'Q,250000000', null, 100, null; 
+EXEC report.proc_insert_loss_scenario_table 2018, 'Seguros Agromercantil, S.A.', 2020, 'Q,172725000.00', 0, 'Q,2500000', null, 'Q,32725000', null, null, null, 'Q,140000000', null, null, 33; 
+EXEC report.proc_insert_loss_scenario_table 2019, 'Seguros Agromercantil, S.A.', 2021, 'Q,172725000.00', 0, 'Q,2500000', null, 'Q,32725000', null, null, null, 'Q,140000000', null, null, 33;
+EXEC report.proc_insert_loss_scenario_table 2020, 'Seguros Agromercantil, S.A.', 2022, 'Q,220000000.00', 0, null, null, 'Q,18000000.00', 'Q,2000000.00', null, null, 'Q,200000000.00', null, null, 85;
+EXEC report.proc_insert_loss_scenario_table 2022, 'Seguros Agromercantil, S.A.', 2024, 'Q,113630105.49', 0, 'Q,6000000.00', null, 'Q,14330105.49', 'Q,40700000.00', null, null, 'Q,58000000.00', null, null, 82;
+EXEC report.proc_insert_loss_scenario_table 2025, 'Reasinter, Intermadiario de Reaseguro, S.A.', 2027, '$,167575939.00', 57, '$,22782498.00', 100, '$,58197034.00', '$,92485539', null, null, '$,13969986.00', null, 62, null;
+EXEC report.proc_insert_loss_scenario_table 2026, 'Reasinter, Intermadiario de Reaseguro, S.A.', 2028, '$,64560067.00', 100, '$,8514462.00', 100, '$,29038613.00', '$,34808809', null, null, '230686', null, 100, null;
+EXEC report.proc_insert_loss_scenario_table 2027, 'Unity Promotores, S.A.', 2029, '$,66738683.00', 100, '$,142000000.00', 100, '$,14000000.00', '$,52538683.00', '$,200000', null, null, null, 100, null;
