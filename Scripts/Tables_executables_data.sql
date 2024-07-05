@@ -167,7 +167,7 @@ EXEC report.proc_insert_plant 'CAFCOM', null, 'C.A.', 'Guatemala', 'Escuintla', 
 EXEC report.proc_insert_plant 'Caoba Doors', null, 'C.A.', 'Guatemala', 'Sacatepequez', null, 1992, 'Production', 'Planta de manufactura de puertas, ventanas y piezas complementarias en maderas finas.', 'IV','Residential, Rural', 'Finca San Isidro, Jocotenango, Sacatepéquez, Guatemala, C.A.', '14°34m40.50s', '90°44m52.24s', 1545;
 EXEC report.proc_insert_plant 'Caracol Knits', null, 'C.A.', 'Houndras', 'Cortes', null, 1992, 'Production', 'Caracol Knits: Textile plant with knitting, dyeing, sewing and cutting processes.', 'IV','Rural', 'El Caracol, Potrerillos Municipality, Cortés Department, Honduras', '15.164185', '-87.942353', 46;
 EXEC report.proc_insert_plant 'Coral Knits', null, 'C.A.', 'Houndras', 'Cortes', 2003, 2004, 'Production', 'Coral Knits: Textile plant with knitting, dyeing and finishing processes', 'IV','Rural', 'El Caracol, Potrerillos Municipality, Cortés Department, Honduras', '15.165094', '-87.939601', 46;
-
+EXEC report.proc_insert_plant 'Cardex', null, 'C.A.', 'Guatemala', 'Guatemala', null, 2007, 'Production', 'Industrial plant dedicated to the processing, packaging and export of cardamom (mainly), pepper and achiote (complimentary operations).', 'I','Industrial', '24 Avenida 42-85, Zona 12 Atanasio Tzul, Guatemala', '14.573289', '-90.541211', 1450;
 
 -- Report table executables for data insertion
 -- Data is being inserted in the following order:
@@ -204,6 +204,7 @@ EXEC report.proc_insert_report_table '19/agosto/2012', 'Seguros Agromercantil, S
 EXEC report.proc_insert_report_table '22/febrero/2013', 'Seguros Agromercantil, S.A.', 2026, 'Marlon Lira', null, '50000,board foot/month', 14000, 2, 'si', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '4/may/2021', 'Reasinter, Intermadiario de Reaseguro, S.A.', 2027, 'Rafael Grajeda', null, '2400000,pounds/week', 78098.75, 1, 'si', 'Major fires', 'Automatic Wet', 'III', 'si', 'si', 'si', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '4/may/2021', 'Reasinter, Intermadiario de Reaseguro, S.A.', 2028, 'Rafael Grajeda', null, '1200000,pounds/week', 58360.60, 1, 'si', 'Major fires', 'Automatic Wet', 'III', 'si', 'si', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '19/agosto/2020', 'Unity Promotores, S.A.', 2029, 'Rafael Grajeda', null, '220,qq/hour', 7200.00, 1, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'no';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -238,6 +239,7 @@ EXEC report.proc_insert_perils_and_risk_table 2023, 2025, 'none', 1, 1.5, 2, 2, 
 EXEC report.proc_insert_perils_and_risk_table 2024, 2026, 'none', 2.5, 2.5, 2, 1, 2.5, 'none', 1, 1, 'none', 'none', 2.5;
 EXEC report.proc_insert_perils_and_risk_table 2025, 2027, 2.5, 'none', 1, 1, 2, 2, 'none', 1, 1, 1, 1, 1.5;
 EXEC report.proc_insert_perils_and_risk_table 2026, 2028, 2.5, 'none', 1, 1, 2, 2, 'none', 1, 1, 1, 1, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 2027, 2029, 2, 'none', 1, 1.5, 2.5, 2.5, 'none', 1, 1, 1, 1, 2.5;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -261,4 +263,5 @@ EXEC report.proc_insert_loss_scenario_table 2019, 'Seguros Agromercantil, S.A.',
 EXEC report.proc_insert_loss_scenario_table 2020, 'Seguros Agromercantil, S.A.', 2022, 220000000.00, 0, null, null, 18000000.00, 2000000.00, null, null, 200000000.00, null, null, 85;
 EXEC report.proc_insert_loss_scenario_table 2022, 'Seguros Agromercantil, S.A.', 2024, 113630105.49, 0, 6000000.00, null, 14330105.49, 40700000.00, null, null, 58000000.00, null, null, 82;
 EXEC report.proc_insert_loss_scenario_table 2025, 'Reasinter, Intermadiario de Reaseguro, S.A.', 2027, 167575939.00, 57, 22782498.00, 100, 58197034.00, 92485539, null, null, 13969986.00, null, 62, null;
-EXEC report.proc_insert_loss_scenario_table 2026, 'Reasinter, Intermadiario de Reaseguro, S.A.', 2028, 64560067.00, 100, 8514462.00, 100, 29038613.00, 34808809, null, null, 230686, null, 100, null; 
+EXEC report.proc_insert_loss_scenario_table 2026, 'Reasinter, Intermadiario de Reaseguro, S.A.', 2028, 64560067.00, 100, 8514462.00, 100, 29038613.00, 34808809, null, null, 230686, null, 100, null;
+EXEC report.proc_insert_loss_scenario_table 2027, 'Unity Promotores, S.A.', 2029, 66738683.00, 100, 142000000.00, 100, 14000000.00, 52538683.00, 200000, null, null, null, 100, null;
