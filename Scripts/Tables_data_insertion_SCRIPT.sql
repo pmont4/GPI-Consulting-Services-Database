@@ -930,6 +930,8 @@ BEGIN TRY
 																	FETCH NEXT FROM cur_installed_capacity INTO @value_installed_capacity;
 																	WHILE @@FETCH_STATUS = 0
 																		BEGIN TRY
+																			SET @value_installed_capacity = report.REMOVE_EXTRA_SPACES(@value_installed_capacity);
+
 																			IF (TRY_CAST(@value_installed_capacity AS FLOAT) IS NOT NULL)
 																				SET @amount_installed_capacity = CAST(@value_installed_capacity AS FLOAT(2));
 																			ELSE IF (TRY_CAST(@value_installed_capacity AS VARCHAR) IS NOT NULL)
