@@ -172,6 +172,8 @@ EXEC report.proc_insert_plant 'Cardex', null, 'C.A.', 'Guatemala', 'Guatemala', 
 EXEC report.proc_insert_plant 'Casa de Dios', 'Iglesia Casa de Dios Fraijanes', 'C.A.', 'Guatemala', 'Guatemala', 2008, 2013, 'Real state', 'Celebración de servicios religiosos, cursos, conferencias, con-ciertos y otras actividades sociales.', null,'Commercial, Residential', 'Km. 21.5 Carretera al Salvador, Carretera CA-1 oriente lado de-recho Aldea Cumbres de San Nicolas, Comunidad Fraijanes', '14.510758', '-90.480334', 1871;
 EXEC report.proc_insert_plant 'Casa de Dios', 'Iglesia Casa de Dios Pinula', 'C.A.', 'Guatemala', 'Guatemala', null, 2013, 'Real state', 'Talleres, conferencias y otras actividades sociales.', null,'Industrial, Commercial', 'Km. 17 Carretera a San José Pinula, Munici-pio de Fraijanes, Guatemala', '14.541128', '-90.450266', 1915;
 EXEC report.proc_insert_plant 'AC Hotel Guatemala City by Marriott', null, 'C.A.', 'Guatemala', 'Guatemala', 2016, 2017, 'Real state', 'Hotel y otros servicios (restaurante, salones de eventos, bar).', null,'Commercial, Residential', '11 Ave 35-02, Paseo Cayalá, Zona 16, Ciudad de Guatemala', '14°36m36.25s', '90°29m6.69s', 1509;
+EXEC report.proc_insert_plant 'Paseo Cayalá - Fase I', null, 'C.A.', 'Guatemala', 'Guatemala', 2010, 2011, 'Real state', 'Centro Comercial: locales comerciales, restaurantes, bancos, kioscos, parqueo de vehículos, salones de eventos, locales habitacionales, entre otros.', null,'Commercial, Residential', 'Bulevar Rafael Landivar 10-05, zona 16, Guatemala', '14°36m32.66s', '90°29m12.36s', 1505;
+EXEC report.proc_insert_plant 'San Jose Power Plant – Corporación de Energías de Guatemala', 'San Jose Power Plant', 'C.A.', 'Guatemala', 'Escuintla', 1998, 2000, 'Electricity generation', 'Power Plant, generation based on fossil fuel (mineral coal) with an installed capacity of 139.8 MW (Net).', null,'Rural', 'Km. 77 Carretera al Pacífico, Escuintla, Guatemala, C.A.', '14.1628', '-90.7881', 105;
 
 -- Report table executables for data insertion
 -- Data is being inserted in the following order:
@@ -214,6 +216,8 @@ EXEC report.proc_insert_report_table '19/agosto/2020', 'Unity Promotores, S.A.',
 EXEC report.proc_insert_report_table '14/mayo/2021', 'Tecniseguros, Corredores de Seguros, S.A.', 2030, 'Rafael Grajeda', null, '11633,seats', 27650, 172, 1, 'si', 'Minor fires', 'Automatic Dry', 'III', 'no', 'no', 'no', 'no', 'no', 'no', 'si';
 EXEC report.proc_insert_report_table '14/mayo/2021', 'Tecniseguros, Corredores de Seguros, S.A.', 2031, 'Rafael Grajeda', null, '3770,seats', 8500, 5, 1, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
 EXEC report.proc_insert_report_table '20/noviembre/2018', 'Grupo Protegemos Asesores', 2032, 'Marlon Lira, Rafael Grajeda', null, null, 14200, 50, 1, 'si', null, null, null, 'no', 'si', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '20/noviembre/2018', 'Grupo Protegemos Asesores', 2033, 'Rafael Grajeda', null, null, 12215, null, 1, 'si', null, null, null, 'no', 'no', 'si', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '15/febrero/2022', 'Reasinter, Intermadiario de Reaseguro, S.A.', 2034, 'Marlon Lira', null, '139.8,MW', 15967, 81, 2, 'si', 'Major fires', 'Automatic Wet', 'III', 'no', 'no', 'si', 'si', 'no', 'si', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -252,6 +256,8 @@ EXEC report.proc_insert_perils_and_risk_table 2027, 2029, 2, 'none', 1, 1.5, 2.5
 EXEC report.proc_insert_perils_and_risk_table 2028, 2030, 2, 'none', 1, 1.5, 2, 2.5, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 2029, 2031, 2.5, 'none', 1, 1.5, 2, 2.5, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 2030, 2032, 1, 1, 1, 1.5, 1, 2.5, 'none', 1, 1, 1, 'none', 1;
+EXEC report.proc_insert_perils_and_risk_table 2031, 2033, 1.5, 1, 1, 1.5, 1, 2.5, 'none', 1, 1, 1, 'none', 1;
+EXEC report.proc_insert_perils_and_risk_table 2033, 2034, 3, 'none', 1, 2, 2.5, 2.5, 'none', 1, 1, 1, 1, 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -282,3 +288,5 @@ EXEC report.proc_insert_loss_scenario_table 2027, 'Unity Promotores, S.A.', 2029
 EXEC report.proc_insert_loss_scenario_table 2028, 'Tecniseguros, Corredores de Seguros, S.A.', 2030, 'Q,375859566.92', 75, null, null, 'Q,267326806.41', null, 'Q,84575927.82', null, null, null, 75, null;
 EXEC report.proc_insert_loss_scenario_table 2029, 'Tecniseguros, Corredores de Seguros, S.A.', 2031, 'Q,37050000', 91, null, null, 'Q,30000000', null, null, null, null, null, 91, null;
 EXEC report.proc_insert_loss_scenario_table 2030, 'Grupo Protegemos Asesores', 2032, null, 15, null, null, null, null, null, null, null, null, 15, null;
+EXEC report.proc_insert_loss_scenario_table 2031, 'Grupo Protegemos Asesores', 2033, null, 20, null, null, null, null, null, null, null, null, 20, null;
+EXEC report.proc_insert_loss_scenario_table 2033, 'Reasinter, Intermadiario de Reaseguro, S.A.', 2034, '$,252800000', 50.9, '$,34100000', 100, null, null, null, null, null, null, 56.7, null;
