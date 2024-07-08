@@ -137,6 +137,7 @@ EXEC report.proc_insert_business_turnover_class 'Retail';
 EXEC report.proc_insert_business_turnover_class 'Aeronautical revenue';
 EXEC report.proc_insert_business_turnover_class 'Production and electricity generation';
 
+
 -- Plant table executables for data insertion
 -- Data is being inserted in the following order:
 --
@@ -168,12 +169,17 @@ EXEC report.proc_insert_plant 'Caoba Doors', null, 'C.A.', 'Guatemala', 'Sacatep
 EXEC report.proc_insert_plant 'Caracol Knits', null, 'C.A.', 'Houndras', 'Cortes', null, 1992, 'Production', 'Caracol Knits: Textile plant with knitting, dyeing, sewing and cutting processes.', 'IV','Rural', 'El Caracol, Potrerillos Municipality, Cortés Department, Honduras', '15.164185', '-87.942353', 46;
 EXEC report.proc_insert_plant 'Coral Knits', null, 'C.A.', 'Houndras', 'Cortes', 2003, 2004, 'Production', 'Coral Knits: Textile plant with knitting, dyeing and finishing processes', 'IV','Rural', 'El Caracol, Potrerillos Municipality, Cortés Department, Honduras', '15.165094', '-87.939601', 46;
 EXEC report.proc_insert_plant 'Cardex', null, 'C.A.', 'Guatemala', 'Guatemala', null, 2007, 'Production', 'Industrial plant dedicated to the processing, packaging and export of cardamom (mainly), pepper and achiote (complimentary operations).', 'I','Industrial', '24 Avenida 42-85, Zona 12 Atanasio Tzul, Guatemala', '14.573289', '-90.541211', 1450;
+EXEC report.proc_insert_plant 'Casa de Dios', 'Iglesia Casa de Dios Fraijanes', 'C.A.', 'Guatemala', 'Guatemala', 2008, 2013, 'Real state', 'Celebración de servicios religiosos, cursos, conferencias, con-ciertos y otras actividades sociales.', null,'Commercial, Residential', 'Km. 21.5 Carretera al Salvador, Carretera CA-1 oriente lado de-recho Aldea Cumbres de San Nicolas, Comunidad Fraijanes', '14.510758', '-90.480334', 1871;
+EXEC report.proc_insert_plant 'Casa de Dios', 'Iglesia Casa de Dios Pinula', 'C.A.', 'Guatemala', 'Guatemala', null, 2013, 'Real state', 'Talleres, conferencias y otras actividades sociales.', null,'Industrial, Commercial', 'Km. 17 Carretera a San José Pinula, Munici-pio de Fraijanes, Guatemala', '14.541128', '-90.450266', 1915;
+EXEC report.proc_insert_plant 'AC Hotel Guatemala City by Marriott', null, 'C.A.', 'Guatemala', 'Guatemala', 2016, 2017, 'Real state', 'Hotel y otros servicios (restaurante, salones de eventos, bar).', null,'Commercial, Residential', '11 Ave 35-02, Paseo Cayalá, Zona 16, Ciudad de Guatemala', '14°36m36.25s', '90°29m6.69s', 1509;
 
 -- Report table executables for data insertion
 -- Data is being inserted in the following order:
 --
 -- Date of the report, id or name of the client who requested the report, id or name of the plant, id or name of the engineer who prepared the report (in case there are more than one engineer, add the name or the id followed by a ,)
--- the certifications that the plant has (write null if the plant has no certifications) the installed capacity (first write the amount, then the classification followeb by a /, classification can be write by id or name), the plant built-up area, the rate of risk that the plant is expose to by it's location,
+-- the certifications that the plant has (write null if the plant has no certifications) the installed capacity (first write the amount, then the classification followeb by a /, classification can be write by id or name), the plant built-up area, the workforce of the plant
+-- the rate of risk that the plant is expose to by it's location,
+-- 
 -- (Here we add 0 or 1, 1 is yes and 0 is no, or you could write yes or no, true or false) Plant has hydrants?, id or name of the hydrant protection classification, id or name of the hydrant standpipe system type, id or name of the hydrant standpipe system classification,
 -- (Here we add 0 or 1, 1 is yes and 0 is no, or you could write yes or no, true or false) Does the plant has a foam suppresion system? (Here we add 0 or 1, 1 is yes and 0 is no, or you could write yes or no, true or false) does the plant has a suppression system?,
 -- (Here we add 0 or 1, 1 is yes and 0 is no, or you could write yes or no, true or false) Does the plant has sprinklers? (Here we add 0 or 1, 1 is yes and 0 is no, or you could write yes or no, true or false) does the plant has a automatic fire detection system (afds)?,
@@ -205,6 +211,9 @@ EXEC report.proc_insert_report_table '22/febrero/2013', 'Seguros Agromercantil, 
 EXEC report.proc_insert_report_table '4/may/2021', 'Reasinter, Intermadiario de Reaseguro, S.A.', 2027, 'Rafael Grajeda', null, '2400000,pounds/week', 78098.75, 3000, 1, 'si', 'Major fires', 'Automatic Wet', 'III', 'si', 'si', 'si', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '4/may/2021', 'Reasinter, Intermadiario de Reaseguro, S.A.', 2028, 'Rafael Grajeda', null, '1200000,pounds/week', 58360.60, 3000, 1, 'si', 'Major fires', 'Automatic Wet', 'III', 'si', 'si', 'si', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '19/agosto/2020', 'Unity Promotores, S.A.', 2029, 'Rafael Grajeda', null, '220,qq/hour', 7200.00, 300, 1, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'no';
+EXEC report.proc_insert_report_table '14/mayo/2021', 'Tecniseguros, Corredores de Seguros, S.A.', 2030, 'Rafael Grajeda', null, '11633,seats', 27650, 172, 1, 'si', 'Minor fires', 'Automatic Dry', 'III', 'no', 'no', 'no', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '14/mayo/2021', 'Tecniseguros, Corredores de Seguros, S.A.', 2031, 'Rafael Grajeda', null, '3770,seats', 8500, 5, 1, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '20/noviembre/2018', 'Grupo Protegemos Asesores', 2032, 'Marlon Lira, Rafael Grajeda', null, null, 14200, 50, 1, 'si', null, null, null, 'no', 'si', 'si', 'si', 'no', 'si', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -240,9 +249,14 @@ EXEC report.proc_insert_perils_and_risk_table 2024, 2026, 'none', 2.5, 2.5, 2, 1
 EXEC report.proc_insert_perils_and_risk_table 2025, 2027, 2.5, 'none', 1, 1, 2, 2, 'none', 1, 1, 1, 1, 1.5;
 EXEC report.proc_insert_perils_and_risk_table 2026, 2028, 2.5, 'none', 1, 1, 2, 2, 'none', 1, 1, 1, 1, 1.5;
 EXEC report.proc_insert_perils_and_risk_table 2027, 2029, 2, 'none', 1, 1.5, 2.5, 2.5, 'none', 1, 1, 1, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 2028, 2030, 2, 'none', 1, 1.5, 2, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 2029, 2031, 2.5, 'none', 1, 1.5, 2, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 2030, 2032, 1, 1, 1, 1.5, 1, 2.5, 'none', 1, 1, 1, 'none', 1;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
+--
+-- The amounts have to be saved in this way ->$ the currency, separed by a coma the amount, so it would look like this $,22334
 --
 -- The id of the report, the id or name of the client who requested the report, the id or name of the plant, the amount of material damage estimated, the percentage of material damage estimated, the business interruption amount estimated,
 -- The business interruption percentage estimated, the building value estimated for the material damage calculation, the machinary and equipment value estimated for the material damage calculation, the electronic equipment value for the material damage calculation,
@@ -265,4 +279,6 @@ EXEC report.proc_insert_loss_scenario_table 2022, 'Seguros Agromercantil, S.A.',
 EXEC report.proc_insert_loss_scenario_table 2025, 'Reasinter, Intermadiario de Reaseguro, S.A.', 2027, '$,167575939.00', 57, '$,22782498.00', 100, '$,58197034.00', '$,92485539', null, null, '$,13969986.00', null, 62, null;
 EXEC report.proc_insert_loss_scenario_table 2026, 'Reasinter, Intermadiario de Reaseguro, S.A.', 2028, '$,64560067.00', 100, '$,8514462.00', 100, '$,29038613.00', '$,34808809', null, null, '230686', null, 100, null;
 EXEC report.proc_insert_loss_scenario_table 2027, 'Unity Promotores, S.A.', 2029, '$,66738683.00', 100, '$,142000000.00', 100, '$,14000000.00', '$,52538683.00', '$,200000', null, null, null, 100, null;
-
+EXEC report.proc_insert_loss_scenario_table 2028, 'Tecniseguros, Corredores de Seguros, S.A.', 2030, 'Q,375859566.92', 75, null, null, 'Q,267326806.41', null, 'Q,84575927.82', null, null, null, 75, null;
+EXEC report.proc_insert_loss_scenario_table 2029, 'Tecniseguros, Corredores de Seguros, S.A.', 2031, 'Q,37050000', 91, null, null, 'Q,30000000', null, null, null, null, null, 91, null;
+EXEC report.proc_insert_loss_scenario_table 2030, 'Grupo Protegemos Asesores', 2032, null, 15, null, null, null, null, null, null, null, null, 15, null;
