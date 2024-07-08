@@ -250,7 +250,7 @@ EXEC report.proc_insert_perils_and_risk_table 2027, 2029, 2, 'none', 1, 1.5, 2.5
 --
 -- You can leave the material damage and the total insured values in blank if you want, just be aware of giving all the values to the command so the database can calculate those values for you.
 
-EXEC report.proc_insert_loss_scenario_table 1001, 'Unity Promotores, S.A.', 1001, '$,15963716.63', 85, '$,9129876', 75, '$,2343287.10', '$,3620429.53', null, null, 0, '$,25093592.63', 82, null;
+EXEC report.proc_insert_loss_scenario_table 1001, 'Unity Promotores, S.A.', 1001, '$,15963716.63', 85, '$,9129876', 75, '$,2343287.10', '$,3620429.53', null, null, 0, '$,25093592.63', 82, null; 
 EXEC report.proc_insert_loss_scenario_table 1006, 'Tecniseguros, Corredores de Seguros, S.A.', 1003, '$,331598607.86', 100, '$,82150542.25', 100, '$,57169151.84', '$,274429456.02', null, null, 0, '$,413749150.11', 100, null;
 EXEC report.proc_insert_loss_scenario_table 1008, 'Tecniseguros, Corredores de Seguros, S.A.', 1004, '$,331598607.86', 100, '$,82150542.25', 100, '$,57169151.84', '$,274429456.02', null, null, 0, '$,413749150.11', 100, null;
 EXEC report.proc_insert_loss_scenario_table 1010, 'Reasinter, Intermadiario de Reaseguro, S.A.', 1005, '$,68358191', 100, '$,18916000', null, 0, 0, null, null, 0, 0, 100, null;
@@ -265,3 +265,4 @@ EXEC report.proc_insert_loss_scenario_table 2022, 'Seguros Agromercantil, S.A.',
 EXEC report.proc_insert_loss_scenario_table 2025, 'Reasinter, Intermadiario de Reaseguro, S.A.', 2027, '$,167575939.00', 57, '$,22782498.00', 100, '$,58197034.00', '$,92485539', null, null, '$,13969986.00', null, 62, null;
 EXEC report.proc_insert_loss_scenario_table 2026, 'Reasinter, Intermadiario de Reaseguro, S.A.', 2028, '$,64560067.00', 100, '$,8514462.00', 100, '$,29038613.00', '$,34808809', null, null, '230686', null, 100, null;
 EXEC report.proc_insert_loss_scenario_table 2027, 'Unity Promotores, S.A.', 2029, '$,66738683.00', 100, '$,142000000.00', 100, '$,14000000.00', '$,52538683.00', '$,200000', null, null, null, 100, null;
+
