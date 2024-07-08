@@ -258,6 +258,7 @@ AS
 						plant_parameters_installed_capacity FLOAT NULL,
 						id_capacity_type INT NULL,
 						plant_parameters_built_up FLOAT NULL,
+						plant_parameters_workforce INT NULL,
 						plant_parameters_exposures FLOAT NULL,
 						plant_parameters_has_hydrants BIT NOT NULL,
 						id_hydrant_protection INT NULL,

@@ -106,6 +106,10 @@ AS
 				FORMAT(ROUND(pp.plant_parameters_built_up, 2), 'N2')), 
 			'No built-up area saved') AS 'Built-up area (m2)',
 
+		IIF(pp.plant_parameters_workforce IS NOT NULL AND pp.plant_parameters_workforce > 0,
+			CONCAT(pp.plant_parameters_workforce, ' employees'),
+			'No workforce was saved') AS 'Plant workforce',
+
 		report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
 
 		report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
@@ -162,7 +166,7 @@ AS
 		LEFT JOIN report.hydrant_standpipe_system_class_table hsc ON pp.id_hydrant_standpipe_class = hsc.id_hydrant_standpipe_system_class
 		LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
 		LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
-	GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up,
+	GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
 	pp.plant_parameters_exposures, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
 	pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
 	pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,

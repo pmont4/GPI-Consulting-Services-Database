@@ -700,6 +700,9 @@ AS
 	END CATCH;
 --
 
+ALTER TABLE report.plant_parameters
+ADD plant_parameters_workforce INT NULL;
+
 -- Report table data scripts
 --
 CREATE OR ALTER PROCEDURE report.proc_insert_report_table
@@ -710,6 +713,7 @@ CREATE OR ALTER PROCEDURE report.proc_insert_report_table
 	@plant_certifications VARCHAR(200),
 	@installed_capacity VARCHAR(100),
 	@built_up FLOAT(2),
+	@workforce INT,
 	@exposures VARCHAR(8),
 	@has_hydrants VARCHAR(8),
 	@hydrant_protection VARCHAR(20),
@@ -900,6 +904,7 @@ BEGIN TRY
 													@amount_installed_capacity AS FLOAT(2),
 													@id_installed_capacity AS INT,
 													@built_up_to_save AS FLOAT(2) = ISNULL(@built_up, 0.00),
+													@workforce_to_save AS INT = ISNULL(@workforce, 0),
 													@exposures_to_save AS FLOAT(2) = ISNULL(report.DETERMINATE_RATE_OF_RISK(@exposures), 0),
 													@has_hydrants_to_save AS BIT = ISNULL(report.CALCULATE_BIT_TO_SAVE(@has_hydrants), 0),
 													@id_hydrant_protection_to_save AS INT,
@@ -1023,11 +1028,11 @@ BEGIN TRY
 														SET @hydrant_standpipe_class = NULL;
 
 													BEGIN
-														INSERT INTO report.plant_parameters(id_report, id_plant, plant_certifications, plant_parameters_installed_capacity, id_capacity_type, plant_parameters_built_up, plant_parameters_exposures,
+														INSERT INTO report.plant_parameters(id_report, id_plant, plant_certifications, plant_parameters_installed_capacity, id_capacity_type, plant_parameters_built_up, plant_parameters_workforce, plant_parameters_exposures,
 																							plant_parameters_has_hydrants, id_hydrant_protection, id_hydrant_standpipe_type, id_hydrant_standpipe_class, plant_parameters_has_foam_suppression_sys, plant_parameters_has_suppresion_sys,
 																							plant_parameters_has_sprinklers, plant_parameters_has_afds, plant_parameters_has_fire_detection_batteries, plant_parameters_has_private_brigade, plant_parameters_has_lighting_protection)
 																							VALUES((SELECT TOP 1 id_report FROM report.report_table ORDER BY id_report DESC), @id_plant, @certifications_to_save, @amount_installed_capacity, @id_installed_capacity,
-																									@built_up_to_save, @exposures_to_save, @has_hydrants_to_save, @id_hydrant_protection_to_save, @id_hydrant_standpipe_type_to_save, @id_hydrant_standpipe_class_to_save,
+																									@built_up_to_save, @workforce_to_save, @exposures_to_save, @has_hydrants_to_save, @id_hydrant_protection_to_save, @id_hydrant_standpipe_type_to_save, @id_hydrant_standpipe_class_to_save,
 																									@has_foam_suppression_to_save, @has_suppression_to_save, @has_sprinklers_to_save, @has_afds_to_save, @has_fire_detector_bateries_to_save, @has_private_brigade_to_save, @has_lighting_protection_to_save)
 													END;
 												END;
