@@ -176,6 +176,7 @@ EXEC report.proc_insert_plant 'Paseo Cayalá - Fase I', null, 'C.A.', 'Guatemala
 EXEC report.proc_insert_plant 'San Jose Power Plant – Corporación de Energías de Guatemala', 'San Jose Power Plant', 'C.A.', 'Guatemala', 'Escuintla', 1998, 2000, 'Electricity generation', 'Power Plant, generation based on fossil fuel (mineral coal) with an installed capacity of 139.8 MW (Net).', null,'Rural', 'Km. 77 Carretera al Pacífico, Escuintla, Guatemala, C.A.', '14.1628', '-90.7881', 105;
 EXEC report.proc_insert_plant 'Tecnología Marítima, S.A - TEMSA', 'TEMSA', 'C.A.', 'Guatemala', 'Escuintla', null, 2000, 'Storage', 'Reception, storage, and dispatch of bulk mineral coal', null, 'Industrial', 'Recinto Portuario Puerto Quetzal, Escuintla, Guatemala, C.A.', '13.9263', '-90.7955', 4;
 EXEC report.proc_insert_plant 'Centro Comercial Peri-Roosevelt', null, 'C.A.', 'Guatemala', 'Guatemala', 1988, 1988, 'Real state', 'Centro Comercial: locales comerciales, restaurantes, bancos, kioscos, amenidades, parqueo de vehículos, exposición, entre otros.', null, 'Commercial, Residential', 'Calzada Roosevelt 25-50 zona 7, Centro Comercial Peri-Roosevelt, Guatemala, Guatemala.', '14.626665', '-90.556201', 1543;
+EXEC report.proc_insert_plant 'Grupo CEMACO', 'CATM (Centro de Abastecimiento a Tiendas y Mayoristas) ATLAS', 'C.A.', 'Guatemala', 'Guatemala', 2018, 2018, 'Distribution', 'Almacenamiento y centro de distribución de artículos para el hogar y ferretería.', 'II', 'Industrial, Residential', 'Km. 18.5 Carretera a San José Pinula, Guatemala – ATLAS', '14.540400', '-90.439690', null;
 
 -- Report table executables for data insertion
 -- Data is being inserted in the following order:
@@ -222,6 +223,7 @@ EXEC report.proc_insert_report_table '20/noviembre/2018', 'Grupo Protegemos Ases
 EXEC report.proc_insert_report_table '15/febrero/2022', 'Reasinter, Intermadiario de Reaseguro, S.A.', 2034, 'Marlon Lira', null, '139.8,MW', 15967, 81, 2, 'si', 'Major fires', 'Automatic Wet', 'III', 'no', 'no', 'si', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '28/febrero/2022', 'Reasinter, Intermadiario de Reaseguro, S.A.', 2035, 'Marlon Lira, Juan Diego Lacayo', null, '110000,tons', 54190.59, 8, 2.5, 'si', 'Minor fires', 'Automatic Wet', 'II', 'no', 'no', 'si', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '23/febrero/2023', 'Grupo Cemaco', 2036, 'Juan Diego Lacayo', null, null, 34750, 120, 2, 'si', 'Major fires', 'Automatic Wet', 'II', 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '6/febrero/2023', 'Grupo Cemaco', 2037, 'Marlon Lira', null, '34302,positions', 37927, 226, 'none', 'no', null, null, null, 'no', 'no', 'no', 'si', 'si', 'si', 'no';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -264,6 +266,7 @@ EXEC report.proc_insert_perils_and_risk_table 2031, 2033, 1.5, 1, 1, 1.5, 1, 2.5
 EXEC report.proc_insert_perils_and_risk_table 2033, 2034, 3, 'none', 1, 2, 2.5, 2.5, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 2034, 2035, 3, 'none', 3, 2.5, 2.5, 2.5, 2.5, 2, 1, 'none', 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 2035, 2036, 2.5, 1, 1, 1.5, 2, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 2036, 2037, 2, 1, 1.5, 1.5, 2.5, 2.5, 'none', 2, 1, 1, 1, 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -297,3 +300,4 @@ EXEC report.proc_insert_loss_scenario_table 2030, 'Grupo Protegemos Asesores', 2
 EXEC report.proc_insert_loss_scenario_table 2031, 'Grupo Protegemos Asesores', 2033, null, 20, null, null, null, null, null, null, null, null, 20, null;
 EXEC report.proc_insert_loss_scenario_table 2033, 'Reasinter, Intermadiario de Reaseguro, S.A.', 2034, '$,252800000', 50.9, '$,34100000', 100, null, null, null, null, null, null, 56.7, null;
 EXEC report.proc_insert_loss_scenario_table 2035, 'Grupo Cemaco', 2036, '$,97935200.71', 82, '$,57821108', 86, '$,78183000.47', '$,7748520.24', null, '$,4950000.00', '$,6628680', null, 83, null;
+EXEC report.proc_insert_loss_scenario_table 2035, 'Grupo Cemaco', 2037, '$,61305000', 60, '$,6000000', 60, null, '$,570000', null, '$,2250000', '$,58370000', null, 60, null;
