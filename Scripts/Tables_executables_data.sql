@@ -177,6 +177,9 @@ EXEC report.proc_insert_plant 'San Jose Power Plant – Corporación de Energía
 EXEC report.proc_insert_plant 'Tecnología Marítima, S.A - TEMSA', 'TEMSA', 'C.A.', 'Guatemala', 'Escuintla', null, 2000, 'Storage', 'Reception, storage, and dispatch of bulk mineral coal', null, 'Industrial', 'Recinto Portuario Puerto Quetzal, Escuintla, Guatemala, C.A.', '13.9263', '-90.7955', 4;
 EXEC report.proc_insert_plant 'Centro Comercial Peri-Roosevelt', null, 'C.A.', 'Guatemala', 'Guatemala', 1988, 1988, 'Real state', 'Centro Comercial: locales comerciales, restaurantes, bancos, kioscos, amenidades, parqueo de vehículos, exposición, entre otros.', null, 'Commercial, Residential', 'Calzada Roosevelt 25-50 zona 7, Centro Comercial Peri-Roosevelt, Guatemala, Guatemala.', '14.626665', '-90.556201', 1543;
 EXEC report.proc_insert_plant 'Grupo CEMACO', 'CATM (Centro de Abastecimiento a Tiendas y Mayoristas) ATLAS', 'C.A.', 'Guatemala', 'Guatemala', 2018, 2018, 'Distribution', 'Almacenamiento y centro de distribución de artículos para el hogar y ferretería.', 'II', 'Industrial, Residential', 'Km. 18.5 Carretera a San José Pinula, Guatemala – ATLAS', '14.540400', '-90.439690', null;
+EXEC report.proc_insert_plant 'Grupo CEMACO', 'CATM (Centro de Abastecimiento a Tiendas y Mayoristas) Zona 5 – Herramientas Poderosas', 'C.A.', 'Guatemala', 'Guatemala', 1993, 1995, 'Distribution', 'Almacenamiento y distribución de artículos para el hogar y ferretería. Principalmente artículos de marca “Truper”; los cua-les son comercializados a través de la empresa Herramientas Poderosas (parte de Grupo Cemaco).', 'II', 'Industrial, Residential', '27 Calle 41-55, zona 5, Guatemala', '14.620463', '-90.493182', 1433;
+EXEC report.proc_insert_plant 'Cementos Progreso, S.A. – Estadio Cementos Progreso', null, 'C.A.', 'Guatemala', 'Guatemala', 1989, 1991, 'Real state', 'Estadio multi-propósitos.', null, 'Industrial, Residential', '15 avenida 28-00 Zona 6, Guatemala, C.A. ', '14°40m33.12s', '90°29m16.90s', 1442;
+EXEC report.proc_insert_plant 'Cementos Progreso, S.A. – Planta Punta Sur', null, 'C.A.', 'Guatemala', 'Escuintla', 1992, 1994, 'Production', 'Planta de recepción, almacenamiento a granel, despacho a granel, envasado y distribución de cemento para uso general de construcción y para fabricación de blocks.', 'I', 'Industrial, Rural', 'Km. 93 Carretera al Pacífico, Escuintla, Guatemala, C.A. ', '13°58m04.07s', '90°47m37.08s', 12;
 
 -- Report table executables for data insertion
 -- Data is being inserted in the following order:
@@ -224,6 +227,9 @@ EXEC report.proc_insert_report_table '15/febrero/2022', 'Reasinter, Intermadiari
 EXEC report.proc_insert_report_table '28/febrero/2022', 'Reasinter, Intermadiario de Reaseguro, S.A.', 2035, 'Marlon Lira, Juan Diego Lacayo', null, '110000,tons', 54190.59, 8, 2.5, 'si', 'Minor fires', 'Automatic Wet', 'II', 'no', 'no', 'si', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '23/febrero/2023', 'Grupo Cemaco', 2036, 'Juan Diego Lacayo', null, null, 34750, 120, 2, 'si', 'Major fires', 'Automatic Wet', 'II', 'no', 'no', 'no', 'no', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '6/febrero/2023', 'Grupo Cemaco', 2037, 'Marlon Lira', null, '34302,positions', 37927, 226, 'none', 'no', null, null, null, 'no', 'no', 'no', 'si', 'si', 'si', 'no';
+EXEC report.proc_insert_report_table '27/enero/2023', 'Grupo Cemaco', 3037, 'Marlon Lira', null, '7442,Bins/Pallets', 8800, 274, 2, 'si', 'Minor fires', 'Automatic Wet', 'II', 'no', 'si', 'no', 'si', 'si', 'si', 'si';
+EXEC report.proc_insert_report_table '27/septiembre/2012', 'Seguros Agromercantil, S.A.', 3038, 'Marlon Lira', null, '22022,people', 44000, null, 1, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '19/septiembre/2012', 'Seguros Agromercantil, S.A.', 3039, 'Marlon Lira', null, '22000,metric tons', 20700, 9, 2, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -267,6 +273,9 @@ EXEC report.proc_insert_perils_and_risk_table 2033, 2034, 3, 'none', 1, 2, 2.5, 
 EXEC report.proc_insert_perils_and_risk_table 2034, 2035, 3, 'none', 3, 2.5, 2.5, 2.5, 2.5, 2, 1, 'none', 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 2035, 2036, 2.5, 1, 1, 1.5, 2, 2.5, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 2036, 2037, 2, 1, 1.5, 1.5, 2.5, 2.5, 'none', 2, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 3036, 3037, 2, 1.5, 1, 1.5, 2.5, 2.5, 'none', 2, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 3037, 3038, 'none', 'none', 1, 1, 1, 2.5, 'none', 1, 1, 'none', 'none', 1.5;
+EXEC report.proc_insert_perils_and_risk_table 3038, 3039, 1, 'none', 2, 2, 2, 2.5, 2, 1, 1, 'none', 'none', 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -301,3 +310,4 @@ EXEC report.proc_insert_loss_scenario_table 2031, 'Grupo Protegemos Asesores', 2
 EXEC report.proc_insert_loss_scenario_table 2033, 'Reasinter, Intermadiario de Reaseguro, S.A.', 2034, '$,252800000', 50.9, '$,34100000', 100, null, null, null, null, null, null, 56.7, null;
 EXEC report.proc_insert_loss_scenario_table 2035, 'Grupo Cemaco', 2036, '$,97935200.71', 82, '$,57821108', 86, '$,78183000.47', '$,7748520.24', null, '$,4950000.00', '$,6628680', null, 83, null;
 EXEC report.proc_insert_loss_scenario_table 2036, 'Grupo Cemaco', 2037, '$,61305000', 60, '$,6000000', 60, null, '$,570000', null, '$,2250000', '$,58370000', null, 60, null;
+EXEC report.proc_insert_loss_scenario_table 3036, 'Grupo Cemaco', 3037, '$,44559210', 96, '$,68574680', 60, '$,12264210', '$,255000', null, '$,1900000', '$,30100000', null, 96, null;
