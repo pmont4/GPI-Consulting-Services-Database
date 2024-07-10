@@ -300,4 +300,4 @@ EXEC report.proc_insert_loss_scenario_table 2030, 'Grupo Protegemos Asesores', 2
 EXEC report.proc_insert_loss_scenario_table 2031, 'Grupo Protegemos Asesores', 2033, null, 20, null, null, null, null, null, null, null, null, 20, null;
 EXEC report.proc_insert_loss_scenario_table 2033, 'Reasinter, Intermadiario de Reaseguro, S.A.', 2034, '$,252800000', 50.9, '$,34100000', 100, null, null, null, null, null, null, 56.7, null;
 EXEC report.proc_insert_loss_scenario_table 2035, 'Grupo Cemaco', 2036, '$,97935200.71', 82, '$,57821108', 86, '$,78183000.47', '$,7748520.24', null, '$,4950000.00', '$,6628680', null, 83, null;
-EXEC report.proc_insert_loss_scenario_table 2035, 'Grupo Cemaco', 2037, '$,61305000', 60, '$,6000000', 60, null, '$,570000', null, '$,2250000', '$,58370000', null, 60, null;
+EXEC report.proc_insert_loss_scenario_table 2036, 'Grupo Cemaco', 2037, '$,61305000', 60, '$,6000000', 60, null, '$,570000', null, '$,2250000', '$,58370000', null, 60, null;
