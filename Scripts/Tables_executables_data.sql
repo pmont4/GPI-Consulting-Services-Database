@@ -180,6 +180,11 @@ EXEC report.proc_insert_plant 'Grupo CEMACO', 'CATM (Centro de Abastecimiento a 
 EXEC report.proc_insert_plant 'Grupo CEMACO', 'CATM (Centro de Abastecimiento a Tiendas y Mayoristas) Zona 5 – Herramientas Poderosas', 'C.A.', 'Guatemala', 'Guatemala', 1993, 1995, 'Distribution', 'Almacenamiento y distribución de artículos para el hogar y ferretería. Principalmente artículos de marca “Truper”; los cua-les son comercializados a través de la empresa Herramientas Poderosas (parte de Grupo Cemaco).', 'II', 'Industrial, Residential', '27 Calle 41-55, zona 5, Guatemala', '14.620463', '-90.493182', 1433;
 EXEC report.proc_insert_plant 'Cementos Progreso, S.A. – Estadio Cementos Progreso', null, 'C.A.', 'Guatemala', 'Guatemala', 1989, 1991, 'Real state', 'Estadio multi-propósitos.', null, 'Industrial, Residential', '15 avenida 28-00 Zona 6, Guatemala, C.A. ', '14°40m33.12s', '90°29m16.90s', 1442;
 EXEC report.proc_insert_plant 'Cementos Progreso, S.A. – Planta Punta Sur', null, 'C.A.', 'Guatemala', 'Escuintla', 1992, 1994, 'Production', 'Planta de recepción, almacenamiento a granel, despacho a granel, envasado y distribución de cemento para uso general de construcción y para fabricación de blocks.', 'I', 'Industrial, Rural', 'Km. 93 Carretera al Pacífico, Escuintla, Guatemala, C.A. ', '13°58m04.07s', '90°47m37.08s', 12;
+EXEC report.proc_insert_plant 'Centro Comercial Paseo San Sebastián', null, 'C.A.', 'Guatemala', 'Guatemala', 2005, null, 'Real state', 'Centro Comercial: locales comerciales, restaurantes, supermercados, bancos, kioskos, parqueo de vehículos, entre otros.', null, 'Commercial, Residential', 'Km. 14 Carretera a El Salvador, Santa Catarina Pinula, C.C. Paseo San Sebastián, Guatemala.', '14.562953', '-90.464315', 1858;
+EXEC report.proc_insert_plant 'Cervecería Centro Americana Group', null, 'C.A.', 'Guatemala', 'Guatemala', 1886, 1886, 'Production', 'Production and commercialization of alcoholic (beer) and nonalcoholic drinks.', null, 'Industrial, Commercial', '3a. Avenida Norte Final Interior Finca El Zapote zona 2.', '14°39m16.69s', '90°30m55.96s', 1495;
+EXEC report.proc_insert_plant 'CODERE México S.A. de C.V. - Caliente Guadalupe', null, 'N.A.', 'Mexico', 'Nuevo Leon', 2004, 2004, 'Real state', 'Casino – tipo “stand alone”', null, 'Residential, Commercial', 'Constituyentes de Nuevo León No. 108, Col. 10 de Mayo, C.P. 63710, Guadalupe, Nuevo León, México', '25°41m14.16s', '100°15m43.12s', 500;
+EXEC report.proc_insert_plant 'CODERE México S.A. de C.V. - Hipódromo de las Américas', null, 'N.A.', 'Mexico', 'Mexico D.F', 1943, 1943, 'Real state', 'Hipódromo, casino, centro de convenciones y apuestas, centros comerciales, restaurantes, caballerizas, granja infantil.', null, 'Residential, Commercial', 'Av. Industria Militar S/N Acceso 1 y 2 Col. Residencial Militar S/N C.P. 11600, Delegación Miguel Hidalgo, México D.F.', '19°26m14s', '99°13m59s', 2300;
+EXEC report.proc_insert_plant 'CODERE México S.A. de C.V. - Royal Yak Culiacán', null, 'N.A.', 'Mexico', 'Sinaloa', 2007, 2008, 'Real state', 'Casino', null, 'Commercial', 'Boulevard Pedro Infante Núm. 450 Poniente, Local 14, "Centro Comercial Cinepolis", C.P. 80100, Culiacán, Estado de Sinaloa, México ', '24°47m58.27s', '107°24m50.62s', 36;
 
 -- Report table executables for data insertion
 -- Data is being inserted in the following order:
@@ -230,6 +235,11 @@ EXEC report.proc_insert_report_table '6/febrero/2023', 'Grupo Cemaco', 2037, 'Ma
 EXEC report.proc_insert_report_table '27/enero/2023', 'Grupo Cemaco', 3037, 'Marlon Lira', null, '7442,Bins/Pallets', 8800, 274, 2, 'si', 'Minor fires', 'Automatic Wet', 'II', 'no', 'si', 'no', 'si', 'si', 'si', 'si';
 EXEC report.proc_insert_report_table '27/septiembre/2012', 'Seguros Agromercantil, S.A.', 3038, 'Marlon Lira', null, '22022,people', 44000, null, 1, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '19/septiembre/2012', 'Seguros Agromercantil, S.A.', 3039, 'Marlon Lira', null, '22000,metric tons', 20700, 9, 2, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '9/septiembre/2021', 'Seguros Agromercantil, S.A.', 4037, 'Rafael Grajeda', null, '98,Parking/Locals', 8100, null, 1, 'si', 'Minor fires', 'Automatic Wet', 'II', 'no', 'no', 'no', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '10/octubre/2015', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4038, 'Marlon Lira', null, '1500000,hectoliters/year', 71878, 544, 1.5, 'si', null, null, null, 'si', 'no', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '30/junio/2017', 'Generali Global Corporate & Commercial', 4039, 'Marlon Lira', null, '1200,people', 13424.25, 86, 1, 'si', 'Major fires', null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '28/junio/2017', 'Generali Global Corporate & Commercial', 4040, 'Marlon Lira', null, '36500,people', 214048.61, 3500, 1, 'si', 'Major fires', null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '29/junio/2017', 'Generali Global Corporate & Commercial', 4041, 'Marlon Lira', null, '850,people', 4130, 121, 1, 'si', 'Major fires', null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -276,6 +286,11 @@ EXEC report.proc_insert_perils_and_risk_table 2036, 2037, 2, 1, 1.5, 1.5, 2.5, 2
 EXEC report.proc_insert_perils_and_risk_table 3036, 3037, 2, 1.5, 1, 1.5, 2.5, 2.5, 'none', 2, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 3037, 3038, 'none', 'none', 1, 1, 1, 2.5, 'none', 1, 1, 'none', 'none', 1.5;
 EXEC report.proc_insert_perils_and_risk_table 3038, 3039, 1, 'none', 2, 2, 2, 2.5, 2, 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 4036, 4037, 2.5, 1, 1, 2, 2, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4037, 4038, 2, 1, 1, 2, 2, 2.5, 'none', 1, 1, 'none', 'none', 1.5;
+EXEC report.proc_insert_perils_and_risk_table 4038, 4039, 2, 'none', 1, 1, 2, 2, 'none', 1, 1, 1, 1, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 4039, 4040, 2, 1, 1, 1, 2, 2.5, 'none', 1, 1, 1, 1, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 4040, 4041, 2, 'none', 1, 1, 2, 2.5, 'none', 1, 1, 1, 1, 1.5;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -311,3 +326,7 @@ EXEC report.proc_insert_loss_scenario_table 2033, 'Reasinter, Intermadiario de R
 EXEC report.proc_insert_loss_scenario_table 2035, 'Grupo Cemaco', 2036, '$,97935200.71', 82, '$,57821108', 86, '$,78183000.47', '$,7748520.24', null, '$,4950000.00', '$,6628680', null, 83, null;
 EXEC report.proc_insert_loss_scenario_table 2036, 'Grupo Cemaco', 2037, '$,61305000', 60, '$,6000000', 60, null, '$,570000', null, '$,2250000', '$,58370000', null, 60, null;
 EXEC report.proc_insert_loss_scenario_table 3036, 'Grupo Cemaco', 3037, '$,44559210', 96, '$,68574680', 60, '$,12264210', '$,255000', null, '$,1900000', '$,30100000', null, 96, null;
+EXEC report.proc_insert_loss_scenario_table 4037, 'Reasinter, Intermadiario de Reaseguro, S.A.', 4038, '$,468626920', 43, '$,305815975', 71, '$,448005313', '$,11382920', '$,4219187', null, null, null, 57, null;
+EXEC report.proc_insert_loss_scenario_table 4038, 'Generali Global Corporate & Commercial', 4039, '$,974925', 100, null, null, null, null, null, null, null, null, 100, null;
+EXEC report.proc_insert_loss_scenario_table 4039, 'Generali Global Corporate & Commercial', 4040, '$,78511812', 49, null, null, null, null, null, null, null, null, 49, null;
+EXEC report.proc_insert_loss_scenario_table 4040, 'Generali Global Corporate & Commercial', 4041, '$,1014722', 100, null, null, null, null, null, null, null, null, 100, null;
