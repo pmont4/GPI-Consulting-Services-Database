@@ -195,6 +195,7 @@ EXEC report.proc_insert_plant 'Blue Oil Group - Corporación Arcenillas, S.A. -'
 EXEC report.proc_insert_plant 'Corporación Dinant – Lean Extraction Plant', null, 'C.A.', 'Honduras', 'Atlantida', 2015, 2016, 'Production', 'Lean Extraction Plant is an industrial plant dedicated to the extraction of Crude Palm Oil (CPO), Palm Kernel oil (PKO) and palmiste flour.', 'IV', 'Rural', 'Comunidad El Astillero, Municipio de Arizona, Departamento Atlánti-da, Honduras, C.A.', '15.598352', '-87.392795', 42;
 EXEC report.proc_insert_plant 'Corporación Dinant – San Pedro Sula Snacks (Dixie)', null, 'C.A.', 'Honduras', 'Cortes', 1971, 1971, 'Production', 'Snacks production plant.', 'III', 'Industrial, Residential', 'Carretera a Ticamaya, Aldea Arenales, San Pedro Sula, Honduras', '15.485032', '-87.974902', 45;
 EXEC report.proc_insert_plant 'Corporación Dinant', 'Exportadora del Atlántico - Aguán', 'C.A.', 'Honduras', 'Colon', 1998, 1998, 'Production', 'Aguán is an industrial plant dedicated to the extraction of Crude Palm Oil (CPO), Palm Kernel Oil (PKO) and palmiste flour.', 'IV', 'Rural', 'Aldea Quebrada de Agua, Tocoa, Colón, Honduras, C.A.', '15.729094', '-85.856945', 43;
+EXEC report.proc_insert_plant 'Corporación Dinant', 'Grasas y Aceites', 'C.A.', 'Honduras', 'Colon', 2004, 2004, 'Production', 'Refinement (Refined, Bleached and Deodorized), Fractioning (Stearin and Olein), manufacturing and packaging of finished goods (palm oil, margarine, butter and candles)', 'IV', 'Rural', 'Aldea Quebrada de Agua, Tocoa, Colón, Honduras, C.A.', '15.727575', '-85.856838', 43;
 
 -- Report table executables for data insertion
 -- Data is being inserted in the following order:
@@ -261,6 +262,7 @@ EXEC report.proc_insert_report_table '22/julio/2020', 1013, 4048, 'Marlon Lira, 
 EXEC report.proc_insert_report_table '16/junio/2022', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4049, 'Juan Diego Lacayo', 'ISO 14001-2015, ISO 45001-2018, BASC V5, ISCC EU, ISCC PLUS', '380,tons', 11224, 223, 2, 'si', 'Major fires', 'Automatic Wet', 'III', 'si', 'no', 'si', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '15/junio/2022', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4050, 'Juan Diego Lacayo', 'ISO 14001-2015, ISO 45001-2018, HACCP, BASC V5, SQF', '6000,metric tons/month', 22000, 1314, 1, 'si', 'Major fires', 'Automatic Wet', 'III', 'si', 'no', 'si', 'no', 'si', 'si', 'si';
 EXEC report.proc_insert_report_table '17/junio/2022', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4051, 'Marlon Lira', 'ISO 14001-2015, ISO 45001-2018, BASC V5, ISCC EU, ISCC PLUS, Kosher, RSPO', '90,metric tons/hour', 20897.69, 206, 1.5, 'si', 'Major fires', 'Automatic Wet', 'III', 'si', 'no', 'no', 'si', 'si', 'si', 'si';
+EXEC report.proc_insert_report_table '17/junio/2022', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4052, 'Marlon Lira', 'ISO 14001-2015, ISO 45001-2018, HACCP, Kosher, BASC – In process, SQF – Level 3', '646.44,metric tons/day', 10865.24, 260, 1, 'si', 'Major fires', 'Automatic Wet', 'III', 'si', 'no', 'no', 'si', 'si', 'si', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -323,6 +325,7 @@ EXEC report.proc_insert_perils_and_risk_table 4050, 4048, 3, 'none', 1, 2, 3, 3,
 EXEC report.proc_insert_perils_and_risk_table 4051, 4049, 2.5, 'none', 2, 1.5, 2, 2, 'none', 1, 1, 2, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 4052, 4050, 2.5, 'none', 2, 1.5, 2, 2, 'none', 1, 1, 2, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 4053, 4051, 2.5, 'none', 1.5, 2, 2, 2, 'none', 1, 1, 2, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4054, 4052, 2.5, 'none', 1.5, 2, 2, 1.5, 'none', 1, 1, 2, 1, 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -370,3 +373,4 @@ EXEC report.proc_insert_loss_scenario_table 4050, 1013, 4048, '$,73929642', 86, 
 EXEC report.proc_insert_loss_scenario_table 4051, 'Reasinter, Intermadiario de Reaseguro, S.A.', 4049, '$,43316582.28', 71, '$,18000000', 100, '$,5354523.26', '$,30051776.12', '$,9484.03', '$,482922.02', '$,5737656.46', null, 80, null;
 EXEC report.proc_insert_loss_scenario_table 4052, 'Reasinter, Intermadiario de Reaseguro, S.A.', 4050, '$,130486567.62', 78, '$,40000000', 80, '$,6267853.92', '$,110227188.29', null, '$,1059993.96', '$,11500000', null, 79, null;
 EXEC report.proc_insert_loss_scenario_table 4053, 'Reasinter, Intermadiario de Reaseguro, S.A.', 4051, '$,38411900.87', 63, '$,18000000', 100, '$,4750355.97', '$,25927034.30', null, '$,1424265.83', '$,5699795', null, 74, null;
+EXEC report.proc_insert_loss_scenario_table 4054, 'Reasinter, Intermadiario de Reaseguro, S.A.', 4052, '$,36773888.47', 80, '$,10000000', 100, '$,4480420.11', '$,27028860.75', null, '$,264607.61', '$,5000000', null, 84, null;
