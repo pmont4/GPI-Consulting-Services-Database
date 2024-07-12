@@ -253,7 +253,7 @@ AS
 							IF (TRY_CAST(@value_to_evaluate AS DECIMAL) IS NOT NULL)
 								SET @amount = CAST(@value_to_evaluate AS DECIMAL(19, 2));
 							ELSE IF (TRY_CAST(@value_to_evaluate AS DECIMAL) IS NULL)
-								SET @currency = @value_to_evaluate
+								SET @currency = UPPER(@value_to_evaluate);
 							FETCH NEXT FROM cur INTO @value_to_evaluate;
 						END;
 					CLOSE cur;

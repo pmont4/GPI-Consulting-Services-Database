@@ -11,7 +11,7 @@ EXEC report.proc_insert_engineer 'Carlos Grajeda', null;
 EXEC report.proc_insert_engineer 'Rafael Grajeda', null;
 EXEC report.proc_insert_engineer 'Juan Jose Lira', null;
 EXEC report.proc_insert_engineer 'Juan Diego Lacayo', 'jdlacayo@gpiconsultingservices.com';
-EXEC report.proc_insert_engineer 'Eduardo Bracamonte', null;
+EXEC report.proc_insert_engineer 'Eduardo Bracamonte', 'ebracamonte@grupoprointegra.com';
 EXEC report.proc_insert_engineer 'Laura Palma', null;
 
 -- Client table executables for data insertion
@@ -36,7 +36,7 @@ EXEC report.proc_insert_client 'Alimentos S.A.';
 EXEC report.proc_insert_client 'Cerveceria Centro Americana S.A.';
 EXEC report.proc_insert_client 'Conseguros, Corredor de Seguros, S.A.';
 EXEC report.proc_insert_client 'Seguros Universales S.A.';
-
+EXEC report.proc_insert_client 'Grupo Generali';
 
 -- Capacity type table executables for data insertion
 -- Data is being inserted in the following order
@@ -185,6 +185,8 @@ EXEC report.proc_insert_plant 'Cervecería Centro Americana Group', null, 'C.A.'
 EXEC report.proc_insert_plant 'CODERE México S.A. de C.V. - Caliente Guadalupe', null, 'N.A.', 'Mexico', 'Nuevo Leon', 2004, 2004, 'Real state', 'Casino – tipo “stand alone”', null, 'Residential, Commercial', 'Constituyentes de Nuevo León No. 108, Col. 10 de Mayo, C.P. 63710, Guadalupe, Nuevo León, México', '25°41m14.16s', '100°15m43.12s', 500;
 EXEC report.proc_insert_plant 'CODERE México S.A. de C.V. - Hipódromo de las Américas', null, 'N.A.', 'Mexico', 'Mexico D.F', 1943, 1943, 'Real state', 'Hipódromo, casino, centro de convenciones y apuestas, centros comerciales, restaurantes, caballerizas, granja infantil.', null, 'Residential, Commercial', 'Av. Industria Militar S/N Acceso 1 y 2 Col. Residencial Militar S/N C.P. 11600, Delegación Miguel Hidalgo, México D.F.', '19°26m14s', '99°13m59s', 2300;
 EXEC report.proc_insert_plant 'CODERE México S.A. de C.V. - Royal Yak Culiacán', null, 'N.A.', 'Mexico', 'Sinaloa', 2007, 2008, 'Real state', 'Casino', null, 'Commercial', 'Boulevard Pedro Infante Núm. 450 Poniente, Local 14, "Centro Comercial Cinepolis", C.P. 80100, Culiacán, Estado de Sinaloa, México ', '24°47m58.27s', '107°24m50.62s', 36;
+EXEC report.proc_insert_plant 'CODISA.', null, 'C.A.', 'Guatemala', 'Guatemala', 2002, 2006, 'Distribution', 'Centro de operaciones, logística para control de importaciones, recepción de productos de las distintas marcas que representan (51 marcas), almacenamiento de productos y distribución a nivel nacional de los mismos', 'IV', 'Industrial', ': Boulevard Industrial Norte No. 440 Zona 4, Mixco, El Naranjo, Guatemala, C.A.', '14.655517', '-90.535524', 1502;
+EXEC report.proc_insert_plant 'Cooperativa Integral de Producción Madre y Maestra – COMAYMA, R.L.', null, 'C.A.', 'Guatemala', 'Escuintla', null, 2000, 'Production', 'Elaboración y comercialización de alimentos balanceados para animales (aves y cerdos).', 'I', 'Rural', 'Km. 74.5 Carretera CA-9, Masagua, Escuintla, Guatemala, C.A. ', null, null, null;
 
 -- Report table executables for data insertion
 -- Data is being inserted in the following order:
@@ -240,6 +242,9 @@ EXEC report.proc_insert_report_table '10/octubre/2015', 'Reasinter, Intermadiari
 EXEC report.proc_insert_report_table '30/junio/2017', 'Generali Global Corporate & Commercial', 4039, 'Marlon Lira', null, '1200,people', 13424.25, 86, 1, 'si', 'Major fires', null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '28/junio/2017', 'Generali Global Corporate & Commercial', 4040, 'Marlon Lira', null, '36500,people', 214048.61, 3500, 1, 'si', 'Major fires', null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '29/junio/2017', 'Generali Global Corporate & Commercial', 4041, 'Marlon Lira', null, '850,people', 4130, 121, 1, 'si', 'Major fires', null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '6/diciembre/2010', 'Tecniseguros, Corredores de Seguros, S.A.', 4042, 'Marlon Lira', null, null, 29300, 570, 2.5, 'si', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '6/diciembre/2010', 'Grupo Generali', 4042, 'Marlon Lira', null, null, 29300, 570, 2.5, 'si', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '19/abril/2017', 'Seguros Agromercantil, S.A.', 4043, 'Eduardo Bracamonte', null, '60,metric tons/hour', 150000, 105, 1, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -291,6 +296,9 @@ EXEC report.proc_insert_perils_and_risk_table 4037, 4038, 2, 1, 1, 2, 2, 2.5, 'n
 EXEC report.proc_insert_perils_and_risk_table 4038, 4039, 2, 'none', 1, 1, 2, 2, 'none', 1, 1, 1, 1, 1.5;
 EXEC report.proc_insert_perils_and_risk_table 4039, 4040, 2, 1, 1, 1, 2, 2.5, 'none', 1, 1, 1, 1, 1.5;
 EXEC report.proc_insert_perils_and_risk_table 4040, 4041, 2, 'none', 1, 1, 2, 2.5, 'none', 1, 1, 1, 1, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 4041, 4042, 'none', 2, 1, 2.5, 2, 2.5, 'none', 'none', 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 4042, 4042, 'none', 2, 1, 2.5, 2, 2.5, 'none', 'none', 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 4045, 4043, 2.5, 1, 1, 2, 2, 2.5, 1, 1, 1, 'none', 'none', 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -330,3 +338,6 @@ EXEC report.proc_insert_loss_scenario_table 4037, 'Reasinter, Intermadiario de R
 EXEC report.proc_insert_loss_scenario_table 4038, 'Generali Global Corporate & Commercial', 4039, '$,974925', 100, null, null, null, null, null, null, null, null, 100, null;
 EXEC report.proc_insert_loss_scenario_table 4039, 'Generali Global Corporate & Commercial', 4040, '$,78511812', 49, null, null, null, null, null, null, null, null, 49, null;
 EXEC report.proc_insert_loss_scenario_table 4040, 'Generali Global Corporate & Commercial', 4041, '$,1014722', 100, null, null, null, null, null, null, null, null, 100, null;
+EXEC report.proc_insert_loss_scenario_table 4041, 'Tecniseguros, Corredores de Seguros, S.A.', 4042, 'Q,145806175.55', null, 'Q,37400000.00', null, 'Q,46500000.00', 'Q,8000000.00', 'Q,1306175.55', null, 'Q,90000000.00', null, null, 88;
+EXEC report.proc_insert_loss_scenario_table 4042, 'Grupo Generali', 4042, 'Q,145806175.55', null, 'Q,37400000.00', null, 'Q,46500000.00', 'Q,8000000.00', 'Q,1306175.55', null, 'Q,90000000.00', null, null, 88;
+EXEC report.proc_insert_loss_scenario_table 4045, 'Seguros Agromercantil, S.A.', 4043, 'Q,154426464.17', null, 'Q,12000000.00', null, 'Q,34570777.49', 'Q,47655686.68', null, null, 'Q,72200000.00', null, 94, 80;
