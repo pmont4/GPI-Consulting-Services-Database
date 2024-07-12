@@ -281,7 +281,7 @@ AS
 	GROUP BY r.id_plant, p.id_plant, e.engineer_name, e.engineer_contact, rp.id_engineer, p.plant_name, p.plant_account_name
 	HAVING COUNT(r.id_plant) > 0;
 
-SELECT rc.* FROM report.report_count rc ORDER BY rc.[Amount of reports made for this plant] ASC;
+SELECT rc.* FROM report.report_count rc ORDER BY rc.[Amount of reports made for this plant] DESC;
 
 CREATE OR ALTER FUNCTION report.GET_WORK_MOST_WITH_CLIENT(@engineer VARCHAR(150))
 RETURNS INT

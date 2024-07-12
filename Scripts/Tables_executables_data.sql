@@ -196,6 +196,7 @@ EXEC report.proc_insert_plant 'Corporación Dinant – Lean Extraction Plant', n
 EXEC report.proc_insert_plant 'Corporación Dinant – San Pedro Sula Snacks (Dixie)', null, 'C.A.', 'Honduras', 'Cortes', 1971, 1971, 'Production', 'Snacks production plant.', 'III', 'Industrial, Residential', 'Carretera a Ticamaya, Aldea Arenales, San Pedro Sula, Honduras', '15.485032', '-87.974902', 45;
 EXEC report.proc_insert_plant 'Corporación Dinant', 'Exportadora del Atlántico - Aguán', 'C.A.', 'Honduras', 'Colon', 1998, 1998, 'Production', 'Aguán is an industrial plant dedicated to the extraction of Crude Palm Oil (CPO), Palm Kernel Oil (PKO) and palmiste flour.', 'IV', 'Rural', 'Aldea Quebrada de Agua, Tocoa, Colón, Honduras, C.A.', '15.729094', '-85.856945', 43;
 EXEC report.proc_insert_plant 'Corporación Dinant', 'Grasas y Aceites', 'C.A.', 'Honduras', 'Colon', 2004, 2004, 'Production', 'Refinement (Refined, Bleached and Deodorized), Fractioning (Stearin and Olein), manufacturing and packaging of finished goods (palm oil, margarine, butter and candles)', 'IV', 'Rural', 'Aldea Quebrada de Agua, Tocoa, Colón, Honduras, C.A.', '15.727575', '-85.856838', 43;
+EXEC report.proc_insert_plant 'Corporación Eléctrica Nicaragüense, S.A. – CENSA –', 'CENSA I y II', 'C.A.', 'Nicaragua', 'Leon', 1995, 1997, 'Electricity generation', 'Electrical Power Plants: CENSA I integrated by nine (9) 4 MW generators driven by stroke engines that use fuel oil No. 6 (bunker-C) as main combustible; and CENSA II integrated by four (4) 7 MW generators driven by stroke engines that use fuel oil No. 6 (bunker-C) as main combustible.', null, 'Industrial, Rural', 'Km. 68-69 Carretera al Velero, Puerto Sandino, León, Nicaragua,C.A.', '12°11m17.38s', '86°44m50.28s', 35;
 
 -- Report table executables for data insertion
 -- Data is being inserted in the following order:
@@ -263,6 +264,8 @@ EXEC report.proc_insert_report_table '16/junio/2022', 'Reasinter, Intermadiario 
 EXEC report.proc_insert_report_table '15/junio/2022', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4050, 'Juan Diego Lacayo', 'ISO 14001-2015, ISO 45001-2018, HACCP, BASC V5, SQF', '6000,metric tons/month', 22000, 1314, 1, 'si', 'Major fires', 'Automatic Wet', 'III', 'si', 'no', 'si', 'no', 'si', 'si', 'si';
 EXEC report.proc_insert_report_table '17/junio/2022', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4051, 'Marlon Lira', 'ISO 14001-2015, ISO 45001-2018, BASC V5, ISCC EU, ISCC PLUS, Kosher, RSPO', '90,metric tons/hour', 20897.69, 206, 1.5, 'si', 'Major fires', 'Automatic Wet', 'III', 'si', 'no', 'no', 'si', 'si', 'si', 'si';
 EXEC report.proc_insert_report_table '17/junio/2022', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4052, 'Marlon Lira', 'ISO 14001-2015, ISO 45001-2018, HACCP, Kosher, BASC – In process, SQF – Level 3', '646.44,metric tons/day', 10865.24, 260, 1, 'si', 'Major fires', 'Automatic Wet', 'III', 'si', 'no', 'no', 'si', 'si', 'si', 'si';
+EXEC report.proc_insert_report_table '16/junio/2015', 'Redbridge | assurance business support', 4053, 'Marlon Lira', null, '64,MW', 23000, 115, 2, 'si', null, null, null, 'si', 'no', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '10/junio/2021', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4053, 'Marlon Lira', null, '63.6,MW', 30000, 101, 1.5, 'si', 'Major Fires', 'Automatic Wet', 'III', 'si', 'no', 'no', 'si', 'no', 'si', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -326,6 +329,8 @@ EXEC report.proc_insert_perils_and_risk_table 4051, 4049, 2.5, 'none', 2, 1.5, 2
 EXEC report.proc_insert_perils_and_risk_table 4052, 4050, 2.5, 'none', 2, 1.5, 2, 2, 'none', 1, 1, 2, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 4053, 4051, 2.5, 'none', 1.5, 2, 2, 2, 'none', 1, 1, 2, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 4054, 4052, 2.5, 'none', 1.5, 2, 2, 1.5, 'none', 1, 1, 2, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4055, 4053, 2.5, 1, 2, 2.5, 2.5, 2.5, 2, 1, 1, 'none', 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4056, 4053, 2.5, 'none', 1.5, 2, 2.5, 2.5, 1.5, 1, 1, 1, 1, 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -374,3 +379,5 @@ EXEC report.proc_insert_loss_scenario_table 4051, 'Reasinter, Intermadiario de R
 EXEC report.proc_insert_loss_scenario_table 4052, 'Reasinter, Intermadiario de Reaseguro, S.A.', 4050, '$,130486567.62', 78, '$,40000000', 80, '$,6267853.92', '$,110227188.29', null, '$,1059993.96', '$,11500000', null, 79, null;
 EXEC report.proc_insert_loss_scenario_table 4053, 'Reasinter, Intermadiario de Reaseguro, S.A.', 4051, '$,38411900.87', 63, '$,18000000', 100, '$,4750355.97', '$,25927034.30', null, '$,1424265.83', '$,5699795', null, 74, null;
 EXEC report.proc_insert_loss_scenario_table 4054, 'Reasinter, Intermadiario de Reaseguro, S.A.', 4052, '$,36773888.47', 80, '$,10000000', 100, '$,4480420.11', '$,27028860.75', null, '$,264607.61', '$,5000000', null, 84, null;
+EXEC report.proc_insert_loss_scenario_table 4055, 'Redbridge | assurance business support', 4053, null, 50, '$,8041032', 58, null, null, null, null, '$,62993520', null, 51, null;
+EXEC report.proc_insert_loss_scenario_table 4056, 'Reasinter, Intermadiario de Reaseguro, S.A.', 4053, null, 83.5, '$,6957778', 100, null, null, null, null, '$,87294362', null, 84.7, null;
