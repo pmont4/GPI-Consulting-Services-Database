@@ -187,6 +187,14 @@ EXEC report.proc_insert_plant 'CODERE México S.A. de C.V. - Hipódromo de las A
 EXEC report.proc_insert_plant 'CODERE México S.A. de C.V. - Royal Yak Culiacán', null, 'N.A.', 'Mexico', 'Sinaloa', 2007, 2008, 'Real state', 'Casino', null, 'Commercial', 'Boulevard Pedro Infante Núm. 450 Poniente, Local 14, "Centro Comercial Cinepolis", C.P. 80100, Culiacán, Estado de Sinaloa, México ', '24°47m58.27s', '107°24m50.62s', 36;
 EXEC report.proc_insert_plant 'CODISA.', null, 'C.A.', 'Guatemala', 'Guatemala', 2002, 2006, 'Distribution', 'Centro de operaciones, logística para control de importaciones, recepción de productos de las distintas marcas que representan (51 marcas), almacenamiento de productos y distribución a nivel nacional de los mismos', 'IV', 'Industrial', ': Boulevard Industrial Norte No. 440 Zona 4, Mixco, El Naranjo, Guatemala, C.A.', '14.655517', '-90.535524', 1502;
 EXEC report.proc_insert_plant 'Cooperativa Integral de Producción Madre y Maestra – COMAYMA, R.L.', null, 'C.A.', 'Guatemala', 'Escuintla', null, 2000, 'Production', 'Elaboración y comercialización de alimentos balanceados para animales (aves y cerdos).', 'I', 'Rural', 'Km. 74.5 Carretera CA-9, Masagua, Escuintla, Guatemala, C.A. ', null, null, null;
+EXEC report.proc_insert_plant 'Compañía Eléctrica La Libertad, S.A.', null, 'C.A.', 'Guatemala', 'Guatemala', null, null, 'Electricity generation', 'Planta de generación y distribución de energía eléctrica.', null, 'Industrial', 'Km. 18 ½ Carretera al Mayan Golf, Villa Nueva, Guatemala, C.A.', '14°29m59.90s', '90°34m54.46s', 1291;
+EXEC report.proc_insert_plant 'Compañía de Electricidad Los Ramones, S.A.P.I. de C.V.', 'Los Ramones Energy Center', 'N.A.', 'Mexico', 'Nuevo Leon', 2018, 2020, 'Electricity generation', 'Thermoelectrical Power Plant: generation based on converting ther-mal power into electricity through two (2) GE 7HA.02 Combustion Turbines coupled to H53 Electric Generators. The main fuel used at the plant is Natural Gas, and secondary fuel is ULS Diesel.', null, 'Rural', 'Km. 88 East from Monterrey, Ramones, Nuevo León, México.', '25.674521', '-99.460181', null;
+EXEC report.proc_insert_plant 'Residenciales Di Fiori', null, 'C.A.', 'Guatemala', 'Guatemala', 2018, 2020, 'Real state', 'Edificio residencial (exclusivo para viviendas).', null, 'Industrial, Commercial, Residential', 'Calzada Mateo Flores 34-83 zona 7, Guatemala, Guatemala', '14.631778', '-90.563845', 1450;
+EXEC report.proc_insert_plant 'Confecciones Modernas, S.A.', null, 'C.A.', 'Guatemala', 'Guatemala', null, null, 'Production', 'Planta de confección', 'III', 'Commercial, Residential', '31 Calle 13-94 zona 5, Guatemala, Guatemala', null, null, null;
+EXEC report.proc_insert_plant 'Blue Oil Group - Corporación Arcenillas, S.A. -', 'Corporación Arcenillas, S.A.', 'C.A.', 'Guatemala', 'Escuintla', 2002, 2002, 'Storage', 'Fuels Tank Farm. Reception, storage and dispatch of fossil fuels: Die-sel and Gasoline.', 'IV', 'Industrial, Rural', '2ª Avenida y 4ª calle, Parcelamiento Arizona. Puerto San José. Escuintla, Guatemala.', '13.9533', '-90.8037', 10;
+EXEC report.proc_insert_plant 'Corporación Dinant – Lean Extraction Plant', null, 'C.A.', 'Honduras', 'Atlantida', 2015, 2016, 'Production', 'Lean Extraction Plant is an industrial plant dedicated to the extraction of Crude Palm Oil (CPO), Palm Kernel oil (PKO) and palmiste flour.', 'IV', 'Rural', 'Comunidad El Astillero, Municipio de Arizona, Departamento Atlánti-da, Honduras, C.A.', '15.598352', '-87.392795', 42;
+EXEC report.proc_insert_plant 'Corporación Dinant – San Pedro Sula Snacks (Dixie)', null, 'C.A.', 'Honduras', 'Cortes', 1971, 1971, 'Production', 'Snacks production plant.', 'III', 'Industrial, Residential', 'Carretera a Ticamaya, Aldea Arenales, San Pedro Sula, Honduras', '15.485032', '-87.974902', 45;
+EXEC report.proc_insert_plant 'Corporación Dinant', 'Exportadora del Atlántico - Aguán', 'C.A.', 'Honduras', 'Colon', 1998, 1998, 'Production', 'Aguán is an industrial plant dedicated to the extraction of Crude Palm Oil (CPO), Palm Kernel Oil (PKO) and palmiste flour.', 'IV', 'Rural', 'Aldea Quebrada de Agua, Tocoa, Colón, Honduras, C.A.', '15.729094', '-85.856945', 43;
 
 -- Report table executables for data insertion
 -- Data is being inserted in the following order:
@@ -245,6 +253,14 @@ EXEC report.proc_insert_report_table '29/junio/2017', 'Generali Global Corporate
 EXEC report.proc_insert_report_table '6/diciembre/2010', 'Tecniseguros, Corredores de Seguros, S.A.', 4042, 'Marlon Lira', null, null, 29300, 570, 2.5, 'si', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
 EXEC report.proc_insert_report_table '6/diciembre/2010', 'Grupo Generali', 4042, 'Marlon Lira', null, null, 29300, 570, 2.5, 'si', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
 EXEC report.proc_insert_report_table '19/abril/2017', 'Seguros Agromercantil, S.A.', 4043, 'Eduardo Bracamonte', null, '60,metric tons/hour', 150000, 105, 1, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '24/febrero/2014', 'Tecniseguros, Corredores de Seguros, S.A.', 4044, 'Marlon Lira', null, '22,MW', 4974, 54, 2, 'si', null, null, null, 'si', 'no', 'no', 'si', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '4/mayo/2022', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4045, 'Rafael Grajeda', null, '395000,KVA', 48000, 14, 1, 'si', 'Major fires', 'Automatic Wet', 'II', 'si', 'si', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '28/junio/2022', 'Seguros Agromercantil, S.A.', 4046, 'Juan Diego Lacayo', null, null, 26800, 16, 1, 'si', 'Minor fires', 'Automatic Wet', 'II', 'no', 'no', 'si', 'si', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '9/noviembre/2009', 'Aseguradora Mundial, S.A.', 4047, 'Marlon Lira', null, '8000,units/month', 1120, 110, 1, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'no';
+EXEC report.proc_insert_report_table '22/julio/2020', 1013, 4048, 'Marlon Lira, Rafael Grajeda', null, '535000,barrels', 22750, 16, 2, 'si', 'Major fires', null, null, 'si', 'no', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '16/junio/2022', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4049, 'Juan Diego Lacayo', 'ISO 14001-2015, ISO 45001-2018, BASC V5, ISCC EU, ISCC PLUS', '380,tons', 11224, 223, 2, 'si', 'Major fires', 'Automatic Wet', 'III', 'si', 'no', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '15/junio/2022', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4050, 'Juan Diego Lacayo', 'ISO 14001-2015, ISO 45001-2018, HACCP, BASC V5, SQF', '6000,metric tons/month', 22000, 1314, 1, 'si', 'Major fires', 'Automatic Wet', 'III', 'si', 'no', 'si', 'no', 'si', 'si', 'si';
+EXEC report.proc_insert_report_table '17/junio/2022', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4051, 'Marlon Lira', 'ISO 14001-2015, ISO 45001-2018, BASC V5, ISCC EU, ISCC PLUS, Kosher, RSPO', '90,metric tons/hour', 20897.69, 206, 1.5, 'si', 'Major fires', 'Automatic Wet', 'III', 'si', 'no', 'no', 'si', 'si', 'si', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -299,6 +315,14 @@ EXEC report.proc_insert_perils_and_risk_table 4040, 4041, 2, 'none', 1, 1, 2, 2.
 EXEC report.proc_insert_perils_and_risk_table 4041, 4042, 'none', 2, 1, 2.5, 2, 2.5, 'none', 'none', 1, 'none', 'none', 2;
 EXEC report.proc_insert_perils_and_risk_table 4042, 4042, 'none', 2, 1, 2.5, 2, 2.5, 'none', 'none', 1, 'none', 'none', 2;
 EXEC report.proc_insert_perils_and_risk_table 4045, 4043, 2.5, 1, 1, 2, 2, 2.5, 1, 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 4046, 4044, 'none', 1, 2, 2, 2, 2, 'none', 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 4047, 4045, 3, 'none', 1, 1, 1, 1, 'none', 1, 1, 1, 1, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 4048, 4046, 2.5, 'none', 1, 1, 2, 2.5, 'none', 1, 1, 1, 1, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 4049, 4047, 'none', 'none', 1, 1, 1, 2, 'none', 1, 1, 'none', 'none', 1.5;
+EXEC report.proc_insert_perils_and_risk_table 4050, 4048, 3, 'none', 1, 2, 3, 3, 1, 1, 1, 1, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 4051, 4049, 2.5, 'none', 2, 1.5, 2, 2, 'none', 1, 1, 2, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4052, 4050, 2.5, 'none', 2, 1.5, 2, 2, 'none', 1, 1, 2, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4053, 4051, 2.5, 'none', 1.5, 2, 2, 2, 'none', 1, 1, 2, 1, 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -341,3 +365,8 @@ EXEC report.proc_insert_loss_scenario_table 4040, 'Generali Global Corporate & C
 EXEC report.proc_insert_loss_scenario_table 4041, 'Tecniseguros, Corredores de Seguros, S.A.', 4042, 'Q,145806175.55', null, 'Q,37400000.00', null, 'Q,46500000.00', 'Q,8000000.00', 'Q,1306175.55', null, 'Q,90000000.00', null, null, 88;
 EXEC report.proc_insert_loss_scenario_table 4042, 'Grupo Generali', 4042, 'Q,145806175.55', null, 'Q,37400000.00', null, 'Q,46500000.00', 'Q,8000000.00', 'Q,1306175.55', null, 'Q,90000000.00', null, null, 88;
 EXEC report.proc_insert_loss_scenario_table 4045, 'Seguros Agromercantil, S.A.', 4043, 'Q,154426464.17', null, 'Q,12000000.00', null, 'Q,34570777.49', 'Q,47655686.68', null, null, 'Q,72200000.00', null, 94, 80;
+EXEC report.proc_insert_loss_scenario_table 4047, 'Reasinter, Intermadiario de Reaseguro, S.A.', 4045, null, 40, null, 50, null, null, null, null, null, null, null, null;
+EXEC report.proc_insert_loss_scenario_table 4050, 1013, 4048, '$,73929642', 86, '$,8160000', 67, '$,1675000', '$,25938065', null, null, '$,46316577', null, 83, null;
+EXEC report.proc_insert_loss_scenario_table 4051, 'Reasinter, Intermadiario de Reaseguro, S.A.', 4049, '$,43316582.28', 71, '$,18000000', 100, '$,5354523.26', '$,30051776.12', '$,9484.03', '$,482922.02', '$,5737656.46', null, 80, null;
+EXEC report.proc_insert_loss_scenario_table 4052, 'Reasinter, Intermadiario de Reaseguro, S.A.', 4050, '$,130486567.62', 78, '$,40000000', 80, '$,6267853.92', '$,110227188.29', null, '$,1059993.96', '$,11500000', null, 79, null;
+EXEC report.proc_insert_loss_scenario_table 4053, 'Reasinter, Intermadiario de Reaseguro, S.A.', 4051, '$,38411900.87', 63, '$,18000000', 100, '$,4750355.97', '$,25927034.30', null, '$,1424265.83', '$,5699795', null, 74, null;
