@@ -62,6 +62,7 @@ EXEC report.proc_insert_capacity_type 'qq/Day';
 EXEC report.proc_insert_capacity_type 'qq/Hour';
 EXEC report.proc_insert_capacity_type 'units/Week';
 EXEC report.proc_insert_capacity_type 'units/Month';
+EXEC report.proc_insert_capacity_type 'units/hour';
 EXEC report.proc_insert_capacity_type 'MW';
 EXEC report.proc_insert_capacity_type 'KVA';
 EXEC report.proc_insert_capacity_type 'Flights/Month';
@@ -202,6 +203,7 @@ EXEC report.proc_insert_plant 'Corporación Eléctrica Nicaragüense, S.A. – C
 EXEC report.proc_insert_plant 'Corporación Multi Inversiones', 'Avícolas Villalobos – Planta I', 'C.A.', 'Guatemala', 'Guatemala', null, null, 'Production', 'Manufacturing and commercialization of chicken-based products.', 'I', 'Industrial, Residential', 'Calzada Aguilar Batres 50-52 - Zona 11 Colonia Castañas, Guatemala, Guatemala, C.A.', '14.572611', '-90.573981', 1430;
 EXEC report.proc_insert_plant 'Corporación Multi Inversiones – CMI –', 'Empacadora Toledo – Centro Industrial Amatitlán –', 'C.A.', 'Guatemala', 'Guatemala', 1971, 1971, 'Production', 'Meat products processing and distribution, mainly associated to pork, chicken and turkey-based products (sausages, ham and meat prepared products) for the Central America market (Guatemala, El Salvador, Honduras and Costa Rica).', 'I', 'Industrial, Residential', '1ra. Avenida 10-31 Barrio el Ingenio Amatitlan, Guatemala, C.A.', '14.4611', '-90.6313', 1185;
 EXEC report.proc_insert_plant 'Corporación Multi Inversiones', 'Molinos Modernos', 'C.A.', 'Guatemala', 'Guatemala', 1963, null, 'Production', 'Wheat milling for flour production (bakery purposes).', 'I', 'Industrial, Commercial', '33 calle 25-30 zona 12, Guatemala, Guatemala, C.A.', '14.586094', '-90.541159', 1485;
+EXEC report.proc_insert_plant 'Diarios Modernos, S.A.', 'Taller de impresion', 'C.A.', 'Guatemala', 'Guatemala', null, 1998, 'Production', 'pre-prensa (quemado de placas), impresión.', 'III', 'Industrial', '10ª avenida 25-59 zona 13, Guatemala, C.A.', '14.570752', '-90.534234', 1485;
 
 -- Report table executables for data insertion
 -- Data is being inserted in the following order:
@@ -274,6 +276,7 @@ EXEC report.proc_insert_report_table '10/junio/2021', 'Reasinter, Intermadiario 
 EXEC report.proc_insert_report_table '25/noviembre/2021', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4054, 'Rafael Grajeda', 'HACCP, FSSC 22000 (in process) Kosher (in process)', '46800,pounds/hour', 6200, 550, 1, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '7/diciembre/2021', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4055, 'Marlon Lira', 'HACCP, SQF', '10900000,pounds/month', 21500, 750, 2, 'si', 'Minor fires', null, null, 'si', 'si', 'no', 'si', 'no', 'si', 'no';
 EXEC report.proc_insert_report_table '3/diciembre/2021', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4056, 'Rafael Grajeda', null, '1450,tons/day', 21700, 410, 1, 'no', null, null, null, 'no', 'no', 'no', 'si', 'si', 'si', 'si';
+EXEC report.proc_insert_report_table '26/noviembre/2010', 'Tecniseguros, Corredores de Seguros, S.A.', 4057, 'Marlon Lira', null, '150000,units/hour', 1300, 576, 3, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'no';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -342,6 +345,7 @@ EXEC report.proc_insert_perils_and_risk_table 4056, 4053, 2.5, 'none', 1.5, 2, 2
 EXEC report.proc_insert_perils_and_risk_table 4057, 4054, 1.5, 1, 1, 2, 2, 2.5, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 4059, 4055, 2, 2, 2, 2, 2.5, 2.5, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 4060, 4056, 2, 'none', 1, 2, 2, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4061, 4057, 'none', 1, 2, 3, 2, 2.5, 'none', 'none', 1, 'none', 'none', 3;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
