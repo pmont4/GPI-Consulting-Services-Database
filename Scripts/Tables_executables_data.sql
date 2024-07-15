@@ -69,6 +69,7 @@ EXEC report.proc_insert_capacity_type 'units/Week';
 EXEC report.proc_insert_capacity_type 'units/Month';
 EXEC report.proc_insert_capacity_type 'units/hour';
 EXEC report.proc_insert_capacity_type 'units/day';
+EXEC report.proc_insert_capacity_type 'units/year';
 EXEC report.proc_insert_capacity_type 'MW';
 EXEC report.proc_insert_capacity_type 'KVA';
 EXEC report.proc_insert_capacity_type 'Flights/Month';
@@ -212,6 +213,7 @@ EXEC report.proc_insert_plant 'Corporación Multi Inversiones', 'Molinos Moderno
 EXEC report.proc_insert_plant 'Diarios Modernos, S.A.', 'Taller de impresion', 'C.A.', 'Guatemala', 'Guatemala', null, 1998, 'Production', 'pre-prensa (quemado de placas), impresión.', 'III', 'Industrial', '10ª avenida 25-59 zona 13, Guatemala, C.A.', '14.570752', '-90.534234', 1485;
 EXEC report.proc_insert_plant 'Disagro', 'Disagro – Oficinas Centrales (Headquarters)', 'C.A.', 'Guatemala', 'Guatemala', null, 1977, 'Production', 'Sales, PET bottles production, industrial machinery workshop, fertilizers and agrochemicals storage and distribution, scales workshop and corporate data center.', 'IV', 'Commercial, Industrial', 'Anillo Periférico 17-36 Zona 11, Guatemala, Guatemala C.A.', '14°36m37.00s', '90°33m23.16s', 1523;
 EXEC report.proc_insert_plant 'Disagro', 'Disagro – Puerto Quetzal', 'C.A.', 'Guatemala', 'Escuintla', 1986, 1986, 'Production', 'Formulación, almacenamiento y distribución de fertilizantes sólidos.', 'I', 'Rural, Industrial', '97.5 carretera a Puerto Quetzal, Escuintla, Guatemala C.A.', '13.9559', '-90.7889', 11;
+EXEC report.proc_insert_plant 'Disagro', 'Disagro – Sacos Agroindustriales', 'C.A.', 'Guatemala', 'Sacatepequez', 1986, 1986, 'Production', 'Producción y distribución de empaque flexible de polipropileno y polietileno.', 'IV', 'Rural, Residential', '97.5 carretera a Puerto Quetzal, Escuintla, Guatemala C.A.', '14.5333', '-90.7334', 1540;
 
 -- Report table executables for data insertion
 -- Data is being inserted in the following order:
@@ -287,6 +289,7 @@ EXEC report.proc_insert_report_table '3/diciembre/2021', 'Reasinter, Intermadiar
 EXEC report.proc_insert_report_table '26/noviembre/2010', 'Tecniseguros, Corredores de Seguros, S.A.', 4057, 'Marlon Lira', null, '150000,units/hour', 1300, 576, 3, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'no';
 EXEC report.proc_insert_report_table '23/noviembre/2016', 'Somit, Corredores de Seguros, S.A.', 4058, 'Juan Jose Lira', 'ISO 9001, FCC 22000', '19000,units/hour', 19412, 500, 2, 'no', null, null, null, 'no', 'si', 'no', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '14/diciembre/2022', 1019, 4059, 'Juan Jose Lira', null, '110200,units/day', 51163, 194, 2, 'no', null, null, null, 'si', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '15/diciembre/2022', 1019, 4060, 'Juan Jose Lira', null, '25000000,units/year', 25841, 794, 2, 'no', null, null, null, 'si', 'no', 'no', 'si', 'no', 'si', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -358,6 +361,7 @@ EXEC report.proc_insert_perils_and_risk_table 4060, 2, 'none', 1, 2, 2, 2.5, 'no
 EXEC report.proc_insert_perils_and_risk_table 4061, 'none', 1, 2, 3, 2, 2.5, 'none', 'none', 1, 'none', 'none', 3;
 EXEC report.proc_insert_perils_and_risk_table 4062, 2.5, 1, 2, 2, 2, 3, 'none', 1, 1, 'none', 'none', 2;
 EXEC report.proc_insert_perils_and_risk_table 4063, 3, 2, 2, 2, 2, 3, 'none', 2, 1, 1, 2, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 4064, 2.5, 1, 2, 2, 1.5, 3, 'none', 1, 1.5, 1, 1, 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -413,3 +417,4 @@ EXEC report.proc_insert_loss_scenario_table 4059, '$,51244669', 84.4, null, 100,
 EXEC report.proc_insert_loss_scenario_table 4060, '$,78619800', 60.2, null, 65, '$,26827500', '$,42710000', null, null, '$,9082300.00', null, null, null;
 EXEC report.proc_insert_loss_scenario_table 4062, '$,31685995.00', null, null, null, null, '$,18076086.00', null, null, '$,13609909.00', null, null, 75;
 EXEC report.proc_insert_loss_scenario_table 4063, '$,79910000', null, null, null, null, '$,28510000', null, null, '$,51400000', null, null, 86;
+EXEC report.proc_insert_loss_scenario_table 4064, '$,68940000', null, null, null, null, '$,46640000', null, null, '$,22300000', null, null, 87;
