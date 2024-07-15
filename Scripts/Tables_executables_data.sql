@@ -68,6 +68,7 @@ EXEC report.proc_insert_capacity_type 'qq/Hour';
 EXEC report.proc_insert_capacity_type 'units/Week';
 EXEC report.proc_insert_capacity_type 'units/Month';
 EXEC report.proc_insert_capacity_type 'units/hour';
+EXEC report.proc_insert_capacity_type 'units/day';
 EXEC report.proc_insert_capacity_type 'MW';
 EXEC report.proc_insert_capacity_type 'KVA';
 EXEC report.proc_insert_capacity_type 'Flights/Month';
@@ -285,9 +286,7 @@ EXEC report.proc_insert_report_table '7/diciembre/2021', 'Reasinter, Intermadiar
 EXEC report.proc_insert_report_table '3/diciembre/2021', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4056, 'Rafael Grajeda', null, '1450,tons/day', 21700, 410, 1, 'no', null, null, null, 'no', 'no', 'no', 'si', 'si', 'si', 'si';
 EXEC report.proc_insert_report_table '26/noviembre/2010', 'Tecniseguros, Corredores de Seguros, S.A.', 4057, 'Marlon Lira', null, '150000,units/hour', 1300, 576, 3, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'no';
 EXEC report.proc_insert_report_table '23/noviembre/2016', 'Somit, Corredores de Seguros, S.A.', 4058, 'Juan Jose Lira', 'ISO 9001, FCC 22000', '19000,units/hour', 19412, 500, 2, 'no', null, null, null, 'no', 'si', 'no', 'si', 'no', 'si', 'si';
-EXEC report.proc_insert_report_table '14/diciembre/2022', 'Somit, Corredores de Seguros, S.A.', 4058, 'Juan Jose Lira', 'ISO 9001, FCC 22000', '19000,units/hour', 19412, 500, 2, 'no', null, null, null, 'no', 'si', 'no', 'si', 'no', 'si', 'si';
-
-UPDATE report.report_table SET id_client = 1019 WHERE id_plant = 4058;
+EXEC report.proc_insert_report_table '14/diciembre/2022', 1019, 4059, 'Juan Jose Lira', null, '110200,units/day', 51163, 194, 2, 'no', null, null, null, 'si', 'no', 'no', 'no', 'no', 'si', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -298,73 +297,74 @@ UPDATE report.report_table SET id_client = 1019 WHERE id_plant = 4058;
 -- The id of the report, the id or name of the plant, fire/explosion risk rate, landslide/subsidence risk rate, water flooding risk rate, wind/storm risk rate, lighting risk rate, earthquake risk rate, tsunami risk rate,
 -- collapse risk rate, aircraft risk rate, riot risk rate, design failure risk rate and a overall risk rate, if you leave the overall risk field empty, the database will automatically calculate the overall risk.
 
-EXEC report.proc_insert_perils_and_risk_table 1001, '1001', '2.5', 'light', 'light', '2', 'severe', null, 'none', '0', 'light', '1', 'LIGHT ', null;
-EXEC report.proc_insert_perils_and_risk_table 1006, '1003', '2.5', 'none', '1', '2.5', '2', 2.5, 'none', '1', '1', '1', 'LIGHT ', 1;
-EXEC report.proc_insert_perils_and_risk_table 1008, 1004, 1, 2, 1, 2, 2, 2.5, 'none', 1, 1, 1, 1, 1;
-EXEC report.proc_insert_perils_and_risk_table 1010, 1005, 1.5, 'none', 2.5, 1, 2, 2, 'none', 1, 3, 2.5, 1, 2;
-EXEC report.proc_insert_perils_and_risk_table 1011, 1009, 'none', 1, 1, 1, 1.5, 2.5, 'none', 1, 'none', 1, 'none', 1.5;
-EXEC report.proc_insert_perils_and_risk_table 2007, 1010, 'none', 1, 2, 2, 2, 2, 'none', 1, 1, 'none', 'none', 1.5;
-EXEC report.proc_insert_perils_and_risk_table 2008, 2009, 'none', 1, 3, 3, 2.5, 2.5, 'none', 1, 1, 'none', 'none', 2.5;
-EXEC report.proc_insert_perils_and_risk_table 2009, 2011, 'none', 1, 2.5, 2, 2, 2, 'none', 1, 1, 'none', 'none', 2.5;
-EXEC report.proc_insert_perils_and_risk_table 2011, 2012, 2.5, 1, 1, 2.5, 2.5, 3, 1, 1, 1, 'none', 'none', 2.5;
-EXEC report.proc_insert_perils_and_risk_table 2012, 2013, 2.5, 'none', 1, 1.5, 2, 2, 'none', 1, 1, 1, 'none', 2;
-EXEC report.proc_insert_perils_and_risk_table 2013, 2015, 'none', 1, 1.5, 2, 2, 2.5, 'none', 'none', 1, 'none', 'none', 1.5;
-EXEC report.proc_insert_perils_and_risk_table 2014, 2016, 2.5, 'none', 2, 1, 2.5, 2, 1, 2, 1, 1, 3, 2.5;
-EXEC report.proc_insert_perils_and_risk_table 2015, 2017, 2.5, 1, 1, 2.5, 2, 2, 'none', 1, 1, 'none', 1, 2;
-EXEC report.proc_insert_perils_and_risk_table 2016, 2018, 2.5, 1, 1.5, 2, 2, 2.5, 1, 1, 1, 'none', 'none', 2;
-EXEC report.proc_insert_perils_and_risk_table 2017, 2019, 2.5, 1, 1, 1.5, 2, 2.5, 'none', 1, 2, 1, 1, 2;
-EXEC report.proc_insert_perils_and_risk_table 2018, 2020, 3, 1, 1, 2.5, 2.5, 2.5, 1, 1, 2, 'none', 'none', 2;
-EXEC report.proc_insert_perils_and_risk_table 2019, 2021, 3, 1, 1, 2.5, 2.5, 2.5, 1, 1, 2, 'none', 'none', 2;
-EXEC report.proc_insert_perils_and_risk_table 2020, 2022, 3, 2, 1.5, 2, 2.5, 2.5, 'none', 1, 1, 1, 'none', 2;
-EXEC report.proc_insert_perils_and_risk_table 2021, 2023, 1.5, 1, 1, 1, 1.5, 3, 'none', 'none', 1, 1, 1, 1.5;
-EXEC report.proc_insert_perils_and_risk_table 2022, 2024, 'none', 2, 2, 1.5, 2, 2.5, 1, 1, 1, 'none', 'none', 2;
-EXEC report.proc_insert_perils_and_risk_table 2023, 2025, 'none', 1, 1.5, 2, 2, 3, 'none', 2, 2, 'none', 'none', 2.5;
-EXEC report.proc_insert_perils_and_risk_table 2024, 2026, 'none', 2.5, 2.5, 2, 1, 2.5, 'none', 1, 1, 'none', 'none', 2.5;
-EXEC report.proc_insert_perils_and_risk_table 2025, 2027, 2.5, 'none', 1, 1, 2, 2, 'none', 1, 1, 1, 1, 1.5;
-EXEC report.proc_insert_perils_and_risk_table 2026, 2028, 2.5, 'none', 1, 1, 2, 2, 'none', 1, 1, 1, 1, 1.5;
-EXEC report.proc_insert_perils_and_risk_table 2027, 2029, 2, 'none', 1, 1.5, 2.5, 2.5, 'none', 1, 1, 1, 1, 2.5;
-EXEC report.proc_insert_perils_and_risk_table 2028, 2030, 2, 'none', 1, 1.5, 2, 2.5, 'none', 1, 1, 1, 1, 2;
-EXEC report.proc_insert_perils_and_risk_table 2029, 2031, 2.5, 'none', 1, 1.5, 2, 2.5, 'none', 1, 1, 1, 1, 2;
-EXEC report.proc_insert_perils_and_risk_table 2030, 2032, 1, 1, 1, 1.5, 1, 2.5, 'none', 1, 1, 1, 'none', 1;
-EXEC report.proc_insert_perils_and_risk_table 2031, 2033, 1.5, 1, 1, 1.5, 1, 2.5, 'none', 1, 1, 1, 'none', 1;
-EXEC report.proc_insert_perils_and_risk_table 2033, 2034, 3, 'none', 1, 2, 2.5, 2.5, 'none', 1, 1, 1, 1, 2;
-EXEC report.proc_insert_perils_and_risk_table 2034, 2035, 3, 'none', 3, 2.5, 2.5, 2.5, 2.5, 2, 1, 'none', 1, 2;
-EXEC report.proc_insert_perils_and_risk_table 2035, 2036, 2.5, 1, 1, 1.5, 2, 2.5, 'none', 1, 1, 1, 1, 2;
-EXEC report.proc_insert_perils_and_risk_table 2036, 2037, 2, 1, 1.5, 1.5, 2.5, 2.5, 'none', 2, 1, 1, 1, 2;
-EXEC report.proc_insert_perils_and_risk_table 3036, 3037, 2, 1.5, 1, 1.5, 2.5, 2.5, 'none', 2, 1, 1, 1, 2;
-EXEC report.proc_insert_perils_and_risk_table 3037, 3038, 'none', 'none', 1, 1, 1, 2.5, 'none', 1, 1, 'none', 'none', 1.5;
-EXEC report.proc_insert_perils_and_risk_table 3038, 3039, 1, 'none', 2, 2, 2, 2.5, 2, 1, 1, 'none', 'none', 2;
-EXEC report.proc_insert_perils_and_risk_table 4036, 4037, 2.5, 1, 1, 2, 2, 2.5, 'none', 1, 1, 1, 1, 2;
-EXEC report.proc_insert_perils_and_risk_table 4037, 4038, 2, 1, 1, 2, 2, 2.5, 'none', 1, 1, 'none', 'none', 1.5;
-EXEC report.proc_insert_perils_and_risk_table 4038, 4039, 2, 'none', 1, 1, 2, 2, 'none', 1, 1, 1, 1, 1.5;
-EXEC report.proc_insert_perils_and_risk_table 4039, 4040, 2, 1, 1, 1, 2, 2.5, 'none', 1, 1, 1, 1, 1.5;
-EXEC report.proc_insert_perils_and_risk_table 4040, 4041, 2, 'none', 1, 1, 2, 2.5, 'none', 1, 1, 1, 1, 1.5;
-EXEC report.proc_insert_perils_and_risk_table 4041, 4042, 'none', 2, 1, 2.5, 2, 2.5, 'none', 'none', 1, 'none', 'none', 2;
-EXEC report.proc_insert_perils_and_risk_table 4042, 4042, 'none', 2, 1, 2.5, 2, 2.5, 'none', 'none', 1, 'none', 'none', 2;
-EXEC report.proc_insert_perils_and_risk_table 4045, 4043, 2.5, 1, 1, 2, 2, 2.5, 1, 1, 1, 'none', 'none', 2;
-EXEC report.proc_insert_perils_and_risk_table 4046, 4044, 'none', 1, 2, 2, 2, 2, 'none', 1, 1, 'none', 'none', 2;
-EXEC report.proc_insert_perils_and_risk_table 4047, 4045, 3, 'none', 1, 1, 1, 1, 'none', 1, 1, 1, 1, 1.5;
-EXEC report.proc_insert_perils_and_risk_table 4048, 4046, 2.5, 'none', 1, 1, 2, 2.5, 'none', 1, 1, 1, 1, 1.5;
-EXEC report.proc_insert_perils_and_risk_table 4049, 4047, 'none', 'none', 1, 1, 1, 2, 'none', 1, 1, 'none', 'none', 1.5;
-EXEC report.proc_insert_perils_and_risk_table 4050, 4048, 3, 'none', 1, 2, 3, 3, 1, 1, 1, 1, 1, 2.5;
-EXEC report.proc_insert_perils_and_risk_table 4051, 4049, 2.5, 'none', 2, 1.5, 2, 2, 'none', 1, 1, 2, 1, 2;
-EXEC report.proc_insert_perils_and_risk_table 4052, 4050, 2.5, 'none', 2, 1.5, 2, 2, 'none', 1, 1, 2, 1, 2;
-EXEC report.proc_insert_perils_and_risk_table 4053, 4051, 2.5, 'none', 1.5, 2, 2, 2, 'none', 1, 1, 2, 1, 2;
-EXEC report.proc_insert_perils_and_risk_table 4054, 4052, 2.5, 'none', 1.5, 2, 2, 1.5, 'none', 1, 1, 2, 1, 2;
-EXEC report.proc_insert_perils_and_risk_table 4055, 4053, 2.5, 1, 2, 2.5, 2.5, 2.5, 2, 1, 1, 'none', 1, 2;
-EXEC report.proc_insert_perils_and_risk_table 4056, 4053, 2.5, 'none', 1.5, 2, 2.5, 2.5, 1.5, 1, 1, 1, 1, 2;
-EXEC report.proc_insert_perils_and_risk_table 4057, 4054, 1.5, 1, 1, 2, 2, 2.5, 'none', 1, 1, 1, 1, 2;
-EXEC report.proc_insert_perils_and_risk_table 4059, 4055, 2, 2, 2, 2, 2.5, 2.5, 'none', 1, 1, 1, 1, 2;
-EXEC report.proc_insert_perils_and_risk_table 4060, 4056, 2, 'none', 1, 2, 2, 2.5, 'none', 1, 1, 1, 1, 2;
-EXEC report.proc_insert_perils_and_risk_table 4061, 4057, 'none', 1, 2, 3, 2, 2.5, 'none', 'none', 1, 'none', 'none', 3;
-EXEC report.proc_insert_perils_and_risk_table 4062, 4058, 2.5, 1, 2, 2, 2, 3, 'none', 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 1001, '2.5', 'light', 'light', '2', 'severe', null, 'none', '0', 'light', '1', 'LIGHT ', null;
+EXEC report.proc_insert_perils_and_risk_table 1006, '2.5', 'none', '1', '2.5', '2', 2.5, 'none', '1', '1', '1', 'LIGHT ', 1;
+EXEC report.proc_insert_perils_and_risk_table 1008, 1, 2, 1, 2, 2, 2.5, 'none', 1, 1, 1, 1, 1;
+EXEC report.proc_insert_perils_and_risk_table 1010, 1.5, 'none', 2.5, 1, 2, 2, 'none', 1, 3, 2.5, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 1011, 'none', 1, 1, 1, 1.5, 2.5, 'none', 1, 'none', 1, 'none', 1.5;
+EXEC report.proc_insert_perils_and_risk_table 2007, 'none', 1, 2, 2, 2, 2, 'none', 1, 1, 'none', 'none', 1.5;
+EXEC report.proc_insert_perils_and_risk_table 2008, 'none', 1, 3, 3, 2.5, 2.5, 'none', 1, 1, 'none', 'none', 2.5;
+EXEC report.proc_insert_perils_and_risk_table 2009, 'none', 1, 2.5, 2, 2, 2, 'none', 1, 1, 'none', 'none', 2.5;
+EXEC report.proc_insert_perils_and_risk_table 2011, 2.5, 1, 1, 2.5, 2.5, 3, 1, 1, 1, 'none', 'none', 2.5;
+EXEC report.proc_insert_perils_and_risk_table 2012, 2.5, 'none', 1, 1.5, 2, 2, 'none', 1, 1, 1, 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 2013, 'none', 1, 1.5, 2, 2, 2.5, 'none', 'none', 1, 'none', 'none', 1.5;
+EXEC report.proc_insert_perils_and_risk_table 2014, 2.5, 'none', 2, 1, 2.5, 2, 1, 2, 1, 1, 3, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 2015, 2.5, 1, 1, 2.5, 2, 2, 'none', 1, 1, 'none', 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 2016, 2.5, 1, 1.5, 2, 2, 2.5, 1, 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 2017, 2.5, 1, 1, 1.5, 2, 2.5, 'none', 1, 2, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 2018, 3, 1, 1, 2.5, 2.5, 2.5, 1, 1, 2, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 2019, 3, 1, 1, 2.5, 2.5, 2.5, 1, 1, 2, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 2020, 3, 2, 1.5, 2, 2.5, 2.5, 'none', 1, 1, 1, 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 2021, 1.5, 1, 1, 1, 1.5, 3, 'none', 'none', 1, 1, 1, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 2022, 'none', 2, 2, 1.5, 2, 2.5, 1, 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 2023, 'none', 1, 1.5, 2, 2, 3, 'none', 2, 2, 'none', 'none', 2.5;
+EXEC report.proc_insert_perils_and_risk_table 2024, 'none', 2.5, 2.5, 2, 1, 2.5, 'none', 1, 1, 'none', 'none', 2.5;
+EXEC report.proc_insert_perils_and_risk_table 2025, 2.5, 'none', 1, 1, 2, 2, 'none', 1, 1, 1, 1, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 2026, 2.5, 'none', 1, 1, 2, 2, 'none', 1, 1, 1, 1, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 2027, 2, 'none', 1, 1.5, 2.5, 2.5, 'none', 1, 1, 1, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 2028, 2, 'none', 1, 1.5, 2, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 2029, 2.5, 'none', 1, 1.5, 2, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 2030, 1, 1, 1, 1.5, 1, 2.5, 'none', 1, 1, 1, 'none', 1;
+EXEC report.proc_insert_perils_and_risk_table 2031, 1.5, 1, 1, 1.5, 1, 2.5, 'none', 1, 1, 1, 'none', 1;
+EXEC report.proc_insert_perils_and_risk_table 2033, 3, 'none', 1, 2, 2.5, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 2034, 3, 'none', 3, 2.5, 2.5, 2.5, 2.5, 2, 1, 'none', 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 2035, 2.5, 1, 1, 1.5, 2, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 2036, 2, 1, 1.5, 1.5, 2.5, 2.5, 'none', 2, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 3036, 2, 1.5, 1, 1.5, 2.5, 2.5, 'none', 2, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 3037, 'none', 'none', 1, 1, 1, 2.5, 'none', 1, 1, 'none', 'none', 1.5;
+EXEC report.proc_insert_perils_and_risk_table 3038, 1, 'none', 2, 2, 2, 2.5, 2, 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 4036, 2.5, 1, 1, 2, 2, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4037, 2, 1, 1, 2, 2, 2.5, 'none', 1, 1, 'none', 'none', 1.5;
+EXEC report.proc_insert_perils_and_risk_table 4038, 2, 'none', 1, 1, 2, 2, 'none', 1, 1, 1, 1, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 4039, 2, 1, 1, 1, 2, 2.5, 'none', 1, 1, 1, 1, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 4040, 2, 'none', 1, 1, 2, 2.5, 'none', 1, 1, 1, 1, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 4041, 'none', 2, 1, 2.5, 2, 2.5, 'none', 'none', 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 4042, 'none', 2, 1, 2.5, 2, 2.5, 'none', 'none', 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 4045, 2.5, 1, 1, 2, 2, 2.5, 1, 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 4046, 'none', 1, 2, 2, 2, 2, 'none', 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 4047, 3, 'none', 1, 1, 1, 1, 'none', 1, 1, 1, 1, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 4048, 2.5, 'none', 1, 1, 2, 2.5, 'none', 1, 1, 1, 1, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 4049, 'none', 'none', 1, 1, 1, 2, 'none', 1, 1, 'none', 'none', 1.5;
+EXEC report.proc_insert_perils_and_risk_table 4050, 3,'none', 1, 2, 3, 3, 1, 1, 1, 1, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 4051, 2.5, 'none', 2, 1.5, 2, 2, 'none', 1, 1, 2, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4052, 2.5, 'none', 2, 1.5, 2, 2, 'none', 1, 1, 2, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4053, 2.5, 'none', 1.5, 2, 2, 2, 'none', 1, 1, 2, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4054, 2.5, 'none', 1.5, 2, 2, 1.5, 'none', 1, 1, 2, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4055, 2.5, 1, 2, 2.5, 2.5, 2.5, 2, 1, 1, 'none', 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4056, 2.5, 'none', 1.5, 2, 2.5, 2.5, 1.5, 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4057, 1.5, 1, 1, 2, 2, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4059, 2, 2, 2, 2, 2.5, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4060, 2, 'none', 1, 2, 2, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4061, 'none', 1, 2, 3, 2, 2.5, 'none', 'none', 1, 'none', 'none', 3;
+EXEC report.proc_insert_perils_and_risk_table 4062, 2.5, 1, 2, 2, 2, 3, 'none', 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 4063, 3, 2, 2, 2, 2, 3, 'none', 2, 1, 1, 2, 2.5;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
 --
 -- The amounts have to be saved in this way ->$ the currency, separed by a coma the amount, so it would look like this $,22334
 --
--- The id of the report, the id or name of the client who requested the report, the id or name of the plant, the amount of material damage estimated, the percentage of material damage estimated, the business interruption amount estimated,
+-- The id of the report, the amount of material damage estimated, the percentage of material damage estimated, the business interruption amount estimated,
 -- The business interruption percentage estimated, the building value estimated for the material damage calculation, the machinary and equipment value estimated for the material damage calculation, the electronic equipment value for the material damage calculation,
 -- The expansion works or investment amount for the material damage calculation, the total value of the stock of the plant for the material damage calculation, the value of the total insured values (MD + BI), the pml percentage, and the mfl percentage (If exists in the report)
 --
@@ -412,3 +412,4 @@ EXEC report.proc_insert_loss_scenario_table 4057, '$,21176222', 80.2, null, 100,
 EXEC report.proc_insert_loss_scenario_table 4059, '$,51244669', 84.4, null, 100, '$,12465144.20', '$,28809524.57', null, null, '$,9970000.00', null, null, null;
 EXEC report.proc_insert_loss_scenario_table 4060, '$,78619800', 60.2, null, 65, '$,26827500', '$,42710000', null, null, '$,9082300.00', null, null, null;
 EXEC report.proc_insert_loss_scenario_table 4062, '$,31685995.00', null, null, null, null, '$,18076086.00', null, null, '$,13609909.00', null, null, 75;
+EXEC report.proc_insert_loss_scenario_table 4063, '$,79910000', null, null, null, null, '$,28510000', null, null, '$,51400000', null, null, 86;

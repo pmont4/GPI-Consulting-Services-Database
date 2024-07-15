@@ -1074,7 +1074,6 @@ END CATCH;
 --
 CREATE OR ALTER PROCEDURE report.proc_insert_perils_and_risk_table
 	@id_report AS INT,
-	@plant AS VARCHAR(100),
 	@fire_explosion AS VARCHAR(20),
 	@landslie_subsidence AS VARCHAR(20),
 	@water_flooding AS VARCHAR(20),
@@ -1090,35 +1089,21 @@ CREATE OR ALTER PROCEDURE report.proc_insert_perils_and_risk_table
 AS
 	BEGIN TRY
 		BEGIN
-			CREATE TABLE #temp_plant_table_pr (
-				id_plant INT,
-				account_name VARCHAR(150),
-				plant_name VARCHAR(150)
-			);
 			CREATE TABLE #temp_report_table_pr (
-				id_report INT
+				id_report INT,
+				id_plant INT
 			);
-
-			CREATE CLUSTERED INDEX idx_temp_plant_table_pr ON #temp_plant_table_pr(id_plant);
-			CREATE NONCLUSTERED INDEX idx_temp_plant_table_acc_name_pr ON #temp_plant_table_pr(account_name);
-			CREATE NONCLUSTERED INDEX idx_temp_plant_table_plant_name_pr ON #temp_plant_table_pr(plant_name);
 
 			CREATE CLUSTERED INDEX idx_temp_report_table ON #temp_report_table_pr(id_report);
+			CREATE NONCLUSTERED INDEX idx_tempo_report_table_plant ON #temp_report_table_pr(id_plant);
 
-			INSERT INTO #temp_plant_table_pr SELECT id_plant, plant_account_name, plant_name FROM report.plant_table;
-			INSERT INTO #temp_report_table_pr SELECT id_report FROM report.report_table;
+			INSERT INTO #temp_report_table_pr SELECT id_report, id_plant FROM report.report_table;
 		END;
 		BEGIN
-			IF (@id_report IS NOT NULL AND @plant IS NOT NULL AND (SELECT id_report FROM #temp_report_table_pr WHERE id_report = @id_report) IS NOT NULL)
+			IF (@id_report IS NOT NULL AND (SELECT id_report FROM #temp_report_table_pr WHERE id_report = @id_report) IS NOT NULL)
 				BEGIN
-					DECLARE @id_plant AS INT
-					BEGIN
-						IF (TRY_CAST(@plant AS VARCHAR) IS NOT NULL)
-							SET @id_plant = ISNULL((SELECT id_plant FROM #temp_plant_table_pr WHERE account_name = report.CORRECT_GRAMMAR(@plant, 'name') OR plant_name = report.CORRECT_GRAMMAR(@plant, 'name')), 
-													null);
-						IF ((SELECT TRY_CAST(@plant AS INT)) IS NOT NULL)
-							SET @id_plant = ISNULL((SELECT id_plant FROM #temp_plant_table_pr WHERE id_plant = @plant), null);
-					END;
+					DECLARE @id_plant AS INT = (SELECT id_plant FROM #temp_report_table_pr WHERE id_report = @id_report);
+					
 					IF (@id_plant IS NOT NULL)
 						DECLARE @overall_rating_to_save AS FLOAT(2)
 						IF (@overall_rating IS NULL OR @overall_rating = '0' OR LOWER(@overall_rating) = 'none')
@@ -1153,7 +1138,7 @@ AS
 								BEGIN
 									INSERT INTO report.perils_and_risk_table(id_report, id_plant, perils_and_risk_fire_explosion, perils_and_risk_landslide_subsidence, perils_and_risk_water_flooding, perils_and_risk_wind_storm, perils_and_risk_lighting,
 																			perils_and_risk_earthquake, perils_and_risk_tsunami, perils_and_risk_collapse, perils_and_risk_aircraft, perils_and_risk_riot, perils_and_risk_design_failure, perils_and_risk_overall_rating)
-																			VALUES (@id_report, @plant, report.DETERMINATE_RATE_OF_RISK(@fire_explosion), report.DETERMINATE_RATE_OF_RISK(@landslie_subsidence), report.DETERMINATE_RATE_OF_RISK(@water_flooding),
+																			VALUES (@id_report, @id_plant, report.DETERMINATE_RATE_OF_RISK(@fire_explosion), report.DETERMINATE_RATE_OF_RISK(@landslie_subsidence), report.DETERMINATE_RATE_OF_RISK(@water_flooding),
 																					report.DETERMINATE_RATE_OF_RISK(@wind_storm), report.DETERMINATE_RATE_OF_RISK(@lighting), report.DETERMINATE_RATE_OF_RISK(@earthquake), report.DETERMINATE_RATE_OF_RISK(@tsunami),
 																					report.DETERMINATE_RATE_OF_RISK(@collapse), report.DETERMINATE_RATE_OF_RISK(@aircraft), report.DETERMINATE_RATE_OF_RISK(@riot), report.DETERMINATE_RATE_OF_RISK(@design_failure),
 																					report.DETERMINATE_RATE_OF_RISK(@overall_rating_to_save));
@@ -1161,10 +1146,9 @@ AS
 								END;
 					END;
 				ELSE
-					PRINT ('Cannot insert in the perils and risk table because either the report or the plant cannot be found in the database');
+					PRINT ('Cannot insert in the perils and risk table because the report cannot be found in the database');
 			END;
 
-		DROP TABLE #temp_plant_table_pr;
 		DROP TABLE #temp_report_table_pr;
 	END TRY
 	BEGIN CATCH
