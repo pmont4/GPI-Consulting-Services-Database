@@ -50,6 +50,7 @@ EXEC report.proc_insert_client 'Somit, Corredores de Seguros, S.A.'
 
 EXEC report.proc_insert_capacity_type 'Tons / year';
 EXEC report.proc_insert_capacity_type 'Kilograms/Month';
+EXEC report.proc_insert_capacity_type 'Kilograms/day';
 EXEC report.proc_insert_capacity_type 'Metric tons/Hour';
 EXEC report.proc_insert_capacity_type 'Metric tons/Day';
 EXEC report.proc_insert_capacity_type 'Metric tons/Year';
@@ -219,6 +220,8 @@ EXEC report.proc_insert_plant 'Disagro', 'Disagro – Sacos Agroindustriales', '
 EXEC report.proc_insert_plant 'Disagro', 'Disagro – Teculután.', 'C.A.', 'Guatemala', 'Zacapa', null, 1982, 'Production', 'Formulation, storage and distribution solid of fertilizers.', 'I', 'Rural, Commercial', 'Km 124 carretera al Atlántico, Zacapa, Guatemala C.A.', '14°59m53.79s', '89°41m33.59s', 237;
 EXEC report.proc_insert_plant 'Disagro', 'Disagro - Quilubrisa', 'C.A.', 'Guatemala', 'Escuintla', null, 1982, 'Production', 'Production and distribution of agrochemicals (herbicides, insecticides, fungicides and soluble fertilizers).', 'I', 'Rural, Industrial', 'Km. 36.5 Carretera al Pacífico, Palín Escuintla, Guatemala C.A.', '14°25m6.89s', '90°40m15.88s', 1178;
 EXEC report.proc_insert_plant 'Depósitos Dormimundo, S.A. de C.V. - Planta Blaco Export Dormimundo', null, 'N.A.', 'Mexico', 'Mexico', 1992, 2013, 'Production', 'Producción y comercialización de colchonería, camas y catres.', 'IV', 'Commercial, Industrial', 'Km. 36.5 Carretera al Pacífico, Palín Escuintla, Guatemala C.A.', '19°17m52.5s', '99°33m27.2s', 2587;
+EXEC report.proc_insert_plant 'Planta Pinturas Volcán, Axalta Coating Systems - Grupo Duwest', null, 'C.A.', 'Guatemala', 'Guatemala', null, null, 'Production', 'Desarrollo, fabricación y venta de pinturas y recubrimientos líquidos y en polvo de alto rendimiento.', 'IV', 'Residential, Industrial', 'Km. 27.5 Carretera al Atlántico, Amatitlán, Guatemala', '14°29m4.81s', '90°37m38.20s', 1215;
+EXEC report.proc_insert_plant 'Planta Tecún Umán, Westrade - Grupo Duwest', null, 'C.A.', 'Guatemala', 'San Marcos', null, null, 'Production', 'Producción de productos agroquímicos tales como herbicidas, fungicidas, insecticidas, fertilizantes, flumetralina, propanil y emulsionantes.', 'I', 'Rural, Industrial', '11 calle y 15 avenida, Tecún Umán, San Marcos, Guatemala', '14°40m16.9s', '92°07m47.0s', 26;
 
 -- Report table executables for data insertion
 -- Data is being inserted in the following order:
@@ -302,6 +305,8 @@ EXEC report.proc_insert_report_table '25/noviembre/2016', 'Unity Promotores, S.A
 EXEC report.proc_insert_report_table '24/noviembre/2016', 'Unity Promotores, S.A.', 4060, 'Juan Jose Lira, Eduardo Bracamonte', 'ISO 9000, FSCC 22000', '20000000.70,yards/month', 20200, 800, 2, 'no', null, null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '13/diciembre/2022', 'Somit, Corredores de Seguros, S.A.', 4058, 'Juan Jose Lira', 'ISO 9001, FCC 22000', '4000000,units/month', 19412, 630, 2, 'no', null, null, null, 'no', 'si', 'no', 'no', 'si', 'si', 'si';
 EXEC report.proc_insert_report_table '27/febrero/2018', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4065, 'Rafael Grajeda', null, '900,units/day', 16650, 160, 1, 'si', 'Major fires', null, null, 'no', 'no', 'si', 'no', 'si', 'si', 'no';
+EXEC report.proc_insert_report_table '16/marzo/2018', 'Unity Promotores, S.A.', 4066, 'Rafael Grajeda', null, '2989210.86,pounds/month', 7004.55, 50, 1, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '7/marzo/2018', 'Unity Promotores, S.A.', 4067, 'Rafael Grajeda', null, '220200,kilograms/day', 11950, 108, 2, 'si', null, null, null, 'no', 'no', 'si', 'no', 'no', 'si', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -380,6 +385,8 @@ EXEC report.proc_insert_perils_and_risk_table 4068, 2.5, 1, 1, 2.5, 2, 3, 'none'
 EXEC report.proc_insert_perils_and_risk_table 4069, 2.5, 1, 2, 2, 2.5, 3, 'none', 1, 1, 'none', 'none', 2;
 EXEC report.proc_insert_perils_and_risk_table 4070, 2.5, 1, 1, 1, 1.5, 2.5, 'none', 1, 1.5, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 4071, 2.5, 'none', 1, 1, 2, 1.5, 'none', 1, 2, 1, 1, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 4072, 2.5, 'none', 1, 1, 1.5, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4073, 2.5, 'none', 1, 1, 1, 2.5, 'none', 1, 1, 1, 1, 1.5;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -443,3 +450,5 @@ EXEC report.proc_insert_loss_scenario_table 4068, '$,22678598', null, null, null
 EXEC report.proc_insert_loss_scenario_table 4069, '$,64322365', null, null, null, null, '$,37000000', null, null, '$,27322365', null, null, 91;
 EXEC report.proc_insert_loss_scenario_table 4070, '$,30100000', null, null, null, null, '$,17500000', null, null, '$,12600000', null, null, 75;
 EXEC report.proc_insert_loss_scenario_table 4071, '$,372781510.25', 41, null, null, '$,194531510.25', '$,178250000.00', null, null, null, null, null, null;
+EXEC report.proc_insert_loss_scenario_table 4072, '$,14295983', 87, '$,1125000.00', 75, '$,1468799.13', '$,212500.00', null, null, '$,12614683.87', null, 86, null;
+EXEC report.proc_insert_loss_scenario_table 4073, '$,25592406.31', 58, '$,3710000.00', 70, '$,3356000.00', '$,11543585.84', null, null, '$,10692820.47', null, 60, null;
