@@ -1,5 +1,9 @@
 USE gpi_consulting_services_reports_db;
 
+-- Back up creation
+--
+BACKUP DATABASE gpi_consulting_services_reports_db TO DISK = '/var/opt/mssql/gpi_consulting_services_reports_db.bak';
+
 -- Engineer table executables for data insertion
 -- Data is being inserted in the following order
 --
@@ -37,6 +41,7 @@ EXEC report.proc_insert_client 'Cerveceria Centro Americana S.A.';
 EXEC report.proc_insert_client 'Conseguros, Corredor de Seguros, S.A.';
 EXEC report.proc_insert_client 'Seguros Universales S.A.';
 EXEC report.proc_insert_client 'Grupo Generali';
+EXEC report.proc_insert_client 'Somit, Corredores de Seguros, S.A.'
 
 -- Capacity type table executables for data insertion
 -- Data is being inserted in the following order
@@ -204,6 +209,8 @@ EXEC report.proc_insert_plant 'Corporación Multi Inversiones', 'Avícolas Villa
 EXEC report.proc_insert_plant 'Corporación Multi Inversiones – CMI –', 'Empacadora Toledo – Centro Industrial Amatitlán –', 'C.A.', 'Guatemala', 'Guatemala', 1971, 1971, 'Production', 'Meat products processing and distribution, mainly associated to pork, chicken and turkey-based products (sausages, ham and meat prepared products) for the Central America market (Guatemala, El Salvador, Honduras and Costa Rica).', 'I', 'Industrial, Residential', '1ra. Avenida 10-31 Barrio el Ingenio Amatitlan, Guatemala, C.A.', '14.4611', '-90.6313', 1185;
 EXEC report.proc_insert_plant 'Corporación Multi Inversiones', 'Molinos Modernos', 'C.A.', 'Guatemala', 'Guatemala', 1963, null, 'Production', 'Wheat milling for flour production (bakery purposes).', 'I', 'Industrial, Commercial', '33 calle 25-30 zona 12, Guatemala, Guatemala, C.A.', '14.586094', '-90.541159', 1485;
 EXEC report.proc_insert_plant 'Diarios Modernos, S.A.', 'Taller de impresion', 'C.A.', 'Guatemala', 'Guatemala', null, 1998, 'Production', 'pre-prensa (quemado de placas), impresión.', 'III', 'Industrial', '10ª avenida 25-59 zona 13, Guatemala, C.A.', '14.570752', '-90.534234', 1485;
+EXEC report.proc_insert_plant 'Disagro', 'Disagro – Oficinas Centrales (Headquarters)', 'C.A.', 'Guatemala', 'Guatemala', null, 1977, 'Production', 'Sales, PET bottles production, industrial machinery workshop, fertilizers and agrochemicals storage and distribution, scales workshop and corporate data center.', 'IV', 'Commercial, Industrial', 'Anillo Periférico 17-36 Zona 11, Guatemala, Guatemala C.A.', '14°36m37.00s', '90°33m23.16s', 1523;
+EXEC report.proc_insert_plant 'Disagro', 'Disagro – Puerto Quetzal', 'C.A.', 'Guatemala', 'Escuintla', 1986, 1986, 'Production', 'Formulación, almacenamiento y distribución de fertilizantes sólidos.', 'I', 'Rural, Industrial', '97.5 carretera a Puerto Quetzal, Escuintla, Guatemala C.A.', '13.9559', '-90.7889', 11;
 
 -- Report table executables for data insertion
 -- Data is being inserted in the following order:
@@ -277,6 +284,10 @@ EXEC report.proc_insert_report_table '25/noviembre/2021', 'Reasinter, Intermadia
 EXEC report.proc_insert_report_table '7/diciembre/2021', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4055, 'Marlon Lira', 'HACCP, SQF', '10900000,pounds/month', 21500, 750, 2, 'si', 'Minor fires', null, null, 'si', 'si', 'no', 'si', 'no', 'si', 'no';
 EXEC report.proc_insert_report_table '3/diciembre/2021', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4056, 'Rafael Grajeda', null, '1450,tons/day', 21700, 410, 1, 'no', null, null, null, 'no', 'no', 'no', 'si', 'si', 'si', 'si';
 EXEC report.proc_insert_report_table '26/noviembre/2010', 'Tecniseguros, Corredores de Seguros, S.A.', 4057, 'Marlon Lira', null, '150000,units/hour', 1300, 576, 3, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'no';
+EXEC report.proc_insert_report_table '23/noviembre/2016', 'Somit, Corredores de Seguros, S.A.', 4058, 'Juan Jose Lira', 'ISO 9001, FCC 22000', '19000,units/hour', 19412, 500, 2, 'no', null, null, null, 'no', 'si', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '14/diciembre/2022', 'Somit, Corredores de Seguros, S.A.', 4058, 'Juan Jose Lira', 'ISO 9001, FCC 22000', '19000,units/hour', 19412, 500, 2, 'no', null, null, null, 'no', 'si', 'no', 'si', 'no', 'si', 'si';
+
+UPDATE report.report_table SET id_client = 1019 WHERE id_plant = 4058;
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -346,6 +357,7 @@ EXEC report.proc_insert_perils_and_risk_table 4057, 4054, 1.5, 1, 1, 2, 2, 2.5, 
 EXEC report.proc_insert_perils_and_risk_table 4059, 4055, 2, 2, 2, 2, 2.5, 2.5, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 4060, 4056, 2, 'none', 1, 2, 2, 2.5, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 4061, 4057, 'none', 1, 2, 3, 2, 2.5, 'none', 'none', 1, 'none', 'none', 3;
+EXEC report.proc_insert_perils_and_risk_table 4062, 4058, 2.5, 1, 2, 2, 2, 3, 'none', 1, 1, 'none', 'none', 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -358,44 +370,45 @@ EXEC report.proc_insert_perils_and_risk_table 4061, 4057, 'none', 1, 2, 3, 2, 2.
 --
 -- You can leave the material damage and the total insured values in blank if you want, just be aware of giving all the values to the command so the database can calculate those values for you.
 
-EXEC report.proc_insert_loss_scenario_table 1001, 'Unity Promotores, S.A.', 1001, '$,15963716.63', 85, '$,9129876', 75, '$,2343287.10', '$,3620429.53', null, null, 0, '$,25093592.63', 82, null; 
-EXEC report.proc_insert_loss_scenario_table 1006, 'Tecniseguros, Corredores de Seguros, S.A.', 1003, '$,331598607.86', 100, '$,82150542.25', 100, '$,57169151.84', '$,274429456.02', null, null, 0, '$,413749150.11', 100, null;
-EXEC report.proc_insert_loss_scenario_table 1008, 'Tecniseguros, Corredores de Seguros, S.A.', 1004, '$,331598607.86', 100, '$,82150542.25', 100, '$,57169151.84', '$,274429456.02', null, null, 0, '$,413749150.11', 100, null;
-EXEC report.proc_insert_loss_scenario_table 1010, 'Reasinter, Intermadiario de Reaseguro, S.A.', 1005, '$,68358191', 100, '$,18916000', null, 0, 0, null, null, 0, 0, 100, null;
-EXEC report.proc_insert_loss_scenario_table 2011, 'Unity Promotores, S.A.', 2012, '$,2712108.27', null, '$,4933333', null, 0, 0, null, null, '$,700413.33', null, null, 91; 
-EXEC report.proc_insert_loss_scenario_table 2014, 'Grupo Protegemos Asesores', 2015, null, 90, null, 100, 0, 0, null, null, null, null, null, null; 
-EXEC report.proc_insert_loss_scenario_table 2016, 'Redbridge | assurance business support', 2018, '$,54950000', 100, '$,13000000', null, '$,9000000', '$,41650000', null, null, '$,4000000', null, 100, null; 
-EXEC report.proc_insert_loss_scenario_table 2017, 'Almacenadora Integrada, S.A.', 2019, 'Q,325992761.76', 100, 'Q,349992761.76', null, 'Q,59663073.02', 'Q,3000000', 'Q,1371314', null, 'Q,250000000', null, 100, null; 
-EXEC report.proc_insert_loss_scenario_table 2018, 'Seguros Agromercantil, S.A.', 2020, 'Q,172725000.00', 0, 'Q,2500000', null, 'Q,32725000', null, null, null, 'Q,140000000', null, null, 33; 
-EXEC report.proc_insert_loss_scenario_table 2019, 'Seguros Agromercantil, S.A.', 2021, 'Q,172725000.00', 0, 'Q,2500000', null, 'Q,32725000', null, null, null, 'Q,140000000', null, null, 33;
-EXEC report.proc_insert_loss_scenario_table 2020, 'Seguros Agromercantil, S.A.', 2022, 'Q,220000000.00', 0, null, null, 'Q,18000000.00', 'Q,2000000.00', null, null, 'Q,200000000.00', null, null, 85;
-EXEC report.proc_insert_loss_scenario_table 2022, 'Seguros Agromercantil, S.A.', 2024, 'Q,113630105.49', 0, 'Q,6000000.00', null, 'Q,14330105.49', 'Q,40700000.00', null, null, 'Q,58000000.00', null, null, 82;
-EXEC report.proc_insert_loss_scenario_table 2025, 'Reasinter, Intermadiario de Reaseguro, S.A.', 2027, '$,167575939.00', 57, '$,22782498.00', 100, '$,58197034.00', '$,92485539', null, null, '$,13969986.00', null, 62, null;
-EXEC report.proc_insert_loss_scenario_table 2026, 'Reasinter, Intermadiario de Reaseguro, S.A.', 2028, '$,64560067.00', 100, '$,8514462.00', 100, '$,29038613.00', '$,34808809', null, null, '230686', null, 100, null;
-EXEC report.proc_insert_loss_scenario_table 2027, 'Unity Promotores, S.A.', 2029, '$,66738683.00', 100, '$,142000000.00', 100, '$,14000000.00', '$,52538683.00', '$,200000', null, null, null, 100, null;
-EXEC report.proc_insert_loss_scenario_table 2028, 'Tecniseguros, Corredores de Seguros, S.A.', 2030, 'Q,375859566.92', 75, null, null, 'Q,267326806.41', null, 'Q,84575927.82', null, null, null, 75, null;
-EXEC report.proc_insert_loss_scenario_table 2029, 'Tecniseguros, Corredores de Seguros, S.A.', 2031, 'Q,37050000', 91, null, null, 'Q,30000000', null, null, null, null, null, 91, null;
-EXEC report.proc_insert_loss_scenario_table 2030, 'Grupo Protegemos Asesores', 2032, null, 15, null, null, null, null, null, null, null, null, 15, null;
-EXEC report.proc_insert_loss_scenario_table 2031, 'Grupo Protegemos Asesores', 2033, null, 20, null, null, null, null, null, null, null, null, 20, null;
-EXEC report.proc_insert_loss_scenario_table 2033, 'Reasinter, Intermadiario de Reaseguro, S.A.', 2034, '$,252800000', 50.9, '$,34100000', 100, null, null, null, null, null, null, 56.7, null;
-EXEC report.proc_insert_loss_scenario_table 2035, 'Grupo Cemaco', 2036, '$,97935200.71', 82, '$,57821108', 86, '$,78183000.47', '$,7748520.24', null, '$,4950000.00', '$,6628680', null, 83, null;
-EXEC report.proc_insert_loss_scenario_table 2036, 'Grupo Cemaco', 2037, '$,61305000', 60, '$,6000000', 60, null, '$,570000', null, '$,2250000', '$,58370000', null, 60, null;
-EXEC report.proc_insert_loss_scenario_table 3036, 'Grupo Cemaco', 3037, '$,44559210', 96, '$,68574680', 60, '$,12264210', '$,255000', null, '$,1900000', '$,30100000', null, 96, null;
-EXEC report.proc_insert_loss_scenario_table 4037, 'Reasinter, Intermadiario de Reaseguro, S.A.', 4038, '$,468626920', 43, '$,305815975', 71, '$,448005313', '$,11382920', '$,4219187', null, null, null, 57, null;
-EXEC report.proc_insert_loss_scenario_table 4038, 'Generali Global Corporate & Commercial', 4039, '$,974925', 100, null, null, null, null, null, null, null, null, 100, null;
-EXEC report.proc_insert_loss_scenario_table 4039, 'Generali Global Corporate & Commercial', 4040, '$,78511812', 49, null, null, null, null, null, null, null, null, 49, null;
-EXEC report.proc_insert_loss_scenario_table 4040, 'Generali Global Corporate & Commercial', 4041, '$,1014722', 100, null, null, null, null, null, null, null, null, 100, null;
-EXEC report.proc_insert_loss_scenario_table 4041, 'Tecniseguros, Corredores de Seguros, S.A.', 4042, 'Q,145806175.55', null, 'Q,37400000.00', null, 'Q,46500000.00', 'Q,8000000.00', 'Q,1306175.55', null, 'Q,90000000.00', null, null, 88;
-EXEC report.proc_insert_loss_scenario_table 4042, 'Grupo Generali', 4042, 'Q,145806175.55', null, 'Q,37400000.00', null, 'Q,46500000.00', 'Q,8000000.00', 'Q,1306175.55', null, 'Q,90000000.00', null, null, 88;
-EXEC report.proc_insert_loss_scenario_table 4045, 'Seguros Agromercantil, S.A.', 4043, 'Q,154426464.17', null, 'Q,12000000.00', null, 'Q,34570777.49', 'Q,47655686.68', null, null, 'Q,72200000.00', null, 94, 80;
-EXEC report.proc_insert_loss_scenario_table 4047, 'Reasinter, Intermadiario de Reaseguro, S.A.', 4045, null, 40, null, 50, null, null, null, null, null, null, null, null;
-EXEC report.proc_insert_loss_scenario_table 4050, 1013, 4048, '$,73929642', 86, '$,8160000', 67, '$,1675000', '$,25938065', null, null, '$,46316577', null, 83, null;
-EXEC report.proc_insert_loss_scenario_table 4051, 'Reasinter, Intermadiario de Reaseguro, S.A.', 4049, '$,43316582.28', 71, '$,18000000', 100, '$,5354523.26', '$,30051776.12', '$,9484.03', '$,482922.02', '$,5737656.46', null, 80, null;
-EXEC report.proc_insert_loss_scenario_table 4052, 'Reasinter, Intermadiario de Reaseguro, S.A.', 4050, '$,130486567.62', 78, '$,40000000', 80, '$,6267853.92', '$,110227188.29', null, '$,1059993.96', '$,11500000', null, 79, null;
-EXEC report.proc_insert_loss_scenario_table 4053, 'Reasinter, Intermadiario de Reaseguro, S.A.', 4051, '$,38411900.87', 63, '$,18000000', 100, '$,4750355.97', '$,25927034.30', null, '$,1424265.83', '$,5699795', null, 74, null;
-EXEC report.proc_insert_loss_scenario_table 4054, 'Reasinter, Intermadiario de Reaseguro, S.A.', 4052, '$,36773888.47', 80, '$,10000000', 100, '$,4480420.11', '$,27028860.75', null, '$,264607.61', '$,5000000', null, 84, null;
-EXEC report.proc_insert_loss_scenario_table 4055, 'Redbridge | assurance business support', 4053, null, 50, '$,8041032', 58, null, null, null, null, '$,62993520', null, 51, null;
-EXEC report.proc_insert_loss_scenario_table 4056, 'Reasinter, Intermadiario de Reaseguro, S.A.', 4053, null, 83.5, '$,6957778', 100, null, null, null, null, '$,87294362', null, 84.7, null;
-EXEC report.proc_insert_loss_scenario_table 4057, 'Reasinter, Intermadiario de Reaseguro, S.A.', 4054, '$,21176222', 80.2, null, 100, '$,8241920.75', '$,8650301.50', null, null, '$,4284000', null, null, null;
-EXEC report.proc_insert_loss_scenario_table 4059, 'Reasinter, Intermadiario de Reaseguro, S.A.', 4055, '$,51244669', 84.4, null, 100, '$,12465144.20', '$,28809524.57', null, null, '$,9970000.00', null, null, null;
-EXEC report.proc_insert_loss_scenario_table 4060, 'Reasinter, Intermadiario de Reaseguro, S.A.', 4056, '$,78619800', 60.2, null, 65, '$,26827500', '$,42710000', null, null, '$,9082300.00', null, null, null;
+EXEC report.proc_insert_loss_scenario_table 1001, '$,15963716.63', 85, '$,9129876', 75, '$,2343287.10', '$,3620429.53', null, null, 0, '$,25093592.63', 82, null; 
+EXEC report.proc_insert_loss_scenario_table 1006, '$,331598607.86', 100, '$,82150542.25', 100, '$,57169151.84', '$,274429456.02', null, null, 0, '$,413749150.11', 100, null;
+EXEC report.proc_insert_loss_scenario_table 1008, '$,331598607.86', 100, '$,82150542.25', 100, '$,57169151.84', '$,274429456.02', null, null, 0, '$,413749150.11', 100, null;
+EXEC report.proc_insert_loss_scenario_table 1010, '$,68358191', 100, '$,18916000', null, 0, 0, null, null, 0, 0, 100, null;
+EXEC report.proc_insert_loss_scenario_table 2011, '$,2712108.27', null, '$,4933333', null, 0, 0, null, null, '$,700413.33', null, null, 91; 
+EXEC report.proc_insert_loss_scenario_table 2014, null, 90, null, 100, 0, 0, null, null, null, null, null, null; 
+EXEC report.proc_insert_loss_scenario_table 2016, '$,54950000', 100, '$,13000000', null, '$,9000000', '$,41650000', null, null, '$,4000000', null, 100, null; 
+EXEC report.proc_insert_loss_scenario_table 2017, 'Q,325992761.76', 100, 'Q,349992761.76', null, 'Q,59663073.02', 'Q,3000000', 'Q,1371314', null, 'Q,250000000', null, 100, null; 
+EXEC report.proc_insert_loss_scenario_table 2018, 'Q,172725000.00', 0, 'Q,2500000', null, 'Q,32725000', null, null, null, 'Q,140000000', null, null, 33; 
+EXEC report.proc_insert_loss_scenario_table 2019, 'Q,172725000.00', 0, 'Q,2500000', null, 'Q,32725000', null, null, null, 'Q,140000000', null, null, 33;
+EXEC report.proc_insert_loss_scenario_table 2020, 'Q,220000000.00', 0, null, null, 'Q,18000000.00', 'Q,2000000.00', null, null, 'Q,200000000.00', null, null, 85;
+EXEC report.proc_insert_loss_scenario_table 2022, 'Q,113630105.49', 0, 'Q,6000000.00', null, 'Q,14330105.49', 'Q,40700000.00', null, null, 'Q,58000000.00', null, null, 82;
+EXEC report.proc_insert_loss_scenario_table 2025, '$,167575939.00', 57, '$,22782498.00', 100, '$,58197034.00', '$,92485539', null, null, '$,13969986.00', null, 62, null;
+EXEC report.proc_insert_loss_scenario_table 2026, '$,64560067.00', 100, '$,8514462.00', 100, '$,29038613.00', '$,34808809', null, null, '230686', null, 100, null;
+EXEC report.proc_insert_loss_scenario_table 2027, '$,66738683.00', 100, '$,142000000.00', 100, '$,14000000.00', '$,52538683.00', '$,200000', null, null, null, 100, null;
+EXEC report.proc_insert_loss_scenario_table 2028, 'Q,375859566.92', 75, null, null, 'Q,267326806.41', null, 'Q,84575927.82', null, null, null, 75, null;
+EXEC report.proc_insert_loss_scenario_table 2029, 'Q,37050000', 91, null, null, 'Q,30000000', null, null, null, null, null, 91, null;
+EXEC report.proc_insert_loss_scenario_table 2030, null, 15, null, null, null, null, null, null, null, null, 15, null;
+EXEC report.proc_insert_loss_scenario_table 2031, null, 20, null, null, null, null, null, null, null, null, 20, null;
+EXEC report.proc_insert_loss_scenario_table 2033, '$,252800000', 50.9, '$,34100000', 100, null, null, null, null, null, null, 56.7, null;
+EXEC report.proc_insert_loss_scenario_table 2035, '$,97935200.71', 82, '$,57821108', 86, '$,78183000.47', '$,7748520.24', null, '$,4950000.00', '$,6628680', null, 83, null;
+EXEC report.proc_insert_loss_scenario_table 2036, '$,61305000', 60, '$,6000000', 60, null, '$,570000', null, '$,2250000', '$,58370000', null, 60, null;
+EXEC report.proc_insert_loss_scenario_table 3036, '$,44559210', 96, '$,68574680', 60, '$,12264210', '$,255000', null, '$,1900000', '$,30100000', null, 96, null;
+EXEC report.proc_insert_loss_scenario_table 4037, '$,468626920', 43, '$,305815975', 71, '$,448005313', '$,11382920', '$,4219187', null, null, null, 57, null;
+EXEC report.proc_insert_loss_scenario_table 4038, '$,974925', 100, null, null, null, null, null, null, null, null, 100, null;
+EXEC report.proc_insert_loss_scenario_table 4039, '$,78511812', 49, null, null, null, null, null, null, null, null, 49, null;
+EXEC report.proc_insert_loss_scenario_table 4040, '$,1014722', 100, null, null, null, null, null, null, null, null, 100, null;
+EXEC report.proc_insert_loss_scenario_table 4041, 'Q,145806175.55', null, 'Q,37400000.00', null, 'Q,46500000.00', 'Q,8000000.00', 'Q,1306175.55', null, 'Q,90000000.00', null, null, 88;
+EXEC report.proc_insert_loss_scenario_table 4042, 'Q,145806175.55', null, 'Q,37400000.00', null, 'Q,46500000.00', 'Q,8000000.00', 'Q,1306175.55', null, 'Q,90000000.00', null, null, 88;
+EXEC report.proc_insert_loss_scenario_table 4045, 'Q,154426464.17', null, 'Q,12000000.00', null, 'Q,34570777.49', 'Q,47655686.68', null, null, 'Q,72200000.00', null, 94, 80;
+EXEC report.proc_insert_loss_scenario_table 4047, null, 40, null, 50, null, null, null, null, null, null, null, null;
+EXEC report.proc_insert_loss_scenario_table 4050, '$,73929642', 86, '$,8160000', 67, '$,1675000', '$,25938065', null, null, '$,46316577', null, 83, null;
+EXEC report.proc_insert_loss_scenario_table 4051, '$,43316582.28', 71, '$,18000000', 100, '$,5354523.26', '$,30051776.12', '$,9484.03', '$,482922.02', '$,5737656.46', null, 80, null;
+EXEC report.proc_insert_loss_scenario_table 4052, '$,130486567.62', 78, '$,40000000', 80, '$,6267853.92', '$,110227188.29', null, '$,1059993.96', '$,11500000', null, 79, null;
+EXEC report.proc_insert_loss_scenario_table 4053, '$,38411900.87', 63, '$,18000000', 100, '$,4750355.97', '$,25927034.30', null, '$,1424265.83', '$,5699795', null, 74, null;
+EXEC report.proc_insert_loss_scenario_table 4054, '$,36773888.47', 80, '$,10000000', 100, '$,4480420.11', '$,27028860.75', null, '$,264607.61', '$,5000000', null, 84, null;
+EXEC report.proc_insert_loss_scenario_table 4055, null, 50, '$,8041032', 58, null, null, null, null, '$,62993520', null, 51, null;
+EXEC report.proc_insert_loss_scenario_table 4056, null, 83.5, '$,6957778', 100, null, null, null, null, '$,87294362', null, 84.7, null;
+EXEC report.proc_insert_loss_scenario_table 4057, '$,21176222', 80.2, null, 100, '$,8241920.75', '$,8650301.50', null, null, '$,4284000', null, null, null;
+EXEC report.proc_insert_loss_scenario_table 4059, '$,51244669', 84.4, null, 100, '$,12465144.20', '$,28809524.57', null, null, '$,9970000.00', null, null, null;
+EXEC report.proc_insert_loss_scenario_table 4060, '$,78619800', 60.2, null, 65, '$,26827500', '$,42710000', null, null, '$,9082300.00', null, null, null;
+EXEC report.proc_insert_loss_scenario_table 4062, '$,31685995.00', null, null, null, null, '$,18076086.00', null, null, '$,13609909.00', null, null, 75;
