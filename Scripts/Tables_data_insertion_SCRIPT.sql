@@ -1,5 +1,24 @@
 USE gpi_consulting_services_reports_db;
 
+-- Backup procedure
+
+CREATE OR ALTER PROCEDURE report.backup_db
+AS
+	BEGIN TRY
+		DECLARE
+			@date AS VARCHAR(50) = CONCAT(DAY(GETDATE()), '-', MONTH(GETDATE()), '-', YEAR(GETDATE()));
+		DECLARE
+			@path AS VARCHAR(250) = CONCAT('/var/opt/mssql/gpi_consulting_services_reports_db_', @date, '.bak');
+		
+		BEGIN
+			BACKUP DATABASE gpi_consulting_services_reports_db TO DISK = @path;
+			PRINT CONCAT('The backup of the database "gpi_consulting_services_reports_db" with date ', @date, ' was correctly saved into the disk.');
+		END;
+	END TRY
+	BEGIN CATCH
+		PRINT CONCAT('Cannot create the backup for the database due to this error', ERROR_MESSAGE());
+	END CATCH
+
 -- Useful function for data insertion
 
 CREATE OR ALTER FUNCTION report.REMOVE_EXTRA_SPACES(@input VARCHAR(150))

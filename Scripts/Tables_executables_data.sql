@@ -2,7 +2,7 @@ USE gpi_consulting_services_reports_db;
 
 -- Back up creation
 --
-BACKUP DATABASE gpi_consulting_services_reports_db TO DISK = '/var/opt/mssql/gpi_consulting_services_reports_db.bak';
+EXEC report.backup_db;
 
 -- Engineer table executables for data insertion
 -- Data is being inserted in the following order
@@ -218,6 +218,7 @@ EXEC report.proc_insert_plant 'Disagro', 'Disagro – Puerto Quetzal', 'C.A.', '
 EXEC report.proc_insert_plant 'Disagro', 'Disagro – Sacos Agroindustriales', 'C.A.', 'Guatemala', 'Sacatepequez', 1986, 1986, 'Production', 'Producción y distribución de empaque flexible de polipropileno y polietileno.', 'IV', 'Rural, Residential', '97.5 carretera a Puerto Quetzal, Escuintla, Guatemala C.A.', '14.5333', '-90.7334', 1540;
 EXEC report.proc_insert_plant 'Disagro', 'Disagro – Teculután.', 'C.A.', 'Guatemala', 'Zacapa', null, 1982, 'Production', 'Formulation, storage and distribution solid of fertilizers.', 'I', 'Rural, Commercial', 'Km 124 carretera al Atlántico, Zacapa, Guatemala C.A.', '14°59m53.79s', '89°41m33.59s', 237;
 EXEC report.proc_insert_plant 'Disagro', 'Disagro - Quilubrisa', 'C.A.', 'Guatemala', 'Escuintla', null, 1982, 'Production', 'Production and distribution of agrochemicals (herbicides, insecticides, fungicides and soluble fertilizers).', 'I', 'Rural, Industrial', 'Km. 36.5 Carretera al Pacífico, Palín Escuintla, Guatemala C.A.', '14°25m6.89s', '90°40m15.88s', 1178;
+EXEC report.proc_insert_plant 'Depósitos Dormimundo, S.A. de C.V. - Planta Blaco Export Dormimundo', null, 'N.A.', 'Mexico', 'Mexico', 1992, 2013, 'Production', 'Producción y comercialización de colchonería, camas y catres.', 'IV', 'Commercial, Industrial', 'Km. 36.5 Carretera al Pacífico, Palín Escuintla, Guatemala C.A.', '19°17m52.5s', '99°33m27.2s', 2587;
 
 -- Report table executables for data insertion
 -- Data is being inserted in the following order:
@@ -300,6 +301,7 @@ EXEC report.proc_insert_report_table '14/diciembre/2016', 'Unity Promotores, S.A
 EXEC report.proc_insert_report_table '25/noviembre/2016', 'Unity Promotores, S.A.', 4063, 'Juan Jose Lira, Eduardo Bracamonte', 'ISO 9001:2008', '18000000,liters', 15000, 90, 2, 'si', null, null, null, 'no', 'no', 'no', 'si', 'si', 'si', 'si';
 EXEC report.proc_insert_report_table '24/noviembre/2016', 'Unity Promotores, S.A.', 4060, 'Juan Jose Lira, Eduardo Bracamonte', 'ISO 9000, FSCC 22000', '20000000.70,yards/month', 20200, 800, 2, 'no', null, null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '13/diciembre/2022', 'Somit, Corredores de Seguros, S.A.', 4058, 'Juan Jose Lira', 'ISO 9001, FCC 22000', '4000000,units/month', 19412, 630, 2, 'no', null, null, null, 'no', 'si', 'no', 'no', 'si', 'si', 'si';
+EXEC report.proc_insert_report_table '27/febrero/2018', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4065, 'Rafael Grajeda', null, '900,units/day', 16650, 160, 1, 'si', 'Major fires', null, null, 'no', 'no', 'si', 'no', 'si', 'si', 'no';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -377,6 +379,7 @@ EXEC report.proc_insert_perils_and_risk_table 4067, 3, 1, 1, 2, 2.5, 3, 'none', 
 EXEC report.proc_insert_perils_and_risk_table 4068, 2.5, 1, 1, 2.5, 2, 3, 'none', 1, 1, 'none', 'none', 2.5;
 EXEC report.proc_insert_perils_and_risk_table 4069, 2.5, 1, 2, 2, 2.5, 3, 'none', 1, 1, 'none', 'none', 2;
 EXEC report.proc_insert_perils_and_risk_table 4070, 2.5, 1, 1, 1, 1.5, 2.5, 'none', 1, 1.5, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4071, 2.5, 'none', 1, 1, 2, 1.5, 'none', 1, 2, 1, 1, 1.5;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -439,3 +442,4 @@ EXEC report.proc_insert_loss_scenario_table 4067, '$,20092927', null, null, null
 EXEC report.proc_insert_loss_scenario_table 4068, '$,22678598', null, null, null, null, '$,5814765', null, null, '$,16863833', null, null, 59;
 EXEC report.proc_insert_loss_scenario_table 4069, '$,64322365', null, null, null, null, '$,37000000', null, null, '$,27322365', null, null, 91;
 EXEC report.proc_insert_loss_scenario_table 4070, '$,30100000', null, null, null, null, '$,17500000', null, null, '$,12600000', null, null, 75;
+EXEC report.proc_insert_loss_scenario_table 4071, '$,372781510.25', 41, null, null, '$,194531510.25', '$,178250000.00', null, null, null, null, null, null;
