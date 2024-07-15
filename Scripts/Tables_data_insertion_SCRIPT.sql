@@ -311,8 +311,8 @@ AS
 			IF (@name != '')
 				BEGIN
 					INSERT INTO report.client_table(client_name)
-					VALUES (report.CORRECT_GRAMMAR(@name, 'name'));
-					PRINT CONCAT('The client "', report.CORRECT_GRAMMAR(@name, 'name'), '" was correctly saved in the database');
+					VALUES (@name);
+					PRINT CONCAT('The client "', @name, '" was correctly saved in the database');
 					COMMIT TRANSACTION @tran_insert_client;
 				END;
 			ELSE IF (@name = '' OR @name IS NULL)
@@ -322,7 +322,7 @@ AS
 				END;
 	END TRY
 	BEGIN CATCH 
-		PRINT CONCAT('Cannot insert the client "', report.CORRECT_GRAMMAR(@name, 'name'), '" in the database due to this error: (', ERROR_MESSAGE(), ')');
+		PRINT CONCAT('Cannot insert the client "', @name, '" in the database due to this error: (', ERROR_MESSAGE(), ')');
 		ROLLBACK TRANSACTION @tran_insert_client;
 	END CATCH;
 --
