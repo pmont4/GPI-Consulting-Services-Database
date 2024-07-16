@@ -337,7 +337,9 @@ AS
 							FOREIGN KEY(id_plant)
 							REFERENCES report.plant_table(id_plant)
 							ON DELETE NO ACTION
-							ON UPDATE NO ACTION
+							ON UPDATE NO ACTION,
+						CONSTRAINT uq_perils_and_risk
+							UNIQUE(id_report)
 					);
 					PRINT('The perils and risk table was correctly created.');
 				END;
