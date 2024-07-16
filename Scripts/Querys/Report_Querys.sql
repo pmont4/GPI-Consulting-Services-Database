@@ -500,3 +500,11 @@ AS
 	END CATCH;
 
 EXEC report.plant_information 'CENSA I y II';
+
+SELECT
+	COUNT(rt.id_report) AS 'Amount of reports saved in databae',
+	(SELECT COUNT(id_plant) FROM report.plant_table) AS 'Amount of plants saved in database',
+	(SELECT TOP 1 CONCAT(DAY(rt_1.report_date), '-', MONTH(rt_1.report_date), '-', YEAR(rt_1.report_date)) FROM report.report_table rt_1 ORDER BY report_date ASC) AS 'Oldest report saved',
+	(SELECT TOP 1 CONCAT(DAY(rt_2.report_date), '-', MONTH(rt_2.report_date), '-', YEAR(rt_2.report_date)) FROM report.report_table rt_2 ORDER BY report_date DESC) AS 'Newer report saved'
+FROM report.report_table rt
+	

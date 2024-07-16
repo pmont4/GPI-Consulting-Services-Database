@@ -236,6 +236,8 @@ EXEC report.proc_insert_plant 'Progressive Energy Corporation S.A. de C.V. – E
 EXEC report.proc_insert_plant 'San Juan Textiles – Elcatex Group', null, 'C.A.', 'Honduras', 'Cortes', 2020, 2021, 'Production', 'Textile plant with knitting, dyeing, finishing and cutting processes.', 'III', 'Industrial, Rural', 'San Juan Innovation Park, 3 kms East from Choloma River Bridge, Road to Caraos, Choloma Municipality, Cortés Department, Honduras, C.A.', '15.622744', '-87.940901', 27;
 EXEC report.proc_insert_plant 'San Lucas Apparel (Dickies) – Elcatex Group', null, 'C.A.', 'Honduras', 'Cortes', 2001, 2001, 'Production', 'Garment manufacturing plant (cutting and sewing).', 'III', 'Industrial, Residential', 'San Miguel Industrial Park, Río Nance km 15.5 Road to Puerto Cortés, Choloma Municipality, Cortés Department, Honduras, C.A.', '15.673961', '-87.941447', 15;
 EXEC report.proc_insert_plant 'ZIP Buena Vista – Elcatex Group', null, 'C.A.', 'Honduras', 'Cortes', 1991, null, 'Real state', 'Free zone dedicated to the hosting of production/processing plants with the intent to export.', null, 'Residential, Rural', 'Km 12 Carretera a Tegucigalpa, Parque Industrial Zip Buena Vista, Villa Nueva, Cortes, Honduras, C.A.', '15.350192', '-87.986760', 85;
+EXEC report.proc_insert_plant 'ZIP Choloma I – Elcatex Group', null, 'C.A.', 'Honduras', 'Cortes', 1990, null, 'Real state', 'Free zone dedicated to the hosting of production/processing plants with the intent to export.', null, 'Industrial, Commercial', 'Industrial Park ZIP Choloma I, Colonia La Mora, Choloma, Cortes, Honduras, C.A.', '15.603731', '-87.958189', 37;
+EXEC report.proc_insert_plant 'ZIP Choloma II – Elcatex Group', null, 'C.A.', 'Honduras', 'Cortes', 2003, null, 'Real state', 'Free zone dedicated to the hosting of production/processing plants with the intent to export. Additionally, two (2) energy production plants are located at the Industrial Park.', null, 'Industrial, Rural', 'Road to Aldea "La Jutosa”, Industrial Park ZIP Choloma II, Cortés Department Cortes, Honduras, C.A.', '15.618647', '-87.971845', 47;
 
 -- Report table executables for data insertion
 -- Data is being inserted in the following order:
@@ -335,6 +337,8 @@ EXEC report.proc_insert_report_table '20/septiembre/2021', 'Somit, Corredores de
 EXEC report.proc_insert_report_table '23/septiembre/2021', 'Somit, Corredores de Seguros, S.A.', 4078, 'Rafael Grajeda', null, '1600000,pounds/week', 235000, null, 1, 'si', 'Major fires', 'Automatic Wet', 'III', 'no', 'si', 'si', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '23/septiembre/2021', 'Somit, Corredores de Seguros, S.A.', 4079, 'Rafael Grajeda', null, '167000,units/week', 14360, 1100, 2, 'si', 'Major fires', 'Automatic Wet', 'III', 'no', 'si', 'no', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '24/septiembre/2021', 'Somit, Corredores de Seguros, S.A.', 4080, 'Rafael Grajeda', null, null, 104850, 62, 1, 'si', 'Minor fires', 'Automatic Wet', 'I', 'no', 'no', 'no', 'si', 'no', 'si', 'no';
+EXEC report.proc_insert_report_table '22/septiembre/2021', 'Somit, Corredores de Seguros, S.A.', 4081, 'Rafael Grajeda', null, null, 90275 , null, 1, 'si', 'Minor fires', 'Automatic Wet', 'I', 'no', 'no', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '21/septiembre/2021', 'Somit, Corredores de Seguros, S.A.', 4082, 'Rafael Grajeda', null, null, 85000 , 1068, 1, 'si', 'Minor fires', 'Automatic Wet', 'I', 'no', 'no', 'no', 'si', 'no', 'si', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -429,6 +433,8 @@ EXEC report.proc_insert_perils_and_risk_table 4084, 2.5, 'none', 1.5, 1.5, 2, 2,
 EXEC report.proc_insert_perils_and_risk_table 4085, 2.5, 'none', 1, 1.5, 2, 2, 'none', 1, 1, 1, 1, 1.5;
 EXEC report.proc_insert_perils_and_risk_table 4086, 2, 'none', 2.5, 1.5, 2, 2, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 4087, 2, 'none', 2, 1.5, 2.5, 2, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4088, 2, 'none', 2, 1.5, 2.5, 2, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4089, 2, 'none', 2, 1.5, 2.5, 2, 'none', 1, 1, 1, 1, 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -504,3 +510,5 @@ EXEC report.proc_insert_loss_scenario_table 4084, '$,53132581', 86.2, null, null
 EXEC report.proc_insert_loss_scenario_table 4085, '$,31417070', 92.9, null, 100, '$,18445839', '$,12971231', null, null, null, null, null, null;
 EXEC report.proc_insert_loss_scenario_table 4086, '$,2120555', 93.8, null, 100, null, '$,1916550.1', null, null, '$,105772.70', null, null, null;
 EXEC report.proc_insert_loss_scenario_table 4087, '$,2800000', 29, null, null, null, '$,2800000', null, null, null, null, null, null;
+EXEC report.proc_insert_loss_scenario_table 4088, '$,15127065', 22.7, null, null, '$,12354347.01', '$,4581352.38', '$,275844.03', null, '$,712000.39', null, null, null;
+EXEC report.proc_insert_loss_scenario_table 4089, '$,6450075', 52.9, null, null, '$,6450975', null, null, null, null, null, null, null;
