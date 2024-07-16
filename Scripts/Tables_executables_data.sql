@@ -73,6 +73,7 @@ EXEC report.proc_insert_capacity_type 'units/hour';
 EXEC report.proc_insert_capacity_type 'units/day';
 EXEC report.proc_insert_capacity_type 'units/year';
 EXEC report.proc_insert_capacity_type 'MW';
+EXEC report.proc_insert_capacity_type 'KW';
 EXEC report.proc_insert_capacity_type 'KVA';
 EXEC report.proc_insert_capacity_type 'Flights/Month';
 EXEC report.proc_insert_capacity_type 'Board foot/Month';
@@ -238,6 +239,7 @@ EXEC report.proc_insert_plant 'San Lucas Apparel (Dickies) – Elcatex Group', n
 EXEC report.proc_insert_plant 'ZIP Buena Vista – Elcatex Group', null, 'C.A.', 'Honduras', 'Cortes', 1991, null, 'Real state', 'Free zone dedicated to the hosting of production/processing plants with the intent to export.', null, 'Residential, Rural', 'Km 12 Carretera a Tegucigalpa, Parque Industrial Zip Buena Vista, Villa Nueva, Cortes, Honduras, C.A.', '15.350192', '-87.986760', 85;
 EXEC report.proc_insert_plant 'ZIP Choloma I – Elcatex Group', null, 'C.A.', 'Honduras', 'Cortes', 1990, null, 'Real state', 'Free zone dedicated to the hosting of production/processing plants with the intent to export.', null, 'Industrial, Commercial', 'Industrial Park ZIP Choloma I, Colonia La Mora, Choloma, Cortes, Honduras, C.A.', '15.603731', '-87.958189', 37;
 EXEC report.proc_insert_plant 'ZIP Choloma II – Elcatex Group', null, 'C.A.', 'Honduras', 'Cortes', 2003, null, 'Real state', 'Free zone dedicated to the hosting of production/processing plants with the intent to export. Additionally, two (2) energy production plants are located at the Industrial Park.', null, 'Industrial, Rural', 'Road to Aldea "La Jutosa”, Industrial Park ZIP Choloma II, Cortés Department Cortes, Honduras, C.A.', '15.618647', '-87.971845', 47;
+EXEC report.proc_insert_plant 'Sula Valley Biogas Corporation, S.A. de C.V. – Elcatex Group', null, 'C.A.', 'Honduras', 'Cortes', 2014, null, 'Electricity Generation', 'Biogas Power Plant. Electricity generation for sale through the National Grid or companies of Elcatex Group.', null, 'Industrial', 'Colonia La Mora, Road to Cortes, Zip Tex Industrial Park, Choloma Municipality, Cortes Department, Honduras, C.A.', '15.617219', '-87.974169', 44;
 
 -- Report table executables for data insertion
 -- Data is being inserted in the following order:
@@ -339,6 +341,7 @@ EXEC report.proc_insert_report_table '23/septiembre/2021', 'Somit, Corredores de
 EXEC report.proc_insert_report_table '24/septiembre/2021', 'Somit, Corredores de Seguros, S.A.', 4080, 'Rafael Grajeda', null, null, 104850, 62, 1, 'si', 'Minor fires', 'Automatic Wet', 'I', 'no', 'no', 'no', 'si', 'no', 'si', 'no';
 EXEC report.proc_insert_report_table '22/septiembre/2021', 'Somit, Corredores de Seguros, S.A.', 4081, 'Rafael Grajeda', null, null, 90275 , null, 1, 'si', 'Minor fires', 'Automatic Wet', 'I', 'no', 'no', 'no', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '21/septiembre/2021', 'Somit, Corredores de Seguros, S.A.', 4082, 'Rafael Grajeda', null, null, 85000 , 1068, 1, 'si', 'Minor fires', 'Automatic Wet', 'I', 'no', 'no', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '21/septiembre/2021', 'Somit, Corredores de Seguros, S.A.', 4083, 'Rafael Grajeda', null, '3900,KW', 20700 , null, 2, 'si', 'Major fires', 'Automatic Wet', 'III', 'si', 'no', 'no', 'no', 'no', 'si', 'no';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -435,7 +438,8 @@ EXEC report.proc_insert_perils_and_risk_table 4086, 2, 'none', 2.5, 1.5, 2, 2, '
 EXEC report.proc_insert_perils_and_risk_table 4087, 2, 'none', 2, 1.5, 2.5, 2, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 4088, 2, 'none', 2, 1.5, 2.5, 2, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 4089, 2, 'none', 2, 1.5, 2.5, 2, 'none', 1, 1, 1, 1, 2;
-
+EXEC report.proc_insert_perils_and_risk_table 4090, 2, 'none', 1.5, 1.5, 3, 2, 'none', 1, 1, 1, 1, 2;
+s
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
 --
@@ -512,3 +516,4 @@ EXEC report.proc_insert_loss_scenario_table 4086, '$,2120555', 93.8, null, 100, 
 EXEC report.proc_insert_loss_scenario_table 4087, '$,2800000', 29, null, null, null, '$,2800000', null, null, null, null, null, null;
 EXEC report.proc_insert_loss_scenario_table 4088, '$,15127065', 22.7, null, null, '$,12354347.01', '$,4581352.38', '$,275844.03', null, '$,712000.39', null, null, null;
 EXEC report.proc_insert_loss_scenario_table 4089, '$,6450075', 52.9, null, null, '$,6450975', null, null, null, null, null, null, null;
+EXEC report.proc_insert_loss_scenario_table 4090, '$,8246830', 46.3, null, null, null, null, null, null, null, null, null, null; -- PENDIENTEs
