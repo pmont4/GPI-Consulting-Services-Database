@@ -62,6 +62,7 @@ EXEC report.proc_insert_capacity_type 'Pounds/Week';
 EXEC report.proc_insert_capacity_type 'pounds/hour';
 EXEC report.proc_insert_capacity_type 'pounds/month';
 EXEC report.proc_insert_capacity_type 'Tons/Hour';
+EXEC report.proc_insert_capacity_type 'Ton/Hour';
 EXEC report.proc_insert_capacity_type 'Tons/Day';
 EXEC report.proc_insert_capacity_type 'Tons/Month';
 EXEC report.proc_insert_capacity_type 'qq/Day';
@@ -227,6 +228,14 @@ EXEC report.proc_insert_plant 'Edificio Distrito Miraflores', null, 'C.A.', 'Gua
 EXEC report.proc_insert_plant 'EDISA.', null, 'C.A.', 'Guatemala', 'Guatemala', null, 2016, 'Distribution', 'Importación, comercialización y venta al mayoreo de repuestos para vehículo liviano japonés.', null, 'Commercial', '8ª. Calle 6-60 Zona 4, Guatemala, Guatemala, C.A.', '14°36m56.83s', '90°31m05.65s', 1503;
 EXEC report.proc_insert_plant 'El Granjero, S.A. – Poultry Food Manufacturing Factory.', null, 'C.A.', 'El Salvador', 'La libertad', 2002, 2003, 'Production', 'Production and distribution of poultry food for El Granjero’s Poultry farms.', 'I', 'Rural', 'Calle al Sello Hacienda El Tránsito, Antes de Subestación, La Libertad, El Salvador, C.A.', '13°43m35.12s', '89°25m19.13s', 490;
 EXEC report.proc_insert_plant 'El Granjero, S.A. – “Santa Ines” Poultry Farm.', null, 'C.A.', 'El Salvador', 'La libertad', 1965, 1965, 'Production', 'Production and distribution of chicken eggs.', 'I', 'Rural', 'Calle a Jayaque, Colonia Llano Verde 1, La Libertad, El Salvador, C.A.', '13°43m27.71s', '89°26m00.55s', 500;
+EXEC report.proc_insert_plant 'Elastómeros Equitativos, S.A.', null, 'C.A.', 'Guatemala', 'Suchitepequez', 2010, 2011, 'Production', 'Planta de recepción, almacenamiento (reposo), procesamiento (separación y concentración) y almacenamiento de látex líquido.', 'I', 'Rural', 'Km. 175.5 Carretera a la Máquina, Cuyotenango Suchitepéquez, Guatemala, C.A.', '14°28m52.03s', '91°34m28.34s', 207;
+EXEC report.proc_insert_plant 'Elásticos Centroamericanos y Textiles - ELCATEX', null, 'C.A.', 'Honduras', 'Cortes', 1984, 1984, 'Production', 'Textile plant with knitting, dyeing, finishing and cutting processes.', 'III', 'Industrial, Residential', 'Zip-Tex Industrial Park, Choloma Municipality, Cortés Department, Honduras, C.A.', '15°36m27.42s', '87°57m38.55s', 48;
+EXEC report.proc_insert_plant 'Corporación de Energía Renovable S.A. de C.V. – Elcatex Group', null, 'C.A.', 'Honduras', 'Cortes', 2008, null, 'Electricity generation', 'Steam generation with biomass fed boilers. Supply of steam to other Elcatex plant, and others part of Elcatex Group.', null, 'Industrial', 'Colonia La Mora, Road to Cortes, Zip Tex Industrial Park, Choloma Mu-nicipality, Cortes Department, Honduras, C.A.', '15.607956', '-87.962615', 44;
+EXEC report.proc_insert_plant 'Honduran Green Power Corporation S.A. de C.V. – Elcatex Group', null, 'C.A.', 'Honduras', 'Cortes', 2015, 2016, 'Electricity generation', 'Biomass Power Plant. Electricity generation for sale through the National Grid.', null, 'Industrial, Rural', 'Road to Aldea "La Jutosa", next to Industrial Park ZIP Choloma II, Choloma Municipality, Cortés Department, Honduras, C.A.', '15.616583', '-87.973164', 50;
+EXEC report.proc_insert_plant 'Progressive Energy Corporation S.A. de C.V. – Elcatex Group', null, 'C.A.', 'Honduras', 'Cortes', 2019, 2020, 'Electricity generation', 'Thermal Power Plant. Electricity generation for sale through the National Grid or companies of Elcatex Group. Other subproducts are steam and hot water, through the use of combustion gases.', null, 'Industrial', 'Industrial Park Zip Tex, Colonia La Mora, Choloma Municipality, Cor-tés Department, Honduras, C.A.', '15.608815', '-87.962662', 44;
+EXEC report.proc_insert_plant 'San Juan Textiles – Elcatex Group', null, 'C.A.', 'Honduras', 'Cortes', 2020, 2021, 'Production', 'Textile plant with knitting, dyeing, finishing and cutting processes.', 'III', 'Industrial, Rural', 'San Juan Innovation Park, 3 kms East from Choloma River Bridge, Road to Caraos, Choloma Municipality, Cortés Department, Honduras, C.A.', '15.622744', '-87.940901', 27;
+EXEC report.proc_insert_plant 'San Lucas Apparel (Dickies) – Elcatex Group', null, 'C.A.', 'Honduras', 'Cortes', 2001, 2001, 'Production', 'Garment manufacturing plant (cutting and sewing).', 'III', 'Industrial, Residential', 'San Miguel Industrial Park, Río Nance km 15.5 Road to Puerto Cortés, Choloma Municipality, Cortés Department, Honduras, C.A.', '15.673961', '-87.941447', 15;
+EXEC report.proc_insert_plant 'ZIP Buena Vista – Elcatex Group', null, 'C.A.', 'Honduras', 'Cortes', 1991, null, 'Real state', 'Free zone dedicated to the hosting of production/processing plants with the intent to export.', null, 'Residential, Rural', 'Km 12 Carretera a Tegucigalpa, Parque Industrial Zip Buena Vista, Villa Nueva, Cortes, Honduras, C.A.', '15.350192', '-87.986760', 85;
 
 -- Report table executables for data insertion
 -- Data is being inserted in the following order:
@@ -317,6 +326,15 @@ EXEC report.proc_insert_report_table '24/mayo/2023', 'Seguros Agromercantil, S.A
 EXEC report.proc_insert_report_table '11/julio/2012', 'Tecniseguros, Corredores de Seguros, S.A.', 4070, 'Marlon Lira', null, null, null, null, 1, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
 EXEC report.proc_insert_report_table '21/septiembre/2016', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4071, 'Marlon Lira', null, '50,metric tons/hour', 2956.02, 10, 2, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
 EXEC report.proc_insert_report_table '21/septiembre/2016', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4072, 'Marlon Lira', null, '225000,units/day', 19667.28, 56, 2, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'no';
+EXEC report.proc_insert_report_table '12/julio/2013', 'Seguros Agromercantil, S.A.', 4073, 'Marlon Lira', null, '6000,tons/year', 23000, 17, 1.5, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '12/octubre/2018', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4074, 'Rafael Grajeda', null, '1550000,pounds/week', 54715, 1769, 2, 'si', 'Major fires', null, null, 'no', 'no', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '20/septiembre/2021', 'Somit, Corredores de Seguros, S.A.', 4075, 'Rafael Grajeda', null, '15,ton/hour', 2550, 24, 2, 'si', 'Major fires', 'Automatic Wet', 'III', 'si', 'no', 'no', 'si', 'no', 'si', 'no';
+EXEC report.proc_insert_report_table '20/septiembre/2021', 'Somit, Corredores de Seguros, S.A.', 4074, 'Rafael Grajeda', null, '18700000,pounds/week', 54889.85, 1350, 2, 'si', 'Major fires', 'Automatic Wet', 'III', 'si', 'si', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '21/septiembre/2021', 'Somit, Corredores de Seguros, S.A.', 4076, 'Rafael Grajeda', null, '43,mw', 9000, 150, 2, 'si', 'Major fires', 'Automatic Wet', 'III', 'si', 'si', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '20/septiembre/2021', 'Somit, Corredores de Seguros, S.A.', 4077, 'Rafael Grajeda', null, '56.7,mw', 3010, 50, 2, 'si', 'Major fires', 'Automatic Wet', 'III', 'si', 'si', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '23/septiembre/2021', 'Somit, Corredores de Seguros, S.A.', 4078, 'Rafael Grajeda', null, '1600000,pounds/week', 235000, null, 1, 'si', 'Major fires', 'Automatic Wet', 'III', 'no', 'si', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '23/septiembre/2021', 'Somit, Corredores de Seguros, S.A.', 4079, 'Rafael Grajeda', null, '167000,units/week', 14360, 1100, 2, 'si', 'Major fires', 'Automatic Wet', 'III', 'no', 'si', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '24/septiembre/2021', 'Somit, Corredores de Seguros, S.A.', 4080, 'Rafael Grajeda', null, null, 104850, 62, 1, 'si', 'Minor fires', 'Automatic Wet', 'I', 'no', 'no', 'no', 'si', 'no', 'si', 'no';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -402,6 +420,15 @@ EXEC report.proc_insert_perils_and_risk_table 4075, 2.5, 'none', 1, 1, 2, 2.5, '
 EXEC report.proc_insert_perils_and_risk_table 4076, 'none', 'none', 'none', 1, 1, 2.5, 'none', 1, 2, 'none', 'none', 2;
 EXEC report.proc_insert_perils_and_risk_table 4077, 2.5, 1, 2.5, 2, 2, 2.5, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 4078, 2, 1, 2, 2, 2, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4079, 'none', 'none', 1, 2, 2, 2.5, 'none', 1, 1, 'none', 'none', 1.5;
+EXEC report.proc_insert_perils_and_risk_table 4080, 2, 'none', 1, 1.5, 2, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4081, 2.5, 'none', 1.5, 1.5, 3, 2, 'none', 1, 1, 1, 2, 2;
+EXEC report.proc_insert_perils_and_risk_table 4082, 2, 'none', 1, 1.5, 2, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4083, 2.5, 'none', 2, 1.5, 2, 2, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4084, 2.5, 'none', 1.5, 1.5, 2, 2, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4085, 2.5, 'none', 1, 1.5, 2, 2, 'none', 1, 1, 1, 1, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 4086, 2, 'none', 2.5, 1.5, 2, 2, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4087, 2, 'none', 2, 1.5, 2.5, 2, 'none', 1, 1, 1, 1, 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -469,3 +496,11 @@ EXEC report.proc_insert_loss_scenario_table 4072, '$,14295983', 87, '$,1125000.0
 EXEC report.proc_insert_loss_scenario_table 4073, '$,25592406.31', 58, '$,3710000.00', 70, '$,3356000.00', '$,11543585.84', null, null, '$,10692820.47', null, 60, null;
 EXEC report.proc_insert_loss_scenario_table 4077, '$,3970039', 36, '$,1134015', 58, '$,2813157', '$,1156882', null, null, null, null, 43, null;
 EXEC report.proc_insert_loss_scenario_table 4078, '$,4317042', 91, '$,651707', 100, '$,2782961', '$,1534081', null, null, null, null, 93, null;
+EXEC report.proc_insert_loss_scenario_table 4080, '$,138556558', 85, '$,14554219', 100, '$,26857072', '$,73897036', null, '$,2002203', '$,38307054', null, 87, null;
+EXEC report.proc_insert_loss_scenario_table 4081, '$,7628730', 100, null, null, '$,433489.58', '$,7195240.44', null, null, null, null, null, null;
+EXEC report.proc_insert_loss_scenario_table 4082, '$,183117416', 90.3, '$,14554219', 100, '$,30423994.43', '$,105693421.58', null, null, '$,47000000.00', null, 91, null;
+EXEC report.proc_insert_loss_scenario_table 4083, '$,43811892', 87.6, '$,11675532', 100, '$,7422963.58', '$,27866629.89', '$,6722298.45', null, '$,1800000', null, 90.2, null;
+EXEC report.proc_insert_loss_scenario_table 4084, '$,53132581', 86.2, null, null, null, null, '$,6722298.45', '$,13000', '$,625000', null, null, null;
+EXEC report.proc_insert_loss_scenario_table 4085, '$,31417070', 92.9, null, 100, '$,18445839', '$,12971231', null, null, null, null, null, null;
+EXEC report.proc_insert_loss_scenario_table 4086, '$,2120555', 93.8, null, 100, null, '$,1916550.1', null, null, '$,105772.70', null, null, null;
+EXEC report.proc_insert_loss_scenario_table 4087, '$,2800000', 29, null, null, null, '$,2800000', null, null, null, null, null, null;
