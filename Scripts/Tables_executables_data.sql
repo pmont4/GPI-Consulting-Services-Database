@@ -222,6 +222,11 @@ EXEC report.proc_insert_plant 'Disagro', 'Disagro - Quilubrisa', 'C.A.', 'Guatem
 EXEC report.proc_insert_plant 'Depósitos Dormimundo, S.A. de C.V. - Planta Blaco Export Dormimundo', null, 'N.A.', 'Mexico', 'Mexico', 1992, 2013, 'Production', 'Producción y comercialización de colchonería, camas y catres.', 'IV', 'Commercial, Industrial', 'Km. 36.5 Carretera al Pacífico, Palín Escuintla, Guatemala C.A.', '19°17m52.5s', '99°33m27.2s', 2587;
 EXEC report.proc_insert_plant 'Planta Pinturas Volcán, Axalta Coating Systems - Grupo Duwest', null, 'C.A.', 'Guatemala', 'Guatemala', null, null, 'Production', 'Desarrollo, fabricación y venta de pinturas y recubrimientos líquidos y en polvo de alto rendimiento.', 'IV', 'Residential, Industrial', 'Km. 27.5 Carretera al Atlántico, Amatitlán, Guatemala', '14°29m4.81s', '90°37m38.20s', 1215;
 EXEC report.proc_insert_plant 'Planta Tecún Umán, Westrade - Grupo Duwest', null, 'C.A.', 'Guatemala', 'San Marcos', null, null, 'Production', 'Producción de productos agroquímicos tales como herbicidas, fungicidas, insecticidas, fertilizantes, flumetralina, propanil y emulsionantes.', 'I', 'Rural, Industrial', '11 calle y 15 avenida, Tecún Umán, San Marcos, Guatemala', '14°40m16.9s', '92°07m47.0s', 26;
+EXEC report.proc_insert_plant 'AVITA', null, 'C.A.', 'Guatemala', 'Guatemala', 2016, null, 'Real state', 'Edificio residencial (exclusivo para viviendas).', null, 'Residential', '10a. Ave. 12-60 Zona 14, Guatemala, Guatemala.', '14.580629', '-90.516977', 1499;
+EXEC report.proc_insert_plant 'Edificio Distrito Miraflores', null, 'C.A.', 'Guatemala', 'Guatemala', null, 2016, 'Real state', 'Edificio para uso de oficinas y locales comerciales en el área de lobby.', null, 'Residential', '19 avenida 0-56 Zona 11 y 19 avenida 2-78 Zona 11, Guatemala, Guatemala.', '14.621324', '-90.550518', 1532;
+EXEC report.proc_insert_plant 'EDISA.', null, 'C.A.', 'Guatemala', 'Guatemala', null, 2016, 'Distribution', 'Importación, comercialización y venta al mayoreo de repuestos para vehículo liviano japonés.', null, 'Commercial', '8ª. Calle 6-60 Zona 4, Guatemala, Guatemala, C.A.', '14°36m56.83s', '90°31m05.65s', 1503;
+EXEC report.proc_insert_plant 'El Granjero, S.A. – Poultry Food Manufacturing Factory.', null, 'C.A.', 'El Salvador', 'La libertad', 2002, 2003, 'Production', 'Production and distribution of poultry food for El Granjero’s Poultry farms.', 'I', 'Rural', 'Calle al Sello Hacienda El Tránsito, Antes de Subestación, La Libertad, El Salvador, C.A.', '13°43m35.12s', '89°25m19.13s', 490;
+EXEC report.proc_insert_plant 'El Granjero, S.A. – “Santa Ines” Poultry Farm.', null, 'C.A.', 'El Salvador', 'La libertad', 1965, 1965, 'Production', 'Production and distribution of chicken eggs.', 'I', 'Rural', 'Calle a Jayaque, Colonia Llano Verde 1, La Libertad, El Salvador, C.A.', '13°43m27.71s', '89°26m00.55s', 500;
 
 -- Report table executables for data insertion
 -- Data is being inserted in the following order:
@@ -307,6 +312,11 @@ EXEC report.proc_insert_report_table '13/diciembre/2022', 'Somit, Corredores de 
 EXEC report.proc_insert_report_table '27/febrero/2018', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4065, 'Rafael Grajeda', null, '900,units/day', 16650, 160, 1, 'si', 'Major fires', null, null, 'no', 'no', 'si', 'no', 'si', 'si', 'no';
 EXEC report.proc_insert_report_table '16/marzo/2018', 'Unity Promotores, S.A.', 4066, 'Rafael Grajeda', null, '2989210.86,pounds/month', 7004.55, 50, 1, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '7/marzo/2018', 'Unity Promotores, S.A.', 4067, 'Rafael Grajeda', null, '220200,kilograms/day', 11950, 108, 2, 'si', null, null, null, 'no', 'no', 'si', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '24/marzo/2023', 'Seguros Agromercantil, S.A.', 4068, 'Juan Diego Lacayo', null, null, 51483, 18, 1, 'si', 'Minor fires', 'Automatic Dry', null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '24/mayo/2023', 'Seguros Agromercantil, S.A.', 4069, 'Juan Diego Lacayo', null, null, 25000, 31, 1, 'si', 'Minor fires', 'Automatic Dry', null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '11/julio/2012', 'Tecniseguros, Corredores de Seguros, S.A.', 4070, 'Marlon Lira', null, null, null, null, 1, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '21/septiembre/2016', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4071, 'Marlon Lira', null, '50,metric tons/hour', 2956.02, 10, 2, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '21/septiembre/2016', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4072, 'Marlon Lira', null, '225000,units/day', 19667.28, 56, 2, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'no';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -387,6 +397,11 @@ EXEC report.proc_insert_perils_and_risk_table 4070, 2.5, 1, 1, 1, 1.5, 2.5, 'non
 EXEC report.proc_insert_perils_and_risk_table 4071, 2.5, 'none', 1, 1, 2, 1.5, 'none', 1, 2, 1, 1, 1.5;
 EXEC report.proc_insert_perils_and_risk_table 4072, 2.5, 'none', 1, 1, 1.5, 2.5, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 4073, 2.5, 'none', 1, 1, 1, 2.5, 'none', 1, 1, 1, 1, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 4074, 2.5, 'none', 1, 1, 2, 2.5, 'none', 1, 1, 1, 1, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 4075, 2.5, 'none', 1, 1, 2, 2.5, 'none', 1, 1, 1, 1, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 4076, 'none', 'none', 'none', 1, 1, 2.5, 'none', 1, 2, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 4077, 2.5, 1, 2.5, 2, 2, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4078, 2, 1, 2, 2, 2, 2.5, 'none', 1, 1, 1, 1, 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -452,3 +467,5 @@ EXEC report.proc_insert_loss_scenario_table 4070, '$,30100000', null, null, null
 EXEC report.proc_insert_loss_scenario_table 4071, '$,372781510.25', 41, null, null, '$,194531510.25', '$,178250000.00', null, null, null, null, null, null;
 EXEC report.proc_insert_loss_scenario_table 4072, '$,14295983', 87, '$,1125000.00', 75, '$,1468799.13', '$,212500.00', null, null, '$,12614683.87', null, 86, null;
 EXEC report.proc_insert_loss_scenario_table 4073, '$,25592406.31', 58, '$,3710000.00', 70, '$,3356000.00', '$,11543585.84', null, null, '$,10692820.47', null, 60, null;
+EXEC report.proc_insert_loss_scenario_table 4077, '$,3970039', 36, '$,1134015', 58, '$,2813157', '$,1156882', null, null, null, null, 43, null;
+EXEC report.proc_insert_loss_scenario_table 4078, '$,4317042', 91, '$,651707', 100, '$,2782961', '$,1534081', null, null, null, null, 93, null;

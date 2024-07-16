@@ -22,7 +22,7 @@ AS
 		IIF(p.plant_merchandise_class IS NOT NULL, mc.merchandise_classification_type_name, 'Has no merchandise classification saved') AS 'Merchandise classification',
 		btc.business_turnover_name AS 'Business turnover',
 		p.plant_business_specific_turnover AS 'Specific business turnover',
-		STRING_AGG(tlc.type_location_class_name, ', ') AS 'Location description'
+		CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') AS 'Area description'
 	FROM report.plant_table p
 		LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
 		LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
@@ -269,8 +269,10 @@ AS
 		p.plant_name AS 'Plant name',
 		COUNT(p.id_plant) AS 'Amount of reports made for this plant',
 
-		CONCAT((SELECT DISTINCT CAST(report_date AS DATE) FROM report.report_table WHERE id_report = report.MOST_RECENT_REPORT(p.id_plant)), ' requested by: ',
-				report.GET_CLIENT_OF_MOST_RECENT_REPORT(p.id_plant)) AS 'Date of the most recent report made',
+		CONCAT('"', (SELECT DISTINCT id_report FROM report.report_table WHERE id_report = report.MOST_RECENT_REPORT(p.id_plant)), '", requested by: ',
+				report.GET_CLIENT_OF_MOST_RECENT_REPORT(p.id_plant)) AS 'ID of the most recent report made',
+
+		(SELECT DISTINCT CAST(report_date AS DATE) FROM report.report_table WHERE id_report = report.MOST_RECENT_REPORT(p.id_plant)) AS 'Date of the most recent report made',
 
 		report.GET_ENGINEER_OF_MOST_RECENT_REPORT(p.id_plant) AS 'Most recent report prepared by'
 	FROM report.plant_table p
@@ -327,6 +329,10 @@ AS
 		IIF(COUNT(rp.id_engineer) > 0, CAST(COUNT(rp.id_engineer) AS VARCHAR), 'No reports') AS 'The amount of reports made by this engineer',
 		IIF(COUNT(rp.id_engineer) > 0, (SELECT ct.client_name FROM report.client_table ct WHERE ct.id_client = report.GET_WORK_MOST_WITH_CLIENT(e.id_engineer)), 'No reports') AS 'Has worked most with this client',
 		
+		ISNULL(CAST((SELECT rt.id_report 
+							FROM report.report_table rt
+							WHERE rt.id_report = report.MOST_RECENT_REPORT_BY_ENGINEER(e.id_engineer)) AS VARCHAR(20)), 'No reports') AS 'ID of the newest report made by the engineer',
+
 		ISNULL(CAST((SELECT CAST(rt.report_date AS DATE) 
 										FROM report.report_table rt
 										WHERE rt.id_report = report.MOST_RECENT_REPORT_BY_ENGINEER(e.id_engineer)) AS VARCHAR(20)), 'No reports') AS 'Date of the newest report made by the engineer',
