@@ -336,12 +336,13 @@ AS
 		ISNULL(CAST((SELECT CAST(rt.report_date AS DATE) 
 										FROM report.report_table rt
 										WHERE rt.id_report = report.MOST_RECENT_REPORT_BY_ENGINEER(e.id_engineer)) AS VARCHAR(20)), 'No reports') AS 'Date of the newest report made by the engineer',
+
+		IIF(COUNT(rp.id_engineer) > 0,  (SELECT DISTINCT ct.client_name
+												FROM report.report_table rt
+													LEFT JOIN report.client_table ct ON rt.id_client = ct.id_client
+												WHERE rt.id_report = report.MOST_RECENT_REPORT_BY_ENGINEER(e.id_engineer)), 'No reports') AS 'Cliento who requested the report',
 										
-		IIF(COUNT(rp.id_engineer) > 0, CONCAT('Client who requested the report: "', (SELECT DISTINCT ct.client_name
-																						FROM report.report_table rt
-																							LEFT JOIN report.client_table ct ON rt.id_client = ct.id_client
-																						WHERE rt.id_report = report.MOST_RECENT_REPORT_BY_ENGINEER(e.id_engineer)),
-												'", plant of the report: "', IIF((SELECT DISTINCT pt.plant_name
+		IIF(COUNT(rp.id_engineer) > 0, CONCAT('plant of the report: "', IIF((SELECT DISTINCT pt.plant_name
 																					FROM report.report_table rt
 																						LEFT JOIN report.plant_table pt ON rt.id_plant = pt.id_plant
 																					WHERE rt.id_report = report.MOST_RECENT_REPORT_BY_ENGINEER(e.id_engineer)) = (SELECT DISTINCT pt.plant_account_name
@@ -499,7 +500,7 @@ AS
 		PRINT CONCAT('An error ocurred while trying to bring the data for the table "', @plant, '" ERROR: (', ERROR_MESSAGE(), ')');
 	END CATCH;
 
-EXEC report.plant_information 'CENSA I y II';
+EXEC report.plant_information 4085;
 
 SELECT
 	COUNT(rt.id_report) AS 'Amount of reports saved in databae',

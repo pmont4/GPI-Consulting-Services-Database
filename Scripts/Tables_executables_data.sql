@@ -242,6 +242,9 @@ EXEC report.proc_insert_plant 'ZIP Choloma I – Elcatex Group', null, 'C.A.', '
 EXEC report.proc_insert_plant 'ZIP Choloma II – Elcatex Group', null, 'C.A.', 'Honduras', 'Cortes', 2003, null, 'Real state', 'Free zone dedicated to the hosting of production/processing plants with the intent to export. Additionally, two (2) energy production plants are located at the Industrial Park.', null, 'Industrial, Rural', 'Road to Aldea "La Jutosa”, Industrial Park ZIP Choloma II, Cortés Department Cortes, Honduras, C.A.', '15.618647', '-87.971845', 47;
 EXEC report.proc_insert_plant 'Sula Valley Biogas Corporation, S.A. de C.V. – Elcatex Group', null, 'C.A.', 'Honduras', 'Cortes', 2014, null, 'Electricity Generation', 'Biogas Power Plant. Electricity generation for sale through the National Grid or companies of Elcatex Group.', null, 'Industrial', 'Colonia La Mora, Road to Cortes, Zip Tex Industrial Park, Choloma Municipality, Cortes Department, Honduras, C.A.', '15.617219', '-87.974169', 44;
 EXEC report.proc_insert_plant 'Electricidad de Cortés, S. de R.L. de C.V. – ELCOSA –', 'ELCOSA', 'C.A.', 'Honduras', 'Cortes', 1993, 1994, 'Electricity Generation', 'Thermal Power Plant. Electricity generation for sale through the National Grid.', null, 'Industrial', 'Barrio El Faro, 9th Street between 10th and 11th Avenue Puerto Cortés, Honduras, C.A.', '15°51m21.57s', '87°57m17.93s', 8;
+EXEC report.proc_insert_plant 'Empresa de Mantenimiento, Construcción y Electricidad, S.A. de C.V. - EMCE -', 'Choloma Power Plant I', 'C.A.', 'Honduras', 'Cortes', 1998, 1999, 'Electricity Generation', 'Electrical Power Plant: Generation by five (5) 4-stroke engines of 12.0 MW each one, coupled to five (5) ABB of 15.00 MVA generators, respectively. There is also a 2.5 MW steam turbo-generator (cogeneration) which take advantage of the residual heat from the exhaust gases.', null, 'Rural', 'Km. 3 Carretera a Ticamaya, Choloma, Cortés, Honduras, C.A.', '15°35m52.87s', '87°56m08.04s', 38;
+EXEC report.proc_insert_plant 'Empresa Energetica Corinto (EEC)', 'Margarita II', 'C.A.', 'Nicaragua', 'Chinandega', 1998, 1999, 'Electricity Generation', 'Thermal Power Plant (Power barges). Electricity generation for sale through the National Grid.', null, 'Industrial', 'Pacific port of Corinto, Nicaragua, C.A.', '12.488284', '-87.167427', 0;
+EXEC report.proc_insert_plant 'Energía Renovable S.A. de C.V - ENERSA', 'Choloma Power Plant III', 'C.A.', 'Honduras', 'Cortes', 2003, 2004, 'Electricity Generation', 'Electrical Power Plant: Generation by fourteen MAN 18V 48/60 engines, each with a nominal capacity of 18.9 MW; and one cogeneration TGM Turbine with a nominal capacity of 16.766 MW.', null, 'Rural', 'Km. 3 Carretera a Ticamaya, Choloma, Cortés, Honduras, C.A.', '15°35m44.98s', '87°56m11.38s', 38;
 
 -- Report table executables for data insertion
 -- Data has to be inserted in the following order:
@@ -345,6 +348,11 @@ EXEC report.proc_insert_report_table '22/septiembre/2021', 'Somit, Corredores de
 EXEC report.proc_insert_report_table '21/septiembre/2021', 'Somit, Corredores de Seguros, S.A.', 4082, 'Rafael Grajeda', null, null, 85000 , 1068, 1, 'si', 'Minor fires', 'Automatic Wet', 'I', 'no', 'no', 'no', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '21/septiembre/2021', 'Somit, Corredores de Seguros, S.A.', 4083, 'Rafael Grajeda', null, '3900,KW', 20700 , null, 2, 'si', 'Major fires', 'Automatic Wet', 'III', 'si', 'no', 'no', 'no', 'no', 'si', 'no';
 EXEC report.proc_insert_report_table '20/junio/2017', 'Bowring Marsh', 4084, 'Marlon Lira', null, '83.2,MW', 11000, null, 2.5, 'si', 'Major fires', 'Automatic Wet', null, 'si', 'si', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '3/septiembre/2018', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4085, 'Marlon Lira', 'ISO 9001-2015, OSHAS 18001', '62.5,MW', 15000, 60, 1, 'si', 'Major fires', null, null, 'si', 'si', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '11/septiembre/2019', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4085, 'Marlon Lira', 'ISO 9001:2015, OSHAS 18001:2007', '62.5,MW', 15000, 60, 1, 'si', 'Major fires', null, null, 'si', 'si', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '4/mayo/2021', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4085, 'Marlon Lira', 'ISO 9001:2015, OSHAS 18001:2007', '62.5,MW', 15000, 60, 1, 'si', 'Major fires', 'Automatic Wet', 'III', 'si', 'si', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '30/mayo/2023', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4086, 'Juan Diego Lacayo, Jorge Cifuentes Garcia', null, '72,MW', 5340, 64, 2.5, 'si', 'Major fires', 'Automatic Wet', 'III', 'si', 'si', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '3/septiembre/2018', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4087, 'Rafael Grajeda', null, '72,MW', 33100, 210, 1, 'si', 'Major fires', null, null, 'si', 'si', 'si', 'si', 'no', 'si', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -443,6 +451,11 @@ EXEC report.proc_insert_perils_and_risk_table 4088, 2, 'none', 2, 1.5, 2.5, 2, '
 EXEC report.proc_insert_perils_and_risk_table 4089, 2, 'none', 2, 1.5, 2.5, 2, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 4090, 2, 'none', 1.5, 1.5, 3, 2, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 4091, 2.5, 1, 2, 2, 2, 2, 1.5, 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4092, 3, 'none', 1, 2, 3, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4093, 3, 1, 1, 2, 3, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4094, 3, 1, 1, 2, 3, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4095, 3, 1, 3, 2, 3, 2.5, 2.5, 1, 1, 1, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 4096, 3, 1, 1, 2, 3, 2.5, 'none', 1, 1, 1, 1, 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -523,3 +536,9 @@ EXEC report.proc_insert_loss_scenario_table 4087, '$,2800000', 29, null, null, n
 EXEC report.proc_insert_loss_scenario_table 4088, '$,15127065', 22.7, null, null, '$,12354347.01', '$,4581352.38', '$,275844.03', null, '$,712000.39', null, null, null;
 EXEC report.proc_insert_loss_scenario_table 4089, '$,6450075', 52.9, null, null, '$,6450975', null, null, null, null, null, null, null;
 EXEC report.proc_insert_loss_scenario_table 4090, '$,8246830', 46.3, null, null, null, '$,2512092.01+$,3744364.74+$,200133.96+$,121128.35+$,18328.21+$,186364.43+$,1179707.87+$,257710.43+$,27000', null, null, null, null, null, null;
+EXEC report.proc_insert_loss_scenario_table 4091, '$,64125388', 86, null, null, null, '$,64125388', null, null, null, null, null, null;
+EXEC report.proc_insert_loss_scenario_table 4092, '$,51300000', 95, '$,7784345', 100, null, '$,51300000', null, null, null, null, 96, null;
+EXEC report.proc_insert_loss_scenario_table 4093, '$,51300000', 95, '$,7784345', 100, null, '$,51300000', null, null, null, null, 96, null;
+EXEC report.proc_insert_loss_scenario_table 4094, '$,39807965', 95, null, null, null, '$,39807965', null, null, null, null, 95, null;
+EXEC report.proc_insert_loss_scenario_table 4095, '$,81770000', 93, '$,11521934', 100, null, null, null, null, null, null, 94, null;
+EXEC report.proc_insert_loss_scenario_table 4096, '$,255855768', 92, '$,26395267', 100, null, null, null, null, '$,255855768', null, 93, null;
