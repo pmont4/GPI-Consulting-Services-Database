@@ -250,42 +250,71 @@ AS
 		RETURN 0.0000
 	END;
 
-CREATE OR ALTER FUNCTION report.CALCULATE_LOSS_VALUE(@value VARCHAR(30))
+CREATE OR ALTER FUNCTION report.CALCULATE_LOSS_VALUE(@value VARCHAR(300))
 RETURNS DECIMAL(19, 2)
 AS
 	BEGIN
-		DECLARE
-			@currency AS VARCHAR(1),
-			@amount AS DECIMAL(19, 2),
-			@to_return AS DECIMAL(19, 2);
-		
-		BEGIN
-			IF (@value LIKE '%,%')
-				BEGIN
-					DECLARE @value_to_evaluate AS VARCHAR(30)
-					DECLARE cur CURSOR DYNAMIC FORWARD_ONLY
-								FOR SELECT * FROM STRING_SPLIT(@value, ',');
-					OPEN cur;
-					FETCH NEXT FROM cur INTO @value_to_evaluate;
-					WHILE @@FETCH_STATUS = 0
-						BEGIN
-							IF (TRY_CAST(@value_to_evaluate AS DECIMAL) IS NOT NULL)
-								SET @amount = CAST(@value_to_evaluate AS DECIMAL(19, 2));
-							ELSE IF (TRY_CAST(@value_to_evaluate AS DECIMAL) IS NULL)
-								SET @currency = UPPER(@value_to_evaluate);
-							FETCH NEXT FROM cur INTO @value_to_evaluate;
-						END;
-					CLOSE cur;
-					DEALLOCATE cur;
+		DECLARE @to_return AS DECIMAL(19,2);
+		IF (@value LIKE '%+%')
+			BEGIN
+				DECLARE 
+					@result AS DECIMAL(19, 2) = 0.00,
+					@i AS DECIMAL(19, 2);
+
+				DECLARE @input AS VARCHAR(22);
+				DECLARE cur CURSOR DYNAMIC FORWARD_ONLY
+								FOR SELECT * FROM STRING_SPLIT(@value, '+');
+				OPEN cur;
+				FETCH NEXT FROM cur INTO @input;
+				WHILE @@FETCH_STATUS = 0
 					BEGIN
-						SET @to_return = (SELECT CASE
-													WHEN @currency = 'Q' THEN @amount / 7.5
-													WHEN @currency = '$' THEN @amount
-													ELSE @amount
-												END);
-					END
-				END;
-		END;
+						IF (@input LIKE '%$%' OR @input LIKE '%Q%')
+							BEGIN
+								IF (@input LIKE '%Q%')
+									BEGIN
+										SET @input = SUBSTRING(@input, 3, LEN(@input));
+										IF (TRY_CAST(@input AS DECIMAL(19, 2)) IS NOT NULL)
+											BEGIN
+												DECLARE 
+													@fixed AS DECIMAL(19, 2) =  CAST(@input AS DECIMAL(19, 2));
+												SET @fixed = @fixed / 7.50
+												SET @input = CAST(@fixed AS VARCHAR(22));
+											END;
+									END;
+								ELSE IF (@input LIKE '%$%')
+									SET @input = SUBSTRING(@input, 3, LEN(@input));
+							END;
+
+						IF (TRY_CAST(@input AS DECIMAL(19, 2)) IS NOT NULL)
+							BEGIN
+								SET @i = CAST(@input AS DECIMAL(19, 2));
+								SET @result = @result + @i;
+							END;
+						FETCH NEXT FROM cur INTO @input;
+					END;
+
+					SET @to_return = @result;
+				CLOSE cur;
+				DEALLOCATE cur;
+			END;
+		ELSE IF (@value NOT LIKE '%+%')
+			BEGIN
+				IF (@value LIKE '%$%' OR @value LIKE '%Q%')
+					BEGIN
+						IF (@value LIKE '%Q%')
+							BEGIN
+								SET @value = SUBSTRING(@value, 3, LEN(@value));
+								IF (TRY_CAST(@value AS DECIMAL(19, 2)) IS NOT NULL)
+									BEGIN
+										SET @to_return = CAST(@value AS DECIMAL(19,2));
+										SET @to_return = @to_return / 7.50;
+									END;
+							END;
+						ELSE IF (@value LIKE '%$%')
+							IF (TRY_CAST(@value AS DECIMAL(19, 2)) IS NOT NULL)
+								SET @to_return = CAST(@value AS DECIMAL(19, 2));
+					END;
+			END;
 		RETURN @to_return;
 	END;
 
