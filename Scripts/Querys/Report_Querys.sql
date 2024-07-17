@@ -14,7 +14,7 @@ AS
 		IIF(p.plant_operation_startup_year IS NOT NULL, CAST(YEAR(p.plant_operation_startup_year) AS VARCHAR(5)), 'No operation startup year saved') AS 'Operation startup year',
 
 		IIF(p.plant_latitude IS NOT NULL AND p.plant_longitude IS NOT NULL, 
-			CONCAT('Latitude: ', IIF(p.plant_latitude IS NOT NULL, CONCAT(FORMAT(p.plant_latitude, 'N6'), '�'), 'No latitude saved'), ' Longitude: ', IIF(p.plant_longitude IS NOT NULL, CONCAT(FORMAT(p.plant_longitude, 'N6'), '�'), 'No longitude saved')), 
+			CONCAT('Latitude: ', IIF(p.plant_latitude IS NOT NULL, CONCAT(FORMAT(p.plant_latitude, 'N6')), 'No latitude saved'), ' Longitude: ', IIF(p.plant_longitude IS NOT NULL, CONCAT(FORMAT(p.plant_longitude, 'N6')), 'No longitude saved')), 
 			'No latitude or longitude saved') AS 'Latitude and longitude',
 
 		IIF(p.plant_meters_above_sea_level IS NOT NULL AND p.plant_meters_above_sea_level > 0, FORMAT(p.plant_meters_Above_sea_level, 'N0'), 'No meters above the sea level were saved') AS 'Meters above sea level',
