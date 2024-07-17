@@ -42,6 +42,7 @@ EXEC report.proc_insert_client 'Conseguros, Corredor de Seguros, S.A.';
 EXEC report.proc_insert_client 'Seguros Universales S.A.';
 EXEC report.proc_insert_client 'Grupo Generali';
 EXEC report.proc_insert_client 'Somit, Corredores de Seguros, S.A.'
+EXEC report.proc_insert_client 'Bowring Marsh';
 
 -- Capacity type table executables for data insertion
 -- Data is being inserted in the following order
@@ -240,10 +241,10 @@ EXEC report.proc_insert_plant 'ZIP Buena Vista – Elcatex Group', null, 'C.A.',
 EXEC report.proc_insert_plant 'ZIP Choloma I – Elcatex Group', null, 'C.A.', 'Honduras', 'Cortes', 1990, null, 'Real state', 'Free zone dedicated to the hosting of production/processing plants with the intent to export.', null, 'Industrial, Commercial', 'Industrial Park ZIP Choloma I, Colonia La Mora, Choloma, Cortes, Honduras, C.A.', '15.603731', '-87.958189', 37;
 EXEC report.proc_insert_plant 'ZIP Choloma II – Elcatex Group', null, 'C.A.', 'Honduras', 'Cortes', 2003, null, 'Real state', 'Free zone dedicated to the hosting of production/processing plants with the intent to export. Additionally, two (2) energy production plants are located at the Industrial Park.', null, 'Industrial, Rural', 'Road to Aldea "La Jutosa”, Industrial Park ZIP Choloma II, Cortés Department Cortes, Honduras, C.A.', '15.618647', '-87.971845', 47;
 EXEC report.proc_insert_plant 'Sula Valley Biogas Corporation, S.A. de C.V. – Elcatex Group', null, 'C.A.', 'Honduras', 'Cortes', 2014, null, 'Electricity Generation', 'Biogas Power Plant. Electricity generation for sale through the National Grid or companies of Elcatex Group.', null, 'Industrial', 'Colonia La Mora, Road to Cortes, Zip Tex Industrial Park, Choloma Municipality, Cortes Department, Honduras, C.A.', '15.617219', '-87.974169', 44;
-EXEC report.proc_insert_plant 'Electricidad de Cortés, S. de R.L. de C.V. – ELCOSA –', 'ELCOSA', 'C.A.', 'Honduras', 'Cortes', 2014, null, 'Electricity Generation', 'Biogas Power Plant. Electricity generation for sale through the National Grid or companies of Elcatex Group.', null, 'Industrial', 'Barrio El Faro, 9th Street between 10th and 11th Avenue Puerto Cortés, Honduras, C.A.', '15°51m21.57s', '87°57m17.93', 8;
+EXEC report.proc_insert_plant 'Electricidad de Cortés, S. de R.L. de C.V. – ELCOSA –', 'ELCOSA', 'C.A.', 'Honduras', 'Cortes', 1993, 1994, 'Electricity Generation', 'Thermal Power Plant. Electricity generation for sale through the National Grid.', null, 'Industrial', 'Barrio El Faro, 9th Street between 10th and 11th Avenue Puerto Cortés, Honduras, C.A.', '15°51m21.57s', '87°57m17.93s', 8;
 
 -- Report table executables for data insertion
--- Data is being inserted in the following order:
+-- Data has to be inserted in the following order:
 --
 -- Date of the report, id or name of the client who requested the report, id or name of the plant, id or name of the engineer who prepared the report (in case there are more than one engineer, add the name or the id followed by a ,)
 -- the certifications that the plant has (write null if the plant has no certifications) the installed capacity (first write the amount, then the classification followeb by a /, classification can be write by id or name), the plant built-up area, the workforce of the plant
@@ -343,6 +344,7 @@ EXEC report.proc_insert_report_table '24/septiembre/2021', 'Somit, Corredores de
 EXEC report.proc_insert_report_table '22/septiembre/2021', 'Somit, Corredores de Seguros, S.A.', 4081, 'Rafael Grajeda', null, null, 90275 , null, 1, 'si', 'Minor fires', 'Automatic Wet', 'I', 'no', 'no', 'no', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '21/septiembre/2021', 'Somit, Corredores de Seguros, S.A.', 4082, 'Rafael Grajeda', null, null, 85000 , 1068, 1, 'si', 'Minor fires', 'Automatic Wet', 'I', 'no', 'no', 'no', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '21/septiembre/2021', 'Somit, Corredores de Seguros, S.A.', 4083, 'Rafael Grajeda', null, '3900,KW', 20700 , null, 2, 'si', 'Major fires', 'Automatic Wet', 'III', 'si', 'no', 'no', 'no', 'no', 'si', 'no';
+EXEC report.proc_insert_report_table '20/junio/2017', 'Bowring Marsh', 4084, 'Marlon Lira', null, '83.2,MW', 11000, null, 2.5, 'si', 'Major fires', 'Automatic Wet', null, 'si', 'si', 'si', 'si', 'no', 'si', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -440,6 +442,7 @@ EXEC report.proc_insert_perils_and_risk_table 4087, 2, 'none', 2, 1.5, 2.5, 2, '
 EXEC report.proc_insert_perils_and_risk_table 4088, 2, 'none', 2, 1.5, 2.5, 2, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 4089, 2, 'none', 2, 1.5, 2.5, 2, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 4090, 2, 'none', 1.5, 1.5, 3, 2, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4091, 2.5, 1, 2, 2, 2, 2, 1.5, 1, 1, 1, 1, 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -519,4 +522,4 @@ EXEC report.proc_insert_loss_scenario_table 4086, '$,2120555', 93.8, null, 100, 
 EXEC report.proc_insert_loss_scenario_table 4087, '$,2800000', 29, null, null, null, '$,2800000', null, null, null, null, null, null;
 EXEC report.proc_insert_loss_scenario_table 4088, '$,15127065', 22.7, null, null, '$,12354347.01', '$,4581352.38', '$,275844.03', null, '$,712000.39', null, null, null;
 EXEC report.proc_insert_loss_scenario_table 4089, '$,6450075', 52.9, null, null, '$,6450975', null, null, null, null, null, null, null;
-EXEC report.proc_insert_loss_scenario_table 4090, '$,8246830', 46.3, null, null, null, null, null, null, null, null, null, null; -- PENDIENTEs
+EXEC report.proc_insert_loss_scenario_table 4090, '$,8246830', 46.3, null, null, null, '$,2512092.01+$,3744364.74+$,200133.96+$,121128.35+$,18328.21+$,186364.43+$,1179707.87+$,257710.43+$,27000', null, null, null, null, null, null;

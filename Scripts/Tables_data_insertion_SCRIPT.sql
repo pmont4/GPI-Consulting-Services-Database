@@ -311,12 +311,16 @@ AS
 									END;
 							END;
 						ELSE IF (@value LIKE '%$%')
+							SET @value = SUBSTRING(@value, 3, LEN(@value));
 							IF (TRY_CAST(@value AS DECIMAL(19, 2)) IS NOT NULL)
 								SET @to_return = CAST(@value AS DECIMAL(19, 2));
 					END;
 			END;
 		RETURN @to_return;
 	END;
+
+SELECT report.CALCULATE_LOSS_VALUE('$,2512092.01+$,3744364.74+$,200133.96+$,121128.35+$,18328.21+$,186364.43+$,1179707.87+$,257710.43+$,27000');
+SELECT report.CALCULATE_LOSS_VALUE('$,8246830');
 
 -- ------------------------------------
 
@@ -1208,16 +1212,16 @@ AS
 --
 CREATE OR ALTER PROCEDURE report.proc_insert_loss_scenario_table
 	@id_report AS INT,
-	@material_damage_amount AS VARCHAR(30),
+	@material_damage_amount AS VARCHAR(300),
 	@material_damage_percentage AS FLOAT(2),
-	@business_interruption_amount AS VARCHAR(30),
+	@business_interruption_amount AS VARCHAR(300),
 	@business_interruption_percentage AS FLOAT(2),
-	@buildings_amount AS VARCHAR(30),
-	@machinary_equipment AS VARCHAR(30),
-	@electronic_equipment AS VARCHAR(30),
-	@expansions_investment_works_amount AS VARCHAR(30),
-	@stock_amount AS VARCHAR(30),
-	@total_insured_values AS VARCHAR(30),
+	@buildings_amount AS VARCHAR(300),
+	@machinary_equipment AS VARCHAR(300),
+	@electronic_equipment AS VARCHAR(300),
+	@expansions_investment_works_amount AS VARCHAR(300),
+	@stock_amount AS VARCHAR(300),
+	@total_insured_values AS VARCHAR(300),
 	@pml_percentage AS FLOAT(2),
 	@mfl AS FLOAT(2)
 AS
