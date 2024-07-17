@@ -240,6 +240,7 @@ EXEC report.proc_insert_plant 'ZIP Buena Vista – Elcatex Group', null, 'C.A.',
 EXEC report.proc_insert_plant 'ZIP Choloma I – Elcatex Group', null, 'C.A.', 'Honduras', 'Cortes', 1990, null, 'Real state', 'Free zone dedicated to the hosting of production/processing plants with the intent to export.', null, 'Industrial, Commercial', 'Industrial Park ZIP Choloma I, Colonia La Mora, Choloma, Cortes, Honduras, C.A.', '15.603731', '-87.958189', 37;
 EXEC report.proc_insert_plant 'ZIP Choloma II – Elcatex Group', null, 'C.A.', 'Honduras', 'Cortes', 2003, null, 'Real state', 'Free zone dedicated to the hosting of production/processing plants with the intent to export. Additionally, two (2) energy production plants are located at the Industrial Park.', null, 'Industrial, Rural', 'Road to Aldea "La Jutosa”, Industrial Park ZIP Choloma II, Cortés Department Cortes, Honduras, C.A.', '15.618647', '-87.971845', 47;
 EXEC report.proc_insert_plant 'Sula Valley Biogas Corporation, S.A. de C.V. – Elcatex Group', null, 'C.A.', 'Honduras', 'Cortes', 2014, null, 'Electricity Generation', 'Biogas Power Plant. Electricity generation for sale through the National Grid or companies of Elcatex Group.', null, 'Industrial', 'Colonia La Mora, Road to Cortes, Zip Tex Industrial Park, Choloma Municipality, Cortes Department, Honduras, C.A.', '15.617219', '-87.974169', 44;
+EXEC report.proc_insert_plant 'Electricidad de Cortés, S. de R.L. de C.V. – ELCOSA –', 'ELCOSA', 'C.A.', 'Honduras', 'Cortes', 2014, null, 'Electricity Generation', 'Biogas Power Plant. Electricity generation for sale through the National Grid or companies of Elcatex Group.', null, 'Industrial', 'Barrio El Faro, 9th Street between 10th and 11th Avenue Puerto Cortés, Honduras, C.A.', '15°51m21.57s', '87°57m17.93', 8;
 
 -- Report table executables for data insertion
 -- Data is being inserted in the following order:
@@ -439,11 +440,13 @@ EXEC report.proc_insert_perils_and_risk_table 4087, 2, 'none', 2, 1.5, 2.5, 2, '
 EXEC report.proc_insert_perils_and_risk_table 4088, 2, 'none', 2, 1.5, 2.5, 2, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 4089, 2, 'none', 2, 1.5, 2.5, 2, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 4090, 2, 'none', 1.5, 1.5, 3, 2, 'none', 1, 1, 1, 1, 2;
-s
+
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
 --
 -- The amounts have to be saved in this way ->$ the currency, separed by a coma the amount, so it would look like this $,22334
+--
+-- If the amount is broken down into several categories you can combine them all in a single line, just start writting your amounts like this '$,1324523.99+5566564.09+6896757.45', the database will automatically add them in a single value
 --
 -- The id of the report, the amount of material damage estimated, the percentage of material damage estimated, the business interruption amount estimated,
 -- The business interruption percentage estimated, the building value estimated for the material damage calculation, the machinary and equipment value estimated for the material damage calculation, the electronic equipment value for the material damage calculation,
