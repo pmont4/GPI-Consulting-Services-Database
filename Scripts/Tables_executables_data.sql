@@ -249,6 +249,7 @@ EXEC report.proc_insert_plant 'Energía Renovable S.A. de C.V - ENERSA', 'Cholom
 EXEC report.proc_insert_plant 'Envases Universales Rexam de Centroamérica, S.A.', null, 'C.A.', 'Guatemala', 'Guatemala', 2005, 2007, 'Production', 'Manufactura de envases de aluminio para todo tipo de bebias.', 'I', 'Industrial, Commercial', 'Km. 32 Carretera al Pacifico, Parque Flor de Campo, Amatitlán, Guatemala.', null, null, null;
 EXEC report.proc_insert_plant 'Envases Universales Rexam de Centroamérica, S.A.', null, 'C.A.', 'Guatemala', 'Guatemala', 2005, 2007, 'Production', 'Manufactura de envases de aluminio para todo tipo de bebias.', 'I', 'Industrial, Rural', 'Km. 32 Carretera al Pacifico, Parque Flor de Campo, Amatitlán, Guatemala.', '14°27m7.14s', '90°38m19.98s', 1183;
 EXEC report.proc_insert_plant 'Planta de Reserva Fría de Generación de ETEN, S.A.', 'CENTRALTERMOELÉCTRICA PLANTA ÉTEN', 'S.A.', 'Peru', 'Lambayeque', 2013, 2015, 'Electricity Generation', 'Thermoelectrical Power Plant: generation based on converting thermal power into electricity through one (1) GE model 7F 5-Series gas Turbine coupled to an electrical generator. The main fuel used at the plant is B5 Diesel.', null, 'Rural', 'District of Reque, Province of Chiclayo, Department of Lambayeque, Perú.', '-6.8848', '-79.7897', 70;
+EXEC report.proc_insert_plant 'Expogranel, S.A.', null, 'C.A.', 'Guatemala', 'Escuintla', null, null, 'Storage', 'Recepción, almacenamiento y embarque del azúcar de exportación producida por los ingenios de Guatemala.', null, 'Industrial, Commercial', '4ª. Calle, 1ª. Y 2da. Avenida Recinto Portuario, Puerto Quetzal, Escuintla, Guatemala, C.A.', '13°55m28.79s', '90°47m01.17s', 6;
 
 -- Report table executables for data insertion
 -- Data has to be inserted in the following order:
@@ -364,6 +365,8 @@ EXEC report.proc_insert_report_table '22/enero/2015', 'Seguros Agromercantil, S.
 EXEC report.proc_insert_report_table '12/febrero/2020', 'Unity Promotores, S.A.', 4089, 'Rafael Grajeda', null, '5500,units/min', 29030, 120, 2.5, 'si', null, null, null, 'no', 'si', 'no', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '11/febrero/2022', 'Seguros Agromercantil, S.A.', 4089, 'Juan Diego Lacayo', null, '5500,units/min', 29030, 120, 2.5, 'si', 'Major fires', 'Automatic Dry', 'III', 'no', 'si', 'no', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '28/abril/2021', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4090, 'Marlon Lira', null, '230.0,MW', 22000, 29, 1, 'si', 'Major fires', 'Automatic Wet', 'III', 'si', 'si', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '17/abril/2020', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4090, 'Rafael Grajeda', null, '230.0,MW', 22000, 24, 1, 'si', 'Major fires', 'Automatic Wet', 'II', 'si', 'si', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '13/septiembre/2012', 'Seguros Agromercantil, S.A.', 4091, 'Marlon Lira', null, '350000,metric tons', 41000, 120, 3, 'si', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -474,6 +477,8 @@ EXEC report.proc_insert_perils_and_risk_table 4100, 'none', 1, 2, 1.5, 2, 2.5, '
 EXEC report.proc_insert_perils_and_risk_table 4101, 2, 'none', 1, 1, 2, 2.5, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 4102, 2, 'none', 1, 1, 2, 2.5, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 4103, 3, 'none', 1, 1.5, 1.5, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4104, 3, 'none', 1, 1, 1.5, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4105, 'none', 1, 3, 3, 2.5, 2.5, 'none', 2, 2, 'none', 'none', 2.5;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -566,3 +571,4 @@ EXEC report.proc_insert_loss_scenario_table 4099, '$,245855769', 92, '$,45695569
 EXEC report.proc_insert_loss_scenario_table 4100, '$,92540000.00', null, '$,30450000', null, '$,7500000.00', '$,67500000.00', null, null, '$,17540000.00', null, null, 83;
 EXEC report.proc_insert_loss_scenario_table 4101, '$,134938208.00', 93, '$,58600000', 100, '$,16500000.00', '$,67500000.00', null, null, '$,98438208.00+$,20000000.00', null, 95, 83;
 EXEC report.proc_insert_loss_scenario_table 4103, '$,126806113.00', 64, '$,33225000', 100, '$,116623431.00', '$,78733+$,5720+$,74279', null, null, '$,8590330+$,1429366', null, 72, null;
+EXEC report.proc_insert_loss_scenario_table 4104, '$,118215783.00', 80, '$,33225000', 100, null, null, null, null, null, null, 84, null;
