@@ -667,7 +667,7 @@ AS
 											lst.loss_scenario_material_damage_percentage, lst.loss_scenario_business_interruption_amount, lst.loss_scenario_business_interruption_percentage, lst.loss_scenario_buildings_amount,
 											lst.loss_scenario_machinery_equipment_amount, lst.loss_scenario_electronic_equipment_amount, lst.loss_scenario_expansions_investment_works_amount, lst.loss_scenario_stock_amount,
 											lst.loss_scenario_total_insured_values, lst.loss_scenario_pml_percentage, lst.loss_scenario_mfl
-										ORDER BY r.report_date DESC
+										ORDER BY btc.business_turnover_name DESC
 								END;
 							ELSE
 								PRINT CONCAT('Cannot find any reports with plant business turnover ', @param);
@@ -784,7 +784,7 @@ AS
 											lst.loss_scenario_material_damage_percentage, lst.loss_scenario_business_interruption_amount, lst.loss_scenario_business_interruption_percentage, lst.loss_scenario_buildings_amount,
 											lst.loss_scenario_machinery_equipment_amount, lst.loss_scenario_electronic_equipment_amount, lst.loss_scenario_expansions_investment_works_amount, lst.loss_scenario_stock_amount,
 											lst.loss_scenario_total_insured_values, lst.loss_scenario_pml_percentage, lst.loss_scenario_mfl
-										ORDER BY r.report_date DESC
+										ORDER BY pp.id_capacity_type DESC
 								END;
 							ELSE
 								PRINT CONCAT('Cannot find any reports with installed capacity type id/name "', @param, '"');
@@ -931,7 +931,7 @@ AS
 															lst.loss_scenario_material_damage_percentage, lst.loss_scenario_business_interruption_amount, lst.loss_scenario_business_interruption_percentage, lst.loss_scenario_buildings_amount,
 															lst.loss_scenario_machinery_equipment_amount, lst.loss_scenario_electronic_equipment_amount, lst.loss_scenario_expansions_investment_works_amount, lst.loss_scenario_stock_amount,
 															lst.loss_scenario_total_insured_values, lst.loss_scenario_pml_percentage, lst.loss_scenario_mfl
-														ORDER BY r.report_date DESC
+														ORDER BY pp.plant_parameters_installed_capacity DESC
 												END;
 											ELSE
 												PRINT 'No values where found with that installed capacity filter';
@@ -955,6 +955,6 @@ EXEC report.reports_filter_by 'Ingeniero', 'Marlon Lira'
 EXEC report.reports_filter_by 'certificaciones', '9001'
 EXEC report.reports_filter_by 'giro de negocio', 'production'
 EXEC report.reports_filter_by 'capacidad', 'MW';
-EXEC report.reports_filter_by 'installed capacity', 'mas que,200,mw'
+EXEC report.reports_filter_by 'installed capacity', 'mas que,60,mw'
 
 -- mayor a 100 kilos > < = 54654 > 44 and 5353 < 23454
