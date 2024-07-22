@@ -121,7 +121,7 @@ AS
 								PRINT CONCAT('Cannot found any report with ID: ',@param);
 						END;
 				END;
-			IF (LOWER(@filter) = 'date' or LOWER(@filter) = 'fecha')
+			ELSE IF (LOWER(@filter) = 'date' or LOWER(@filter) = 'fecha')
 				BEGIN
 					IF (@param LIKE '%/%')
 						DECLARE
@@ -228,7 +228,7 @@ AS
 						ELSE
 							PRINT CONCAT('Cannot found any report with date: ', @date_to_search);
 				END;
-			IF (LOWER(@filter) = 'plant' OR LOWER(@filter) = 'planta')
+			ELSE IF (LOWER(@filter) = 'plant' OR LOWER(@filter) = 'planta')
 				BEGIN
 					DECLARE
 						@id_plant_to_search AS INT;
@@ -339,7 +339,7 @@ AS
 					ELSE
 						PRINT CONCAT('Cannot find any report with plant: ', @param);
 				END;
-			IF (LOWER(@filter) = 'client' OR LOWER(@filter) = 'cliente')
+			ELSE IF (LOWER(@filter) = 'client' OR LOWER(@filter) = 'cliente')
 				BEGIN
 					DECLARE
 						@id_client_to_search AS INT;
@@ -450,7 +450,7 @@ AS
 					ELSE
 						PRINT CONCAT('Cannot find any report with client: ', @param);
 				END;
-			IF (LOWER(@filter) = 'prepared by' OR LOWER(@filter) = 'preparado por' OR LOWER(@filter) = 'engineer' OR LOWER(@filter) = 'ingeniero')
+			ELSE IF (LOWER(@filter) = 'prepared by' OR LOWER(@filter) = 'preparado por' OR LOWER(@filter) = 'engineer' OR LOWER(@filter) = 'ingeniero')
 				BEGIN
 					DECLARE
 						@id_engineer_to_search AS INT
@@ -567,7 +567,7 @@ AS
 							PRINT CONCAT('Cannot find any report made by the engineer ', @param);
 					END;
 				END;
-			IF (LOWER(@filter) = 'certifications' OR LOWER(@filter) = 'certificaciones')
+			ELSE IF (LOWER(@filter) = 'certifications' OR LOWER(@filter) = 'certificaciones')
 				BEGIN
 					IF ((SELECT TOP 1 pp.id_plant_parameters FROM report.plant_parameters pp WHERE pp.plant_certifications LIKE CONCAT('%', @param, '%')) IS NOT NULL)
 						BEGIN
@@ -672,7 +672,7 @@ AS
 					ELSE
 						PRINT CONCAT('Cannot find any report with certifications ', @param)
 				END;
-			IF (LOWER(@filter) = 'business turnover' OR LOWER(@filter) = 'giro de negocio')
+			ELSE IF (LOWER(@filter) = 'business turnover' OR LOWER(@filter) = 'giro de negocio')
 				BEGIN
 					IF ((SELECT btc.business_turnover_name FROM business_turnover_class_table btc WHERE btc.business_turnover_name = @param) IS NOT NULL)
 						BEGIN
@@ -786,7 +786,7 @@ AS
 					ELSE
 						PRINT CONCAT('Cannot find the business turnover with name/id "', @param, '"');
 				END;
-			IF (LOWER(@filter) = 'capacity' OR LOWER(@filter) = 'capacidad')
+			ELSE IF (LOWER(@filter) = 'capacity' OR LOWER(@filter) = 'capacidad')
 				BEGIN
 					DECLARE
 						@id_capacity_to_search AS INT;
@@ -903,7 +903,7 @@ AS
 					ELSE
 						PRINT CONCAT('Cannot find the installed capacity with name/id "', @param, '"');
 				END;
-			IF (LOWER(@filter) = 'installed capacity' OR LOWER(@filter) = 'capacidad instalada')
+			ELSE IF (LOWER(@filter) = 'installed capacity' OR LOWER(@filter) = 'capacidad instalada')
 				BEGIN
 					IF (@param LIKE '%,%' AND @param LIKE '%:%' AND (@param LIKE '%rango%' OR @param LIKE '%range%'))
 						BEGIN TRY
@@ -1343,7 +1343,7 @@ AS
 								END;
 						END;
 				END;
-			IF (LOWER(@filter) = 'built-up area' OR LOWER(@filter) = 'area construida')
+			ELSE IF (LOWER(@filter) = 'built-up area' OR LOWER(@filter) = 'area construida')
 				BEGIN
 					IF (@param LIKE '%,%' AND @param LIKE '%:%' AND (@param LIKE '%rango%' OR @param LIKE '%range%'))
 						BEGIN
@@ -1774,7 +1774,7 @@ AS
 								END;
 						END;
 				END;
-			IF (LOWER(@filter) = 'workforce' OR LOWER(@filter) = 'personal')
+			ELSE IF (LOWER(@filter) = 'workforce' OR LOWER(@filter) = 'personal')
 				BEGIN
 					IF (@param LIKE '%,%' AND @param LIKE '%:%' AND (@param LIKE '%rango%' OR @param LIKE '%range%'))
 						BEGIN
@@ -2234,5 +2234,3 @@ EXEC report.reports_filter_by 'built-up area', 'menos que,8000'
 EXEC report.reports_filter_by 'workforce', 'menos que,100'
 EXEC report.reports_filter_by 'workforce', 'mas que,100'
 EXEC report.reports_filter_by 'workforce', 'rango,100:108'
-
--- mayor a 100 kilos > < = 54654 > 44 and 5353 < 23454
