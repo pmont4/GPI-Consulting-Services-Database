@@ -49,6 +49,7 @@ AS
 											'No workforce was saved') AS 'Plant workforce',
 
 										report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
+										CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') AS 'Area description',
 
 										report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
 
@@ -95,6 +96,8 @@ AS
 									FROM #report_temp_table_filter r
 										LEFT JOIN report.client_table c ON r.id_client = c.id_client
 										LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
+										LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
+										LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
 										LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
 										LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
 										LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
@@ -108,7 +111,7 @@ AS
 										LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
 									WHERE r.id_report = @param
 									GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover, pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
-										pp.plant_parameters_exposures, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
+										pp.plant_parameters_exposures, tlc.type_location_class_name, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
 										pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
 										pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,
 										pr.perils_and_risk_landslide_subsidence, pr.perils_and_risk_water_flooding, pr.perils_and_risk_wind_storm, pr.perils_and_risk_lighting, pr.perils_and_risk_earthquake, pr.perils_and_risk_tsunami,
@@ -158,6 +161,7 @@ AS
 										'No workforce was saved') AS 'Plant workforce',
 
 									report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
+									CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') AS 'Area description',
 
 									report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
 
@@ -204,6 +208,8 @@ AS
 								FROM #report_temp_table_filter r
 									LEFT JOIN report.client_table c ON r.id_client = c.id_client
 									LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
+									LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
+									LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
 									LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
 									LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
 									LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
@@ -217,7 +223,7 @@ AS
 									LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
 								WHERE r.report_date = @date_to_search
 								GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover, pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
-									pp.plant_parameters_exposures, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
+									pp.plant_parameters_exposures, tlc.type_location_class_name, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
 									pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
 									pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,
 									pr.perils_and_risk_landslide_subsidence, pr.perils_and_risk_water_flooding, pr.perils_and_risk_wind_storm, pr.perils_and_risk_lighting, pr.perils_and_risk_earthquake, pr.perils_and_risk_tsunami,
@@ -270,6 +276,7 @@ AS
 									'No workforce was saved') AS 'Plant workforce',
 
 								report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
+								CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') AS 'Area description',
 
 								report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
 
@@ -316,6 +323,8 @@ AS
 							FROM #report_temp_table_filter r
 								LEFT JOIN report.client_table c ON r.id_client = c.id_client
 								LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
+								LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
+								LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
 								LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
 								LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
 								LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
@@ -329,7 +338,7 @@ AS
 								LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
 							WHERE p.id_plant = @id_plant_to_search
 							GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover, pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
-								pp.plant_parameters_exposures, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
+								pp.plant_parameters_exposures, tlc.type_location_class_name, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
 								pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
 								pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,
 								pr.perils_and_risk_landslide_subsidence, pr.perils_and_risk_water_flooding, pr.perils_and_risk_wind_storm, pr.perils_and_risk_lighting, pr.perils_and_risk_earthquake, pr.perils_and_risk_tsunami,
@@ -381,6 +390,7 @@ AS
 									'No workforce was saved') AS 'Plant workforce',
 
 								report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
+								CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') AS 'Area description',
 
 								report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
 
@@ -427,6 +437,8 @@ AS
 							FROM #report_temp_table_filter r
 								LEFT JOIN report.client_table c ON r.id_client = c.id_client
 								LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
+								LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
+								LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
 								LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
 								LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
 								LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
@@ -440,7 +452,7 @@ AS
 								LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
 							WHERE r.id_client = @id_client_to_search
 							GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover, pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
-								pp.plant_parameters_exposures, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
+								pp.plant_parameters_exposures, tlc.type_location_class_name, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
 								pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
 								pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,
 								pr.perils_and_risk_landslide_subsidence, pr.perils_and_risk_water_flooding, pr.perils_and_risk_wind_storm, pr.perils_and_risk_lighting, pr.perils_and_risk_earthquake, pr.perils_and_risk_tsunami,
@@ -496,6 +508,7 @@ AS
 										'No workforce was saved') AS 'Plant workforce',
 
 									report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
+									CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') AS 'Area description',
 
 									report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
 
@@ -542,6 +555,8 @@ AS
 								FROM #report_temp_table_filter r
 									LEFT JOIN report.client_table c ON r.id_client = c.id_client
 									LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
+									LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
+									LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
 									LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
 									LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
 									LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
@@ -555,7 +570,7 @@ AS
 									LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
 								WHERE rp.id_engineer = @id_engineer_to_search
 								GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover, pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
-									pp.plant_parameters_exposures, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
+									pp.plant_parameters_exposures, tlc.type_location_class_name, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
 									pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
 									pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,
 									pr.perils_and_risk_landslide_subsidence, pr.perils_and_risk_water_flooding, pr.perils_and_risk_wind_storm, pr.perils_and_risk_lighting, pr.perils_and_risk_earthquake, pr.perils_and_risk_tsunami,
@@ -602,6 +617,7 @@ AS
 									'No workforce was saved') AS 'Plant workforce',
 
 								report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
+								CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') AS 'Area description',
 
 								report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
 
@@ -648,6 +664,8 @@ AS
 								FROM #report_temp_table_filter r
 									LEFT JOIN report.client_table c ON r.id_client = c.id_client
 									LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
+									LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
+									LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
 									LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
 									LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
 									LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
@@ -661,7 +679,7 @@ AS
 									LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
 								WHERE pp.plant_certifications LIKE CONCAT('%', @param, '%')
 								GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover, pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
-									pp.plant_parameters_exposures, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
+									pp.plant_parameters_exposures, tlc.type_location_class_name, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
 									pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
 									pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,
 									pr.perils_and_risk_landslide_subsidence, pr.perils_and_risk_water_flooding, pr.perils_and_risk_wind_storm, pr.perils_and_risk_lighting, pr.perils_and_risk_earthquake, pr.perils_and_risk_tsunami,
@@ -713,6 +731,7 @@ AS
 											'No workforce was saved') AS 'Plant workforce',
 
 										report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
+										CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') AS 'Area description',
 
 										report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
 
@@ -759,6 +778,8 @@ AS
 										FROM #report_temp_table_filter r
 											LEFT JOIN report.client_table c ON r.id_client = c.id_client
 											LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
+											LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
+											LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
 											LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
 											LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
 											LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
@@ -772,7 +793,7 @@ AS
 											LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
 										WHERE btc.business_turnover_name = report.CORRECT_GRAMMAR(@param, 'paragraph')
 										GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover, pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
-											pp.plant_parameters_exposures, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
+											pp.plant_parameters_exposures, tlc.type_location_class_name, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
 											pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
 											pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,
 											pr.perils_and_risk_landslide_subsidence, pr.perils_and_risk_water_flooding, pr.perils_and_risk_wind_storm, pr.perils_and_risk_lighting, pr.perils_and_risk_earthquake, pr.perils_and_risk_tsunami,
@@ -831,6 +852,7 @@ AS
 											'No workforce was saved') AS 'Plant workforce',
 
 										report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
+										CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') AS 'Area description',
 
 										report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
 
@@ -877,6 +899,8 @@ AS
 										FROM #report_temp_table_filter r
 											LEFT JOIN report.client_table c ON r.id_client = c.id_client
 											LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
+											LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
+											LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
 											LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
 											LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
 											LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
@@ -890,7 +914,7 @@ AS
 											LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
 										WHERE pp.id_capacity_type = @id_capacity_to_search
 										GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover, pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
-											pp.plant_parameters_exposures, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
+											pp.plant_parameters_exposures, tlc.type_location_class_name, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
 											pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
 											pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,
 											pr.perils_and_risk_landslide_subsidence, pr.perils_and_risk_water_flooding, pr.perils_and_risk_wind_storm, pr.perils_and_risk_lighting, pr.perils_and_risk_earthquake, pr.perils_and_risk_tsunami,
@@ -1013,6 +1037,7 @@ AS
 												'No workforce was saved') AS 'Plant workforce',
 
 												report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
+												CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') AS 'Area description',
 
 												report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
 
@@ -1059,6 +1084,8 @@ AS
 											FROM #report_temp_table_filter r
 												LEFT JOIN report.client_table c ON r.id_client = c.id_client
 												LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
+												LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
+												LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
 												LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
 												LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
 												LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
@@ -1072,7 +1099,7 @@ AS
 												LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
 											WHERE ct.id_capacity_type = @unit_range AND pp.plant_parameters_installed_capacity >= @lowest_value AND pp.plant_parameters_installed_capacity <= @highiest_value + 1
 											GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover, pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
-													pp.plant_parameters_exposures, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
+													pp.plant_parameters_exposures, tlc.type_location_class_name, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
 													pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
 													pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,
 													pr.perils_and_risk_landslide_subsidence, pr.perils_and_risk_water_flooding, pr.perils_and_risk_wind_storm, pr.perils_and_risk_lighting, pr.perils_and_risk_earthquake, pr.perils_and_risk_tsunami,
@@ -1165,6 +1192,7 @@ AS
 															'No workforce was saved') AS 'Plant workforce',
 
 														report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
+														CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') AS 'Area description',
 
 														report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
 
@@ -1211,6 +1239,8 @@ AS
 														FROM #report_temp_table_filter r
 															LEFT JOIN report.client_table c ON r.id_client = c.id_client
 															LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
+															LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
+															LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
 															LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
 															LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
 															LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
@@ -1224,7 +1254,7 @@ AS
 															LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
 														WHERE ct.id_capacity_type = @unit AND pp.plant_parameters_installed_capacity >= @amount
 														GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover, pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
-															pp.plant_parameters_exposures, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
+															pp.plant_parameters_exposures, tlc.type_location_class_name, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
 															pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
 															pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,
 															pr.perils_and_risk_landslide_subsidence, pr.perils_and_risk_water_flooding, pr.perils_and_risk_wind_storm, pr.perils_and_risk_lighting, pr.perils_and_risk_earthquake, pr.perils_and_risk_tsunami,
@@ -1274,6 +1304,7 @@ AS
 															'No workforce was saved') AS 'Plant workforce',
 
 														report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
+														CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') AS 'Area description',
 
 														report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
 
@@ -1320,6 +1351,8 @@ AS
 														FROM #report_temp_table_filter r
 															LEFT JOIN report.client_table c ON r.id_client = c.id_client
 															LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
+															LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
+															LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
 															LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
 															LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
 															LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
@@ -1333,7 +1366,7 @@ AS
 															LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
 														WHERE ct.id_capacity_type = @unit AND pp.plant_parameters_installed_capacity <= @amount
 														GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover, pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
-															pp.plant_parameters_exposures, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
+															pp.plant_parameters_exposures, tlc.type_location_class_name, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
 															pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
 															pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,
 															pr.perils_and_risk_landslide_subsidence, pr.perils_and_risk_water_flooding, pr.perils_and_risk_wind_storm, pr.perils_and_risk_lighting, pr.perils_and_risk_earthquake, pr.perils_and_risk_tsunami,
@@ -1451,6 +1484,7 @@ AS
 													'No workforce was saved') AS 'Plant workforce',
 
 													report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
+													CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') AS 'Area description',
 
 													report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
 
@@ -1497,6 +1531,8 @@ AS
 												FROM #report_temp_table_filter r
 													LEFT JOIN report.client_table c ON r.id_client = c.id_client
 													LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
+													LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
+													LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
 													LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
 													LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
 													LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
@@ -1510,7 +1546,7 @@ AS
 													LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
 												WHERE pp.plant_parameters_built_up >= @lowest_value_built AND pp.plant_parameters_built_up <= @highiest_value_built + 1
 												GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover, pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
-														pp.plant_parameters_exposures, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
+														pp.plant_parameters_exposures, tlc.type_location_class_name, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
 														pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
 														pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,
 														pr.perils_and_risk_landslide_subsidence, pr.perils_and_risk_water_flooding, pr.perils_and_risk_wind_storm, pr.perils_and_risk_lighting, pr.perils_and_risk_earthquake, pr.perils_and_risk_tsunami,
@@ -1600,6 +1636,7 @@ AS
 															'No workforce was saved') AS 'Plant workforce',
 
 														report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
+														CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') AS 'Area description',
 
 														report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
 
@@ -1646,6 +1683,8 @@ AS
 														FROM #report_temp_table_filter r
 															LEFT JOIN report.client_table c ON r.id_client = c.id_client
 															LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
+															LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
+															LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
 															LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
 															LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
 															LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
@@ -1659,7 +1698,7 @@ AS
 															LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
 														WHERE pp.plant_parameters_built_up > @amount_builtup
 														GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover, pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
-															pp.plant_parameters_exposures, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
+															pp.plant_parameters_exposures, tlc.type_location_class_name, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
 															pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
 															pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,
 															pr.perils_and_risk_landslide_subsidence, pr.perils_and_risk_water_flooding, pr.perils_and_risk_wind_storm, pr.perils_and_risk_lighting, pr.perils_and_risk_earthquake, pr.perils_and_risk_tsunami,
@@ -1708,6 +1747,7 @@ AS
 															'No workforce was saved') AS 'Plant workforce',
 
 														report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
+														CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') AS 'Area description',
 
 														report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
 
@@ -1754,6 +1794,8 @@ AS
 														FROM #report_temp_table_filter r
 															LEFT JOIN report.client_table c ON r.id_client = c.id_client
 															LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
+															LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
+															LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
 															LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
 															LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
 															LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
@@ -1767,7 +1809,7 @@ AS
 															LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
 														WHERE pp.plant_parameters_built_up < @amount_builtup
 														GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover, pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
-															pp.plant_parameters_exposures, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
+															pp.plant_parameters_exposures, tlc.type_location_class_name, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
 															pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
 															pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,
 															pr.perils_and_risk_landslide_subsidence, pr.perils_and_risk_water_flooding, pr.perils_and_risk_wind_storm, pr.perils_and_risk_lighting, pr.perils_and_risk_earthquake, pr.perils_and_risk_tsunami,
@@ -1885,6 +1927,7 @@ AS
 														'No built-up area saved') AS 'Built-up area (m2)',
 
 													report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
+													CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') AS 'Area description',
 
 													report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
 
@@ -1931,6 +1974,8 @@ AS
 												FROM #report_temp_table_filter r
 													LEFT JOIN report.client_table c ON r.id_client = c.id_client
 													LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
+													LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
+													LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
 													LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
 													LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
 													LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
@@ -1944,7 +1989,7 @@ AS
 													LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
 												WHERE pp.plant_parameters_workforce >= @lowest_value_work AND pp.plant_parameters_workforce <= @highiest_value_work + 1
 												GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover, pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
-														pp.plant_parameters_exposures, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
+														pp.plant_parameters_exposures, tlc.type_location_class_name, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
 														pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
 														pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,
 														pr.perils_and_risk_landslide_subsidence, pr.perils_and_risk_water_flooding, pr.perils_and_risk_wind_storm, pr.perils_and_risk_lighting, pr.perils_and_risk_earthquake, pr.perils_and_risk_tsunami,
@@ -2034,6 +2079,7 @@ AS
 															'No built-up area saved') AS 'Built-up area (m2)',
 
 														report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
+														CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') AS 'Area description',
 
 														report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
 
@@ -2080,6 +2126,8 @@ AS
 														FROM #report_temp_table_filter r
 															LEFT JOIN report.client_table c ON r.id_client = c.id_client
 															LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
+															LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
+															LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
 															LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
 															LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
 															LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
@@ -2093,7 +2141,7 @@ AS
 															LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
 														WHERE pp.plant_parameters_workforce > @amount_workforce
 														GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover, pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
-															pp.plant_parameters_exposures, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
+															pp.plant_parameters_exposures, tlc.type_location_class_name, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
 															pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
 															pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,
 															pr.perils_and_risk_landslide_subsidence, pr.perils_and_risk_water_flooding, pr.perils_and_risk_wind_storm, pr.perils_and_risk_lighting, pr.perils_and_risk_earthquake, pr.perils_and_risk_tsunami,
@@ -2142,6 +2190,7 @@ AS
 															'No built-up area saved') AS 'Built-up area (m2)',
 
 														report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
+														CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') AS 'Area description',
 
 														report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
 
@@ -2188,6 +2237,8 @@ AS
 														FROM #report_temp_table_filter r
 															LEFT JOIN report.client_table c ON r.id_client = c.id_client
 															LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
+															LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
+															LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
 															LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
 															LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
 															LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
@@ -2201,7 +2252,7 @@ AS
 															LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
 														WHERE pp.plant_parameters_workforce < @amount_workforce
 														GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover, pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
-															pp.plant_parameters_exposures, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
+															pp.plant_parameters_exposures, tlc.type_location_class_name, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
 															pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
 															pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,
 															pr.perils_and_risk_landslide_subsidence, pr.perils_and_risk_water_flooding, pr.perils_and_risk_wind_storm, pr.perils_and_risk_lighting, pr.perils_and_risk_earthquake, pr.perils_and_risk_tsunami,
@@ -2230,6 +2281,7 @@ AS
 										SELECT
 											r.id_report AS 'ID report',
 											report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
+											CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') AS 'Area description',
 											CAST(r.report_date AS DATE) AS 'Date',
 											c.client_name AS 'Client',
 											STRING_AGG(e.engineer_name, ', ') AS 'Prepared by',
@@ -2301,6 +2353,8 @@ AS
 											FROM #report_temp_table_filter r
 												LEFT JOIN report.client_table c ON r.id_client = c.id_client
 												LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
+												LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
+												LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
 												LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
 												LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
 												LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
@@ -2314,7 +2368,7 @@ AS
 												LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
 											WHERE pp.plant_parameters_exposures = @area_exposure_to_search
 											GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover, pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
-												pp.plant_parameters_exposures, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
+												pp.plant_parameters_exposures, tlc.type_location_class_name, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
 												pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
 												pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,
 												pr.perils_and_risk_landslide_subsidence, pr.perils_and_risk_water_flooding, pr.perils_and_risk_wind_storm, pr.perils_and_risk_lighting, pr.perils_and_risk_earthquake, pr.perils_and_risk_tsunami,
