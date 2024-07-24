@@ -20,13 +20,11 @@ AS
 						BEGIN
 							IF ((SELECT r.id_report FROM #report_temp_table_filter r WHERE r.id_report = @param) IS NOT NULL)
 								BEGIN
-									SELECT
+									SELECT DISTINCT
 										r.id_report AS 'ID report',
 										CAST(r.report_date AS DATE) AS 'Date',
 										c.client_name AS 'Client',
-										
-										
-
+										report.REPORT_PREPARED_BY(r.id_report) AS 'Prepared by',
 										p.plant_name AS 'Plant name',
 										btc.business_turnover_name AS 'Plant business turnover',
 										p.plant_business_specific_turnover AS 'Plant activity',
@@ -52,12 +50,7 @@ AS
 											'No workforce was saved') AS 'Plant workforce',
 
 										report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
-										(SELECT DISTINCT CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') FROM #report_temp_table_filter r
-																																								LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
-																																								LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
-																																								LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
-																																								WHERE id_report = @param
-																																								GROUP BY r.id_report) AS 'Area description',
+										report.PLANT_AREA_DESCRIPTION(p.id_plant) AS 'Area description',
 
 										report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
 
@@ -104,13 +97,9 @@ AS
 									FROM #report_temp_table_filter r
 										LEFT JOIN report.client_table c ON r.id_client = c.id_client
 										LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
-										LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
-										LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
 										LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
 										LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
 										LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
-										LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
-										LEFT JOIN report.engineer_table e ON e.id_engineer = rp.id_engineer
 										LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
 										LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
 										LEFT JOIN report.hydrant_protection_classification_table hdp ON pp.id_hydrant_protection = hdp.id_hydrant_protection_classification
@@ -119,17 +108,6 @@ AS
 										LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
 										LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
 									WHERE r.id_report = @param
-									GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover, p.plant_merchandise_class, mc.merchandise_classification_type_name, 
-										pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
-										pp.plant_parameters_exposures, tlc.type_location_class_name, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
-										pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
-										pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,
-										pr.perils_and_risk_landslide_subsidence, pr.perils_and_risk_water_flooding, pr.perils_and_risk_wind_storm, pr.perils_and_risk_lighting, pr.perils_and_risk_earthquake, pr.perils_and_risk_tsunami,
-										pr.perils_and_risk_collapse, pr.perils_and_risk_aircraft, pr.perils_and_risk_riot, pr.perils_and_risk_design_failure, pr.perils_and_risk_overall_rating, lst.loss_scenario_material_damage_amount,
-										lst.loss_scenario_material_damage_percentage, lst.loss_scenario_business_interruption_amount, lst.loss_scenario_business_interruption_percentage, lst.loss_scenario_buildings_amount,
-										lst.loss_scenario_machinery_equipment_amount, lst.loss_scenario_electronic_equipment_amount, lst.loss_scenario_expansions_investment_works_amount, lst.loss_scenario_stock_amount,
-										lst.loss_scenario_total_insured_values, lst.loss_scenario_pml_percentage, lst.loss_scenario_mfl
-									ORDER BY r.report_date DESC;
 								END;
 							ELSE
 								PRINT CONCAT('Cannot found any report with ID: ',@param);
@@ -142,11 +120,11 @@ AS
 							@date_to_search AS DATE = CAST(report.CONSTRUCT_DATE(@param) AS DATE)
 						IF ((SELECT r.id_report FROM #report_temp_table_filter r WHERE r.report_date = @date_to_search) IS NOT NULL)
 							BEGIN
-								SELECT
+								SELECT DISTINCT
 									r.id_report AS 'ID report',
 									CAST(r.report_date AS DATE) AS 'Date',
 									c.client_name AS 'Client',
-									STRING_AGG(e.engineer_name, ', ') AS 'Prepared by',
+									report.REPORT_PREPARED_BY(r.id_report) AS 'Prepared by',
 									p.plant_name AS 'Plant name',
 									btc.business_turnover_name AS 'Plant business turnover',
 									p.plant_business_specific_turnover AS 'Plant activity',
@@ -172,7 +150,7 @@ AS
 										'No workforce was saved') AS 'Plant workforce',
 
 									report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
-									CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') AS 'Area description',
+									report.PLANT_AREA_DESCRIPTION(p.id_plant) AS 'Area description',
 
 									report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
 
@@ -219,13 +197,9 @@ AS
 								FROM #report_temp_table_filter r
 									LEFT JOIN report.client_table c ON r.id_client = c.id_client
 									LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
-									LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
-									LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
 									LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
 									LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
 									LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
-									LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
-									LEFT JOIN report.engineer_table e ON e.id_engineer = rp.id_engineer
 									LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
 									LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
 									LEFT JOIN report.hydrant_protection_classification_table hdp ON pp.id_hydrant_protection = hdp.id_hydrant_protection_classification
@@ -234,17 +208,6 @@ AS
 									LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
 									LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
 								WHERE r.report_date = @date_to_search
-								GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover, p.plant_merchandise_class, mc.merchandise_classification_type_name,  
-									pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
-									pp.plant_parameters_exposures, tlc.type_location_class_name, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
-									pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
-									pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,
-									pr.perils_and_risk_landslide_subsidence, pr.perils_and_risk_water_flooding, pr.perils_and_risk_wind_storm, pr.perils_and_risk_lighting, pr.perils_and_risk_earthquake, pr.perils_and_risk_tsunami,
-									pr.perils_and_risk_collapse, pr.perils_and_risk_aircraft, pr.perils_and_risk_riot, pr.perils_and_risk_design_failure, pr.perils_and_risk_overall_rating, lst.loss_scenario_material_damage_amount,
-									lst.loss_scenario_material_damage_percentage, lst.loss_scenario_business_interruption_amount, lst.loss_scenario_business_interruption_percentage, lst.loss_scenario_buildings_amount,
-									lst.loss_scenario_machinery_equipment_amount, lst.loss_scenario_electronic_equipment_amount, lst.loss_scenario_expansions_investment_works_amount, lst.loss_scenario_stock_amount,
-									lst.loss_scenario_total_insured_values, lst.loss_scenario_pml_percentage, lst.loss_scenario_mfl
-								ORDER BY r.report_date;
 							END;
 						ELSE
 							PRINT CONCAT('Cannot found any report with date: ', @date_to_search);
@@ -260,12 +223,12 @@ AS
 
 					IF (@id_plant_to_search IS NOT NULL)
 						BEGIN
-							SELECT
+							SELECT DISTINCT
 								r.id_report AS 'ID report',
 								p.plant_name AS 'Plant name',
 								CAST(r.report_date AS DATE) AS 'Date',
 								c.client_name AS 'Client',
-								STRING_AGG(e.engineer_name, ', ') AS 'Prepared by',
+								report.REPORT_PREPARED_BY(r.id_report) AS 'Prepared by',
 								btc.business_turnover_name AS 'Plant business turnover',
 								p.plant_business_specific_turnover AS 'Plant activity',
 								IIF(p.plant_merchandise_class IS NOT NULL, mc.merchandise_classification_type_name, 'Has no merchandise classification saved') AS 'Merchandise classification',
@@ -290,7 +253,7 @@ AS
 									'No workforce was saved') AS 'Plant workforce',
 
 								report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
-								CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') AS 'Area description',
+								report.PLANT_AREA_DESCRIPTION(p.id_plant) AS 'Area description',
 
 								report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
 
@@ -337,13 +300,9 @@ AS
 							FROM #report_temp_table_filter r
 								LEFT JOIN report.client_table c ON r.id_client = c.id_client
 								LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
-								LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
-								LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
 								LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
 								LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
 								LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
-								LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
-								LEFT JOIN report.engineer_table e ON e.id_engineer = rp.id_engineer
 								LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
 								LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
 								LEFT JOIN report.hydrant_protection_classification_table hdp ON pp.id_hydrant_protection = hdp.id_hydrant_protection_classification
@@ -352,16 +311,6 @@ AS
 								LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
 								LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
 							WHERE p.id_plant = @id_plant_to_search
-							GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover, p.plant_merchandise_class, mc.merchandise_classification_type_name, 
-								pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
-								pp.plant_parameters_exposures, tlc.type_location_class_name, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
-								pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
-								pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,
-								pr.perils_and_risk_landslide_subsidence, pr.perils_and_risk_water_flooding, pr.perils_and_risk_wind_storm, pr.perils_and_risk_lighting, pr.perils_and_risk_earthquake, pr.perils_and_risk_tsunami,
-								pr.perils_and_risk_collapse, pr.perils_and_risk_aircraft, pr.perils_and_risk_riot, pr.perils_and_risk_design_failure, pr.perils_and_risk_overall_rating, lst.loss_scenario_material_damage_amount,
-								lst.loss_scenario_material_damage_percentage, lst.loss_scenario_business_interruption_amount, lst.loss_scenario_business_interruption_percentage, lst.loss_scenario_buildings_amount,
-								lst.loss_scenario_machinery_equipment_amount, lst.loss_scenario_electronic_equipment_amount, lst.loss_scenario_expansions_investment_works_amount, lst.loss_scenario_stock_amount,
-								lst.loss_scenario_total_insured_values, lst.loss_scenario_pml_percentage, lst.loss_scenario_mfl;
 						END;
 					ELSE
 						PRINT CONCAT('Cannot find any report with plant: ', @param);
@@ -377,11 +326,11 @@ AS
 
 					IF (@id_client_to_search IS NOT NULL)
 						BEGIN
-							SELECT
+							SELECT DISTINCT
 								r.id_report AS 'ID report',
 								c.client_name AS 'Client',
 								CAST(r.report_date AS DATE) AS 'Date',
-								STRING_AGG(e.engineer_name, ', ') AS 'Prepared by',
+								report.REPORT_PREPARED_BY(r.id_report) AS 'Prepared by',
 								p.plant_name AS 'Plant name',
 								btc.business_turnover_name AS 'Plant business turnover',
 								p.plant_business_specific_turnover AS 'Plant activity',
@@ -407,7 +356,7 @@ AS
 									'No workforce was saved') AS 'Plant workforce',
 
 								report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
-								CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') AS 'Area description',
+								report.PLANT_AREA_DESCRIPTION(p.id_plant) AS 'Area description',
 
 								report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
 
@@ -454,13 +403,9 @@ AS
 							FROM #report_temp_table_filter r
 								LEFT JOIN report.client_table c ON r.id_client = c.id_client
 								LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
-								LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
-								LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
 								LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
 								LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
 								LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
-								LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
-								LEFT JOIN report.engineer_table e ON e.id_engineer = rp.id_engineer
 								LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
 								LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
 								LEFT JOIN report.hydrant_protection_classification_table hdp ON pp.id_hydrant_protection = hdp.id_hydrant_protection_classification
@@ -469,16 +414,6 @@ AS
 								LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
 								LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
 							WHERE r.id_client = @id_client_to_search
-							GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover, p.plant_merchandise_class, mc.merchandise_classification_type_name, 
-								pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
-								pp.plant_parameters_exposures, tlc.type_location_class_name, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
-								pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
-								pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,
-								pr.perils_and_risk_landslide_subsidence, pr.perils_and_risk_water_flooding, pr.perils_and_risk_wind_storm, pr.perils_and_risk_lighting, pr.perils_and_risk_earthquake, pr.perils_and_risk_tsunami,
-								pr.perils_and_risk_collapse, pr.perils_and_risk_aircraft, pr.perils_and_risk_riot, pr.perils_and_risk_design_failure, pr.perils_and_risk_overall_rating, lst.loss_scenario_material_damage_amount,
-								lst.loss_scenario_material_damage_percentage, lst.loss_scenario_business_interruption_amount, lst.loss_scenario_business_interruption_percentage, lst.loss_scenario_buildings_amount,
-								lst.loss_scenario_machinery_equipment_amount, lst.loss_scenario_electronic_equipment_amount, lst.loss_scenario_expansions_investment_works_amount, lst.loss_scenario_stock_amount,
-								lst.loss_scenario_total_insured_values, lst.loss_scenario_pml_percentage, lst.loss_scenario_mfl;
 						END;
 					ELSE
 						PRINT CONCAT('Cannot find any report with client: ', @param);
@@ -498,9 +433,9 @@ AS
 					BEGIN
 						IF (@id_engineer_to_search IS NOT NULL)
 							BEGIN
-								SELECT
+								SELECT DISTINCT
 									r.id_report AS 'ID report',
-									STRING_AGG(e.engineer_name, ', ') AS 'Prepared by',
+									report.REPORT_PREPARED_BY(r.id_report) AS 'Prepared by',
 									CAST(r.report_date AS DATE) AS 'Date',
 									c.client_name AS 'Client',
 									p.plant_name AS 'Plant name',
@@ -528,7 +463,7 @@ AS
 										'No workforce was saved') AS 'Plant workforce',
 
 									report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
-									CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') AS 'Area description',
+									report.PLANT_AREA_DESCRIPTION(p.id_plant) AS 'Area description',
 
 									report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
 
@@ -575,8 +510,6 @@ AS
 								FROM #report_temp_table_filter r
 									LEFT JOIN report.client_table c ON r.id_client = c.id_client
 									LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
-									LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
-									LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
 									LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
 									LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
 									LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
@@ -590,17 +523,6 @@ AS
 									LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
 									LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
 								WHERE rp.id_engineer = @id_engineer_to_search
-								GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover, p.plant_merchandise_class, mc.merchandise_classification_type_name, 
-									pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
-									pp.plant_parameters_exposures, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
-									pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
-									pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,
-									pr.perils_and_risk_landslide_subsidence, pr.perils_and_risk_water_flooding, pr.perils_and_risk_wind_storm, pr.perils_and_risk_lighting, pr.perils_and_risk_earthquake, pr.perils_and_risk_tsunami,
-									pr.perils_and_risk_collapse, pr.perils_and_risk_aircraft, pr.perils_and_risk_riot, pr.perils_and_risk_design_failure, pr.perils_and_risk_overall_rating, lst.loss_scenario_material_damage_amount,
-									lst.loss_scenario_material_damage_percentage, lst.loss_scenario_business_interruption_amount, lst.loss_scenario_business_interruption_percentage, lst.loss_scenario_buildings_amount,
-									lst.loss_scenario_machinery_equipment_amount, lst.loss_scenario_electronic_equipment_amount, lst.loss_scenario_expansions_investment_works_amount, lst.loss_scenario_stock_amount,
-									lst.loss_scenario_total_insured_values, lst.loss_scenario_pml_percentage, lst.loss_scenario_mfl
-								ORDER BY r.report_date DESC
 							END;
 						ELSE
 							PRINT CONCAT('Cannot find any report made by the engineer ', @param);
@@ -610,12 +532,12 @@ AS
 				BEGIN
 					IF ((SELECT TOP 1 pp.id_plant_parameters FROM report.plant_parameters pp WHERE pp.plant_certifications LIKE CONCAT('%', @param, '%')) IS NOT NULL)
 						BEGIN
-							SELECT
+							SELECT DISTINCT
 								r.id_report AS 'ID report',
 								pp.plant_certifications AS 'Certifications',
 								CAST(r.report_date AS DATE) AS 'Date',
 								c.client_name AS 'Client',
-								STRING_AGG(e.engineer_name, ', ') AS 'Prepared by',
+								report.REPORT_PREPARED_BY(r.id_report) AS 'Prepared by',
 								p.plant_name AS 'Plant name',
 								btc.business_turnover_name AS 'Plant business turnover',
 								p.plant_business_specific_turnover AS 'Plant activity',
@@ -640,7 +562,7 @@ AS
 									'No workforce was saved') AS 'Plant workforce',
 
 								report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
-								CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') AS 'Area description',
+								report.PLANT_AREA_DESCRIPTION(p.id_plant) AS 'Area description',
 
 								report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
 
@@ -684,35 +606,20 @@ AS
 
 								report.VALUE_SAVED_OR_NOT(lst.loss_scenario_pml_percentage, 'percentage') AS 'PML percentage',
 								report.VALUE_SAVED_OR_NOT(lst.loss_scenario_mfl, 'percentage') AS 'MFL percentage'
-								FROM #report_temp_table_filter r
-									LEFT JOIN report.client_table c ON r.id_client = c.id_client
-									LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
-									LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
-									LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
-									LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
-									LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
-									LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
-									LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
-									LEFT JOIN report.engineer_table e ON e.id_engineer = rp.id_engineer
-									LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
-									LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
-									LEFT JOIN report.hydrant_protection_classification_table hdp ON pp.id_hydrant_protection = hdp.id_hydrant_protection_classification
-									LEFT JOIN report.hydrant_standpipe_system_type_table hst ON pp.id_hydrant_standpipe_type = hst.id_hydrant_standpipe_system_type
-									LEFT JOIN report.hydrant_standpipe_system_class_table hsc ON pp.id_hydrant_standpipe_class = hsc.id_hydrant_standpipe_system_class
-									LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
-									LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
-								WHERE pp.plant_certifications LIKE CONCAT('%', @param, '%')
-								GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover, p.plant_merchandise_class, mc.merchandise_classification_type_name, 
-									pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
-									pp.plant_parameters_exposures, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
-									pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
-									pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,
-									pr.perils_and_risk_landslide_subsidence, pr.perils_and_risk_water_flooding, pr.perils_and_risk_wind_storm, pr.perils_and_risk_lighting, pr.perils_and_risk_earthquake, pr.perils_and_risk_tsunami,
-									pr.perils_and_risk_collapse, pr.perils_and_risk_aircraft, pr.perils_and_risk_riot, pr.perils_and_risk_design_failure, pr.perils_and_risk_overall_rating, lst.loss_scenario_material_damage_amount,
-									lst.loss_scenario_material_damage_percentage, lst.loss_scenario_business_interruption_amount, lst.loss_scenario_business_interruption_percentage, lst.loss_scenario_buildings_amount,
-									lst.loss_scenario_machinery_equipment_amount, lst.loss_scenario_electronic_equipment_amount, lst.loss_scenario_expansions_investment_works_amount, lst.loss_scenario_stock_amount,
-									lst.loss_scenario_total_insured_values, lst.loss_scenario_pml_percentage, lst.loss_scenario_mfl
-								ORDER BY r.report_date DESC
+							FROM #report_temp_table_filter r
+								LEFT JOIN report.client_table c ON r.id_client = c.id_client
+								LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
+								LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
+								LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
+								LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
+								LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
+								LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
+								LEFT JOIN report.hydrant_protection_classification_table hdp ON pp.id_hydrant_protection = hdp.id_hydrant_protection_classification
+								LEFT JOIN report.hydrant_standpipe_system_type_table hst ON pp.id_hydrant_standpipe_type = hst.id_hydrant_standpipe_system_type
+								LEFT JOIN report.hydrant_standpipe_system_class_table hsc ON pp.id_hydrant_standpipe_class = hsc.id_hydrant_standpipe_system_class
+								LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
+								LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
+							WHERE pp.plant_certifications LIKE CONCAT('%', @param, '%')
 						END;
 					ELSE
 						PRINT CONCAT('Cannot find any report with certifications ', @param)
@@ -727,14 +634,14 @@ AS
 															LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
 														WHERE btc.business_turnover_name = @param) IS NOT NULL)
 								BEGIN
-									SELECT
+									SELECT DISTINCT
 										r.id_report AS 'ID report',
 										btc.business_turnover_name AS 'Plant business turnover',
 										p.plant_business_specific_turnover AS 'Plant activity',
 										IIF(p.plant_merchandise_class IS NOT NULL, mc.merchandise_classification_type_name, 'Has no merchandise classification saved') AS 'Merchandise classification',
 										CAST(r.report_date AS DATE) AS 'Date',
 										c.client_name AS 'Client',
-										STRING_AGG(e.engineer_name, ', ') AS 'Prepared by',
+										report.REPORT_PREPARED_BY(r.id_report) AS 'Prepared by',
 										p.plant_name AS 'Plant name',
 										pp.plant_certifications AS 'Certifications',
 		
@@ -757,7 +664,7 @@ AS
 											'No workforce was saved') AS 'Plant workforce',
 
 										report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
-										CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') AS 'Area description',
+										report.PLANT_AREA_DESCRIPTION(p.id_plant) AS 'Area description',
 
 										report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
 
@@ -801,35 +708,20 @@ AS
 
 										report.VALUE_SAVED_OR_NOT(lst.loss_scenario_pml_percentage, 'percentage') AS 'PML percentage',
 										report.VALUE_SAVED_OR_NOT(lst.loss_scenario_mfl, 'percentage') AS 'MFL percentage'
-										FROM #report_temp_table_filter r
-											LEFT JOIN report.client_table c ON r.id_client = c.id_client
-											LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
-											LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
-											LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
-											LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
-											LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
-											LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
-											LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
-											LEFT JOIN report.engineer_table e ON e.id_engineer = rp.id_engineer
-											LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
-											LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
-											LEFT JOIN report.hydrant_protection_classification_table hdp ON pp.id_hydrant_protection = hdp.id_hydrant_protection_classification
-											LEFT JOIN report.hydrant_standpipe_system_type_table hst ON pp.id_hydrant_standpipe_type = hst.id_hydrant_standpipe_system_type
-											LEFT JOIN report.hydrant_standpipe_system_class_table hsc ON pp.id_hydrant_standpipe_class = hsc.id_hydrant_standpipe_system_class
-											LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
-											LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
-										WHERE btc.business_turnover_name = report.CORRECT_GRAMMAR(@param, 'paragraph')
-										GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover, p.plant_merchandise_class, mc.merchandise_classification_type_name, 
-											pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
-											pp.plant_parameters_exposures, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
-											pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
-											pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,
-											pr.perils_and_risk_landslide_subsidence, pr.perils_and_risk_water_flooding, pr.perils_and_risk_wind_storm, pr.perils_and_risk_lighting, pr.perils_and_risk_earthquake, pr.perils_and_risk_tsunami,
-											pr.perils_and_risk_collapse, pr.perils_and_risk_aircraft, pr.perils_and_risk_riot, pr.perils_and_risk_design_failure, pr.perils_and_risk_overall_rating, lst.loss_scenario_material_damage_amount,
-											lst.loss_scenario_material_damage_percentage, lst.loss_scenario_business_interruption_amount, lst.loss_scenario_business_interruption_percentage, lst.loss_scenario_buildings_amount,
-											lst.loss_scenario_machinery_equipment_amount, lst.loss_scenario_electronic_equipment_amount, lst.loss_scenario_expansions_investment_works_amount, lst.loss_scenario_stock_amount,
-											lst.loss_scenario_total_insured_values, lst.loss_scenario_pml_percentage, lst.loss_scenario_mfl
-										ORDER BY r.report_date DESC
+									FROM #report_temp_table_filter r
+										LEFT JOIN report.client_table c ON r.id_client = c.id_client
+										LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
+										LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
+										LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
+										LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
+										LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
+										LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
+										LEFT JOIN report.hydrant_protection_classification_table hdp ON pp.id_hydrant_protection = hdp.id_hydrant_protection_classification
+										LEFT JOIN report.hydrant_standpipe_system_type_table hst ON pp.id_hydrant_standpipe_type = hst.id_hydrant_standpipe_system_type
+										LEFT JOIN report.hydrant_standpipe_system_class_table hsc ON pp.id_hydrant_standpipe_class = hsc.id_hydrant_standpipe_system_class
+										LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
+										LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
+									WHERE btc.business_turnover_name = report.CORRECT_GRAMMAR(@param, 'paragraph')
 								END;
 							ELSE
 								PRINT CONCAT('Cannot find any reports with plant business turnover ', @param);
@@ -850,7 +742,7 @@ AS
 						BEGIN
 							IF ((SELECT TOP 1 pp.id_capacity_type FROM report.plant_parameters pp WHERE pp.id_capacity_type = @id_capacity_to_search) IS NOT NULL)
 								BEGIN
-									SELECT
+									SELECT DISTINCT
 										r.id_report AS 'ID report',
 
 										IIF(pp.plant_parameters_installed_capacity IS NOT NULL AND pp.plant_parameters_installed_capacity > 0, 
@@ -863,7 +755,7 @@ AS
 
 										CAST(r.report_date AS DATE) AS 'Date',
 										c.client_name AS 'Client',
-										STRING_AGG(e.engineer_name, ', ') AS 'Prepared by',
+										report.REPORT_PREPARED_BY(r.id_report) AS 'Prepared by',
 										p.plant_name AS 'Plant name',
 										btc.business_turnover_name AS 'Plant business turnover',
 										p.plant_business_specific_turnover AS 'Plant activity',
@@ -881,7 +773,7 @@ AS
 											'No workforce was saved') AS 'Plant workforce',
 
 										report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
-										CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') AS 'Area description',
+										report.PLANT_AREA_DESCRIPTION(p.id_plant) AS 'Area description',
 
 										report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
 
@@ -925,35 +817,20 @@ AS
 
 										report.VALUE_SAVED_OR_NOT(lst.loss_scenario_pml_percentage, 'percentage') AS 'PML percentage',
 										report.VALUE_SAVED_OR_NOT(lst.loss_scenario_mfl, 'percentage') AS 'MFL percentage'
-										FROM #report_temp_table_filter r
-											LEFT JOIN report.client_table c ON r.id_client = c.id_client
-											LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
-											LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
-											LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
-											LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
-											LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
-											LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
-											LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
-											LEFT JOIN report.engineer_table e ON e.id_engineer = rp.id_engineer
-											LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
-											LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
-											LEFT JOIN report.hydrant_protection_classification_table hdp ON pp.id_hydrant_protection = hdp.id_hydrant_protection_classification
-											LEFT JOIN report.hydrant_standpipe_system_type_table hst ON pp.id_hydrant_standpipe_type = hst.id_hydrant_standpipe_system_type
-											LEFT JOIN report.hydrant_standpipe_system_class_table hsc ON pp.id_hydrant_standpipe_class = hsc.id_hydrant_standpipe_system_class
-											LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
-											LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
-										WHERE pp.id_capacity_type = @id_capacity_to_search
-										GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover, p.plant_merchandise_class, mc.merchandise_classification_type_name, 
-											pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
-											pp.plant_parameters_exposures, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
-											pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
-											pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,
-											pr.perils_and_risk_landslide_subsidence, pr.perils_and_risk_water_flooding, pr.perils_and_risk_wind_storm, pr.perils_and_risk_lighting, pr.perils_and_risk_earthquake, pr.perils_and_risk_tsunami,
-											pr.perils_and_risk_collapse, pr.perils_and_risk_aircraft, pr.perils_and_risk_riot, pr.perils_and_risk_design_failure, pr.perils_and_risk_overall_rating, lst.loss_scenario_material_damage_amount,
-											lst.loss_scenario_material_damage_percentage, lst.loss_scenario_business_interruption_amount, lst.loss_scenario_business_interruption_percentage, lst.loss_scenario_buildings_amount,
-											lst.loss_scenario_machinery_equipment_amount, lst.loss_scenario_electronic_equipment_amount, lst.loss_scenario_expansions_investment_works_amount, lst.loss_scenario_stock_amount,
-											lst.loss_scenario_total_insured_values, lst.loss_scenario_pml_percentage, lst.loss_scenario_mfl
-										ORDER BY r.report_date DESC
+									FROM #report_temp_table_filter r
+										LEFT JOIN report.client_table c ON r.id_client = c.id_client
+										LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
+										LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
+										LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
+										LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
+										LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
+										LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
+										LEFT JOIN report.hydrant_protection_classification_table hdp ON pp.id_hydrant_protection = hdp.id_hydrant_protection_classification
+										LEFT JOIN report.hydrant_standpipe_system_type_table hst ON pp.id_hydrant_standpipe_type = hst.id_hydrant_standpipe_system_type
+										LEFT JOIN report.hydrant_standpipe_system_class_table hsc ON pp.id_hydrant_standpipe_class = hsc.id_hydrant_standpipe_system_class
+										LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
+										LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
+									WHERE pp.id_capacity_type = @id_capacity_to_search
 								END;
 							ELSE
 								PRINT CONCAT('Cannot find any reports with installed capacity type id/name "', @param, '"');
@@ -1038,7 +915,7 @@ AS
 																	WHERE ct.id_capacity_type = @unit_range AND pp.plant_parameters_installed_capacity >= @lowest_value
 																											AND pp.plant_parameters_installed_capacity <= @highiest_value + 1) IS NOT NULL)
 										BEGIN
-											SELECT
+											SELECT DISTINCT
 												r.id_report AS 'ID report',
 
 												IIF(pp.plant_parameters_installed_capacity IS NOT NULL AND pp.plant_parameters_installed_capacity > 0, 
@@ -1051,7 +928,7 @@ AS
 
 												CAST(r.report_date AS DATE) AS 'Date',
 												c.client_name AS 'Client',
-												STRING_AGG(e.engineer_name, ', ') AS 'Prepared by',
+												report.REPORT_PREPARED_BY(r.id_report) AS 'Prepared by',
 												p.plant_name AS 'Plant name',
 												btc.business_turnover_name AS 'Plant business turnover',
 												p.plant_business_specific_turnover AS 'Plant activity',
@@ -1069,7 +946,7 @@ AS
 												'No workforce was saved') AS 'Plant workforce',
 
 												report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
-												CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') AS 'Area description',
+												report.PLANT_AREA_DESCRIPTION(p.id_plant) AS 'Area description',
 
 												report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
 
@@ -1116,13 +993,9 @@ AS
 											FROM #report_temp_table_filter r
 												LEFT JOIN report.client_table c ON r.id_client = c.id_client
 												LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
-												LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
-												LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
 												LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
 												LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
 												LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
-												LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
-												LEFT JOIN report.engineer_table e ON e.id_engineer = rp.id_engineer
 												LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
 												LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
 												LEFT JOIN report.hydrant_protection_classification_table hdp ON pp.id_hydrant_protection = hdp.id_hydrant_protection_classification
@@ -1131,17 +1004,6 @@ AS
 												LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
 												LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
 											WHERE ct.id_capacity_type = @unit_range AND pp.plant_parameters_installed_capacity >= @lowest_value AND pp.plant_parameters_installed_capacity <= @highiest_value + 1
-											GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover, p.plant_merchandise_class, mc.merchandise_classification_type_name, 
-													pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
-													pp.plant_parameters_exposures, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
-													pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
-													pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,
-													pr.perils_and_risk_landslide_subsidence, pr.perils_and_risk_water_flooding, pr.perils_and_risk_wind_storm, pr.perils_and_risk_lighting, pr.perils_and_risk_earthquake, pr.perils_and_risk_tsunami,
-													pr.perils_and_risk_collapse, pr.perils_and_risk_aircraft, pr.perils_and_risk_riot, pr.perils_and_risk_design_failure, pr.perils_and_risk_overall_rating, lst.loss_scenario_material_damage_amount,
-													lst.loss_scenario_material_damage_percentage, lst.loss_scenario_business_interruption_amount, lst.loss_scenario_business_interruption_percentage, lst.loss_scenario_buildings_amount,
-													lst.loss_scenario_machinery_equipment_amount, lst.loss_scenario_electronic_equipment_amount, lst.loss_scenario_expansions_investment_works_amount, lst.loss_scenario_stock_amount,
-													lst.loss_scenario_total_insured_values, lst.loss_scenario_pml_percentage, lst.loss_scenario_mfl
-											ORDER BY pp.plant_parameters_installed_capacity DESC
 										END;
 									ELSE
 										PRINT 'No values where found with that installed capacity filter';
@@ -1196,7 +1058,7 @@ AS
 																		LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
 																	WHERE ct.id_capacity_type = @unit AND pp.plant_parameters_installed_capacity > @amount) IS NOT NULL)
 												BEGIN
-													SELECT
+													SELECT DISTINCT
 														r.id_report AS 'ID report',
 
 														IIF(pp.plant_parameters_installed_capacity IS NOT NULL AND pp.plant_parameters_installed_capacity > 0, 
@@ -1209,7 +1071,7 @@ AS
 
 														CAST(r.report_date AS DATE) AS 'Date',
 														c.client_name AS 'Client',
-														STRING_AGG(e.engineer_name, ', ') AS 'Prepared by',
+														report.REPORT_PREPARED_BY(r.id_report) AS 'Prepared by',
 														p.plant_name AS 'Plant name',
 														btc.business_turnover_name AS 'Plant business turnover',
 														p.plant_business_specific_turnover AS 'Plant activity',
@@ -1227,7 +1089,7 @@ AS
 															'No workforce was saved') AS 'Plant workforce',
 
 														report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
-														CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') AS 'Area description',
+														report.PLANT_AREA_DESCRIPTION(p.id_plant) AS 'Area description',
 
 														report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
 
@@ -1271,35 +1133,20 @@ AS
 
 														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_pml_percentage, 'percentage') AS 'PML percentage',
 														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_mfl, 'percentage') AS 'MFL percentage'
-														FROM #report_temp_table_filter r
-															LEFT JOIN report.client_table c ON r.id_client = c.id_client
-															LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
-															LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
-															LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
-															LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
-															LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
-															LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
-															LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
-															LEFT JOIN report.engineer_table e ON e.id_engineer = rp.id_engineer
-															LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
-															LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
-															LEFT JOIN report.hydrant_protection_classification_table hdp ON pp.id_hydrant_protection = hdp.id_hydrant_protection_classification
-															LEFT JOIN report.hydrant_standpipe_system_type_table hst ON pp.id_hydrant_standpipe_type = hst.id_hydrant_standpipe_system_type
-															LEFT JOIN report.hydrant_standpipe_system_class_table hsc ON pp.id_hydrant_standpipe_class = hsc.id_hydrant_standpipe_system_class
-															LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
-															LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
-														WHERE ct.id_capacity_type = @unit AND pp.plant_parameters_installed_capacity >= @amount
-														GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover, pp.plant_certifications, p.plant_merchandise_class, mc.merchandise_classification_type_name, 
-															pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
-															pp.plant_parameters_exposures, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
-															pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
-															pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,
-															pr.perils_and_risk_landslide_subsidence, pr.perils_and_risk_water_flooding, pr.perils_and_risk_wind_storm, pr.perils_and_risk_lighting, pr.perils_and_risk_earthquake, pr.perils_and_risk_tsunami,
-															pr.perils_and_risk_collapse, pr.perils_and_risk_aircraft, pr.perils_and_risk_riot, pr.perils_and_risk_design_failure, pr.perils_and_risk_overall_rating, lst.loss_scenario_material_damage_amount,
-															lst.loss_scenario_material_damage_percentage, lst.loss_scenario_business_interruption_amount, lst.loss_scenario_business_interruption_percentage, lst.loss_scenario_buildings_amount,
-															lst.loss_scenario_machinery_equipment_amount, lst.loss_scenario_electronic_equipment_amount, lst.loss_scenario_expansions_investment_works_amount, lst.loss_scenario_stock_amount,
-															lst.loss_scenario_total_insured_values, lst.loss_scenario_pml_percentage, lst.loss_scenario_mfl
-														ORDER BY pp.plant_parameters_installed_capacity DESC
+													FROM #report_temp_table_filter r
+														LEFT JOIN report.client_table c ON r.id_client = c.id_client
+														LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
+														LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
+														LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
+														LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
+														LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
+														LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
+														LEFT JOIN report.hydrant_protection_classification_table hdp ON pp.id_hydrant_protection = hdp.id_hydrant_protection_classification
+														LEFT JOIN report.hydrant_standpipe_system_type_table hst ON pp.id_hydrant_standpipe_type = hst.id_hydrant_standpipe_system_type
+														LEFT JOIN report.hydrant_standpipe_system_class_table hsc ON pp.id_hydrant_standpipe_class = hsc.id_hydrant_standpipe_system_class
+														LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
+														LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
+													WHERE ct.id_capacity_type = @unit AND pp.plant_parameters_installed_capacity >= @amount
 												END;
 											ELSE
 												PRINT 'No values where found with that installed capacity filter';
@@ -1311,7 +1158,7 @@ AS
 																		LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
 																	WHERE ct.id_capacity_type = @unit AND pp.plant_parameters_installed_capacity < @amount) IS NOT NULL)
 												BEGIN
-													SELECT
+													SELECT DISTINCT
 														r.id_report AS 'ID report',
 
 														IIF(pp.plant_parameters_installed_capacity IS NOT NULL AND pp.plant_parameters_installed_capacity > 0, 
@@ -1324,7 +1171,7 @@ AS
 
 														CAST(r.report_date AS DATE) AS 'Date',
 														c.client_name AS 'Client',
-														STRING_AGG(e.engineer_name, ', ') AS 'Prepared by',
+														report.REPORT_PREPARED_BY(r.id_report) AS 'Prepared by',
 														p.plant_name AS 'Plant name',
 														btc.business_turnover_name AS 'Plant business turnover',
 														p.plant_business_specific_turnover AS 'Plant activity',
@@ -1342,7 +1189,7 @@ AS
 															'No workforce was saved') AS 'Plant workforce',
 
 														report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
-														CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') AS 'Area description',
+														report.PLANT_AREA_DESCRIPTION(p.id_plant) AS 'Area description',
 
 														report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
 
@@ -1386,35 +1233,20 @@ AS
 
 														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_pml_percentage, 'percentage') AS 'PML percentage',
 														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_mfl, 'percentage') AS 'MFL percentage'
-														FROM #report_temp_table_filter r
-															LEFT JOIN report.client_table c ON r.id_client = c.id_client
-															LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
-															LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
-															LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
-															LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
-															LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
-															LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
-															LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
-															LEFT JOIN report.engineer_table e ON e.id_engineer = rp.id_engineer
-															LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
-															LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
-															LEFT JOIN report.hydrant_protection_classification_table hdp ON pp.id_hydrant_protection = hdp.id_hydrant_protection_classification
-															LEFT JOIN report.hydrant_standpipe_system_type_table hst ON pp.id_hydrant_standpipe_type = hst.id_hydrant_standpipe_system_type
-															LEFT JOIN report.hydrant_standpipe_system_class_table hsc ON pp.id_hydrant_standpipe_class = hsc.id_hydrant_standpipe_system_class
-															LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
-															LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
-														WHERE ct.id_capacity_type = @unit AND pp.plant_parameters_installed_capacity <= @amount
-														GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover, p.plant_merchandise_class, mc.merchandise_classification_type_name, 
-															pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
-															pp.plant_parameters_exposures, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
-															pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
-															pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,
-															pr.perils_and_risk_landslide_subsidence, pr.perils_and_risk_water_flooding, pr.perils_and_risk_wind_storm, pr.perils_and_risk_lighting, pr.perils_and_risk_earthquake, pr.perils_and_risk_tsunami,
-															pr.perils_and_risk_collapse, pr.perils_and_risk_aircraft, pr.perils_and_risk_riot, pr.perils_and_risk_design_failure, pr.perils_and_risk_overall_rating, lst.loss_scenario_material_damage_amount,
-															lst.loss_scenario_material_damage_percentage, lst.loss_scenario_business_interruption_amount, lst.loss_scenario_business_interruption_percentage, lst.loss_scenario_buildings_amount,
-															lst.loss_scenario_machinery_equipment_amount, lst.loss_scenario_electronic_equipment_amount, lst.loss_scenario_expansions_investment_works_amount, lst.loss_scenario_stock_amount,
-															lst.loss_scenario_total_insured_values, lst.loss_scenario_pml_percentage, lst.loss_scenario_mfl
-														ORDER BY pp.plant_parameters_installed_capacity DESC
+													FROM #report_temp_table_filter r
+														LEFT JOIN report.client_table c ON r.id_client = c.id_client
+														LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
+														LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
+														LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
+														LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
+														LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
+														LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
+														LEFT JOIN report.hydrant_protection_classification_table hdp ON pp.id_hydrant_protection = hdp.id_hydrant_protection_classification
+														LEFT JOIN report.hydrant_standpipe_system_type_table hst ON pp.id_hydrant_standpipe_type = hst.id_hydrant_standpipe_system_type
+														LEFT JOIN report.hydrant_standpipe_system_class_table hsc ON pp.id_hydrant_standpipe_class = hsc.id_hydrant_standpipe_system_class
+														LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
+														LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
+													WHERE ct.id_capacity_type = @unit AND pp.plant_parameters_installed_capacity <= @amount
 												END;
 											ELSE
 												PRINT 'No values where found with that installed capacity filter';
@@ -1494,7 +1326,7 @@ AS
 																			LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
 																		WHERE pp.plant_parameters_built_up >= @lowest_value_built AND pp.plant_parameters_built_up <= @highiest_value_built + 1) IS NOT NULL)
 											BEGIN
-												SELECT
+												SELECT DISTINCT
 													r.id_report AS 'ID report',
 
 													IIF(pp.plant_parameters_built_up IS NOT NULL AND pp.plant_parameters_built_up > 0, 
@@ -1505,7 +1337,7 @@ AS
 
 													CAST(r.report_date AS DATE) AS 'Date',
 													c.client_name AS 'Client',
-													STRING_AGG(e.engineer_name, ', ') AS 'Prepared by',
+													report.REPORT_PREPARED_BY(r.id_report) AS 'Prepared by',
 													p.plant_name AS 'Plant name',
 													btc.business_turnover_name AS 'Plant business turnover',
 													p.plant_business_specific_turnover AS 'Plant activity',
@@ -1525,7 +1357,7 @@ AS
 													'No workforce was saved') AS 'Plant workforce',
 
 													report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
-													CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') AS 'Area description',
+													report.PLANT_AREA_DESCRIPTION(p.id_plant) AS 'Area description',
 
 													report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
 
@@ -1572,13 +1404,9 @@ AS
 												FROM #report_temp_table_filter r
 													LEFT JOIN report.client_table c ON r.id_client = c.id_client
 													LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
-													LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
-													LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
 													LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
 													LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
 													LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
-													LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
-													LEFT JOIN report.engineer_table e ON e.id_engineer = rp.id_engineer
 													LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
 													LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
 													LEFT JOIN report.hydrant_protection_classification_table hdp ON pp.id_hydrant_protection = hdp.id_hydrant_protection_classification
@@ -1587,17 +1415,6 @@ AS
 													LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
 													LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
 												WHERE pp.plant_parameters_built_up >= @lowest_value_built AND pp.plant_parameters_built_up <= @highiest_value_built + 1
-												GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover, p.plant_merchandise_class, mc.merchandise_classification_type_name,  
-														pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
-														pp.plant_parameters_exposures, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
-														pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
-														pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,
-														pr.perils_and_risk_landslide_subsidence, pr.perils_and_risk_water_flooding, pr.perils_and_risk_wind_storm, pr.perils_and_risk_lighting, pr.perils_and_risk_earthquake, pr.perils_and_risk_tsunami,
-														pr.perils_and_risk_collapse, pr.perils_and_risk_aircraft, pr.perils_and_risk_riot, pr.perils_and_risk_design_failure, pr.perils_and_risk_overall_rating, lst.loss_scenario_material_damage_amount,
-														lst.loss_scenario_material_damage_percentage, lst.loss_scenario_business_interruption_amount, lst.loss_scenario_business_interruption_percentage, lst.loss_scenario_buildings_amount,
-														lst.loss_scenario_machinery_equipment_amount, lst.loss_scenario_electronic_equipment_amount, lst.loss_scenario_expansions_investment_works_amount, lst.loss_scenario_stock_amount,
-														lst.loss_scenario_total_insured_values, lst.loss_scenario_pml_percentage, lst.loss_scenario_mfl
-												ORDER BY pp.plant_parameters_built_up DESC
 											END;
 										ELSE
 											PRINT 'No values where found with that built up filter';
@@ -1649,7 +1466,7 @@ AS
 																		LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
 																	WHERE pp.plant_parameters_built_up > @amount_builtup) IS NOT NULL)
 												BEGIN
-													SELECT
+													SELECT DISTINCT
 														r.id_report AS 'ID report',
 
 														IIF(pp.plant_parameters_built_up IS NOT NULL AND pp.plant_parameters_built_up > 0, 
@@ -1660,7 +1477,7 @@ AS
 
 														CAST(r.report_date AS DATE) AS 'Date',
 														c.client_name AS 'Client',
-														STRING_AGG(e.engineer_name, ', ') AS 'Prepared by',
+														report.REPORT_PREPARED_BY(r.id_report) AS 'Prepared by',
 														p.plant_name AS 'Plant name',
 														btc.business_turnover_name AS 'Plant business turnover',
 														p.plant_business_specific_turnover AS 'Plant activity',
@@ -1680,7 +1497,7 @@ AS
 															'No workforce was saved') AS 'Plant workforce',
 
 														report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
-														CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') AS 'Area description',
+														report.PLANT_AREA_DESCRIPTION(p.id_plant) AS 'Area description',
 
 														report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
 
@@ -1724,35 +1541,20 @@ AS
 
 														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_pml_percentage, 'percentage') AS 'PML percentage',
 														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_mfl, 'percentage') AS 'MFL percentage'
-														FROM #report_temp_table_filter r
-															LEFT JOIN report.client_table c ON r.id_client = c.id_client
-															LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
-															LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
-															LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
-															LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
-															LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
-															LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
-															LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
-															LEFT JOIN report.engineer_table e ON e.id_engineer = rp.id_engineer
-															LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
-															LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
-															LEFT JOIN report.hydrant_protection_classification_table hdp ON pp.id_hydrant_protection = hdp.id_hydrant_protection_classification
-															LEFT JOIN report.hydrant_standpipe_system_type_table hst ON pp.id_hydrant_standpipe_type = hst.id_hydrant_standpipe_system_type
-															LEFT JOIN report.hydrant_standpipe_system_class_table hsc ON pp.id_hydrant_standpipe_class = hsc.id_hydrant_standpipe_system_class
-															LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
-															LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
-														WHERE pp.plant_parameters_built_up > @amount_builtup
-														GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover, p.plant_merchandise_class, mc.merchandise_classification_type_name, 
-															pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
-															pp.plant_parameters_exposures, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
-															pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
-															pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,
-															pr.perils_and_risk_landslide_subsidence, pr.perils_and_risk_water_flooding, pr.perils_and_risk_wind_storm, pr.perils_and_risk_lighting, pr.perils_and_risk_earthquake, pr.perils_and_risk_tsunami,
-															pr.perils_and_risk_collapse, pr.perils_and_risk_aircraft, pr.perils_and_risk_riot, pr.perils_and_risk_design_failure, pr.perils_and_risk_overall_rating, lst.loss_scenario_material_damage_amount,
-															lst.loss_scenario_material_damage_percentage, lst.loss_scenario_business_interruption_amount, lst.loss_scenario_business_interruption_percentage, lst.loss_scenario_buildings_amount,
-															lst.loss_scenario_machinery_equipment_amount, lst.loss_scenario_electronic_equipment_amount, lst.loss_scenario_expansions_investment_works_amount, lst.loss_scenario_stock_amount,
-															lst.loss_scenario_total_insured_values, lst.loss_scenario_pml_percentage, lst.loss_scenario_mfl
-														ORDER BY pp.plant_parameters_built_up DESC
+													FROM #report_temp_table_filter r
+														LEFT JOIN report.client_table c ON r.id_client = c.id_client
+														LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
+														LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
+														LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
+														LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
+														LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
+														LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
+														LEFT JOIN report.hydrant_protection_classification_table hdp ON pp.id_hydrant_protection = hdp.id_hydrant_protection_classification
+														LEFT JOIN report.hydrant_standpipe_system_type_table hst ON pp.id_hydrant_standpipe_type = hst.id_hydrant_standpipe_system_type
+														LEFT JOIN report.hydrant_standpipe_system_class_table hsc ON pp.id_hydrant_standpipe_class = hsc.id_hydrant_standpipe_system_class
+														LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
+														LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
+													WHERE pp.plant_parameters_built_up > @amount_builtup
 												END;
 											ELSE
 												PRINT 'No values where found with that built up area filter';
@@ -1763,7 +1565,7 @@ AS
 																		LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
 																	WHERE pp.plant_parameters_built_up < @amount_builtup) IS NOT NULL)
 												BEGIN
-													SELECT
+													SELECT DISTINCT
 														r.id_report AS 'ID report',
 
 														IIF(pp.plant_parameters_built_up IS NOT NULL AND pp.plant_parameters_built_up > 0, 
@@ -1774,7 +1576,7 @@ AS
 
 														CAST(r.report_date AS DATE) AS 'Date',
 														c.client_name AS 'Client',
-														STRING_AGG(e.engineer_name, ', ') AS 'Prepared by',
+														report.REPORT_PREPARED_BY(r.id_report) AS 'Prepared by',
 														p.plant_name AS 'Plant name',
 														btc.business_turnover_name AS 'Plant business turnover',
 														p.plant_business_specific_turnover AS 'Plant activity',
@@ -1794,7 +1596,7 @@ AS
 															'No workforce was saved') AS 'Plant workforce',
 
 														report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
-														CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') AS 'Area description',
+														report.PLANT_AREA_DESCRIPTION(p.id_plant) AS 'Area description',
 
 														report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
 
@@ -1838,35 +1640,20 @@ AS
 
 														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_pml_percentage, 'percentage') AS 'PML percentage',
 														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_mfl, 'percentage') AS 'MFL percentage'
-														FROM #report_temp_table_filter r
-															LEFT JOIN report.client_table c ON r.id_client = c.id_client
-															LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
-															LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
-															LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
-															LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
-															LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
-															LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
-															LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
-															LEFT JOIN report.engineer_table e ON e.id_engineer = rp.id_engineer
-															LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
-															LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
-															LEFT JOIN report.hydrant_protection_classification_table hdp ON pp.id_hydrant_protection = hdp.id_hydrant_protection_classification
-															LEFT JOIN report.hydrant_standpipe_system_type_table hst ON pp.id_hydrant_standpipe_type = hst.id_hydrant_standpipe_system_type
-															LEFT JOIN report.hydrant_standpipe_system_class_table hsc ON pp.id_hydrant_standpipe_class = hsc.id_hydrant_standpipe_system_class
-															LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
-															LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
-														WHERE pp.plant_parameters_built_up < @amount_builtup
-														GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover, p.plant_merchandise_class, mc.merchandise_classification_type_name, 
-															pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
-															pp.plant_parameters_exposures, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
-															pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
-															pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,
-															pr.perils_and_risk_landslide_subsidence, pr.perils_and_risk_water_flooding, pr.perils_and_risk_wind_storm, pr.perils_and_risk_lighting, pr.perils_and_risk_earthquake, pr.perils_and_risk_tsunami,
-															pr.perils_and_risk_collapse, pr.perils_and_risk_aircraft, pr.perils_and_risk_riot, pr.perils_and_risk_design_failure, pr.perils_and_risk_overall_rating, lst.loss_scenario_material_damage_amount,
-															lst.loss_scenario_material_damage_percentage, lst.loss_scenario_business_interruption_amount, lst.loss_scenario_business_interruption_percentage, lst.loss_scenario_buildings_amount,
-															lst.loss_scenario_machinery_equipment_amount, lst.loss_scenario_electronic_equipment_amount, lst.loss_scenario_expansions_investment_works_amount, lst.loss_scenario_stock_amount,
-															lst.loss_scenario_total_insured_values, lst.loss_scenario_pml_percentage, lst.loss_scenario_mfl
-														ORDER BY pp.plant_parameters_installed_capacity DESC
+													FROM #report_temp_table_filter r
+														LEFT JOIN report.client_table c ON r.id_client = c.id_client
+														LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
+														LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
+														LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
+														LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
+														LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
+														LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
+														LEFT JOIN report.hydrant_protection_classification_table hdp ON pp.id_hydrant_protection = hdp.id_hydrant_protection_classification
+														LEFT JOIN report.hydrant_standpipe_system_type_table hst ON pp.id_hydrant_standpipe_type = hst.id_hydrant_standpipe_system_type
+														LEFT JOIN report.hydrant_standpipe_system_class_table hsc ON pp.id_hydrant_standpipe_class = hsc.id_hydrant_standpipe_system_class
+														LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
+														LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
+													WHERE pp.plant_parameters_built_up < @amount_builtup
 												END;
 											ELSE
 												PRINT 'No values where found with that built up area filter';
@@ -1946,7 +1733,7 @@ AS
 																			LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
 																		WHERE pp.plant_parameters_workforce >= @lowest_value_work AND pp.plant_parameters_workforce <= @highiest_value_work + 1) IS NOT NULL)
 											BEGIN
-												SELECT
+												SELECT DISTINCT
 													r.id_report AS 'ID report',
 													
 													IIF(pp.plant_parameters_workforce IS NOT NULL AND pp.plant_parameters_workforce > 0,
@@ -1955,7 +1742,7 @@ AS
 
 													CAST(r.report_date AS DATE) AS 'Date',
 													c.client_name AS 'Client',
-													STRING_AGG(e.engineer_name, ', ') AS 'Prepared by',
+													report.REPORT_PREPARED_BY(r.id_report) AS 'Prepared by',
 													p.plant_name AS 'Plant name',
 													btc.business_turnover_name AS 'Plant business turnover',
 													p.plant_business_specific_turnover AS 'Plant activity',
@@ -1977,7 +1764,7 @@ AS
 														'No built-up area saved') AS 'Built-up area (m2)',
 
 													report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
-													CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') AS 'Area description',
+													report.PLANT_AREA_DESCRIPTION(p.id_plant) AS 'Area description',
 
 													report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
 
@@ -2024,13 +1811,9 @@ AS
 												FROM #report_temp_table_filter r
 													LEFT JOIN report.client_table c ON r.id_client = c.id_client
 													LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
-													LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
-													LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
 													LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
 													LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
 													LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
-													LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
-													LEFT JOIN report.engineer_table e ON e.id_engineer = rp.id_engineer
 													LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
 													LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
 													LEFT JOIN report.hydrant_protection_classification_table hdp ON pp.id_hydrant_protection = hdp.id_hydrant_protection_classification
@@ -2039,17 +1822,6 @@ AS
 													LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
 													LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
 												WHERE pp.plant_parameters_workforce >= @lowest_value_work AND pp.plant_parameters_workforce <= @highiest_value_work + 1
-												GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover, p.plant_merchandise_class, mc.merchandise_classification_type_name, 
-														pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
-														pp.plant_parameters_exposures, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
-														pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
-														pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,
-														pr.perils_and_risk_landslide_subsidence, pr.perils_and_risk_water_flooding, pr.perils_and_risk_wind_storm, pr.perils_and_risk_lighting, pr.perils_and_risk_earthquake, pr.perils_and_risk_tsunami,
-														pr.perils_and_risk_collapse, pr.perils_and_risk_aircraft, pr.perils_and_risk_riot, pr.perils_and_risk_design_failure, pr.perils_and_risk_overall_rating, lst.loss_scenario_material_damage_amount,
-														lst.loss_scenario_material_damage_percentage, lst.loss_scenario_business_interruption_amount, lst.loss_scenario_business_interruption_percentage, lst.loss_scenario_buildings_amount,
-														lst.loss_scenario_machinery_equipment_amount, lst.loss_scenario_electronic_equipment_amount, lst.loss_scenario_expansions_investment_works_amount, lst.loss_scenario_stock_amount,
-														lst.loss_scenario_total_insured_values, lst.loss_scenario_pml_percentage, lst.loss_scenario_mfl
-												ORDER BY pp.plant_parameters_workforce DESC
 											END;
 										ELSE
 											PRINT 'No values where found with that workforce filter';
@@ -2101,7 +1873,7 @@ AS
 																		LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
 																	WHERE pp.plant_parameters_workforce > @amount_workforce) IS NOT NULL)
 												BEGIN
-													SELECT
+													SELECT DISTINCT
 														r.id_report AS 'ID report',
 
 														IIF(pp.plant_parameters_workforce IS NOT NULL AND pp.plant_parameters_workforce > 0,
@@ -2110,7 +1882,7 @@ AS
 
 														CAST(r.report_date AS DATE) AS 'Date',
 														c.client_name AS 'Client',
-														STRING_AGG(e.engineer_name, ', ') AS 'Prepared by',
+														report.REPORT_PREPARED_BY(r.id_report) AS 'Prepared by',
 														p.plant_name AS 'Plant name',
 														btc.business_turnover_name AS 'Plant business turnover',
 														p.plant_business_specific_turnover AS 'Plant activity',
@@ -2132,7 +1904,7 @@ AS
 															'No built-up area saved') AS 'Built-up area (m2)',
 
 														report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
-														CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') AS 'Area description',
+														report.PLANT_AREA_DESCRIPTION(p.id_plant) AS 'Area description',
 
 														report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
 
@@ -2176,35 +1948,20 @@ AS
 
 														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_pml_percentage, 'percentage') AS 'PML percentage',
 														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_mfl, 'percentage') AS 'MFL percentage'
-														FROM #report_temp_table_filter r
-															LEFT JOIN report.client_table c ON r.id_client = c.id_client
-															LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
-															LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
-															LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
-															LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
-															LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
-															LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
-															LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
-															LEFT JOIN report.engineer_table e ON e.id_engineer = rp.id_engineer
-															LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
-															LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
-															LEFT JOIN report.hydrant_protection_classification_table hdp ON pp.id_hydrant_protection = hdp.id_hydrant_protection_classification
-															LEFT JOIN report.hydrant_standpipe_system_type_table hst ON pp.id_hydrant_standpipe_type = hst.id_hydrant_standpipe_system_type
-															LEFT JOIN report.hydrant_standpipe_system_class_table hsc ON pp.id_hydrant_standpipe_class = hsc.id_hydrant_standpipe_system_class
-															LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
-															LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
-														WHERE pp.plant_parameters_workforce > @amount_workforce
-														GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover, p.plant_merchandise_class, mc.merchandise_classification_type_name, 
-															pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
-															pp.plant_parameters_exposures, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
-															pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
-															pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,
-															pr.perils_and_risk_landslide_subsidence, pr.perils_and_risk_water_flooding, pr.perils_and_risk_wind_storm, pr.perils_and_risk_lighting, pr.perils_and_risk_earthquake, pr.perils_and_risk_tsunami,
-															pr.perils_and_risk_collapse, pr.perils_and_risk_aircraft, pr.perils_and_risk_riot, pr.perils_and_risk_design_failure, pr.perils_and_risk_overall_rating, lst.loss_scenario_material_damage_amount,
-															lst.loss_scenario_material_damage_percentage, lst.loss_scenario_business_interruption_amount, lst.loss_scenario_business_interruption_percentage, lst.loss_scenario_buildings_amount,
-															lst.loss_scenario_machinery_equipment_amount, lst.loss_scenario_electronic_equipment_amount, lst.loss_scenario_expansions_investment_works_amount, lst.loss_scenario_stock_amount,
-															lst.loss_scenario_total_insured_values, lst.loss_scenario_pml_percentage, lst.loss_scenario_mfl
-														ORDER BY pp.plant_parameters_workforce DESC
+													FROM #report_temp_table_filter r
+														LEFT JOIN report.client_table c ON r.id_client = c.id_client
+														LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
+														LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
+														LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
+														LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
+														LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
+														LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
+														LEFT JOIN report.hydrant_protection_classification_table hdp ON pp.id_hydrant_protection = hdp.id_hydrant_protection_classification
+														LEFT JOIN report.hydrant_standpipe_system_type_table hst ON pp.id_hydrant_standpipe_type = hst.id_hydrant_standpipe_system_type
+														LEFT JOIN report.hydrant_standpipe_system_class_table hsc ON pp.id_hydrant_standpipe_class = hsc.id_hydrant_standpipe_system_class
+														LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
+														LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
+													WHERE pp.plant_parameters_workforce > @amount_workforce
 												END;
 											ELSE
 												PRINT 'No values where found with that workforce filter';
@@ -2215,7 +1972,7 @@ AS
 																		LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
 																	WHERE pp.plant_parameters_workforce < @amount_workforce) IS NOT NULL)
 												BEGIN
-													SELECT
+													SELECT DISTINCT
 														r.id_report AS 'ID report',
 
 														IIF(pp.plant_parameters_workforce IS NOT NULL AND pp.plant_parameters_workforce > 0,
@@ -2224,7 +1981,7 @@ AS
 
 														CAST(r.report_date AS DATE) AS 'Date',
 														c.client_name AS 'Client',
-														STRING_AGG(e.engineer_name, ', ') AS 'Prepared by',
+														report.REPORT_PREPARED_BY(r.id_report) AS 'Prepared by',
 														p.plant_name AS 'Plant name',
 														btc.business_turnover_name AS 'Plant business turnover',
 														p.plant_business_specific_turnover AS 'Plant activity',
@@ -2246,7 +2003,7 @@ AS
 															'No built-up area saved') AS 'Built-up area (m2)',
 
 														report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
-														CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') AS 'Area description',
+														report.PLANT_AREA_DESCRIPTION(p.id_plant) AS 'Area description',
 
 														report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
 
@@ -2293,13 +2050,9 @@ AS
 														FROM #report_temp_table_filter r
 															LEFT JOIN report.client_table c ON r.id_client = c.id_client
 															LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
-															LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
-															LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
 															LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
 															LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
 															LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
-															LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
-															LEFT JOIN report.engineer_table e ON e.id_engineer = rp.id_engineer
 															LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
 															LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
 															LEFT JOIN report.hydrant_protection_classification_table hdp ON pp.id_hydrant_protection = hdp.id_hydrant_protection_classification
@@ -2308,17 +2061,6 @@ AS
 															LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
 															LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
 														WHERE pp.plant_parameters_workforce < @amount_workforce
-														GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover, p.plant_merchandise_class, mc.merchandise_classification_type_name, 
-															pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
-															pp.plant_parameters_exposures, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
-															pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
-															pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,
-															pr.perils_and_risk_landslide_subsidence, pr.perils_and_risk_water_flooding, pr.perils_and_risk_wind_storm, pr.perils_and_risk_lighting, pr.perils_and_risk_earthquake, pr.perils_and_risk_tsunami,
-															pr.perils_and_risk_collapse, pr.perils_and_risk_aircraft, pr.perils_and_risk_riot, pr.perils_and_risk_design_failure, pr.perils_and_risk_overall_rating, lst.loss_scenario_material_damage_amount,
-															lst.loss_scenario_material_damage_percentage, lst.loss_scenario_business_interruption_amount, lst.loss_scenario_business_interruption_percentage, lst.loss_scenario_buildings_amount,
-															lst.loss_scenario_machinery_equipment_amount, lst.loss_scenario_electronic_equipment_amount, lst.loss_scenario_expansions_investment_works_amount, lst.loss_scenario_stock_amount,
-															lst.loss_scenario_total_insured_values, lst.loss_scenario_pml_percentage, lst.loss_scenario_mfl
-														ORDER BY pp.plant_parameters_installed_capacity DESC
 												END;
 											ELSE
 												PRINT 'No values where found with that workforce filter';
@@ -2338,13 +2080,13 @@ AS
 																		LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
 																		WHERE pp.plant_parameters_exposures = @area_exposure_to_search) IS NOT NULL)
 											BEGIN
-												SELECT
+												SELECT DISTINCT
 													r.id_report AS 'ID report',
 													report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
-													CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') AS 'Area description',
+													report.PLANT_AREA_DESCRIPTION(p.id_plant) AS 'Area description',
 													CAST(r.report_date AS DATE) AS 'Date',
 													c.client_name AS 'Client',
-													STRING_AGG(e.engineer_name, ', ') AS 'Prepared by',
+													report.REPORT_PREPARED_BY(r.id_report) AS 'Prepared by',
 													p.plant_name AS 'Plant name',
 													btc.business_turnover_name AS 'Plant business turnover',
 													p.plant_business_specific_turnover AS 'Plant activity',
@@ -2411,35 +2153,20 @@ AS
 
 													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_pml_percentage, 'percentage') AS 'PML percentage',
 													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_mfl, 'percentage') AS 'MFL percentage'
-													FROM #report_temp_table_filter r
-														LEFT JOIN report.client_table c ON r.id_client = c.id_client
-														LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
-														LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
-														LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
-														LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
-														LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
-														LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
-														LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
-														LEFT JOIN report.engineer_table e ON e.id_engineer = rp.id_engineer
-														LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
-														LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
-														LEFT JOIN report.hydrant_protection_classification_table hdp ON pp.id_hydrant_protection = hdp.id_hydrant_protection_classification
-														LEFT JOIN report.hydrant_standpipe_system_type_table hst ON pp.id_hydrant_standpipe_type = hst.id_hydrant_standpipe_system_type
-														LEFT JOIN report.hydrant_standpipe_system_class_table hsc ON pp.id_hydrant_standpipe_class = hsc.id_hydrant_standpipe_system_class
-														LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
-														LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
-													WHERE pp.plant_parameters_exposures = @area_exposure_to_search
-													GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover, p.plant_merchandise_class, mc.merchandise_classification_type_name, 
-														pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
-														pp.plant_parameters_exposures, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
-														pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
-														pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,
-														pr.perils_and_risk_landslide_subsidence, pr.perils_and_risk_water_flooding, pr.perils_and_risk_wind_storm, pr.perils_and_risk_lighting, pr.perils_and_risk_earthquake, pr.perils_and_risk_tsunami,
-														pr.perils_and_risk_collapse, pr.perils_and_risk_aircraft, pr.perils_and_risk_riot, pr.perils_and_risk_design_failure, pr.perils_and_risk_overall_rating, lst.loss_scenario_material_damage_amount,
-														lst.loss_scenario_material_damage_percentage, lst.loss_scenario_business_interruption_amount, lst.loss_scenario_business_interruption_percentage, lst.loss_scenario_buildings_amount,
-														lst.loss_scenario_machinery_equipment_amount, lst.loss_scenario_electronic_equipment_amount, lst.loss_scenario_expansions_investment_works_amount, lst.loss_scenario_stock_amount,
-														lst.loss_scenario_total_insured_values, lst.loss_scenario_pml_percentage, lst.loss_scenario_mfl
-													ORDER BY r.id_report DESC
+												FROM #report_temp_table_filter r
+													LEFT JOIN report.client_table c ON r.id_client = c.id_client
+													LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
+													LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
+													LEFT JOIN report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
+													LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
+													LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
+													LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
+													LEFT JOIN report.hydrant_protection_classification_table hdp ON pp.id_hydrant_protection = hdp.id_hydrant_protection_classification
+													LEFT JOIN report.hydrant_standpipe_system_type_table hst ON pp.id_hydrant_standpipe_type = hst.id_hydrant_standpipe_system_type
+													LEFT JOIN report.hydrant_standpipe_system_class_table hsc ON pp.id_hydrant_standpipe_class = hsc.id_hydrant_standpipe_system_class
+													LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
+													LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
+												WHERE pp.plant_parameters_exposures = @area_exposure_to_search
 											END;
 										ELSE
 											PRINT 'No values where found with that area exposures filter'
