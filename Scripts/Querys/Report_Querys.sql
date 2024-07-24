@@ -1,10 +1,34 @@
 USE gpi_consulting_services_reports_db;
 
+-- Functions to bring data
+
+CREATE OR ALTER FUNCTION report.PLANT_AREA_DESCRIPTION(@id_plant INT)
+RETURNS VARCHAR(150)
+	BEGIN
+		DECLARE @to_return AS VARCHAR(150) = (SELECT CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') FROM report.plant_table p 
+																																							LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
+																																							LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
+																																							WHERE p.id_plant = @id_plant)
+		RETURN @to_return;
+	END;
+
+CREATE OR ALTER FUNCTION report.REPORT_PREPARED_BY(@id_report INT)
+RETURNS VARCHAR(200)
+	BEGIN
+		DECLARE @to_return AS VARCHAR(200) = (SELECT STRING_AGG(e.engineer_name, ', ') AS 'Prepared by' FROM report.report_table r
+												LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
+												LEFT JOIN report.engineer_table e ON e.id_engineer = rp.id_engineer
+												WHERE r.id_report = @id_report)
+		RETURN @to_return;
+	END;
+
+--
+
 -- Plant query
 
 CREATE OR ALTER VIEW report.plant_view
 AS
-	SELECT 
+	SELECT DISTINCT
 		p.id_plant AS 'ID plant',
 		p.plant_account_name AS 'Account name',
 		p.plant_name AS 'Plant name',
@@ -14,7 +38,7 @@ AS
 		IIF(p.plant_operation_startup_year IS NOT NULL, CAST(YEAR(p.plant_operation_startup_year) AS VARCHAR(5)), 'No operation startup year saved') AS 'Operation startup year',
 
 		IIF(p.plant_latitude IS NOT NULL AND p.plant_longitude IS NOT NULL, 
-			CONCAT('Latitude: ', IIF(p.plant_latitude IS NOT NULL, CONCAT(FORMAT(p.plant_latitude, 'N6')), 'No latitude saved'), ' Longitude: ', IIF(p.plant_longitude IS NOT NULL, CONCAT(FORMAT(p.plant_longitude, 'N6')), 'No longitude saved')), 
+			CONCAT('Latitude: ', IIF(p.plant_latitude IS NOT NULL, CONCAT(FORMAT(p.plant_latitude, 'N6'), '°'), 'No latitude saved'), ' Longitude: ', IIF(p.plant_longitude IS NOT NULL, CONCAT(FORMAT(p.plant_longitude, 'N6'), '°'), 'No longitude saved')), 
 			'No latitude or longitude saved') AS 'Latitude and longitude',
 
 		IIF(p.plant_meters_above_sea_level IS NOT NULL AND p.plant_meters_above_sea_level > 0, FORMAT(p.plant_meters_Above_sea_level, 'N0'), 'No meters above the sea level were saved') AS 'Meters above sea level',
@@ -22,16 +46,11 @@ AS
 		IIF(p.plant_merchandise_class IS NOT NULL, mc.merchandise_classification_type_name, 'Has no merchandise classification saved') AS 'Merchandise classification',
 		btc.business_turnover_name AS 'Business turnover',
 		p.plant_business_specific_turnover AS 'Specific business turnover',
-		CONCAT(report.CORRECT_GRAMMAR(STRING_AGG(tlc.type_location_class_name, ', '), 'paragraph'), ' area') AS 'Area description'
+		report.PLANT_AREA_DESCRIPTION(p.id_plant) AS 'Area description'
 	FROM report.plant_table p
 		LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
 		LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
 		LEFT JOIN report.business_turnover_class_table btc ON bt.id_business_turnover = btc.id_business_turnover
-		LEFT JOIN report.type_location_table tl ON p.id_plant = tl.id_plant
-		LEFT JOIN report.type_location_classification_table tlc ON tl.id_type_location_class = tlc.id_type_location_class
-	GROUP BY p.id_plant, p.plant_account_name, p.plant_name, p.plant_country, p.plant_continent, p.plant_country_state, p.plant_construction_year, p.plant_operation_startup_year,
-	p.plant_latitude, p.plant_longitude, p.plant_meters_above_sea_level, p.plant_address, mc.merchandise_classification_type_name, btc.business_turnover_name, p.plant_business_specific_turnover,
-	p.plant_merchandise_class
 
 SELECT pv.* FROM report.plant_view pv;
 
@@ -84,14 +103,17 @@ AS
 
 CREATE OR ALTER VIEW report.report_view
 AS
-	SELECT
+	SELECT DISTINCT
 		r.id_report AS 'ID report',
 		CAST(r.report_date AS DATE) AS 'Date',
 		c.client_name AS 'Client',
-		STRING_AGG(e.engineer_name, ', ') AS 'Prepared by',
+										
+		report.REPORT_PREPARED_BY(r.id_report) AS 'Prepared by',
+
 		p.plant_name AS 'Plant name',
 		btc.business_turnover_name AS 'Plant business turnover',
 		p.plant_business_specific_turnover AS 'Plant activity',
+		IIF(p.plant_merchandise_class IS NOT NULL, mc.merchandise_classification_type_name, 'Has no merchandise classification saved') AS 'Merchandise classification',
 		pp.plant_certifications AS 'Certifications',
 		
 		IIF(pp.plant_parameters_installed_capacity IS NOT NULL AND pp.plant_parameters_installed_capacity > 0, 
@@ -99,7 +121,7 @@ AS
 				IIF(TRY_CAST(pp.plant_parameters_installed_capacity AS INT) IS NOT NULL, 
 					CONCAT(CAST(CAST(pp.plant_parameters_installed_capacity AS INT) AS VARCHAR(30)), ' ', ct.capacity_type_name),
 					CONCAT(FORMAT(pp.plant_parameters_installed_capacity, 'N2'), ' ', ct.capacity_type_name)), 
-				FORMAT(pp.plant_parameters_installed_capacity, 'N2')), 
+						FORMAT(pp.plant_parameters_installed_capacity, 'N2')), 
 			'No installed capacity was saved') AS 'Installed capacity',
 		
 		IIF(pp.plant_parameters_built_up IS NOT NULL AND pp.plant_parameters_built_up > 0, 
@@ -113,6 +135,7 @@ AS
 			'No workforce was saved') AS 'Plant workforce',
 
 		report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
+		report.PLANT_AREA_DESCRIPTION(p.id_plant) AS 'Area description',
 
 		report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
 
@@ -161,8 +184,7 @@ AS
 		LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
 		LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
 		LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
-		LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
-		LEFT JOIN report.engineer_table e ON e.id_engineer = rp.id_engineer
+		LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
 		LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
 		LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
 		LEFT JOIN report.hydrant_protection_classification_table hdp ON pp.id_hydrant_protection = hdp.id_hydrant_protection_classification
@@ -170,15 +192,6 @@ AS
 		LEFT JOIN report.hydrant_standpipe_system_class_table hsc ON pp.id_hydrant_standpipe_class = hsc.id_hydrant_standpipe_system_class
 		LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
 		LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
-	GROUP BY r.id_report, r.report_date, c.client_name, p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover, pp.plant_certifications, pp.plant_parameters_installed_capacity, ct.capacity_type_name, pp.id_capacity_type, pp.plant_parameters_built_up, pp.plant_parameters_workforce,
-	pp.plant_parameters_exposures, pp.plant_parameters_has_hydrants, pp.id_hydrant_protection, hdp.hydrant_protection_classification_name, pp.id_hydrant_standpipe_type, hst.hydrant_standpipe_system_type_name,
-	pp.id_hydrant_standpipe_class, hsc.hydrant_standpipe_system_class_name, pp.plant_parameters_has_foam_suppression_sys, pp.plant_parameters_has_suppresion_sys, pp.plant_parameters_has_sprinklers,
-	pp.plant_parameters_has_afds, pp.plant_parameters_has_fire_detection_batteries, pp.plant_parameters_has_private_brigade, pp.plant_parameters_has_lighting_protection, pr.perils_and_risk_fire_explosion,
-	pr.perils_and_risk_landslide_subsidence, pr.perils_and_risk_water_flooding, pr.perils_and_risk_wind_storm, pr.perils_and_risk_lighting, pr.perils_and_risk_earthquake, pr.perils_and_risk_tsunami,
-	pr.perils_and_risk_collapse, pr.perils_and_risk_aircraft, pr.perils_and_risk_riot, pr.perils_and_risk_design_failure, pr.perils_and_risk_overall_rating, lst.loss_scenario_material_damage_amount,
-	lst.loss_scenario_material_damage_percentage, lst.loss_scenario_business_interruption_amount, lst.loss_scenario_business_interruption_percentage, lst.loss_scenario_buildings_amount,
-	lst.loss_scenario_machinery_equipment_amount, lst.loss_scenario_electronic_equipment_amount, lst.loss_scenario_expansions_investment_works_amount, lst.loss_scenario_stock_amount,
-	lst.loss_scenario_total_insured_values, lst.loss_scenario_pml_percentage, lst.loss_scenario_mfl;
 
 SELECT rv.* FROM report.report_view rv;
 

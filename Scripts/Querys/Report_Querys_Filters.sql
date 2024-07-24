@@ -25,13 +25,7 @@ AS
 										CAST(r.report_date AS DATE) AS 'Date',
 										c.client_name AS 'Client',
 										
-										WITH engineer_dis AS (
-											SELECT DISTINCT e.engineer_name FROM #report_temp_table_filter r
-																				LEFT JOIN report.report_preparation_table rp ON r.id_report = rp.id_report
-																				LEFT JOIN report.engineer_table e ON e.id_engineer = rp.id_engineer
-																			WHERE r.id_report = @param
-										)
-										(SELECT STRING_AGG(engineer_name, ', ') FROM engineer_dis)
+										
 
 										p.plant_name AS 'Plant name',
 										btc.business_turnover_name AS 'Plant business turnover',
