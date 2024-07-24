@@ -2391,26 +2391,23 @@ AS
 					IF (@param LIKE '%,%')
 						BEGIN
 							DECLARE
-								@has_hydrants AS BIT,
+								@has_hydrants AS VARCHAR(8),
 								@hydrants_protection AS INT,
 								@hydrants_standpipe_type AS INT,
 								@hydrants_standpipe_class AS INT;
-							DECLARE @value_hydrants AS VARCHAR(200);
-							DECLARE cur_hydrants CURSOR DYNAMIC FORWARD_ONLY
-													FOR SELECT * FROM STRING_SPLIT(@param, ',');
-							OPEN cur_hydrants;
-							FETCH NEXT FROM cur_hydrants INTO @value_hydrants;
-							WHILE @@FETCH_STATUS = 0
-								BEGIN
-									IF (@param LIKE ':')
-										BEGIN
-											DECLARE @double_dots_index INT = CHARINDEX(':', @param);
 
-											DECLARE @left_value VARCHAR(50) = LOWER(LEFT(@param, @double_dots_index - 1));
-											DECLARE @right_value VARCHAR(50) = LOWER(RIGHT(@param, LEN(@param) - @double_dots_index));
-										END;
-								END;
+							SELECT * INTO #temp_hydrant_table FROM STRING_SPLIT(@param, ',');
+							CREATE NONCLUSTERED INDEX idx_temp_hydrant_table ON #temp_hydrant_table(value);
+
+							SELECT * FROM #temp_hydrant_table;
+
+							SET @has_hydrants = report.CALCULATE_BIT_TO_SAVE((SELECT LOWER(RIGHT(value, LEN(value) - CHARINDEX(':', value))) FROM #temp_hydrant_table WHERE 
+																														LOWER(LEFT(value, CHARINDEX(':', value) - 1)) = 'has hydrants' OR
+																														LOWER(LEFT(value, CHARINDEX(':', value) - 1)) = 'tiene hidrantes' OR
+																														LOWER(LEFT(value, CHARINDEX(':', value) - 1)) = 'hidrantes'));
+							SELECT @has_hydrants;
 						END;
+					DROP TABLE #temp_hydrant_table;
 				END;
 		END;
 
@@ -2451,3 +2448,5 @@ EXEC report.reports_filter_by 'area exposures', '0';
 
 EXEC report.reports_filter_by 'descripcion de area', 'residential';
 EXEC report.reports_filter_by 'area description', 'industrial';
+
+EXEC report.reports_filter_by 'hydrants', 'has hydrants:si,protection:minor fires,standpipe type:manual dry,standpipe class:II';
