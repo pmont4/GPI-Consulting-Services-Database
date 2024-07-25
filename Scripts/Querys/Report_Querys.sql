@@ -401,3 +401,5 @@ EXEC report.general_querys 'reportes'
 EXEC report.general_querys 'reportes por planta'
 EXEC report.general_querys 'reportes por ingeniero'
 EXEC report.general_querys 'cantidad de reportes'
+
+
