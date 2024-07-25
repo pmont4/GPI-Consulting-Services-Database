@@ -307,7 +307,8 @@ AS
 								IF (TRY_CAST(@value AS DECIMAL(19, 2)) IS NOT NULL)
 									BEGIN
 										SET @to_return = CAST(@value AS DECIMAL(19,2));
-										SET @to_return = @to_return / 7.50;
+										DECLARE @fixed_q AS DECIMAL(19, 2) = @to_return / 7.50;
+										RETURN @fixed_q
 									END;
 							END;
 						ELSE IF (@value LIKE '%$%')
@@ -318,9 +319,6 @@ AS
 			END;
 		RETURN @to_return;
 	END;
-
-SELECT report.CALCULATE_LOSS_VALUE('$,2512092.01+$,3744364.74+$,200133.96+$,121128.35+$,18328.21+$,186364.43+$,1179707.87+$,257710.43+$,27000');
-SELECT report.CALCULATE_LOSS_VALUE('$,8246830');
 
 -- ------------------------------------
 

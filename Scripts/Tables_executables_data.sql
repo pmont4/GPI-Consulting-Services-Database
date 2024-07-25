@@ -43,6 +43,7 @@ EXEC report.proc_insert_client 'Seguros Universales S.A.';
 EXEC report.proc_insert_client 'Grupo Generali';
 EXEC report.proc_insert_client 'Somit, Corredores de Seguros, S.A.'
 EXEC report.proc_insert_client 'Bowring Marsh';
+EXEC report.proc_insert_client 'Aseguradora General, S.A.'
 
 -- Capacity type table executables for data insertion
 -- Data is being inserted in the following order
@@ -250,6 +251,9 @@ EXEC report.proc_insert_plant 'Envases Universales Rexam de Centroamérica, S.A.
 EXEC report.proc_insert_plant 'Envases Universales Rexam de Centroamérica, S.A.', null, 'C.A.', 'Guatemala', 'Guatemala', 2005, 2007, 'Production', 'Manufactura de envases de aluminio para todo tipo de bebias.', 'I', 'Industrial, Rural', 'Km. 32 Carretera al Pacifico, Parque Flor de Campo, Amatitlán, Guatemala.', '14°27m7.14s', '90°38m19.98s', 1183;
 EXEC report.proc_insert_plant 'Planta de Reserva Fría de Generación de ETEN, S.A.', 'CENTRALTERMOELÉCTRICA PLANTA ÉTEN', 'S.A.', 'Peru', 'Lambayeque', 2013, 2015, 'Electricity Generation', 'Thermoelectrical Power Plant: generation based on converting thermal power into electricity through one (1) GE model 7F 5-Series gas Turbine coupled to an electrical generator. The main fuel used at the plant is B5 Diesel.', null, 'Rural', 'District of Reque, Province of Chiclayo, Department of Lambayeque, Perú.', '-6.8848', '-79.7897', 70;
 EXEC report.proc_insert_plant 'Expogranel, S.A.', null, 'C.A.', 'Guatemala', 'Escuintla', null, null, 'Storage', 'Recepción, almacenamiento y embarque del azúcar de exportación producida por los ingenios de Guatemala.', null, 'Industrial, Commercial', '4ª. Calle, 1ª. Y 2da. Avenida Recinto Portuario, Puerto Quetzal, Escuintla, Guatemala, C.A.', '13°55m28.79s', '90°47m01.17s', 6;
+EXEC report.proc_insert_plant 'Naturaceites - Fray', null, 'C.A.', 'Guatemala', 'Alta Verapaz', null, 2011, 'Production', 'Planta industrial dedicada a la extracción de aceite de palma africana y otros derivados como aceite de palmiste, harina de palmiste, etc.', 'IV', 'Rural', 'Km. 393.5 Finca Yalgobé, Fray Bartolomé de las Casas Alta Verapáz, Guatemala', '15°47m19.52s', '89°50m40.58s', 160;
+EXEC report.proc_insert_plant 'Fabrigas, S.A. y Subsidarias / Productos del Aire de Guatemala, S.A.', 'Planta Santa Elisa (Zona 12)', 'C.A.', 'Guatemala', 'Guatemala', null, 1960, 'Production', 'Planta industrial dedicada a la producción de acetileno y al envasado y distribución de gases industriales (Oxígeno, Nitrógeno, Argón y Dióxido de Carbono) y llenado de extintores.', 'IV', 'Industrial', '31 Calle 25-50 Zona 12 Guatemala, Guatemala', '14°35m18.89s', '90°32m21.88s', 1498;
+EXEC report.proc_insert_plant 'Fabrigas, S.A. y Subsidarias / Productos del Aire de Guatemala, S.A.', 'Planta Zona 8', 'C.A.', 'Guatemala', 'Guatemala', null, null, 'Storage', 'Oficinas administrativas, almacenamiento y despacho de gases industriales como acetileno, oxígeno, nitrógeno, argón y dióxido de carbono), y equipo como extintores, equipo de soldadura, compresores, electrodos, etc. También cuentan con un área de fraccionamiento de Oxígeno de alta pureza para aplicaciones hospitalarias.', null, 'commercial, residential', '41 Calle 6-27 Zona 8 Guatemala, Guatemala', '14°36m40.45s', '90°31m56.55s', 1536;
 
 -- Report table executables for data insertion
 -- Data has to be inserted in the following order:
@@ -367,6 +371,12 @@ EXEC report.proc_insert_report_table '11/febrero/2022', 'Seguros Agromercantil, 
 EXEC report.proc_insert_report_table '28/abril/2021', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4090, 'Marlon Lira', null, '230.0,MW', 22000, 29, 1, 'si', 'Major fires', 'Automatic Wet', 'III', 'si', 'si', 'si', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '17/abril/2020', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4090, 'Rafael Grajeda', null, '230.0,MW', 22000, 24, 1, 'si', 'Major fires', 'Automatic Wet', 'II', 'si', 'si', 'si', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '13/septiembre/2012', 'Seguros Agromercantil, S.A.', 4091, 'Marlon Lira', null, '350000,metric tons', 41000, 120, 3, 'si', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '11/septiembre/2015', 'Seguros Agromercantil, S.A.', 4091, 'Marlon Lira', null, '350000,metric tons', 41000, 158, 3, 'si', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '11/septiembre/2015', 'Seguros Mapfre - Guatemala', 4091, 'Marlon Lira', null, '350000,metric tons', 41000, 158, 3, 'si', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '29/septiembre/2022', 'Aseguradora General, S.A.', 4091, 'Juan Diego Lacayo', 'ISO 9001-2015, ISO 18000, ISO 17025, PBIP', '350000,metric tons', 41000, 165, 3, 'si', 'Major fires', 'automatic dry', 'II', 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '11/marzo/2020', 'Unity Promotores, S.A.', 4092, 'Rafael Grajeda', null, '120,metric tons/hour', 19390, 200, 2, 'si', 'minor fires', null, null, 'no', 'si', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '21/septiembre/2016', 'Tecniseguros, Corredores de Seguros, S.A.', 4093, 'Juan Jose Lira', null, '200,units/day', 14000, 100, 2, 'si', null, null, null, 'no', 'no', 'si', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '23/septiembre/2016', 'Tecniseguros, Corredores de Seguros, S.A.', 4094, 'Juan Jose Lira', null, null, 2857, 100, 2, 'no', null, null, null, 'no', 'si', 'no', 'no', 'no', 'no', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -479,6 +489,12 @@ EXEC report.proc_insert_perils_and_risk_table 4102, 2, 'none', 1, 1, 2, 2.5, 'no
 EXEC report.proc_insert_perils_and_risk_table 4103, 3, 'none', 1, 1.5, 1.5, 2.5, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 4104, 3, 'none', 1, 1, 1.5, 2.5, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 4105, 'none', 1, 3, 3, 2.5, 2.5, 'none', 2, 2, 'none', 'none', 2.5;
+EXEC report.proc_insert_perils_and_risk_table 4106, 2.5, 1, 3, 3, 2.5, 2.5, 2.5, 2, 2, 'none', 'none', 2.5;
+EXEC report.proc_insert_perils_and_risk_table 4107, 2.5, 1, 3, 3, 2.5, 2.5, 2.5, 2, 2, 'none', 'none', 2.5;
+EXEC report.proc_insert_perils_and_risk_table 4108, 1.5, 1, 2.5, 2.5, 2.5, 2.5, 2.5, 1, 2, 1, 2, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 4109, 2.5, 'none', 1, 1.5, 2, 2, 'none', 1, 1, 1, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 4110, 2.5, 1, 1, 2, 2, 2.5, 'none', 1, 2, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 4111, 2.5, 1, 1, 2, 1.5, 2.5, 'none', 1, 1, 'none', 'none', 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -572,3 +588,8 @@ EXEC report.proc_insert_loss_scenario_table 4100, '$,92540000.00', null, '$,3045
 EXEC report.proc_insert_loss_scenario_table 4101, '$,134938208.00', 93, '$,58600000', 100, '$,16500000.00', '$,67500000.00', null, null, '$,98438208.00+$,20000000.00', null, 95, 83;
 EXEC report.proc_insert_loss_scenario_table 4103, '$,126806113.00', 64, '$,33225000', 100, '$,116623431.00', '$,78733+$,5720+$,74279', null, null, '$,8590330+$,1429366', null, 72, null;
 EXEC report.proc_insert_loss_scenario_table 4104, '$,118215783.00', 80, '$,33225000', 100, null, null, null, null, null, null, 84, null;
+EXEC report.proc_insert_loss_scenario_table 4108, '$,46199999.52', 18, '$,721154', 24, '$,390805.96+$,5048604.68+$,5448800.35+$,8312678.00+$,7067354.00+$,547785.69+$,4879552.28+$,7927985.19+$,135642.17+$,5626332.90', '$,313020.39+$,273141.70', '$,228296.21', null, null, null, 18, null;
+EXEC report.proc_insert_loss_scenario_table 4109, '$,22054375', 54, '$,10787122', 80, '$,15000000+$,354375', null, null, null, '$,6700000', null, 64, null;
+EXEC report.proc_insert_loss_scenario_table 4110, 'Q,61763676.00', null, 'Q,9000000', null, 'Q,15473202.00', 'Q,30226361.00', null, null, 'Q,16064113.00', null, null, 58;
+EXEC report.proc_insert_loss_scenario_table 4111, 'Q,27646116.69', null, null, null, 'Q,9863918.00', null, null, null, 'Q,17782198.69', null, null, 49;
+
