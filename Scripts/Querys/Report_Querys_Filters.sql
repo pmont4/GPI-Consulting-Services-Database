@@ -2847,6 +2847,8 @@ AS
 										ELSE
 											PRINT 'No values were found with that hydrant filter';
 									END;
+								ELSE
+									PRINT 'No query could match that hydrant filter';
 							END;
 						END;
 					DROP TABLE #temp_hydrant_table;
