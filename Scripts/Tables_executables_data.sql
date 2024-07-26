@@ -254,6 +254,7 @@ EXEC report.proc_insert_plant 'Expogranel, S.A.', null, 'C.A.', 'Guatemala', 'Es
 EXEC report.proc_insert_plant 'Naturaceites - Fray', null, 'C.A.', 'Guatemala', 'Alta Verapaz', null, 2011, 'Production', 'Planta industrial dedicada a la extracción de aceite de palma africana y otros derivados como aceite de palmiste, harina de palmiste, etc.', 'IV', 'Rural', 'Km. 393.5 Finca Yalgobé, Fray Bartolomé de las Casas Alta Verapáz, Guatemala', '15°47m19.52s', '89°50m40.58s', 160;
 EXEC report.proc_insert_plant 'Fabrigas, S.A. y Subsidarias / Productos del Aire de Guatemala, S.A.', 'Planta Santa Elisa (Zona 12)', 'C.A.', 'Guatemala', 'Guatemala', null, 1960, 'Production', 'Planta industrial dedicada a la producción de acetileno y al envasado y distribución de gases industriales (Oxígeno, Nitrógeno, Argón y Dióxido de Carbono) y llenado de extintores.', 'IV', 'Industrial', '31 Calle 25-50 Zona 12 Guatemala, Guatemala', '14°35m18.89s', '90°32m21.88s', 1498;
 EXEC report.proc_insert_plant 'Fabrigas, S.A. y Subsidarias / Productos del Aire de Guatemala, S.A.', 'Planta Zona 8', 'C.A.', 'Guatemala', 'Guatemala', null, null, 'Storage', 'Oficinas administrativas, almacenamiento y despacho de gases industriales como acetileno, oxígeno, nitrógeno, argón y dióxido de carbono), y equipo como extintores, equipo de soldadura, compresores, electrodos, etc. También cuentan con un área de fraccionamiento de Oxígeno de alta pureza para aplicaciones hospitalarias.', null, 'commercial, residential', '41 Calle 6-27 Zona 8 Guatemala, Guatemala', '14°36m40.45s', '90°31m56.55s', 1536;
+EXEC report.proc_insert_plant 'Fabrigas, S.A. y Subsidarias / Productos del Aire de Guatemala, S.A.', 'Planta El Jocote', 'C.A.', 'Guatemala', 'Escuintla', null, null, 'Production', 'Producción de oxígeno, hidrógeno, argón y nitrógeno.', 'IV', 'rural', 'Km 74.5 Carretera a Siquinalá Escuintla, Guatemala', '14°16m35.79s', '90°54m44.13s', 185;
 
 -- Report table executables for data insertion
 -- Data has to be inserted in the following order:
@@ -377,6 +378,7 @@ EXEC report.proc_insert_report_table '29/septiembre/2022', 'Aseguradora General,
 EXEC report.proc_insert_report_table '11/marzo/2020', 'Unity Promotores, S.A.', 4092, 'Rafael Grajeda', null, '120,metric tons/hour', 19390, 200, 2, 'si', 'minor fires', null, null, 'no', 'si', 'no', 'no', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '21/septiembre/2016', 'Tecniseguros, Corredores de Seguros, S.A.', 4093, 'Juan Jose Lira', null, '200,units/day', 14000, 100, 2, 'si', null, null, null, 'no', 'no', 'si', 'no', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '23/septiembre/2016', 'Tecniseguros, Corredores de Seguros, S.A.', 4094, 'Juan Jose Lira', null, null, 2857, 100, 2, 'no', null, null, null, 'no', 'si', 'no', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '21/octubre/2016', 'Tecniseguros, Corredores de Seguros, S.A.', 4095, 'Juan Jose Lira', null, '166,metric tons', 7736, 64, 2, 'si', null, null, null, 'no', 'si', 'si', 'si', 'no', 'si', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -495,6 +497,7 @@ EXEC report.proc_insert_perils_and_risk_table 4108, 1.5, 1, 2.5, 2.5, 2.5, 2.5, 
 EXEC report.proc_insert_perils_and_risk_table 4109, 2.5, 'none', 1, 1.5, 2, 2, 'none', 1, 1, 1, 1, 2.5;
 EXEC report.proc_insert_perils_and_risk_table 4110, 2.5, 1, 1, 2, 2, 2.5, 'none', 1, 2, 'none', 'none', 2;
 EXEC report.proc_insert_perils_and_risk_table 4111, 2.5, 1, 1, 2, 1.5, 2.5, 'none', 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 4112, 2.5, 1, 1, 2, 2.5, 2.5, 1, 1, 1, 'none', 'none', 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -592,4 +595,5 @@ EXEC report.proc_insert_loss_scenario_table 4108, '$,46199999.52', 18, '$,721154
 EXEC report.proc_insert_loss_scenario_table 4109, '$,22054375', 54, '$,10787122', 80, '$,15000000+$,354375', null, null, null, '$,6700000', null, 64, null;
 EXEC report.proc_insert_loss_scenario_table 4110, 'Q,61763676.00', null, 'Q,9000000', null, 'Q,15473202.00', 'Q,30226361.00', null, null, 'Q,16064113.00', null, null, 58;
 EXEC report.proc_insert_loss_scenario_table 4111, 'Q,27646116.69', null, null, null, 'Q,9863918.00', null, null, null, 'Q,17782198.69', null, null, 49;
+EXEC report.proc_insert_loss_scenario_table 4112, 'Q,206083154.42', null, null, null, 'Q,1524500.00', 'Q,193875743.60', null, null, 'Q,10682910.82', null, null, 84;
 
