@@ -7010,6 +7010,1233 @@ AS
 								END;
 						END;
 				END;
+			ELSE IF (LOWER(@filter) = 'machinery and equipment amount' OR LOWER(@filter) = 'machinery amount')
+				BEGIN
+					IF (@param LIKE '%,%' AND @param LIKE '%:%' AND (@param LIKE '%rango%' OR @param LIKE '%range%'))
+						BEGIN
+							BEGIN TRY
+								DECLARE
+									@values_to_evaluate_machinary AS VARCHAR(100),
+									@highiest_value_machinary AS INT,
+									@lowest_value_machinary AS INT;
+
+								DECLARE @value_range_machinary AS VARCHAR(100);
+								DECLARE cur_range_machinary CURSOR DYNAMIC FORWARD_ONLY
+															FOR SELECT * FROM STRING_SPLIT(@param, ',');
+								OPEN cur_range_machinary;
+								FETCH NEXT FROM cur_range_machinary INTO @value_range_machinary;
+								WHILE @@FETCH_STATUS = 0
+									BEGIN
+										IF (@value_range_machinary LIKE '%:%')
+											BEGIN
+												IF (PATINDEX('%[0-9]%', @value_range_machinary) > 0)
+													SET @values_to_evaluate_machinary = @value_range_machinary;
+											END;
+										FETCH NEXT FROM cur_range_machinary INTO @value_range_machinary
+									END;
+								CLOSE cur_range_machinary;
+								DEALLOCATE cur_range_machinary;
+							END TRY
+							BEGIN CATCH
+								CLOSE cur_range_machinary;
+								DEALLOCATE cur_range_machinary;
+							END CATCH;
+							BEGIN
+								IF (@values_to_evaluate_machinary IS NOT NULL)
+									BEGIN TRY
+										DECLARE @helper_machinary AS INT;
+										DECLARE cur_evaluate_range_machinary CURSOR DYNAMIC FORWARD_ONLY
+																				FOR SELECT * FROM STRING_SPLIT(@values_to_evaluate_machinary, ':');
+										OPEN cur_evaluate_range_machinary;
+										FETCH NEXT FROM cur_evaluate_range_machinary INTO @helper_machinary;
+										WHILE @@FETCH_STATUS = 0
+											BEGIN
+												IF (@highiest_value_machinary IS NULL)
+													SET @highiest_value_machinary = @helper_machinary;
+											
+												IF (@lowest_value_machinary IS NULL AND @highiest_value_machinary IS NOT NULL)
+													IF (@helper_machinary < @highiest_value_machinary)
+														SET @lowest_value_machinary = @helper_machinary;
+													ELSE IF (@helper_machinary > @highiest_value_machinary)
+														BEGIN
+															DECLARE @temp_machinary AS INT = @highiest_value_machinary;
+															SET @lowest_value_machinary = @temp_machinary;
+															SET @highiest_value_machinary = @helper_machinary;
+														END;
+												FETCH NEXT FROM cur_evaluate_range_machinary INTO @helper_machinary
+											END;
+										CLOSE cur_evaluate_range_machinary;
+										DEALLOCATE cur_evaluate_range_machinary;
+									END TRY
+									BEGIN CATCH
+										CLOSE cur_evaluate_range_machinary;
+										DEALLOCATE cur_evaluate_range_machinary;
+									END CATCH;
+							END;
+
+							BEGIN
+								IF (@highiest_value_machinary IS NOT NULL AND @lowest_value_machinary IS NOT NULL)
+									BEGIN
+										IF ((SELECT TOP 1 r.id_report FROM #report_temp_table_filter r
+																			LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
+																			WHERE lst.loss_scenario_machinery_equipment_amount >= @lowest_value_machinary AND lst.loss_scenario_machinery_equipment_amount <= @highiest_value_machinary + 1) IS NOT NULL)
+											BEGIN
+												SELECT DISTINCT
+													r.id_report AS 'ID report',
+
+													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_machinery_equipment_amount, 'value') AS 'Machinary and equipment amount ($USD)',
+
+													CAST(r.report_date AS DATE) AS 'Date',
+													c.client_name AS 'Client',
+													report.REPORT_PREPARED_BY(r.id_report) AS 'Prepared by',
+													IIF(p.plant_name = p.plant_account_name, p.plant_name, CONCAT(p.plant_account_name, ', ', p.plant_name)) AS 'Plant name',
+													btc.business_turnover_name AS 'Plant business turnover',
+													p.plant_business_specific_turnover AS 'Plant activity',
+													IIF(p.plant_merchandise_class IS NOT NULL, mc.merchandise_classification_type_name, 'Has no merchandise classification saved') AS 'Merchandise classification',
+													pp.plant_certifications AS 'Certifications',
+		
+													IIF(pp.plant_parameters_installed_capacity IS NOT NULL AND pp.plant_parameters_installed_capacity > 0, 
+														IIF(pp.id_capacity_type IS NOT NULL, 
+															IIF(TRY_CAST(pp.plant_parameters_installed_capacity AS INT) IS NOT NULL, 
+																CONCAT(CAST(CAST(pp.plant_parameters_installed_capacity AS INT) AS VARCHAR(30)), ' ', ct.capacity_type_name),
+																CONCAT(FORMAT(pp.plant_parameters_installed_capacity, 'N2'), ' ', ct.capacity_type_name)), 
+															FORMAT(pp.plant_parameters_installed_capacity, 'N2')), 
+														'No installed capacity was saved') AS 'Installed capacity',
+
+													IIF(pp.plant_parameters_workforce IS NOT NULL AND pp.plant_parameters_workforce > 0,
+															CONCAT(pp.plant_parameters_workforce, ' employees'),
+															'No workforce was saved') AS 'Plant workforce',
+		
+													IIF(pp.plant_parameters_built_up IS NOT NULL AND pp.plant_parameters_built_up > 0, 
+														IIF(TRY_CAST(pp.plant_parameters_built_up AS INT) IS NOT NULL, 
+															CAST(CAST(pp.plant_parameters_built_up AS INT) AS VARCHAR(20)),
+															FORMAT(ROUND(pp.plant_parameters_built_up, 2), 'N2')), 
+														'No built-up area saved') AS 'Built-up area (m2)',
+
+													report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
+													report.PLANT_AREA_DESCRIPTION(p.id_plant) AS 'Area description',
+
+													report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
+
+													IIF(pp.id_hydrant_protection IS NOT NULL, hdp.hydrant_protection_classification_name, 'No hydrant protection classification saved') AS 'Hydrant protection classification',
+													IIF(pp.id_hydrant_standpipe_type IS NOT NULL, hst.hydrant_standpipe_system_type_name, 'No hydrant standpipe type saved') AS 'Hydrant standpipe type',
+													IIF(pp.id_hydrant_standpipe_class IS NOT NULL, hsc.hydrant_standpipe_system_class_name, 'No hydrant standpipe classification saved') AS 'Hydrant standpipe classification',
+
+													report.HAVE_OR_NOT(pp.plant_parameters_has_foam_suppression_sys) AS 'Has a foam suppression system?', 
+													report.HAVE_OR_NOT(pp.plant_parameters_has_suppresion_sys) AS 'Has a suppression system?',
+													report.HAVE_OR_NOT(pp.plant_parameters_has_sprinklers) AS 'Has sprinklers?',
+													report.HAVE_OR_NOT(pp.plant_parameters_has_afds) AS 'Has an automatic fire detection system?',
+													report.HAVE_OR_NOT(pp.plant_parameters_has_fire_detection_batteries) AS 'Has battery fire detectors?',
+													report.HAVE_OR_NOT(pp.plant_parameters_has_private_brigade) AS 'Has a private brigade?',
+													report.HAVE_OR_NOT(pp.plant_parameters_has_lighting_protection) AS 'Has lighting protection?',
+
+													report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_fire_explosion) AS 'Fire / Explosion risk',
+													report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_landslide_subsidence) AS 'Landslide / Subsidence risk',
+													report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_water_flooding) AS 'Water flooding risk',
+													report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_wind_storm) AS 'Wind / Storm risk',
+													report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_lighting) AS 'Lighting risk',
+													report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_earthquake) AS 'Earthquake risk',
+													report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_tsunami) AS 'Tsunami risk',
+													report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_collapse) AS 'Collapse risk',
+													report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_aircraft) AS 'Aircraft risk',
+													report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_riot) AS 'Riot risk',
+													report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_design_failure) AS 'Design failure risk',
+													report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_overall_rating) AS 'Overall rating',
+
+													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_material_damage_percentage, 'percentage') AS 'Material damage percentage',
+													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_material_damage_amount, 'value') AS 'Material damage amount ($USD)',
+
+													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_business_interruption_percentage, 'percentage') AS 'Business interruption percentage',
+													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_business_interruption_amount, 'value') AS 'Business interruption amount ($USD)',
+
+													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_buildings_amount, 'value') AS 'Building amount ($USD)',
+													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_electronic_equipment_amount, 'value') AS 'Electronic equipment amount ($USD)',
+													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_expansions_investment_works_amount, 'value') AS 'Expansion or investment amount ($USD)',
+													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_stock_amount, 'value') AS 'Stock amount',
+													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_total_insured_values, 'value') AS 'Total insured values (MD + BI) ($USD)',
+
+													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_pml_percentage, 'percentage') AS 'PML percentage',
+													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_mfl, 'percentage') AS 'MFL percentage'
+												FROM #report_temp_table_filter r
+													LEFT JOIN report.client_table c ON r.id_client = c.id_client
+													LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
+													LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
+													LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
+													LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
+													LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
+													LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
+													LEFT JOIN report.hydrant_protection_classification_table hdp ON pp.id_hydrant_protection = hdp.id_hydrant_protection_classification
+													LEFT JOIN report.hydrant_standpipe_system_type_table hst ON pp.id_hydrant_standpipe_type = hst.id_hydrant_standpipe_system_type
+													LEFT JOIN report.hydrant_standpipe_system_class_table hsc ON pp.id_hydrant_standpipe_class = hsc.id_hydrant_standpipe_system_class
+													LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
+													LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
+												WHERE lst.loss_scenario_machinery_equipment_amount >= @lowest_value_machinary AND lst.loss_scenario_machinery_equipment_amount <= @highiest_value_machinary + 1
+											END;
+										ELSE
+											PRINT 'No values where found with that machinery and equipment amount filter';
+									END;
+								ELSE
+									PRINT 'Cannot evaluate any data because the range of the machinery and equipment could not be determinated';
+							END;
+						END;
+					ELSE IF (@param LIKE '%,%' AND ((@param NOT LIKE '%rango%' OR @param NOT LIKE '%range%') AND @param NOT LIKE '%:%'))
+						BEGIN TRY
+							DECLARE 
+								@evaluate_machinary AS VARCHAR(2),
+								@amount_machinary AS INT;
+
+							DECLARE @value_machinary AS VARCHAR(100);
+							DECLARE cur_machinary CURSOR DYNAMIC FORWARD_ONLY
+													FOR SELECT * FROM STRING_SPLIT(@param, ',');
+							OPEN cur_machinary;
+							FETCH NEXT FROM cur_machinary INTO @value_machinary;
+							WHILE @@FETCH_STATUS = 0
+								BEGIN
+									IF (TRY_CAST(@value_machinary AS INT) IS NULL)
+										BEGIN
+											IF (TRIM(LOWER(@value_machinary)) = 'more than' OR TRIM(LOWER(@value_machinary)) = 'mas que' OR TRIM(LOWER(@value_machinary)) = 'mayor que'
+												OR TRIM(LOWER(@value_machinary)) = 'less than' OR TRIM(LOWER(@value_machinary)) = 'menos que' OR TRIM(LOWER(@value_machinary)) = 'menor que')
+												SET @evaluate_machinary = (SELECT CASE
+																					WHEN TRIM(LOWER(@value_machinary)) = 'more than' OR TRIM(LOWER(@value_machinary)) = 'mas que' OR TRIM(LOWER(@value_machinary)) = 'mayor que' THEN '>'
+																					WHEN TRIM(LOWER(@value_machinary)) = 'less than' OR TRIM(LOWER(@value_machinary)) = 'menos que' OR TRIM(LOWER(@value_machinary)) = 'menor que' THEN '<'
+																				END);
+										END;
+									ELSE
+										SET @amount_machinary = CAST(@value_machinary AS INT);
+									FETCH NEXT FROM cur_machinary INTO @value_machinary;
+								END;
+							CLOSE cur_machinary;
+							DEALLOCATE cur_machinary;
+						END TRY
+						BEGIN CATCH
+							CLOSE cur_machinary;
+							DEALLOCATE cur_machinary;
+						END CATCH;
+
+						BEGIN
+							IF (@evaluate_machinary IS NOT NULL AND @amount_machinary IS NOT NULL)
+								BEGIN
+									IF (@evaluate_machinary = '>')
+										BEGIN
+											IF ((SELECT TOP 1 r.id_report FROM #report_temp_table_filter r
+																			LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
+																			WHERE lst.loss_scenario_machinery_equipment_amount > @amount_machinary) IS NOT NULL)
+												BEGIN
+													SELECT DISTINCT
+														r.id_report AS 'ID report',
+
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_machinery_equipment_amount, 'value') AS 'Machinary and equipment amount ($USD)',
+
+														CAST(r.report_date AS DATE) AS 'Date',
+														c.client_name AS 'Client',
+														report.REPORT_PREPARED_BY(r.id_report) AS 'Prepared by',
+														IIF(p.plant_name = p.plant_account_name, p.plant_name, CONCAT(p.plant_account_name, ', ', p.plant_name)) AS 'Plant name',
+														btc.business_turnover_name AS 'Plant business turnover',
+														p.plant_business_specific_turnover AS 'Plant activity',
+														IIF(p.plant_merchandise_class IS NOT NULL, mc.merchandise_classification_type_name, 'Has no merchandise classification saved') AS 'Merchandise classification',
+														pp.plant_certifications AS 'Certifications',
+		
+														IIF(pp.plant_parameters_installed_capacity IS NOT NULL AND pp.plant_parameters_installed_capacity > 0, 
+															IIF(pp.id_capacity_type IS NOT NULL, 
+																IIF(TRY_CAST(pp.plant_parameters_installed_capacity AS INT) IS NOT NULL, 
+																	CONCAT(CAST(CAST(pp.plant_parameters_installed_capacity AS INT) AS VARCHAR(30)), ' ', ct.capacity_type_name),
+																	CONCAT(FORMAT(pp.plant_parameters_installed_capacity, 'N2'), ' ', ct.capacity_type_name)), 
+																FORMAT(pp.plant_parameters_installed_capacity, 'N2')), 
+															'No installed capacity was saved') AS 'Installed capacity',
+		
+														IIF(pp.plant_parameters_built_up IS NOT NULL AND pp.plant_parameters_built_up > 0, 
+															IIF(TRY_CAST(pp.plant_parameters_built_up AS INT) IS NOT NULL, 
+																CAST(CAST(pp.plant_parameters_built_up AS INT) AS VARCHAR(20)),
+																FORMAT(ROUND(pp.plant_parameters_built_up, 2), 'N2')), 
+															'No built-up area saved') AS 'Built-up area (m2)',
+
+														IIF(pp.plant_parameters_workforce IS NOT NULL AND pp.plant_parameters_workforce > 0,
+															CONCAT(pp.plant_parameters_workforce, ' employees'),
+															'No workforce was saved') AS 'Plant workforce',
+
+														report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
+														report.PLANT_AREA_DESCRIPTION(p.id_plant) AS 'Area description',
+
+														report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
+
+														IIF(pp.id_hydrant_protection IS NOT NULL, hdp.hydrant_protection_classification_name, 'No hydrant protection classification saved') AS 'Hydrant protection classification',
+														IIF(pp.id_hydrant_standpipe_type IS NOT NULL, hst.hydrant_standpipe_system_type_name, 'No hydrant standpipe type saved') AS 'Hydrant standpipe type',
+														IIF(pp.id_hydrant_standpipe_class IS NOT NULL, hsc.hydrant_standpipe_system_class_name, 'No hydrant standpipe classification saved') AS 'Hydrant standpipe classification',
+
+														report.HAVE_OR_NOT(pp.plant_parameters_has_foam_suppression_sys) AS 'Has a foam suppression system?', 
+														report.HAVE_OR_NOT(pp.plant_parameters_has_suppresion_sys) AS 'Has a suppression system?',
+														report.HAVE_OR_NOT(pp.plant_parameters_has_sprinklers) AS 'Has sprinklers?',
+														report.HAVE_OR_NOT(pp.plant_parameters_has_afds) AS 'Has an automatic fire detection system?',
+														report.HAVE_OR_NOT(pp.plant_parameters_has_fire_detection_batteries) AS 'Has battery fire detectors?',
+														report.HAVE_OR_NOT(pp.plant_parameters_has_private_brigade) AS 'Has a private brigade?',
+														report.HAVE_OR_NOT(pp.plant_parameters_has_lighting_protection) AS 'Has lighting protection?',
+
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_fire_explosion) AS 'Fire / Explosion risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_landslide_subsidence) AS 'Landslide / Subsidence risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_water_flooding) AS 'Water flooding risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_wind_storm) AS 'Wind / Storm risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_lighting) AS 'Lighting risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_earthquake) AS 'Earthquake risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_tsunami) AS 'Tsunami risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_collapse) AS 'Collapse risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_aircraft) AS 'Aircraft risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_riot) AS 'Riot risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_design_failure) AS 'Design failure risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_overall_rating) AS 'Overall rating',
+
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_material_damage_percentage, 'percentage') AS 'Material damage percentage',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_material_damage_amount, 'value') AS 'Material damage amount ($USD)',
+
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_business_interruption_percentage, 'percentage') AS 'Business interruption percentage',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_business_interruption_amount, 'value') AS 'Business interruption amount ($USD)',
+
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_buildings_amount, 'value') AS 'Building amount ($USD)',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_electronic_equipment_amount, 'value') AS 'Electronic equipment amount ($USD)',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_expansions_investment_works_amount, 'value') AS 'Expansion or investment amount ($USD)',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_stock_amount, 'value') AS 'Stock amount',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_total_insured_values, 'value') AS 'Total insured values (MD + BI) ($USD)',
+
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_pml_percentage, 'percentage') AS 'PML percentage',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_mfl, 'percentage') AS 'MFL percentage'
+													FROM #report_temp_table_filter r
+														LEFT JOIN report.client_table c ON r.id_client = c.id_client
+														LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
+														LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
+														LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
+														LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
+														LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
+														LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
+														LEFT JOIN report.hydrant_protection_classification_table hdp ON pp.id_hydrant_protection = hdp.id_hydrant_protection_classification
+														LEFT JOIN report.hydrant_standpipe_system_type_table hst ON pp.id_hydrant_standpipe_type = hst.id_hydrant_standpipe_system_type
+														LEFT JOIN report.hydrant_standpipe_system_class_table hsc ON pp.id_hydrant_standpipe_class = hsc.id_hydrant_standpipe_system_class
+														LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
+														LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
+													WHERE lst.loss_scenario_machinery_equipment_amount > @amount_machinary
+												END;
+											ELSE
+												PRINT 'No values where found with that machinery and equipment amount filter';
+										END;
+									ELSE IF (@evaluate_machinary = '<')
+										BEGIN
+											IF ((SELECT TOP 1 r.id_report FROM #report_temp_table_filter r
+																			LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
+																			WHERE lst.loss_scenario_machinery_equipment_amount < @amount_machinary) IS NOT NULL)
+												BEGIN
+													SELECT DISTINCT
+														r.id_report AS 'ID report',
+
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_machinery_equipment_amount, 'value') AS 'Machinary and equipment amount ($USD)',
+
+														CAST(r.report_date AS DATE) AS 'Date',
+														c.client_name AS 'Client',
+														report.REPORT_PREPARED_BY(r.id_report) AS 'Prepared by',
+														IIF(p.plant_name = p.plant_account_name, p.plant_name, CONCAT(p.plant_account_name, ', ', p.plant_name)) AS 'Plant name',
+														btc.business_turnover_name AS 'Plant business turnover',
+														p.plant_business_specific_turnover AS 'Plant activity',
+														IIF(p.plant_merchandise_class IS NOT NULL, mc.merchandise_classification_type_name, 'Has no merchandise classification saved') AS 'Merchandise classification',
+														pp.plant_certifications AS 'Certifications',
+		
+														IIF(pp.plant_parameters_installed_capacity IS NOT NULL AND pp.plant_parameters_installed_capacity > 0, 
+															IIF(pp.id_capacity_type IS NOT NULL, 
+																IIF(TRY_CAST(pp.plant_parameters_installed_capacity AS INT) IS NOT NULL, 
+																	CONCAT(CAST(CAST(pp.plant_parameters_installed_capacity AS INT) AS VARCHAR(30)), ' ', ct.capacity_type_name),
+																	CONCAT(FORMAT(pp.plant_parameters_installed_capacity, 'N2'), ' ', ct.capacity_type_name)), 
+																FORMAT(pp.plant_parameters_installed_capacity, 'N2')), 
+															'No installed capacity was saved') AS 'Installed capacity',
+		
+														IIF(pp.plant_parameters_built_up IS NOT NULL AND pp.plant_parameters_built_up > 0, 
+															IIF(TRY_CAST(pp.plant_parameters_built_up AS INT) IS NOT NULL, 
+																CAST(CAST(pp.plant_parameters_built_up AS INT) AS VARCHAR(20)),
+																FORMAT(ROUND(pp.plant_parameters_built_up, 2), 'N2')), 
+															'No built-up area saved') AS 'Built-up area (m2)',
+
+														IIF(pp.plant_parameters_workforce IS NOT NULL AND pp.plant_parameters_workforce > 0,
+															CONCAT(pp.plant_parameters_workforce, ' employees'),
+															'No workforce was saved') AS 'Plant workforce',
+
+														report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
+														report.PLANT_AREA_DESCRIPTION(p.id_plant) AS 'Area description',
+
+														report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
+
+														IIF(pp.id_hydrant_protection IS NOT NULL, hdp.hydrant_protection_classification_name, 'No hydrant protection classification saved') AS 'Hydrant protection classification',
+														IIF(pp.id_hydrant_standpipe_type IS NOT NULL, hst.hydrant_standpipe_system_type_name, 'No hydrant standpipe type saved') AS 'Hydrant standpipe type',
+														IIF(pp.id_hydrant_standpipe_class IS NOT NULL, hsc.hydrant_standpipe_system_class_name, 'No hydrant standpipe classification saved') AS 'Hydrant standpipe classification',
+
+														report.HAVE_OR_NOT(pp.plant_parameters_has_foam_suppression_sys) AS 'Has a foam suppression system?', 
+														report.HAVE_OR_NOT(pp.plant_parameters_has_suppresion_sys) AS 'Has a suppression system?',
+														report.HAVE_OR_NOT(pp.plant_parameters_has_sprinklers) AS 'Has sprinklers?',
+														report.HAVE_OR_NOT(pp.plant_parameters_has_afds) AS 'Has an automatic fire detection system?',
+														report.HAVE_OR_NOT(pp.plant_parameters_has_fire_detection_batteries) AS 'Has battery fire detectors?',
+														report.HAVE_OR_NOT(pp.plant_parameters_has_private_brigade) AS 'Has a private brigade?',
+														report.HAVE_OR_NOT(pp.plant_parameters_has_lighting_protection) AS 'Has lighting protection?',
+
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_fire_explosion) AS 'Fire / Explosion risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_landslide_subsidence) AS 'Landslide / Subsidence risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_water_flooding) AS 'Water flooding risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_wind_storm) AS 'Wind / Storm risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_lighting) AS 'Lighting risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_earthquake) AS 'Earthquake risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_tsunami) AS 'Tsunami risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_collapse) AS 'Collapse risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_aircraft) AS 'Aircraft risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_riot) AS 'Riot risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_design_failure) AS 'Design failure risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_overall_rating) AS 'Overall rating',
+
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_material_damage_percentage, 'percentage') AS 'Material damage percentage',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_material_damage_amount, 'value') AS 'Material damage amount ($USD)',
+
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_business_interruption_percentage, 'percentage') AS 'Business interruption percentage',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_business_interruption_amount, 'value') AS 'Business interruption amount ($USD)',
+
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_buildings_amount, 'value') AS 'Building amount ($USD)',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_electronic_equipment_amount, 'value') AS 'Electronic equipment amount ($USD)',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_expansions_investment_works_amount, 'value') AS 'Expansion or investment amount ($USD)',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_stock_amount, 'value') AS 'Stock amount',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_total_insured_values, 'value') AS 'Total insured values (MD + BI) ($USD)',
+
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_pml_percentage, 'percentage') AS 'PML percentage',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_mfl, 'percentage') AS 'MFL percentage'
+													FROM #report_temp_table_filter r
+														LEFT JOIN report.client_table c ON r.id_client = c.id_client
+														LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
+														LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
+														LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
+														LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
+														LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
+														LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
+														LEFT JOIN report.hydrant_protection_classification_table hdp ON pp.id_hydrant_protection = hdp.id_hydrant_protection_classification
+														LEFT JOIN report.hydrant_standpipe_system_type_table hst ON pp.id_hydrant_standpipe_type = hst.id_hydrant_standpipe_system_type
+														LEFT JOIN report.hydrant_standpipe_system_class_table hsc ON pp.id_hydrant_standpipe_class = hsc.id_hydrant_standpipe_system_class
+														LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
+														LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
+													WHERE lst.loss_scenario_machinery_equipment_amount < @amount_machinary
+												END;
+											ELSE
+												PRINT 'No values where found with that machinery and equipment filter';
+										END;
+								END;
+						END;
+				END;
+			ELSE IF (LOWER(@filter) = 'electronic equipment amount' OR LOWER(@filter) = 'electronic amount')
+				BEGIN
+					IF (@param LIKE '%,%' AND @param LIKE '%:%' AND (@param LIKE '%rango%' OR @param LIKE '%range%'))
+						BEGIN
+							BEGIN TRY
+								DECLARE
+									@values_to_evaluate_electronic AS VARCHAR(100),
+									@highiest_value_electronic AS INT,
+									@lowest_value_electronic AS INT;
+
+								DECLARE @value_range_electronic AS VARCHAR(100);
+								DECLARE cur_range_electronic CURSOR DYNAMIC FORWARD_ONLY
+																FOR SELECT * FROM STRING_SPLIT(@param, ',');
+								OPEN cur_range_electronic;
+								FETCH NEXT FROM cur_range_electronic INTO @value_range_electronic;
+								WHILE @@FETCH_STATUS = 0
+									BEGIN
+										IF (@value_range_electronic LIKE '%:%')
+											BEGIN
+												IF (PATINDEX('%[0-9]%', @value_range_electronic) > 0)
+													SET @values_to_evaluate_electronic = @value_range_electronic;
+											END;
+										FETCH NEXT FROM cur_range_electronic INTO @value_range_electronic
+									END;
+								CLOSE cur_range_electronic;
+								DEALLOCATE cur_range_electronic;
+							END TRY
+							BEGIN CATCH
+								CLOSE cur_range_electronic;
+								DEALLOCATE cur_range_electronic;
+							END CATCH;
+							BEGIN
+								IF (@values_to_evaluate_electronic IS NOT NULL)
+									BEGIN TRY
+										DECLARE @helper_electronic AS INT;
+										DECLARE cur_evaluate_range_electronic CURSOR DYNAMIC FORWARD_ONLY
+																				FOR SELECT * FROM STRING_SPLIT(@values_to_evaluate_electronic, ':');
+										OPEN cur_evaluate_range_electronic;
+										FETCH NEXT FROM cur_evaluate_range_electronic INTO @helper_electronic;
+										WHILE @@FETCH_STATUS = 0
+											BEGIN
+												IF (@highiest_value_electronic IS NULL)
+													SET @highiest_value_electronic = @helper_electronic;
+											
+												IF (@lowest_value_electronic IS NULL AND @highiest_value_electronic IS NOT NULL)
+													IF (@helper_electronic < @highiest_value_electronic)
+														SET @lowest_value_electronic = @helper_electronic;
+													ELSE IF (@helper_electronic > @highiest_value_electronic)
+														BEGIN
+															DECLARE @temp_electronic AS INT = @highiest_value_electronic;
+															SET @lowest_value_electronic = @temp_electronic;
+															SET @highiest_value_electronic = @helper_electronic;
+														END;
+												FETCH NEXT FROM cur_evaluate_range_electronic INTO @helper_electronic
+											END;
+										CLOSE cur_evaluate_range_electronic;
+										DEALLOCATE cur_evaluate_range_electronic;
+									END TRY
+									BEGIN CATCH
+										CLOSE cur_evaluate_range_electronic;
+										DEALLOCATE cur_evaluate_range_electronic;
+									END CATCH;
+							END;
+
+							BEGIN
+								IF (@highiest_value_electronic IS NOT NULL AND @lowest_value_electronic IS NOT NULL)
+									BEGIN
+										IF ((SELECT TOP 1 r.id_report FROM #report_temp_table_filter r
+																			LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
+																			WHERE lst.loss_scenario_electronic_equipment_amount >= @lowest_value_electronic AND lst.loss_scenario_electronic_equipment_amount <= @highiest_value_electronic + 1) IS NOT NULL)
+											BEGIN
+												SELECT DISTINCT
+													r.id_report AS 'ID report',
+
+													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_electronic_equipment_amount, 'value') AS 'Electronic equipment amount ($USD)',
+
+													CAST(r.report_date AS DATE) AS 'Date',
+													c.client_name AS 'Client',
+													report.REPORT_PREPARED_BY(r.id_report) AS 'Prepared by',
+													IIF(p.plant_name = p.plant_account_name, p.plant_name, CONCAT(p.plant_account_name, ', ', p.plant_name)) AS 'Plant name',
+													btc.business_turnover_name AS 'Plant business turnover',
+													p.plant_business_specific_turnover AS 'Plant activity',
+													IIF(p.plant_merchandise_class IS NOT NULL, mc.merchandise_classification_type_name, 'Has no merchandise classification saved') AS 'Merchandise classification',
+													pp.plant_certifications AS 'Certifications',
+		
+													IIF(pp.plant_parameters_installed_capacity IS NOT NULL AND pp.plant_parameters_installed_capacity > 0, 
+														IIF(pp.id_capacity_type IS NOT NULL, 
+															IIF(TRY_CAST(pp.plant_parameters_installed_capacity AS INT) IS NOT NULL, 
+																CONCAT(CAST(CAST(pp.plant_parameters_installed_capacity AS INT) AS VARCHAR(30)), ' ', ct.capacity_type_name),
+																CONCAT(FORMAT(pp.plant_parameters_installed_capacity, 'N2'), ' ', ct.capacity_type_name)), 
+															FORMAT(pp.plant_parameters_installed_capacity, 'N2')), 
+														'No installed capacity was saved') AS 'Installed capacity',
+
+													IIF(pp.plant_parameters_workforce IS NOT NULL AND pp.plant_parameters_workforce > 0,
+															CONCAT(pp.plant_parameters_workforce, ' employees'),
+															'No workforce was saved') AS 'Plant workforce',
+		
+													IIF(pp.plant_parameters_built_up IS NOT NULL AND pp.plant_parameters_built_up > 0, 
+														IIF(TRY_CAST(pp.plant_parameters_built_up AS INT) IS NOT NULL, 
+															CAST(CAST(pp.plant_parameters_built_up AS INT) AS VARCHAR(20)),
+															FORMAT(ROUND(pp.plant_parameters_built_up, 2), 'N2')), 
+														'No built-up area saved') AS 'Built-up area (m2)',
+
+													report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
+													report.PLANT_AREA_DESCRIPTION(p.id_plant) AS 'Area description',
+
+													report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
+
+													IIF(pp.id_hydrant_protection IS NOT NULL, hdp.hydrant_protection_classification_name, 'No hydrant protection classification saved') AS 'Hydrant protection classification',
+													IIF(pp.id_hydrant_standpipe_type IS NOT NULL, hst.hydrant_standpipe_system_type_name, 'No hydrant standpipe type saved') AS 'Hydrant standpipe type',
+													IIF(pp.id_hydrant_standpipe_class IS NOT NULL, hsc.hydrant_standpipe_system_class_name, 'No hydrant standpipe classification saved') AS 'Hydrant standpipe classification',
+
+													report.HAVE_OR_NOT(pp.plant_parameters_has_foam_suppression_sys) AS 'Has a foam suppression system?', 
+													report.HAVE_OR_NOT(pp.plant_parameters_has_suppresion_sys) AS 'Has a suppression system?',
+													report.HAVE_OR_NOT(pp.plant_parameters_has_sprinklers) AS 'Has sprinklers?',
+													report.HAVE_OR_NOT(pp.plant_parameters_has_afds) AS 'Has an automatic fire detection system?',
+													report.HAVE_OR_NOT(pp.plant_parameters_has_fire_detection_batteries) AS 'Has battery fire detectors?',
+													report.HAVE_OR_NOT(pp.plant_parameters_has_private_brigade) AS 'Has a private brigade?',
+													report.HAVE_OR_NOT(pp.plant_parameters_has_lighting_protection) AS 'Has lighting protection?',
+
+													report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_fire_explosion) AS 'Fire / Explosion risk',
+													report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_landslide_subsidence) AS 'Landslide / Subsidence risk',
+													report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_water_flooding) AS 'Water flooding risk',
+													report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_wind_storm) AS 'Wind / Storm risk',
+													report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_lighting) AS 'Lighting risk',
+													report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_earthquake) AS 'Earthquake risk',
+													report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_tsunami) AS 'Tsunami risk',
+													report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_collapse) AS 'Collapse risk',
+													report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_aircraft) AS 'Aircraft risk',
+													report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_riot) AS 'Riot risk',
+													report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_design_failure) AS 'Design failure risk',
+													report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_overall_rating) AS 'Overall rating',
+
+													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_material_damage_percentage, 'percentage') AS 'Material damage percentage',
+													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_material_damage_amount, 'value') AS 'Material damage amount ($USD)',
+
+													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_business_interruption_percentage, 'percentage') AS 'Business interruption percentage',
+													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_business_interruption_amount, 'value') AS 'Business interruption amount ($USD)',
+
+													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_buildings_amount, 'value') AS 'Building amount ($USD)',
+													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_machinery_equipment_amount, 'value') AS 'Machinary and equipment amount ($USD)',
+													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_expansions_investment_works_amount, 'value') AS 'Expansion or investment amount ($USD)',
+													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_stock_amount, 'value') AS 'Stock amount',
+													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_total_insured_values, 'value') AS 'Total insured values (MD + BI) ($USD)',
+
+													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_pml_percentage, 'percentage') AS 'PML percentage',
+													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_mfl, 'percentage') AS 'MFL percentage'
+												FROM #report_temp_table_filter r
+													LEFT JOIN report.client_table c ON r.id_client = c.id_client
+													LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
+													LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
+													LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
+													LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
+													LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
+													LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
+													LEFT JOIN report.hydrant_protection_classification_table hdp ON pp.id_hydrant_protection = hdp.id_hydrant_protection_classification
+													LEFT JOIN report.hydrant_standpipe_system_type_table hst ON pp.id_hydrant_standpipe_type = hst.id_hydrant_standpipe_system_type
+													LEFT JOIN report.hydrant_standpipe_system_class_table hsc ON pp.id_hydrant_standpipe_class = hsc.id_hydrant_standpipe_system_class
+													LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
+													LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
+												WHERE lst.loss_scenario_electronic_equipment_amount >= @lowest_value_electronic AND lst.loss_scenario_electronic_equipment_amount <= @highiest_value_electronic + 1
+											END;
+										ELSE
+											PRINT 'No values where found with that electronic equipment amount filter';
+									END;
+								ELSE
+									PRINT 'Cannot evaluate any data because the range of the electronic equipment could not be determinated';
+							END;
+						END;
+					ELSE IF (@param LIKE '%,%' AND ((@param NOT LIKE '%rango%' OR @param NOT LIKE '%range%') AND @param NOT LIKE '%:%'))
+						BEGIN TRY
+							DECLARE 
+								@evaluate_electronic AS VARCHAR(2),
+								@amount_electronic AS INT;
+
+							DECLARE @value_electronic AS VARCHAR(100);
+							DECLARE cur_electronic CURSOR DYNAMIC FORWARD_ONLY
+													FOR SELECT * FROM STRING_SPLIT(@param, ',');
+							OPEN cur_electronic;
+							FETCH NEXT FROM cur_electronic INTO @value_electronic;
+							WHILE @@FETCH_STATUS = 0
+								BEGIN
+									IF (TRY_CAST(@value_electronic AS INT) IS NULL)
+										BEGIN
+											IF (TRIM(LOWER(@value_electronic)) = 'more than' OR TRIM(LOWER(@value_electronic)) = 'mas que' OR TRIM(LOWER(@value_electronic)) = 'mayor que'
+												OR TRIM(LOWER(@value_electronic)) = 'less than' OR TRIM(LOWER(@value_electronic)) = 'menos que' OR TRIM(LOWER(@value_electronic)) = 'menor que')
+												SET @evaluate_electronic = (SELECT CASE
+																					WHEN TRIM(LOWER(@value_electronic)) = 'more than' OR TRIM(LOWER(@value_electronic)) = 'mas que' OR TRIM(LOWER(@value_electronic)) = 'mayor que' THEN '>'
+																					WHEN TRIM(LOWER(@value_electronic)) = 'less than' OR TRIM(LOWER(@value_electronic)) = 'menos que' OR TRIM(LOWER(@value_electronic)) = 'menor que' THEN '<'
+																				END);
+										END;
+									ELSE
+										SET @amount_electronic = CAST(@value_electronic AS INT);
+									FETCH NEXT FROM cur_electronic INTO @value_electronic;
+								END;
+							CLOSE cur_electronic;
+							DEALLOCATE cur_electronic;
+						END TRY
+						BEGIN CATCH
+							CLOSE cur_electronic;
+							DEALLOCATE cur_electronic;
+						END CATCH;
+
+						BEGIN
+							IF (@evaluate_electronic IS NOT NULL AND @amount_electronic IS NOT NULL)
+								BEGIN
+									IF (@evaluate_electronic = '>')
+										BEGIN
+											IF ((SELECT TOP 1 r.id_report FROM #report_temp_table_filter r
+																			LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
+																			WHERE lst.loss_scenario_electronic_equipment_amount > @amount_electronic) IS NOT NULL)
+												BEGIN
+													SELECT DISTINCT
+														r.id_report AS 'ID report',
+
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_electronic_equipment_amount, 'value') AS 'Electronic equipment amount ($USD)',
+
+														CAST(r.report_date AS DATE) AS 'Date',
+														c.client_name AS 'Client',
+														report.REPORT_PREPARED_BY(r.id_report) AS 'Prepared by',
+														IIF(p.plant_name = p.plant_account_name, p.plant_name, CONCAT(p.plant_account_name, ', ', p.plant_name)) AS 'Plant name',
+														btc.business_turnover_name AS 'Plant business turnover',
+														p.plant_business_specific_turnover AS 'Plant activity',
+														IIF(p.plant_merchandise_class IS NOT NULL, mc.merchandise_classification_type_name, 'Has no merchandise classification saved') AS 'Merchandise classification',
+														pp.plant_certifications AS 'Certifications',
+		
+														IIF(pp.plant_parameters_installed_capacity IS NOT NULL AND pp.plant_parameters_installed_capacity > 0, 
+															IIF(pp.id_capacity_type IS NOT NULL, 
+																IIF(TRY_CAST(pp.plant_parameters_installed_capacity AS INT) IS NOT NULL, 
+																	CONCAT(CAST(CAST(pp.plant_parameters_installed_capacity AS INT) AS VARCHAR(30)), ' ', ct.capacity_type_name),
+																	CONCAT(FORMAT(pp.plant_parameters_installed_capacity, 'N2'), ' ', ct.capacity_type_name)), 
+																FORMAT(pp.plant_parameters_installed_capacity, 'N2')), 
+															'No installed capacity was saved') AS 'Installed capacity',
+		
+														IIF(pp.plant_parameters_built_up IS NOT NULL AND pp.plant_parameters_built_up > 0, 
+															IIF(TRY_CAST(pp.plant_parameters_built_up AS INT) IS NOT NULL, 
+																CAST(CAST(pp.plant_parameters_built_up AS INT) AS VARCHAR(20)),
+																FORMAT(ROUND(pp.plant_parameters_built_up, 2), 'N2')), 
+															'No built-up area saved') AS 'Built-up area (m2)',
+
+														IIF(pp.plant_parameters_workforce IS NOT NULL AND pp.plant_parameters_workforce > 0,
+															CONCAT(pp.plant_parameters_workforce, ' employees'),
+															'No workforce was saved') AS 'Plant workforce',
+
+														report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
+														report.PLANT_AREA_DESCRIPTION(p.id_plant) AS 'Area description',
+
+														report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
+
+														IIF(pp.id_hydrant_protection IS NOT NULL, hdp.hydrant_protection_classification_name, 'No hydrant protection classification saved') AS 'Hydrant protection classification',
+														IIF(pp.id_hydrant_standpipe_type IS NOT NULL, hst.hydrant_standpipe_system_type_name, 'No hydrant standpipe type saved') AS 'Hydrant standpipe type',
+														IIF(pp.id_hydrant_standpipe_class IS NOT NULL, hsc.hydrant_standpipe_system_class_name, 'No hydrant standpipe classification saved') AS 'Hydrant standpipe classification',
+
+														report.HAVE_OR_NOT(pp.plant_parameters_has_foam_suppression_sys) AS 'Has a foam suppression system?', 
+														report.HAVE_OR_NOT(pp.plant_parameters_has_suppresion_sys) AS 'Has a suppression system?',
+														report.HAVE_OR_NOT(pp.plant_parameters_has_sprinklers) AS 'Has sprinklers?',
+														report.HAVE_OR_NOT(pp.plant_parameters_has_afds) AS 'Has an automatic fire detection system?',
+														report.HAVE_OR_NOT(pp.plant_parameters_has_fire_detection_batteries) AS 'Has battery fire detectors?',
+														report.HAVE_OR_NOT(pp.plant_parameters_has_private_brigade) AS 'Has a private brigade?',
+														report.HAVE_OR_NOT(pp.plant_parameters_has_lighting_protection) AS 'Has lighting protection?',
+
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_fire_explosion) AS 'Fire / Explosion risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_landslide_subsidence) AS 'Landslide / Subsidence risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_water_flooding) AS 'Water flooding risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_wind_storm) AS 'Wind / Storm risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_lighting) AS 'Lighting risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_earthquake) AS 'Earthquake risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_tsunami) AS 'Tsunami risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_collapse) AS 'Collapse risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_aircraft) AS 'Aircraft risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_riot) AS 'Riot risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_design_failure) AS 'Design failure risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_overall_rating) AS 'Overall rating',
+
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_material_damage_percentage, 'percentage') AS 'Material damage percentage',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_material_damage_amount, 'value') AS 'Material damage amount ($USD)',
+
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_business_interruption_percentage, 'percentage') AS 'Business interruption percentage',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_business_interruption_amount, 'value') AS 'Business interruption amount ($USD)',
+
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_buildings_amount, 'value') AS 'Building amount ($USD)',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_machinery_equipment_amount, 'value') AS 'Machinary and equipment amount ($USD)',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_expansions_investment_works_amount, 'value') AS 'Expansion or investment amount ($USD)',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_stock_amount, 'value') AS 'Stock amount',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_total_insured_values, 'value') AS 'Total insured values (MD + BI) ($USD)',
+
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_pml_percentage, 'percentage') AS 'PML percentage',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_mfl, 'percentage') AS 'MFL percentage'
+													FROM #report_temp_table_filter r
+														LEFT JOIN report.client_table c ON r.id_client = c.id_client
+														LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
+														LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
+														LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
+														LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
+														LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
+														LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
+														LEFT JOIN report.hydrant_protection_classification_table hdp ON pp.id_hydrant_protection = hdp.id_hydrant_protection_classification
+														LEFT JOIN report.hydrant_standpipe_system_type_table hst ON pp.id_hydrant_standpipe_type = hst.id_hydrant_standpipe_system_type
+														LEFT JOIN report.hydrant_standpipe_system_class_table hsc ON pp.id_hydrant_standpipe_class = hsc.id_hydrant_standpipe_system_class
+														LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
+														LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
+													WHERE lst.loss_scenario_electronic_equipment_amount > @amount_electronic
+												END;
+											ELSE
+												PRINT 'No values where found with that electronic equipment amount filter';
+										END;
+									ELSE IF (@evaluate_electronic = '<')
+										BEGIN
+											IF ((SELECT TOP 1 r.id_report FROM #report_temp_table_filter r
+																			LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
+																			WHERE lst.loss_scenario_electronic_equipment_amount < @amount_electronic) IS NOT NULL)
+												BEGIN
+													SELECT DISTINCT
+														r.id_report AS 'ID report',
+
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_electronic_equipment_amount, 'value') AS 'Electronic equipment amount ($USD)',
+
+														CAST(r.report_date AS DATE) AS 'Date',
+														c.client_name AS 'Client',
+														report.REPORT_PREPARED_BY(r.id_report) AS 'Prepared by',
+														IIF(p.plant_name = p.plant_account_name, p.plant_name, CONCAT(p.plant_account_name, ', ', p.plant_name)) AS 'Plant name',
+														btc.business_turnover_name AS 'Plant business turnover',
+														p.plant_business_specific_turnover AS 'Plant activity',
+														IIF(p.plant_merchandise_class IS NOT NULL, mc.merchandise_classification_type_name, 'Has no merchandise classification saved') AS 'Merchandise classification',
+														pp.plant_certifications AS 'Certifications',
+		
+														IIF(pp.plant_parameters_installed_capacity IS NOT NULL AND pp.plant_parameters_installed_capacity > 0, 
+															IIF(pp.id_capacity_type IS NOT NULL, 
+																IIF(TRY_CAST(pp.plant_parameters_installed_capacity AS INT) IS NOT NULL, 
+																	CONCAT(CAST(CAST(pp.plant_parameters_installed_capacity AS INT) AS VARCHAR(30)), ' ', ct.capacity_type_name),
+																	CONCAT(FORMAT(pp.plant_parameters_installed_capacity, 'N2'), ' ', ct.capacity_type_name)), 
+																FORMAT(pp.plant_parameters_installed_capacity, 'N2')), 
+															'No installed capacity was saved') AS 'Installed capacity',
+		
+														IIF(pp.plant_parameters_built_up IS NOT NULL AND pp.plant_parameters_built_up > 0, 
+															IIF(TRY_CAST(pp.plant_parameters_built_up AS INT) IS NOT NULL, 
+																CAST(CAST(pp.plant_parameters_built_up AS INT) AS VARCHAR(20)),
+																FORMAT(ROUND(pp.plant_parameters_built_up, 2), 'N2')), 
+															'No built-up area saved') AS 'Built-up area (m2)',
+
+														IIF(pp.plant_parameters_workforce IS NOT NULL AND pp.plant_parameters_workforce > 0,
+															CONCAT(pp.plant_parameters_workforce, ' employees'),
+															'No workforce was saved') AS 'Plant workforce',
+
+														report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
+														report.PLANT_AREA_DESCRIPTION(p.id_plant) AS 'Area description',
+
+														report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
+
+														IIF(pp.id_hydrant_protection IS NOT NULL, hdp.hydrant_protection_classification_name, 'No hydrant protection classification saved') AS 'Hydrant protection classification',
+														IIF(pp.id_hydrant_standpipe_type IS NOT NULL, hst.hydrant_standpipe_system_type_name, 'No hydrant standpipe type saved') AS 'Hydrant standpipe type',
+														IIF(pp.id_hydrant_standpipe_class IS NOT NULL, hsc.hydrant_standpipe_system_class_name, 'No hydrant standpipe classification saved') AS 'Hydrant standpipe classification',
+
+														report.HAVE_OR_NOT(pp.plant_parameters_has_foam_suppression_sys) AS 'Has a foam suppression system?', 
+														report.HAVE_OR_NOT(pp.plant_parameters_has_suppresion_sys) AS 'Has a suppression system?',
+														report.HAVE_OR_NOT(pp.plant_parameters_has_sprinklers) AS 'Has sprinklers?',
+														report.HAVE_OR_NOT(pp.plant_parameters_has_afds) AS 'Has an automatic fire detection system?',
+														report.HAVE_OR_NOT(pp.plant_parameters_has_fire_detection_batteries) AS 'Has battery fire detectors?',
+														report.HAVE_OR_NOT(pp.plant_parameters_has_private_brigade) AS 'Has a private brigade?',
+														report.HAVE_OR_NOT(pp.plant_parameters_has_lighting_protection) AS 'Has lighting protection?',
+
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_fire_explosion) AS 'Fire / Explosion risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_landslide_subsidence) AS 'Landslide / Subsidence risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_water_flooding) AS 'Water flooding risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_wind_storm) AS 'Wind / Storm risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_lighting) AS 'Lighting risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_earthquake) AS 'Earthquake risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_tsunami) AS 'Tsunami risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_collapse) AS 'Collapse risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_aircraft) AS 'Aircraft risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_riot) AS 'Riot risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_design_failure) AS 'Design failure risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_overall_rating) AS 'Overall rating',
+
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_material_damage_percentage, 'percentage') AS 'Material damage percentage',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_material_damage_amount, 'value') AS 'Material damage amount ($USD)',
+
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_business_interruption_percentage, 'percentage') AS 'Business interruption percentage',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_business_interruption_amount, 'value') AS 'Business interruption amount ($USD)',
+
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_buildings_amount, 'value') AS 'Building amount ($USD)',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_machinery_equipment_amount, 'value') AS 'Machinary and equipment amount ($USD)',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_expansions_investment_works_amount, 'value') AS 'Expansion or investment amount ($USD)',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_stock_amount, 'value') AS 'Stock amount',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_total_insured_values, 'value') AS 'Total insured values (MD + BI) ($USD)',
+
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_pml_percentage, 'percentage') AS 'PML percentage',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_mfl, 'percentage') AS 'MFL percentage'
+													FROM #report_temp_table_filter r
+														LEFT JOIN report.client_table c ON r.id_client = c.id_client
+														LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
+														LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
+														LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
+														LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
+														LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
+														LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
+														LEFT JOIN report.hydrant_protection_classification_table hdp ON pp.id_hydrant_protection = hdp.id_hydrant_protection_classification
+														LEFT JOIN report.hydrant_standpipe_system_type_table hst ON pp.id_hydrant_standpipe_type = hst.id_hydrant_standpipe_system_type
+														LEFT JOIN report.hydrant_standpipe_system_class_table hsc ON pp.id_hydrant_standpipe_class = hsc.id_hydrant_standpipe_system_class
+														LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
+														LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
+													WHERE lst.loss_scenario_electronic_equipment_amount < @amount_electronic
+												END;
+											ELSE
+												PRINT 'No values where found with that electronic equipment filter';
+										END;
+								END;
+						END;
+				END;
+			ELSE IF (LOWER(@filter) = 'expansion or investment amount' OR LOWER(@filter) = 'expansion amount' OR LOWER(@filter) = 'investment amount')
+				BEGIN
+					IF (@param LIKE '%,%' AND @param LIKE '%:%' AND (@param LIKE '%rango%' OR @param LIKE '%range%'))
+						BEGIN
+							BEGIN TRY
+								DECLARE
+									@values_to_evaluate_expansion AS VARCHAR(100),
+									@highiest_value_expansion AS INT,
+									@lowest_value_expansion AS INT;
+
+								DECLARE @value_range_expansion AS VARCHAR(100);
+								DECLARE cur_range_expansion CURSOR DYNAMIC FORWARD_ONLY
+																FOR SELECT * FROM STRING_SPLIT(@param, ',');
+								OPEN cur_range_expansion;
+								FETCH NEXT FROM cur_range_expansion INTO @value_range_expansion;
+								WHILE @@FETCH_STATUS = 0
+									BEGIN
+										IF (@value_range_expansion LIKE '%:%')
+											BEGIN
+												IF (PATINDEX('%[0-9]%', @value_range_expansion) > 0)
+													SET @values_to_evaluate_expansion = @value_range_expansion;
+											END;
+										FETCH NEXT FROM cur_range_expansion INTO @value_range_expansion
+									END;
+								CLOSE cur_range_expansion;
+								DEALLOCATE cur_range_expansion;
+							END TRY
+							BEGIN CATCH
+								CLOSE cur_range_expansion;
+								DEALLOCATE cur_range_expansion;
+							END CATCH;
+							BEGIN
+								IF (@values_to_evaluate_expansion IS NOT NULL)
+									BEGIN TRY
+										DECLARE @helper_expansion AS INT;
+										DECLARE cur_evaluate_range_expansion CURSOR DYNAMIC FORWARD_ONLY
+																				FOR SELECT * FROM STRING_SPLIT(@values_to_evaluate_expansion, ':');
+										OPEN cur_evaluate_range_expansion;
+										FETCH NEXT FROM cur_evaluate_range_expansion INTO @helper_expansion;
+										WHILE @@FETCH_STATUS = 0
+											BEGIN
+												IF (@highiest_value_expansion IS NULL)
+													SET @highiest_value_expansion = @helper_expansion;
+											
+												IF (@lowest_value_expansion IS NULL AND @highiest_value_expansion IS NOT NULL)
+													IF (@helper_expansion < @highiest_value_expansion)
+														SET @lowest_value_expansion = @helper_expansion;
+													ELSE IF (@helper_expansion > @highiest_value_expansion)
+														BEGIN
+															DECLARE @temp_expansion AS INT = @highiest_value_expansion;
+															SET @lowest_value_expansion = @temp_expansion;
+															SET @highiest_value_expansion = @helper_expansion;
+														END;
+												FETCH NEXT FROM cur_evaluate_range_expansion INTO @helper_expansion
+											END;
+										CLOSE cur_evaluate_range_expansion;
+										DEALLOCATE cur_evaluate_range_expansion;
+									END TRY
+									BEGIN CATCH
+										CLOSE cur_evaluate_range_expansion;
+										DEALLOCATE cur_evaluate_range_expansion;
+									END CATCH;
+							END;
+
+							BEGIN
+								IF (@highiest_value_expansion IS NOT NULL AND @lowest_value_expansion IS NOT NULL)
+									BEGIN
+										IF ((SELECT TOP 1 r.id_report FROM #report_temp_table_filter r
+																			LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
+																			WHERE lst.loss_scenario_expansions_investment_works_amount >= @lowest_value_expansion AND lst.loss_scenario_expansions_investment_works_amount <= @highiest_value_expansion + 1) IS NOT NULL)
+											BEGIN
+												SELECT DISTINCT
+													r.id_report AS 'ID report',
+
+													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_expansions_investment_works_amount, 'value') AS 'Expansion or investment amount ($USD)',
+
+													CAST(r.report_date AS DATE) AS 'Date',
+													c.client_name AS 'Client',
+													report.REPORT_PREPARED_BY(r.id_report) AS 'Prepared by',
+													IIF(p.plant_name = p.plant_account_name, p.plant_name, CONCAT(p.plant_account_name, ', ', p.plant_name)) AS 'Plant name',
+													btc.business_turnover_name AS 'Plant business turnover',
+													p.plant_business_specific_turnover AS 'Plant activity',
+													IIF(p.plant_merchandise_class IS NOT NULL, mc.merchandise_classification_type_name, 'Has no merchandise classification saved') AS 'Merchandise classification',
+													pp.plant_certifications AS 'Certifications',
+		
+													IIF(pp.plant_parameters_installed_capacity IS NOT NULL AND pp.plant_parameters_installed_capacity > 0, 
+														IIF(pp.id_capacity_type IS NOT NULL, 
+															IIF(TRY_CAST(pp.plant_parameters_installed_capacity AS INT) IS NOT NULL, 
+																CONCAT(CAST(CAST(pp.plant_parameters_installed_capacity AS INT) AS VARCHAR(30)), ' ', ct.capacity_type_name),
+																CONCAT(FORMAT(pp.plant_parameters_installed_capacity, 'N2'), ' ', ct.capacity_type_name)), 
+															FORMAT(pp.plant_parameters_installed_capacity, 'N2')), 
+														'No installed capacity was saved') AS 'Installed capacity',
+
+													IIF(pp.plant_parameters_workforce IS NOT NULL AND pp.plant_parameters_workforce > 0,
+															CONCAT(pp.plant_parameters_workforce, ' employees'),
+															'No workforce was saved') AS 'Plant workforce',
+		
+													IIF(pp.plant_parameters_built_up IS NOT NULL AND pp.plant_parameters_built_up > 0, 
+														IIF(TRY_CAST(pp.plant_parameters_built_up AS INT) IS NOT NULL, 
+															CAST(CAST(pp.plant_parameters_built_up AS INT) AS VARCHAR(20)),
+															FORMAT(ROUND(pp.plant_parameters_built_up, 2), 'N2')), 
+														'No built-up area saved') AS 'Built-up area (m2)',
+
+													report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
+													report.PLANT_AREA_DESCRIPTION(p.id_plant) AS 'Area description',
+
+													report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
+
+													IIF(pp.id_hydrant_protection IS NOT NULL, hdp.hydrant_protection_classification_name, 'No hydrant protection classification saved') AS 'Hydrant protection classification',
+													IIF(pp.id_hydrant_standpipe_type IS NOT NULL, hst.hydrant_standpipe_system_type_name, 'No hydrant standpipe type saved') AS 'Hydrant standpipe type',
+													IIF(pp.id_hydrant_standpipe_class IS NOT NULL, hsc.hydrant_standpipe_system_class_name, 'No hydrant standpipe classification saved') AS 'Hydrant standpipe classification',
+
+													report.HAVE_OR_NOT(pp.plant_parameters_has_foam_suppression_sys) AS 'Has a foam suppression system?', 
+													report.HAVE_OR_NOT(pp.plant_parameters_has_suppresion_sys) AS 'Has a suppression system?',
+													report.HAVE_OR_NOT(pp.plant_parameters_has_sprinklers) AS 'Has sprinklers?',
+													report.HAVE_OR_NOT(pp.plant_parameters_has_afds) AS 'Has an automatic fire detection system?',
+													report.HAVE_OR_NOT(pp.plant_parameters_has_fire_detection_batteries) AS 'Has battery fire detectors?',
+													report.HAVE_OR_NOT(pp.plant_parameters_has_private_brigade) AS 'Has a private brigade?',
+													report.HAVE_OR_NOT(pp.plant_parameters_has_lighting_protection) AS 'Has lighting protection?',
+
+													report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_fire_explosion) AS 'Fire / Explosion risk',
+													report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_landslide_subsidence) AS 'Landslide / Subsidence risk',
+													report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_water_flooding) AS 'Water flooding risk',
+													report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_wind_storm) AS 'Wind / Storm risk',
+													report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_lighting) AS 'Lighting risk',
+													report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_earthquake) AS 'Earthquake risk',
+													report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_tsunami) AS 'Tsunami risk',
+													report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_collapse) AS 'Collapse risk',
+													report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_aircraft) AS 'Aircraft risk',
+													report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_riot) AS 'Riot risk',
+													report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_design_failure) AS 'Design failure risk',
+													report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_overall_rating) AS 'Overall rating',
+
+													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_material_damage_percentage, 'percentage') AS 'Material damage percentage',
+													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_material_damage_amount, 'value') AS 'Material damage amount ($USD)',
+
+													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_business_interruption_percentage, 'percentage') AS 'Business interruption percentage',
+													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_business_interruption_amount, 'value') AS 'Business interruption amount ($USD)',
+
+													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_buildings_amount, 'value') AS 'Building amount ($USD)',
+													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_machinery_equipment_amount, 'value') AS 'Machinary and equipment amount ($USD)',
+													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_electronic_equipment_amount, 'value') AS 'Electronic equipment amount ($USD)',
+													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_stock_amount, 'value') AS 'Stock amount',
+													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_total_insured_values, 'value') AS 'Total insured values (MD + BI) ($USD)',
+
+													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_pml_percentage, 'percentage') AS 'PML percentage',
+													report.VALUE_SAVED_OR_NOT(lst.loss_scenario_mfl, 'percentage') AS 'MFL percentage'
+												FROM #report_temp_table_filter r
+													LEFT JOIN report.client_table c ON r.id_client = c.id_client
+													LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
+													LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
+													LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
+													LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
+													LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
+													LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
+													LEFT JOIN report.hydrant_protection_classification_table hdp ON pp.id_hydrant_protection = hdp.id_hydrant_protection_classification
+													LEFT JOIN report.hydrant_standpipe_system_type_table hst ON pp.id_hydrant_standpipe_type = hst.id_hydrant_standpipe_system_type
+													LEFT JOIN report.hydrant_standpipe_system_class_table hsc ON pp.id_hydrant_standpipe_class = hsc.id_hydrant_standpipe_system_class
+													LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
+													LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
+												WHERE lst.loss_scenario_expansions_investment_works_amount >= @lowest_value_expansion AND lst.loss_scenario_expansions_investment_works_amount <= @highiest_value_expansion + 1
+											END;
+										ELSE
+											PRINT 'No values where found with that expansions/investment amount filter';
+									END;
+								ELSE
+									PRINT 'Cannot evaluate any data because the range of the expansions/investment amount could not be determinated';
+							END;
+						END;
+					ELSE IF (@param LIKE '%,%' AND ((@param NOT LIKE '%rango%' OR @param NOT LIKE '%range%') AND @param NOT LIKE '%:%'))
+						BEGIN TRY
+							DECLARE 
+								@evaluate_expansion AS VARCHAR(2),
+								@amount_expansion AS INT;
+
+							DECLARE @value_expansion AS VARCHAR(100);
+							DECLARE cur_expansion CURSOR DYNAMIC FORWARD_ONLY
+													FOR SELECT * FROM STRING_SPLIT(@param, ',');
+							OPEN cur_expansion;
+							FETCH NEXT FROM cur_expansion INTO @value_expansion;
+							WHILE @@FETCH_STATUS = 0
+								BEGIN
+									IF (TRY_CAST(@value_expansion AS INT) IS NULL)
+										BEGIN
+											IF (TRIM(LOWER(@value_expansion)) = 'more than' OR TRIM(LOWER(@value_expansion)) = 'mas que' OR TRIM(LOWER(@value_expansion)) = 'mayor que'
+												OR TRIM(LOWER(@value_expansion)) = 'less than' OR TRIM(LOWER(@value_expansion)) = 'menos que' OR TRIM(LOWER(@value_expansion)) = 'menor que')
+												SET @evaluate_expansion = (SELECT CASE
+																					WHEN TRIM(LOWER(@value_expansion)) = 'more than' OR TRIM(LOWER(@value_expansion)) = 'mas que' OR TRIM(LOWER(@value_expansion)) = 'mayor que' THEN '>'
+																					WHEN TRIM(LOWER(@value_expansion)) = 'less than' OR TRIM(LOWER(@value_expansion)) = 'menos que' OR TRIM(LOWER(@value_expansion)) = 'menor que' THEN '<'
+																				END);
+										END;
+									ELSE
+										SET @amount_expansion = CAST(@value_expansion AS INT);
+									FETCH NEXT FROM cur_expansion INTO @value_expansion;
+								END;
+							CLOSE cur_expansion;
+							DEALLOCATE cur_expansion;
+						END TRY
+						BEGIN CATCH
+							CLOSE cur_expansion;
+							DEALLOCATE cur_expansion;
+						END CATCH;
+
+						BEGIN
+							IF (@evaluate_expansion IS NOT NULL AND @amount_expansion IS NOT NULL)
+								BEGIN
+									IF (@evaluate_expansion = '>')
+										BEGIN
+											IF ((SELECT TOP 1 r.id_report FROM #report_temp_table_filter r
+																			LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
+																			WHERE lst.loss_scenario_expansions_investment_works_amount > @amount_expansion) IS NOT NULL)
+												BEGIN
+													SELECT DISTINCT
+														r.id_report AS 'ID report',
+
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_expansions_investment_works_amount, 'value') AS 'Expansion or investment amount ($USD)',
+
+														CAST(r.report_date AS DATE) AS 'Date',
+														c.client_name AS 'Client',
+														report.REPORT_PREPARED_BY(r.id_report) AS 'Prepared by',
+														IIF(p.plant_name = p.plant_account_name, p.plant_name, CONCAT(p.plant_account_name, ', ', p.plant_name)) AS 'Plant name',
+														btc.business_turnover_name AS 'Plant business turnover',
+														p.plant_business_specific_turnover AS 'Plant activity',
+														IIF(p.plant_merchandise_class IS NOT NULL, mc.merchandise_classification_type_name, 'Has no merchandise classification saved') AS 'Merchandise classification',
+														pp.plant_certifications AS 'Certifications',
+		
+														IIF(pp.plant_parameters_installed_capacity IS NOT NULL AND pp.plant_parameters_installed_capacity > 0, 
+															IIF(pp.id_capacity_type IS NOT NULL, 
+																IIF(TRY_CAST(pp.plant_parameters_installed_capacity AS INT) IS NOT NULL, 
+																	CONCAT(CAST(CAST(pp.plant_parameters_installed_capacity AS INT) AS VARCHAR(30)), ' ', ct.capacity_type_name),
+																	CONCAT(FORMAT(pp.plant_parameters_installed_capacity, 'N2'), ' ', ct.capacity_type_name)), 
+																FORMAT(pp.plant_parameters_installed_capacity, 'N2')), 
+															'No installed capacity was saved') AS 'Installed capacity',
+		
+														IIF(pp.plant_parameters_built_up IS NOT NULL AND pp.plant_parameters_built_up > 0, 
+															IIF(TRY_CAST(pp.plant_parameters_built_up AS INT) IS NOT NULL, 
+																CAST(CAST(pp.plant_parameters_built_up AS INT) AS VARCHAR(20)),
+																FORMAT(ROUND(pp.plant_parameters_built_up, 2), 'N2')), 
+															'No built-up area saved') AS 'Built-up area (m2)',
+
+														IIF(pp.plant_parameters_workforce IS NOT NULL AND pp.plant_parameters_workforce > 0,
+															CONCAT(pp.plant_parameters_workforce, ' employees'),
+															'No workforce was saved') AS 'Plant workforce',
+
+														report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
+														report.PLANT_AREA_DESCRIPTION(p.id_plant) AS 'Area description',
+
+														report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
+
+														IIF(pp.id_hydrant_protection IS NOT NULL, hdp.hydrant_protection_classification_name, 'No hydrant protection classification saved') AS 'Hydrant protection classification',
+														IIF(pp.id_hydrant_standpipe_type IS NOT NULL, hst.hydrant_standpipe_system_type_name, 'No hydrant standpipe type saved') AS 'Hydrant standpipe type',
+														IIF(pp.id_hydrant_standpipe_class IS NOT NULL, hsc.hydrant_standpipe_system_class_name, 'No hydrant standpipe classification saved') AS 'Hydrant standpipe classification',
+
+														report.HAVE_OR_NOT(pp.plant_parameters_has_foam_suppression_sys) AS 'Has a foam suppression system?', 
+														report.HAVE_OR_NOT(pp.plant_parameters_has_suppresion_sys) AS 'Has a suppression system?',
+														report.HAVE_OR_NOT(pp.plant_parameters_has_sprinklers) AS 'Has sprinklers?',
+														report.HAVE_OR_NOT(pp.plant_parameters_has_afds) AS 'Has an automatic fire detection system?',
+														report.HAVE_OR_NOT(pp.plant_parameters_has_fire_detection_batteries) AS 'Has battery fire detectors?',
+														report.HAVE_OR_NOT(pp.plant_parameters_has_private_brigade) AS 'Has a private brigade?',
+														report.HAVE_OR_NOT(pp.plant_parameters_has_lighting_protection) AS 'Has lighting protection?',
+
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_fire_explosion) AS 'Fire / Explosion risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_landslide_subsidence) AS 'Landslide / Subsidence risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_water_flooding) AS 'Water flooding risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_wind_storm) AS 'Wind / Storm risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_lighting) AS 'Lighting risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_earthquake) AS 'Earthquake risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_tsunami) AS 'Tsunami risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_collapse) AS 'Collapse risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_aircraft) AS 'Aircraft risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_riot) AS 'Riot risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_design_failure) AS 'Design failure risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_overall_rating) AS 'Overall rating',
+
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_material_damage_percentage, 'percentage') AS 'Material damage percentage',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_material_damage_amount, 'value') AS 'Material damage amount ($USD)',
+
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_business_interruption_percentage, 'percentage') AS 'Business interruption percentage',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_business_interruption_amount, 'value') AS 'Business interruption amount ($USD)',
+
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_buildings_amount, 'value') AS 'Building amount ($USD)',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_machinery_equipment_amount, 'value') AS 'Machinary and equipment amount ($USD)',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_electronic_equipment_amount, 'value') AS 'Electronic equipment amount ($USD)',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_stock_amount, 'value') AS 'Stock amount',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_total_insured_values, 'value') AS 'Total insured values (MD + BI) ($USD)',
+
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_pml_percentage, 'percentage') AS 'PML percentage',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_mfl, 'percentage') AS 'MFL percentage'
+													FROM #report_temp_table_filter r
+														LEFT JOIN report.client_table c ON r.id_client = c.id_client
+														LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
+														LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
+														LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
+														LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
+														LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
+														LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
+														LEFT JOIN report.hydrant_protection_classification_table hdp ON pp.id_hydrant_protection = hdp.id_hydrant_protection_classification
+														LEFT JOIN report.hydrant_standpipe_system_type_table hst ON pp.id_hydrant_standpipe_type = hst.id_hydrant_standpipe_system_type
+														LEFT JOIN report.hydrant_standpipe_system_class_table hsc ON pp.id_hydrant_standpipe_class = hsc.id_hydrant_standpipe_system_class
+														LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
+														LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
+													WHERE lst.loss_scenario_expansions_investment_works_amount > @amount_expansion
+												END;
+											ELSE
+												PRINT 'No values where found with that expansion/investment amount filter';
+										END;
+									ELSE IF (@evaluate_expansion = '<')
+										BEGIN
+											IF ((SELECT TOP 1 r.id_report FROM #report_temp_table_filter r
+																			LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
+																			WHERE lst.loss_scenario_expansions_investment_works_amount < @amount_expansion) IS NOT NULL)
+												BEGIN
+													SELECT DISTINCT
+														r.id_report AS 'ID report',
+
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_expansions_investment_works_amount, 'value') AS 'Expansion or investment amount ($USD)',
+
+														CAST(r.report_date AS DATE) AS 'Date',
+														c.client_name AS 'Client',
+														report.REPORT_PREPARED_BY(r.id_report) AS 'Prepared by',
+														IIF(p.plant_name = p.plant_account_name, p.plant_name, CONCAT(p.plant_account_name, ', ', p.plant_name)) AS 'Plant name',
+														btc.business_turnover_name AS 'Plant business turnover',
+														p.plant_business_specific_turnover AS 'Plant activity',
+														IIF(p.plant_merchandise_class IS NOT NULL, mc.merchandise_classification_type_name, 'Has no merchandise classification saved') AS 'Merchandise classification',
+														pp.plant_certifications AS 'Certifications',
+		
+														IIF(pp.plant_parameters_installed_capacity IS NOT NULL AND pp.plant_parameters_installed_capacity > 0, 
+															IIF(pp.id_capacity_type IS NOT NULL, 
+																IIF(TRY_CAST(pp.plant_parameters_installed_capacity AS INT) IS NOT NULL, 
+																	CONCAT(CAST(CAST(pp.plant_parameters_installed_capacity AS INT) AS VARCHAR(30)), ' ', ct.capacity_type_name),
+																	CONCAT(FORMAT(pp.plant_parameters_installed_capacity, 'N2'), ' ', ct.capacity_type_name)), 
+																FORMAT(pp.plant_parameters_installed_capacity, 'N2')), 
+															'No installed capacity was saved') AS 'Installed capacity',
+		
+														IIF(pp.plant_parameters_built_up IS NOT NULL AND pp.plant_parameters_built_up > 0, 
+															IIF(TRY_CAST(pp.plant_parameters_built_up AS INT) IS NOT NULL, 
+																CAST(CAST(pp.plant_parameters_built_up AS INT) AS VARCHAR(20)),
+																FORMAT(ROUND(pp.plant_parameters_built_up, 2), 'N2')), 
+															'No built-up area saved') AS 'Built-up area (m2)',
+
+														IIF(pp.plant_parameters_workforce IS NOT NULL AND pp.plant_parameters_workforce > 0,
+															CONCAT(pp.plant_parameters_workforce, ' employees'),
+															'No workforce was saved') AS 'Plant workforce',
+
+														report.CALCULATE_RISK_FOR_QUERY(pp.plant_parameters_exposures) AS 'Area exposures',
+														report.PLANT_AREA_DESCRIPTION(p.id_plant) AS 'Area description',
+
+														report.HAVE_OR_NOT(pp.plant_parameters_has_hydrants) AS 'Has hydrants?',
+
+														IIF(pp.id_hydrant_protection IS NOT NULL, hdp.hydrant_protection_classification_name, 'No hydrant protection classification saved') AS 'Hydrant protection classification',
+														IIF(pp.id_hydrant_standpipe_type IS NOT NULL, hst.hydrant_standpipe_system_type_name, 'No hydrant standpipe type saved') AS 'Hydrant standpipe type',
+														IIF(pp.id_hydrant_standpipe_class IS NOT NULL, hsc.hydrant_standpipe_system_class_name, 'No hydrant standpipe classification saved') AS 'Hydrant standpipe classification',
+
+														report.HAVE_OR_NOT(pp.plant_parameters_has_foam_suppression_sys) AS 'Has a foam suppression system?', 
+														report.HAVE_OR_NOT(pp.plant_parameters_has_suppresion_sys) AS 'Has a suppression system?',
+														report.HAVE_OR_NOT(pp.plant_parameters_has_sprinklers) AS 'Has sprinklers?',
+														report.HAVE_OR_NOT(pp.plant_parameters_has_afds) AS 'Has an automatic fire detection system?',
+														report.HAVE_OR_NOT(pp.plant_parameters_has_fire_detection_batteries) AS 'Has battery fire detectors?',
+														report.HAVE_OR_NOT(pp.plant_parameters_has_private_brigade) AS 'Has a private brigade?',
+														report.HAVE_OR_NOT(pp.plant_parameters_has_lighting_protection) AS 'Has lighting protection?',
+
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_fire_explosion) AS 'Fire / Explosion risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_landslide_subsidence) AS 'Landslide / Subsidence risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_water_flooding) AS 'Water flooding risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_wind_storm) AS 'Wind / Storm risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_lighting) AS 'Lighting risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_earthquake) AS 'Earthquake risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_tsunami) AS 'Tsunami risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_collapse) AS 'Collapse risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_aircraft) AS 'Aircraft risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_riot) AS 'Riot risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_design_failure) AS 'Design failure risk',
+														report.CALCULATE_RISK_FOR_QUERY(pr.perils_and_risk_overall_rating) AS 'Overall rating',
+
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_material_damage_percentage, 'percentage') AS 'Material damage percentage',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_material_damage_amount, 'value') AS 'Material damage amount ($USD)',
+
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_business_interruption_percentage, 'percentage') AS 'Business interruption percentage',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_business_interruption_amount, 'value') AS 'Business interruption amount ($USD)',
+
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_buildings_amount, 'value') AS 'Building amount ($USD)',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_machinery_equipment_amount, 'value') AS 'Machinary and equipment amount ($USD)',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_electronic_equipment_amount, 'value') AS 'Electronic equipment amount ($USD)',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_stock_amount, 'value') AS 'Stock amount',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_total_insured_values, 'value') AS 'Total insured values (MD + BI) ($USD)',
+
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_pml_percentage, 'percentage') AS 'PML percentage',
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_mfl, 'percentage') AS 'MFL percentage'
+													FROM #report_temp_table_filter r
+														LEFT JOIN report.client_table c ON r.id_client = c.id_client
+														LEFT JOIN report.plant_table p ON r.id_plant = p.id_plant
+														LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
+														LEFT JOIn report.business_turnover_class_table btc ON btc.id_business_turnover = bt.id_business_turnover
+														LEFT JOIN report.merchandise_classification_type_table mc ON p.plant_merchandise_class = mc.id_merchandise_classification_type
+														LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
+														LEFT JOIN report.capacity_type_table ct ON pp.id_capacity_type = ct.id_capacity_type
+														LEFT JOIN report.hydrant_protection_classification_table hdp ON pp.id_hydrant_protection = hdp.id_hydrant_protection_classification
+														LEFT JOIN report.hydrant_standpipe_system_type_table hst ON pp.id_hydrant_standpipe_type = hst.id_hydrant_standpipe_system_type
+														LEFT JOIN report.hydrant_standpipe_system_class_table hsc ON pp.id_hydrant_standpipe_class = hsc.id_hydrant_standpipe_system_class
+														LEFT JOIN report.perils_and_risk_table pr ON r.id_report = pr.id_report
+														LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
+													WHERE lst.loss_scenario_expansions_investment_works_amount < @amount_expansion
+												END;
+											ELSE
+												PRINT 'No values where found with that expansion/investment amount filter';
+										END;
+								END;
+						END;
+				END;
 		END;
 
 		DROP TABLE #report_temp_table_filter;
@@ -7129,3 +8356,15 @@ EXEC report.reports_filter_by 'business interruption percentage', 'rango,70:90';
 EXEC report.reports_filter_by 'buildings amount', 'rango,1000000:6000000';
 EXEC report.reports_filter_by 'buildings amount', 'mas que,1000000';
 EXEC report.reports_filter_by 'buildings amount', 'menos que,2000000';
+
+EXEC report.reports_filter_by 'machinery amount', 'menos que,2000000';
+EXEC report.reports_filter_by 'machinery amount', 'mas que,2000000';
+EXEC report.reports_filter_by 'machinery amount', 'rango,2000000:6000000';
+
+EXEC report.reports_filter_by 'electronic equipment amount', 'mas que,2000000';
+EXEC report.reports_filter_by 'electronic equipment amount', 'menos que,2000000';
+EXEC report.reports_filter_by 'electronic equipment amount', 'rango,200000:500000';
+
+EXEC report.reports_filter_by 'expansion amount', 'mas que,100000';
+EXEC report.reports_filter_by 'expansion amount', 'mas que,1000000';
+EXEC report.reports_filter_by 'expansion amount', 'rango,3000000:5000000';
