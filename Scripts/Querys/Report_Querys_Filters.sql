@@ -4773,7 +4773,7 @@ AS
 							PRINT 'No values were found with that riot risk filter';
 					END;
 				END;
-			ELSE IF (LOWER(@filter) = 'design failure risk' OR LOWER(@filter) = 'riesgo de fallas de diseño')
+			ELSE IF (LOWER(@filter) = 'design failure risk' OR LOWER(@filter) = 'riesgo de fallas de diseï¿½o')
 				BEGIN
 					DECLARE @design_to_search FLOAT(2) = report.DETERMINATE_RATE_OF_RISK(@param);
 
@@ -9481,7 +9481,7 @@ AS
 								FETCH NEXT FROM cur_range_mfl INTO @value_range_mfl;
 								WHILE @@FETCH_STATUS = 0
 									BEGIN
-										IF (@value_range_pml LIKE '%:%')
+										IF (@value_range_mfl LIKE '%:%')
 											BEGIN
 												IF (PATINDEX('%[0-9]%', @value_range_mfl) > 0)
 													SET @values_to_evaluate_mfl = @value_range_mfl;
@@ -9643,7 +9643,7 @@ AS
 							DECLARE cur_mfl CURSOR DYNAMIC FORWARD_ONLY
 													FOR SELECT * FROM STRING_SPLIT(@param, ',');
 							OPEN cur_mfl;
-							FETCH NEXT FROM cur_pml INTO @value_mfl;
+							FETCH NEXT FROM cur_mfl INTO @value_mfl;
 							WHILE @@FETCH_STATUS = 0
 								BEGIN
 									IF (TRY_CAST(@value_mfl AS INT) IS NULL)
@@ -9679,7 +9679,7 @@ AS
 													SELECT DISTINCT
 														r.id_report AS 'ID report',
 
-														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_mfl, 'percentage') AS 'MFL percentage'
+														report.VALUE_SAVED_OR_NOT(lst.loss_scenario_mfl, 'percentage') AS 'MFL percentage',
 
 														CAST(r.report_date AS DATE) AS 'Date',
 														c.client_name AS 'Client',
@@ -9770,7 +9770,7 @@ AS
 											ELSE
 												PRINT 'No values where found with that mfl percentage filter';
 										END;
-									ELSE IF (@evaluate_pml = '<')
+									ELSE IF (@evaluate_mfl = '<')
 										BEGIN
 											IF ((SELECT TOP 1 r.id_report FROM #report_temp_table_filter r
 																			LEFT JOIN report.loss_scenario_table lst ON r.id_report = lst.id_report
@@ -10016,3 +10016,7 @@ EXEC report.reports_filter_by 'total values amount', 'rango,80000000:100000000';
 EXEC report.reports_filter_by 'pml percentage', 'mas que,60';
 EXEC report.reports_filter_by 'pml percentage', 'menos que,60';
 EXEC report.reports_filter_by 'pml percentage', 'rango,60:80';
+
+EXEC report.reports_filter_by 'mfl', 'mas que,60';
+EXEC report.reports_filter_by 'mfl', 'menos que,50';
+EXEC report.reports_filter_by 'mfl', 'rango,50:70';
