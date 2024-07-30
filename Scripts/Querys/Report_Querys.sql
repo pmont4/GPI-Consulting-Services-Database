@@ -388,7 +388,9 @@ AS
 							COUNT(rt.id_report) AS 'Amount of reports saved in databae',
 							(SELECT COUNT(id_plant) FROM report.plant_table) AS 'Amount of plants saved in database',
 							(SELECT TOP 1 CONCAT(DAY(rt_1.report_date), '-', MONTH(rt_1.report_date), '-', YEAR(rt_1.report_date)) FROM report.report_table rt_1 ORDER BY report_date ASC) AS 'Oldest report saved',
-							(SELECT TOP 1 CONCAT(DAY(rt_2.report_date), '-', MONTH(rt_2.report_date), '-', YEAR(rt_2.report_date)) FROM report.report_table rt_2 ORDER BY report_date DESC) AS 'Newer report saved'
+							(SELECT TOP 1 id_report FROM report.report_table ORDER BY report_date ASC) AS 'ID of the oldest report',
+							(SELECT TOP 1 CONCAT(DAY(rt_2.report_date), '-', MONTH(rt_2.report_date), '-', YEAR(rt_2.report_date)) FROM report.report_table rt_2 ORDER BY report_date DESC) AS 'Newer report saved',
+							(SELECT TOP 1 id_report FROM report.report_table ORDER BY report_date DESC) AS 'ID of the newest report'
 						FROM report.report_table rt
 					END;
 				ELSE
@@ -401,5 +403,3 @@ EXEC report.general_querys 'reportes'
 EXEC report.general_querys 'reportes por planta'
 EXEC report.general_querys 'reportes por ingeniero'
 EXEC report.general_querys 'cantidad de reportes'
-
-

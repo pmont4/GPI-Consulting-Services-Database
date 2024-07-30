@@ -255,6 +255,9 @@ EXEC report.proc_insert_plant 'Naturaceites - Fray', null, 'C.A.', 'Guatemala', 
 EXEC report.proc_insert_plant 'Fabrigas, S.A. y Subsidarias / Productos del Aire de Guatemala, S.A.', 'Planta Santa Elisa (Zona 12)', 'C.A.', 'Guatemala', 'Guatemala', null, 1960, 'Production', 'Planta industrial dedicada a la producción de acetileno y al envasado y distribución de gases industriales (Oxígeno, Nitrógeno, Argón y Dióxido de Carbono) y llenado de extintores.', 'IV', 'Industrial', '31 Calle 25-50 Zona 12 Guatemala, Guatemala', '14°35m18.89s', '90°32m21.88s', 1498;
 EXEC report.proc_insert_plant 'Fabrigas, S.A. y Subsidarias / Productos del Aire de Guatemala, S.A.', 'Planta Zona 8', 'C.A.', 'Guatemala', 'Guatemala', null, null, 'Storage', 'Oficinas administrativas, almacenamiento y despacho de gases industriales como acetileno, oxígeno, nitrógeno, argón y dióxido de carbono), y equipo como extintores, equipo de soldadura, compresores, electrodos, etc. También cuentan con un área de fraccionamiento de Oxígeno de alta pureza para aplicaciones hospitalarias.', null, 'commercial, residential', '41 Calle 6-27 Zona 8 Guatemala, Guatemala', '14°36m40.45s', '90°31m56.55s', 1536;
 EXEC report.proc_insert_plant 'Fabrigas, S.A. y Subsidarias / Productos del Aire de Guatemala, S.A.', 'Planta El Jocote', 'C.A.', 'Guatemala', 'Escuintla', null, null, 'Production', 'Producción de oxígeno, hidrógeno, argón y nitrógeno.', 'IV', 'rural', 'Km 74.5 Carretera a Siquinalá Escuintla, Guatemala', '14°16m35.79s', '90°54m44.13s', 185;
+EXEC report.proc_insert_plant 'Hidroeléctrica El Capulín.', null, 'C.A.', 'Guatemala', 'Escuintla', 1989, 1991, 'Electricity Generation', 'Generación de Energía Eléctrica', null, 'rural', 'Finca la Catarata, Aldea el Capulín, Siquinalá Escuintla, Guatemala, C.A.', '14°20m24s', '90°54m37s', null;
+EXEC report.proc_insert_plant 'Hidroeléctrica Río Bobos.', null, 'C.A.', 'Guatemala', 'Izabal', 1993, 1995, 'Electricity Generation', 'Generación de Energía Eléctrica', null, 'rural', 'Finca la Catarata, Aldea el Capulín, Siquinalá Escuintla, Guatemala, C.A.', '15°22m49.84s', '88°44m29.53s', null;
+EXEC report.proc_insert_plant 'Planta Eca Electrodos, Fabrigas, S.A.', null, 'C.A.', 'Guatemala', 'Guatemala', null, 2007, 'Production', 'Planta industrial dedicada a la producción de electrodos de distintos tipos y alambre trefilado.', 'I', 'Industrial', '31 Calle 25-50 Zona 12 Guatemala, Guatemala', '14°35m15.49s', '90°32m20.97s', 1495;
 
 -- Report table executables for data insertion
 -- Data has to be inserted in the following order:
@@ -379,6 +382,11 @@ EXEC report.proc_insert_report_table '11/marzo/2020', 'Unity Promotores, S.A.', 
 EXEC report.proc_insert_report_table '21/septiembre/2016', 'Tecniseguros, Corredores de Seguros, S.A.', 4093, 'Juan Jose Lira', null, '200,units/day', 14000, 100, 2, 'si', null, null, null, 'no', 'no', 'si', 'no', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '23/septiembre/2016', 'Tecniseguros, Corredores de Seguros, S.A.', 4094, 'Juan Jose Lira', null, null, 2857, 100, 2, 'no', null, null, null, 'no', 'si', 'no', 'no', 'no', 'no', 'si';
 EXEC report.proc_insert_report_table '21/octubre/2016', 'Tecniseguros, Corredores de Seguros, S.A.', 4095, 'Juan Jose Lira', null, '166,metric tons', 7736, 64, 2, 'si', null, null, null, 'no', 'si', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '21/octubre/2016', 'Tecniseguros, Corredores de Seguros, S.A.', 4096, 'Juan Jose Lira', null, '5,mw', null, 8, 2, 'no', null, null, null, 'no', 'si', 'si', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '19/octubre/2016', 'Tecniseguros, Corredores de Seguros, S.A.', 4097, 'Juan Jose Lira', null, '10,mw', null, 63, 2, 'no', null, null, null, 'no', 'si', 'si', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '13/noviembre/2017', 'Seguros Agromercantil, S.A.', 4098, 'Juan Jose Lira', null, '220,metric tons/month', 3615, 47, 2, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '15/noviembre/2017', 'Seguros Agromercantil, S.A.', 4095, 'Marlon Lira', null, '156,metric tons/month', 7736, 64, 2, 'si', null, null, null, 'no', 'si', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '16/noviembre/2017', 'Seguros Agromercantil, S.A.', 4096, 'Marlon Lira', null, '5,mw', null, 8, 2, 'no', null, null, null, 'no', 'si', 'no', 'si', 'no', 'si', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -498,6 +506,11 @@ EXEC report.proc_insert_perils_and_risk_table 4109, 2.5, 'none', 1, 1.5, 2, 2, '
 EXEC report.proc_insert_perils_and_risk_table 4110, 2.5, 1, 1, 2, 2, 2.5, 'none', 1, 2, 'none', 'none', 2;
 EXEC report.proc_insert_perils_and_risk_table 4111, 2.5, 1, 1, 2, 1.5, 2.5, 'none', 1, 1, 'none', 'none', 2;
 EXEC report.proc_insert_perils_and_risk_table 4112, 2.5, 1, 1, 2, 2.5, 2.5, 1, 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 4113, 2, 2, 2, 2, 2, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4114, 2.5, 2, 2, 2, 2, 2.5, 1, 2, 1, 2.5, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4115, 2, 1, 1, 2, 2, 2.5, 1, 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 4196, 2.5, 1, 1, 2, 2.5, 2.5, 1, 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 4197, 2, 2, 1.5, 2, 2, 2.5, 'none', 1, 1, 1, 1, 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -596,4 +609,9 @@ EXEC report.proc_insert_loss_scenario_table 4109, '$,22054375', 54, '$,10787122'
 EXEC report.proc_insert_loss_scenario_table 4110, 'Q,61763676.00', null, 'Q,9000000', null, 'Q,15473202.00', 'Q,30226361.00', null, null, 'Q,16064113.00', null, null, 58;
 EXEC report.proc_insert_loss_scenario_table 4111, 'Q,27646116.69', null, null, null, 'Q,9863918.00', null, null, null, 'Q,17782198.69', null, null, 49;
 EXEC report.proc_insert_loss_scenario_table 4112, 'Q,206083154.42', null, null, null, 'Q,1524500.00', 'Q,193875743.60', null, null, 'Q,10682910.82', null, null, 84;
+EXEC report.proc_insert_loss_scenario_table 4113, 'Q,47362039.00', null, 'Q,3500000.00', null, 'Q,16197200.00', 'Q,30123000.00', null, null, 'Q,1041839.00', null, null, 44;
+EXEC report.proc_insert_loss_scenario_table 4114, 'Q,186645634.58', null, 'Q,13728000.00', null, 'Q,67777342.00', 'Q,110705791.00', null, null, 'Q,8162501.58', null, null, 47;
+EXEC report.proc_insert_loss_scenario_table 4115, 'Q,160757511.00', null, null, null, 'Q,15473202.00', 'Q,30226361.00', null, null, 'Q,15057948.00', null, null, 35;
+EXEC report.proc_insert_loss_scenario_table 4196, 'Q,231016341.95', null, 'Q,1500000', 61, 'Q,1524500.00', 'Q,208491841.95', null, null, 'Q,21000000.00', null, null, 82;
+EXEC report.proc_insert_loss_scenario_table 4197, 'Q,47320200.00', null, 'Q,3500000', 100, 'Q,16197200.00', 'Q,30123000.00', null, null, 'Q,1000000.00', null, null, 61;
 
