@@ -338,7 +338,7 @@ AS
 		BEGIN
 			IF ((SELECT id_report FROM #temp_report_dup_trigger WHERE report_date = @date_to_insert AND id_plant = @plant_to_insert) IS NOT NULL)
 				BEGIN
-					RAISERROR('Cannot insert the report because already exists in the database', 10, 1)
+					RAISERROR('Cannot insert the report because already exists in the database', 11, 1)
 					ROLLBACK;
 					RETURN;
 				END;
