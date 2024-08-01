@@ -270,6 +270,7 @@ EXEC report.proc_insert_plant 'Foragro', 'Tiquisate', 'C.A.', 'Guatemala', 'Escu
 EXEC report.proc_insert_plant 'Generadora Eléctrica del Norte Limitada – GENOR –', null, 'C.A.', 'Guatemala', 'Izabal', 1998, 1998, 'Electricity generation', 'Thermal Power Plant. Electricity generation for sale through the National Grid.', null, 'Industrial, Rural', 'Km. 292 Carretera al Atlántico, Puerto Barrios, Izabal, Guatemala, C.A.', '15°41m57.85s', '88°34m33.09s', 34;
 EXEC report.proc_insert_plant 'PVC Gerfor', null, 'C.A.', 'Guatemala', 'Sacatepequez', 1999, 2001, 'Production', 'Planta industrial dedicada a la producción y comercialización de tuberías y accesorios de PVC (cloruro de polivinilo).', 'I', 'Industrial, Residential, Rural', 'Km 34.5, Carretera de Antigua a Guatemala, Santa Lucía Milpas Altas, Sacatepéquez, Guatemala', '14°34m18.72s', '90°40m13.56s', 0;
 EXEC report.proc_insert_plant 'Airplane Services, S.A. – Hangar F-1 GAO', null, 'C.A.', 'Guatemala', 'Guatemala', 2009, null, 'Aeronautical revenue', 'Servicio y atención de aeronaves privadas', null, 'Commercial', 'Hangar F-1 Aeropuerto Internacional La Aurora, zona 13, Guatemala, C.A.', '14°34m30.68s', '90°31m37.73s', 1494;
+EXEC report.proc_insert_plant 'Inversiones Agrícolas Las Ánimas, S.A. – Finca La Vega de Talismán', null, 'C.A.', 'Guatemala', 'Izabal', null, null, 'Production', 'Jardín clonal, banco de tierra negra, producción y almacenamiento de almácigos y plantaciones en establecimiento de árboles de hule.', 'I', 'Rural', 'Interior Finca La Vega de Talismán, Río Dulce, Izabal, Guatemala, C.A.', '15°36m25.70s', '88°54m50.96s', 45;
 
 -- Report table executables for data insertion
 -- Data has to be inserted in the following order:
@@ -412,6 +413,7 @@ EXEC report.proc_insert_report_table '8/junio/2015', 'Tecniseguros, Corredores d
 EXEC report.proc_insert_report_table '8/junio/2015', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4191, 'Marlon Lira', 'ISO 14000, ISO 9000', '42.4,MW', 6000, 40, 2, 'si', null, null, null, 'si', 'no', 'si', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '5/enero/2018', 'Aseguradora General, S.A.', 4192, 'Rafael Grajeda', null, '6040,metric tons/hour', 7930, 128, 1, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'no';
 EXEC report.proc_insert_report_table '9/diciembre/2011', 'Tecniseguros, Corredores de Seguros, S.A.', 4193, 'Marlon Lira', null, null, 1202, null, 3, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '7/diciembre/2011', 'Tecniseguros, Corredores de Seguros, S.A.', 4194, 'Marlon Lira', null, null, null, null, 2, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'no';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -549,6 +551,7 @@ EXEC report.proc_insert_perils_and_risk_table 4207, 3, 1, 2, 2.5, 2.5, 2.5, 1.5,
 EXEC report.proc_insert_perils_and_risk_table 4208, 3, 1, 2, 2.5, 2.5, 2.5, 1.5, 1, 1, 2, 2, 2;
 EXEC report.proc_insert_perils_and_risk_table 4209, 2, 'none', 1, 2.5, 2.5, 2.5, 'none', 1, 1, 'none', 'none', 2;
 EXEC report.proc_insert_perils_and_risk_table 4210, 'none', 'none', 'none', 1, 1, 2.5, 'none', 1, 3, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 4211, 'none', 'none', 2, 2, 2.5, 2, 'none', 'none', 2, 'none', 'none', 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:

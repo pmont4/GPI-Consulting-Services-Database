@@ -320,33 +320,6 @@ AS
 		RETURN @to_return;
 	END;
 
--- TRIGGERS
-
-CREATE OR ALTER TRIGGER report.verifying_duplicity_reports ON report.report_table INSTEAD OF INSERT
-AS
-	BEGIN
-		BEGIN
-			DECLARE 
-					@date_to_insert AS DATE = CAST((SELECT i.report_date FROM inserted i) AS DATE),
-					@plant_to_insert AS INT = (SELECT i.id_plant FROM inserted i);
-
-			SELECT id_report, report_date, id_plant INTO #temp_report_dup_trigger FROM report.report_table;
-
-			CREATE NONCLUSTERED INDEX idx_report_dup_trigger_1 ON #temp_report_dup_trigger(id_report) INCLUDE (report_date, id_plant)
-		END;
-
-		BEGIN
-			IF ((SELECT id_report FROM #temp_report_dup_trigger WHERE report_date = @date_to_insert AND id_plant = @plant_to_insert) IS NOT NULL)
-				BEGIN
-					RAISERROR('Cannot insert the report because already exists in the database', 11, 1)
-					ROLLBACK;
-					RETURN;
-				END;
-
-			DROP TABLE #temp_report_dup_trigger;
-		END;
-	END;
-
 -- ------------------------------------
 
 -- Engineer insertion data scripts.
@@ -901,228 +874,231 @@ BEGIN TRY
 										PRINT CONCAT('Cannot fint the plant "', @plant, '"');
 								END;
 
-							BEGIN
-								IF (@id_client IS NOT NULL)
-									IF (@id_plant IS NOT NULL)
-										BEGIN
-											INSERT INTO report.report_table (report_date, id_client, id_plant)
-																			VALUES (report.CONSTRUCT_DATE(@date), @id_client, @id_plant);
+							IF ((SELECT r.id_report FROM report.report_table r WHERE r.report_date = report.CONSTRUCT_DATE(@date) AND r.id_plant = @id_plant) IS NULL)
+								BEGIN
+									IF (@id_client IS NOT NULL)
+										IF (@id_plant IS NOT NULL)
 											BEGIN
-												IF (@prepared_by LIKE '%,%')
-													BEGIN
-														DECLARE @engineer_value AS VARCHAR(150);
-														DECLARE cur_engineer CURSOR DYNAMIC FORWARD_ONLY
-																			FOR SELECT * FROM STRING_SPLIT(@prepared_by, ',');
-														OPEN cur_engineer;
-														FETCH NEXT FROM cur_engineer INTO @engineer_value;
-														WHILE @@FETCH_STATUS = 0
-														BEGIN TRY
-															IF (TRY_CAST(@engineer_value AS INT) IS NULL)
-																BEGIN
-																	IF (SELECT id_engineer FROM #temp_engineer_table_report WHERE engineer_name = report.CORRECT_GRAMMAR(@engineer_value, 'name')) IS NOT NULL
-																		BEGIN
-																			INSERT INTO report.report_preparation_table(id_report, id_engineer)
-																														VALUES ((SELECT TOP 1 id_report FROM report.report_table ORDER BY id_report DESC),
-																																(SELECT id_engineer FROM #temp_engineer_table_report WHERE engineer_name = report.CORRECT_GRAMMAR(@engineer_value, 'name')));
-																		END;
-																	ELSE
-																		THROW 51000, 'Cannot find the engineer in the engineer table', 1;
-																END;
-															ELSE IF (TRY_CAST(@engineer_value AS INT) IS NOT NULL)
-																BEGIN
-																	IF (SELECT id_engineer FROM #temp_engineer_table_report WHERE id_engineer = @engineer_value) IS NOT NULL
-																		BEGIN
-																			INSERT INTO report.report_preparation_table(id_report, id_engineer)
-																														VALUES ((SELECT TOP 1 id_report FROM report.report_table ORDER BY id_report DESC),
-																																(SELECT id_engineer FROM #temp_engineer_table_report WHERE id_engineer = CAST(@engineer_value AS INT)));
-																		END;
-																	ELSE
-																		THROW 51000, 'Cannot find the engineer in the engineer table', 1;
-																END;
+												INSERT INTO report.report_table (report_date, id_client, id_plant)
+																				VALUES (report.CONSTRUCT_DATE(@date), @id_client, @id_plant);
+												BEGIN
+													IF (@prepared_by LIKE '%,%')
+														BEGIN
+															DECLARE @engineer_value AS VARCHAR(150);
+															DECLARE cur_engineer CURSOR DYNAMIC FORWARD_ONLY
+																				FOR SELECT * FROM STRING_SPLIT(@prepared_by, ',');
+															OPEN cur_engineer;
 															FETCH NEXT FROM cur_engineer INTO @engineer_value;
-														END TRY
-														BEGIN CATCH
+															WHILE @@FETCH_STATUS = 0
+															BEGIN TRY
+																IF (TRY_CAST(@engineer_value AS INT) IS NULL)
+																	BEGIN
+																		IF (SELECT id_engineer FROM #temp_engineer_table_report WHERE engineer_name = report.CORRECT_GRAMMAR(@engineer_value, 'name')) IS NOT NULL
+																			BEGIN
+																				INSERT INTO report.report_preparation_table(id_report, id_engineer)
+																															VALUES ((SELECT TOP 1 id_report FROM report.report_table ORDER BY id_report DESC),
+																																	(SELECT id_engineer FROM #temp_engineer_table_report WHERE engineer_name = report.CORRECT_GRAMMAR(@engineer_value, 'name')));
+																			END;
+																		ELSE
+																			THROW 51000, 'Cannot find the engineer in the engineer table', 1;
+																	END;
+																ELSE IF (TRY_CAST(@engineer_value AS INT) IS NOT NULL)
+																	BEGIN
+																		IF (SELECT id_engineer FROM #temp_engineer_table_report WHERE id_engineer = @engineer_value) IS NOT NULL
+																			BEGIN
+																				INSERT INTO report.report_preparation_table(id_report, id_engineer)
+																															VALUES ((SELECT TOP 1 id_report FROM report.report_table ORDER BY id_report DESC),
+																																	(SELECT id_engineer FROM #temp_engineer_table_report WHERE id_engineer = CAST(@engineer_value AS INT)));
+																			END;
+																		ELSE
+																			THROW 51000, 'Cannot find the engineer in the engineer table', 1;
+																	END;
+																FETCH NEXT FROM cur_engineer INTO @engineer_value;
+															END TRY
+															BEGIN CATCH
+																CLOSE cur_engineer;
+																DEALLOCATE cur_engineer;
+															END CATCH;
 															CLOSE cur_engineer;
 															DEALLOCATE cur_engineer;
-														END CATCH;
-														CLOSE cur_engineer;
-														DEALLOCATE cur_engineer;
-													END;
-													ELSE IF (@prepared_by NOT LIKE '%,%')
-														BEGIN
-															IF (TRY_CAST(@prepared_by AS INT) IS NULL)
-																BEGIN
-																	IF (SELECT id_engineer FROM #temp_engineer_table_report WHERE engineer_name = report.CORRECT_GRAMMAR(@prepared_by, 'name')) IS NOT NULL
-																		BEGIN
-																			INSERT INTO report.report_preparation_table(id_report, id_engineer)
-																														VALUES ((SELECT TOP 1 id_report FROM report.report_table ORDER BY id_report DESC),
-																																(SELECT id_engineer FROM #temp_engineer_table_report WHERE engineer_name = report.CORRECT_GRAMMAR(@prepared_by, 'name')));
-																		END;
-																	ELSE
-																		THROW 51000, 'Cannot find the engineer in the engineer table', 1;
-																END;
-															ELSE IF (TRY_CAST(@prepared_by AS INT) IS NOT NULL)
-																BEGIN
-																	IF (SELECT id_engineer FROM #temp_engineer_table_report WHERE id_engineer = @prepared_by) IS NOT NULL
-																		BEGIN
-																			INSERT INTO report.report_preparation_table(id_report, id_engineer)
-																														VALUES ((SELECT TOP 1 id_report FROM report.report_table ORDER BY id_report DESC),
-																																(SELECT id_engineer FROM #temp_engineer_table_report WHERE id_engineer = CAST(@prepared_by AS INT)));
-																		END;
-																	ELSE
-																		THROW 51000, 'Cannot find the engineer in the engineer table', 1;
-																END;
 														END;
-											END;
+														ELSE IF (@prepared_by NOT LIKE '%,%')
+															BEGIN
+																IF (TRY_CAST(@prepared_by AS INT) IS NULL)
+																	BEGIN
+																		IF (SELECT id_engineer FROM #temp_engineer_table_report WHERE engineer_name = report.CORRECT_GRAMMAR(@prepared_by, 'name')) IS NOT NULL
+																			BEGIN
+																				INSERT INTO report.report_preparation_table(id_report, id_engineer)
+																															VALUES ((SELECT TOP 1 id_report FROM report.report_table ORDER BY id_report DESC),
+																																	(SELECT id_engineer FROM #temp_engineer_table_report WHERE engineer_name = report.CORRECT_GRAMMAR(@prepared_by, 'name')));
+																			END;
+																		ELSE
+																			THROW 51000, 'Cannot find the engineer in the engineer table', 1;
+																	END;
+																ELSE IF (TRY_CAST(@prepared_by AS INT) IS NOT NULL)
+																	BEGIN
+																		IF (SELECT id_engineer FROM #temp_engineer_table_report WHERE id_engineer = @prepared_by) IS NOT NULL
+																			BEGIN
+																				INSERT INTO report.report_preparation_table(id_report, id_engineer)
+																															VALUES ((SELECT TOP 1 id_report FROM report.report_table ORDER BY id_report DESC),
+																																	(SELECT id_engineer FROM #temp_engineer_table_report WHERE id_engineer = CAST(@prepared_by AS INT)));
+																			END;
+																		ELSE
+																			THROW 51000, 'Cannot find the engineer in the engineer table', 1;
+																	END;
+															END;
+												END;
 
-											BEGIN
-												DECLARE
-													@certifications_to_save AS VARCHAR(200) = ISNULL(@plant_certifications, 'No certifications'),
-													@amount_installed_capacity AS FLOAT(2),
-													@id_installed_capacity AS INT,
-													@built_up_to_save AS FLOAT(2) = ISNULL(@built_up, 0.00),
-													@workforce_to_save AS INT = ISNULL(@workforce, 0),
-													@exposures_to_save AS FLOAT(2) = ISNULL(report.DETERMINATE_RATE_OF_RISK(@exposures), 0),
-													@has_hydrants_to_save AS BIT = ISNULL(report.CALCULATE_BIT_TO_SAVE(@has_hydrants), 0),
-													@id_hydrant_protection_to_save AS INT,
-													@id_hydrant_standpipe_type_to_save AS INT,
-													@id_hydrant_standpipe_class_to_save AS INT,
-													@has_foam_suppression_to_save AS BIT = ISNULL(report.CALCULATE_BIT_TO_SAVE(@has_foam_suppression), 0),
-													@has_suppression_to_save AS BIT = ISNULL(report.CALCULATE_BIT_TO_SAVE(@has_suppression), 0),
-													@has_sprinklers_to_save AS BIT = ISNULL(report.CALCULATE_BIT_TO_SAVE(@has_sprinklers), 0),
-													@has_afds_to_save AS BIT = ISNULL(report.CALCULATE_BIT_TO_SAVE(@has_afds), 0),
-													@has_fire_detector_bateries_to_save AS BIT = ISNULL(report.CALCULATE_BIT_TO_SAVE(@has_fire_detection_batteries), 0),
-													@has_private_brigade_to_save AS BIT = ISNULL(report.CALCULATE_BIT_TO_SAVE(@has_private_brigade), 0),
-													@has_lighting_protection_to_save AS BIT = ISNULL(report.CALCULATE_BIT_TO_SAVE(@has_lighting_protection), 0);
 												BEGIN
-													IF (@installed_capacity IS NOT NULL)
-														BEGIN
-															SET @installed_capacity = report.REMOVE_EXTRA_SPACES(@installed_capacity);
-															IF (@installed_capacity LIKE '%,%')
-																BEGIN
-																	DECLARE @value_installed_capacity AS VARCHAR(50)
-																	DECLARE cur_installed_capacity CURSOR DYNAMIC FORWARD_ONLY
-																									FOR SELECT * FROM STRING_SPLIT(@installed_capacity, ',');
-																	OPEN cur_installed_capacity;
-																	FETCH NEXT FROM cur_installed_capacity INTO @value_installed_capacity;
-																	WHILE @@FETCH_STATUS = 0
-																		BEGIN TRY
-																			SET @value_installed_capacity = report.REMOVE_EXTRA_SPACES(@value_installed_capacity);
-
-																			IF (TRY_CAST(@value_installed_capacity AS FLOAT) IS NOT NULL)
-																				SET @amount_installed_capacity = CAST(@value_installed_capacity AS FLOAT(2));
-																			ELSE IF (TRY_CAST(@value_installed_capacity AS VARCHAR) IS NOT NULL)
-																				BEGIN
-																					SET @id_installed_capacity = ISNULL((SELECT id_capacity_type FROM #temp_capacity_type_table_report WHERE capacity_type_name = @value_installed_capacity),
-																													NULL);
-																					IF (@id_installed_capacity IS NULL)
-																						PRINT (CONCAT('Cannot find the installed capacity type "', @value_installed_capacity, '"'));
-																				END;
-																			FETCH NEXT FROM cur_installed_capacity INTO @value_installed_capacity;
-																		END TRY
-																		BEGIN CATCH
-																			PRINT (CONCAT('Cannot save the installed capacity "', ERROR_MESSAGE(), '"'))
-																			CLOSE cur_installed_capacity;
-																			DEALLOCATE cur_installed_capacity;
-																		END CATCH;
-																	CLOSE cur_installed_capacity;
-																	DEALLOCATE cur_installed_capacity;
-																END;
-															ELSE IF (@installed_capacity NOT LIKE '%,%')
-																BEGIN
-																	IF (TRY_CAST(@installed_capacity AS FLOAT) IS NOT NULL)
-																		SET @amount_installed_capacity = CAST(@installed_capacity AS FLOAT(2));
-																	ELSE IF (TRY_CAST(@installed_capacity AS VARCHAR) IS NOT NULL)
-																		BEGIN
-																			SET @id_installed_capacity = ISNULL((SELECT id_capacity_type FROM #temp_capacity_type_table_report WHERE capacity_type_name = @installed_capacity),
-																													NULL);
-																			IF (@id_installed_capacity IS NULL)
-																				PRINT (CONCAT('Cannot find the installed capacity type "', @installed_capacity, '"'));
-																		END;
-																END;
-														END;
-													ELSE IF (@installed_capacity IS NULL)
-														BEGIN
-															SET @amount_installed_capacity = NULL;
-															SET @id_installed_capacity = NULL;
-														END;
-
-													IF (@hydrant_protection IS NOT NULL)
-														BEGIN
-															SET @hydrant_protection = report.REMOVE_EXTRA_SPACES(@hydrant_protection);
-															IF (TRY_CAST(@hydrant_protection AS INT) IS NOT NULL)
-																BEGIN
-																	SET @id_hydrant_protection_to_save = ISNULL((SELECT id_hydrant_protection FROM #temp_hydrant_protection_table_report WHERE id_hydrant_protection = CAST(@hydrant_protection AS INT)),
-																										NULL);
-																	IF (@id_hydrant_protection_to_save IS NULL)
-																		PRINT(CONCAT('Cannot find the hydrant protection with the name/id "', @hydrant_protection, '"'));
-																END;
-															ELSE IF (TRY_CAST(@hydrant_protection AS INT) IS NULL)
-																BEGIN
-																	SET @id_hydrant_protection_to_save = ISNULL((SELECT id_hydrant_protection FROM #temp_hydrant_protection_table_report WHERE hydrant_protection_name = report.CORRECT_GRAMMAR(@hydrant_protection, 'paragraph')),
-																										NULL);
-																	IF (@id_hydrant_protection_to_save IS NULL)
-																		PRINT(CONCAT('Cannot find the hydrant protection with the name/id "', @hydrant_protection, '"'));
-																END;
-														END;
-													ELSE IF (@hydrant_protection IS NULL)
-														SET @hydrant_protection = NULL;
-
-													IF (@hydrant_standpipe_type IS NOT NULL)
-														BEGIN
-															SET @hydrant_standpipe_type = report.REMOVE_EXTRA_SPACES(@hydrant_standpipe_type);
-															IF (TRY_CAST(@hydrant_standpipe_type AS INT) IS NOT NULL)
-																BEGIN
-																	SET @id_hydrant_standpipe_type_to_save = ISNULL((SELECT id_hydrant_standpipe_type FROM #temp_hydrant_standpipe_type_report WHERE id_hydrant_standpipe_type = CAST(@hydrant_standpipe_type AS INT)), NULL);
-																	IF (@id_hydrant_standpipe_type_to_save IS NULL)
-																		PRINT(CONCAT('Cannot find the hydrant standpipe system type with the name/id "', @hydrant_standpipe_type, '"'));
-																END;
-															ELSE IF (TRY_CAST(@hydrant_standpipe_type AS INT) IS NULL)
-																BEGIN
-																	SET @id_hydrant_standpipe_type_to_save = ISNULL((SELECT id_hydrant_standpipe_type FROM #temp_hydrant_standpipe_type_report WHERE hydrant_standpipe_type_name = report.CORRECT_GRAMMAR(@hydrant_standpipe_type, 'name')), NULL);
-																	IF (@id_hydrant_standpipe_type_to_save IS NULL)
-																		PRINT(CONCAT('Cannot find the hydrant standpipe system type with the name/id "', @hydrant_standpipe_type, '"'));
-																END;
-														END;
-													ELSE IF (@hydrant_standpipe_type IS NULL)
-														SET @hydrant_standpipe_type = NULL;
-
-													IF (@hydrant_standpipe_class IS NOT NULL)
-														BEGIN
-															SET @hydrant_standpipe_class = report.REMOVE_EXTRA_SPACES(@hydrant_standpipe_class);
-															IF (TRY_CAST(@hydrant_standpipe_class AS INT) IS NOT NULL)
-																BEGIN
-																	SET @id_hydrant_standpipe_class_to_save = ISNULL((SELECT id_hydrant_standpipe_class FROM #temp_hydrant_standpipe_class_report WHERE id_hydrant_standpipe_class = CAST(@hydrant_standpipe_class AS INT)), NULL);
-																	IF (@id_hydrant_standpipe_class_to_save IS NULL)
-																		PRINT(CONCAT('Cannot find the hydrant standpipe system class with the name/id "', @hydrant_standpipe_class, '"'));
-																END;
-															ELSE IF (TRY_CAST(@hydrant_standpipe_class AS INT) IS NULL)
-																BEGIN
-																	SET @id_hydrant_standpipe_class_to_save = ISNULL((SELECT id_hydrant_standpipe_class FROM #temp_hydrant_standpipe_class_report WHERE hydrant_standpipe_class_name = report.CORRECT_GRAMMAR(@hydrant_standpipe_class, 'name')), NULL);
-																	IF (@id_hydrant_standpipe_class_to_save IS NULL)
-																		PRINT(CONCAT('Cannot find the hydrant standpipe system class with the name/id "', @hydrant_standpipe_class, '"'));
-																END;
-														END;
-													ELSE IF (@hydrant_standpipe_class IS NULL)
-														SET @hydrant_standpipe_class = NULL;
-
+													DECLARE
+														@certifications_to_save AS VARCHAR(200) = ISNULL(@plant_certifications, 'No certifications'),
+														@amount_installed_capacity AS FLOAT(2),
+														@id_installed_capacity AS INT,
+														@built_up_to_save AS FLOAT(2) = ISNULL(@built_up, 0.00),
+														@workforce_to_save AS INT = ISNULL(@workforce, 0),
+														@exposures_to_save AS FLOAT(2) = ISNULL(report.DETERMINATE_RATE_OF_RISK(@exposures), 0),
+														@has_hydrants_to_save AS BIT = ISNULL(report.CALCULATE_BIT_TO_SAVE(@has_hydrants), 0),
+														@id_hydrant_protection_to_save AS INT,
+														@id_hydrant_standpipe_type_to_save AS INT,
+														@id_hydrant_standpipe_class_to_save AS INT,
+														@has_foam_suppression_to_save AS BIT = ISNULL(report.CALCULATE_BIT_TO_SAVE(@has_foam_suppression), 0),
+														@has_suppression_to_save AS BIT = ISNULL(report.CALCULATE_BIT_TO_SAVE(@has_suppression), 0),
+														@has_sprinklers_to_save AS BIT = ISNULL(report.CALCULATE_BIT_TO_SAVE(@has_sprinklers), 0),
+														@has_afds_to_save AS BIT = ISNULL(report.CALCULATE_BIT_TO_SAVE(@has_afds), 0),
+														@has_fire_detector_bateries_to_save AS BIT = ISNULL(report.CALCULATE_BIT_TO_SAVE(@has_fire_detection_batteries), 0),
+														@has_private_brigade_to_save AS BIT = ISNULL(report.CALCULATE_BIT_TO_SAVE(@has_private_brigade), 0),
+														@has_lighting_protection_to_save AS BIT = ISNULL(report.CALCULATE_BIT_TO_SAVE(@has_lighting_protection), 0);
 													BEGIN
-														INSERT INTO report.plant_parameters(id_report, id_plant, plant_certifications, plant_parameters_installed_capacity, id_capacity_type, plant_parameters_built_up, plant_parameters_workforce, plant_parameters_exposures,
-																							plant_parameters_has_hydrants, id_hydrant_protection, id_hydrant_standpipe_type, id_hydrant_standpipe_class, plant_parameters_has_foam_suppression_sys, plant_parameters_has_suppresion_sys,
-																							plant_parameters_has_sprinklers, plant_parameters_has_afds, plant_parameters_has_fire_detection_batteries, plant_parameters_has_private_brigade, plant_parameters_has_lighting_protection)
-																							VALUES((SELECT TOP 1 id_report FROM report.report_table ORDER BY id_report DESC), @id_plant, @certifications_to_save, @amount_installed_capacity, @id_installed_capacity,
-																									@built_up_to_save, @workforce_to_save, @exposures_to_save, @has_hydrants_to_save, @id_hydrant_protection_to_save, @id_hydrant_standpipe_type_to_save, @id_hydrant_standpipe_class_to_save,
-																									@has_foam_suppression_to_save, @has_suppression_to_save, @has_sprinklers_to_save, @has_afds_to_save, @has_fire_detector_bateries_to_save, @has_private_brigade_to_save, @has_lighting_protection_to_save)
+														IF (@installed_capacity IS NOT NULL)
+															BEGIN
+																SET @installed_capacity = report.REMOVE_EXTRA_SPACES(@installed_capacity);
+																IF (@installed_capacity LIKE '%,%')
+																	BEGIN
+																		DECLARE @value_installed_capacity AS VARCHAR(50)
+																		DECLARE cur_installed_capacity CURSOR DYNAMIC FORWARD_ONLY
+																										FOR SELECT * FROM STRING_SPLIT(@installed_capacity, ',');
+																		OPEN cur_installed_capacity;
+																		FETCH NEXT FROM cur_installed_capacity INTO @value_installed_capacity;
+																		WHILE @@FETCH_STATUS = 0
+																			BEGIN TRY
+																				SET @value_installed_capacity = report.REMOVE_EXTRA_SPACES(@value_installed_capacity);
+
+																				IF (TRY_CAST(@value_installed_capacity AS FLOAT) IS NOT NULL)
+																					SET @amount_installed_capacity = CAST(@value_installed_capacity AS FLOAT(2));
+																				ELSE IF (TRY_CAST(@value_installed_capacity AS VARCHAR) IS NOT NULL)
+																					BEGIN
+																						SET @id_installed_capacity = ISNULL((SELECT id_capacity_type FROM #temp_capacity_type_table_report WHERE capacity_type_name = @value_installed_capacity),
+																														NULL);
+																						IF (@id_installed_capacity IS NULL)
+																							PRINT (CONCAT('Cannot find the installed capacity type "', @value_installed_capacity, '"'));
+																					END;
+																				FETCH NEXT FROM cur_installed_capacity INTO @value_installed_capacity;
+																			END TRY
+																			BEGIN CATCH
+																				PRINT (CONCAT('Cannot save the installed capacity "', ERROR_MESSAGE(), '"'))
+																				CLOSE cur_installed_capacity;
+																				DEALLOCATE cur_installed_capacity;
+																			END CATCH;
+																		CLOSE cur_installed_capacity;
+																		DEALLOCATE cur_installed_capacity;
+																	END;
+																ELSE IF (@installed_capacity NOT LIKE '%,%')
+																	BEGIN
+																		IF (TRY_CAST(@installed_capacity AS FLOAT) IS NOT NULL)
+																			SET @amount_installed_capacity = CAST(@installed_capacity AS FLOAT(2));
+																		ELSE IF (TRY_CAST(@installed_capacity AS VARCHAR) IS NOT NULL)
+																			BEGIN
+																				SET @id_installed_capacity = ISNULL((SELECT id_capacity_type FROM #temp_capacity_type_table_report WHERE capacity_type_name = @installed_capacity),
+																														NULL);
+																				IF (@id_installed_capacity IS NULL)
+																					PRINT (CONCAT('Cannot find the installed capacity type "', @installed_capacity, '"'));
+																			END;
+																	END;
+															END;
+														ELSE IF (@installed_capacity IS NULL)
+															BEGIN
+																SET @amount_installed_capacity = NULL;
+																SET @id_installed_capacity = NULL;
+															END;
+
+														IF (@hydrant_protection IS NOT NULL)
+															BEGIN
+																SET @hydrant_protection = report.REMOVE_EXTRA_SPACES(@hydrant_protection);
+																IF (TRY_CAST(@hydrant_protection AS INT) IS NOT NULL)
+																	BEGIN
+																		SET @id_hydrant_protection_to_save = ISNULL((SELECT id_hydrant_protection FROM #temp_hydrant_protection_table_report WHERE id_hydrant_protection = CAST(@hydrant_protection AS INT)),
+																											NULL);
+																		IF (@id_hydrant_protection_to_save IS NULL)
+																			PRINT(CONCAT('Cannot find the hydrant protection with the name/id "', @hydrant_protection, '"'));
+																	END;
+																ELSE IF (TRY_CAST(@hydrant_protection AS INT) IS NULL)
+																	BEGIN
+																		SET @id_hydrant_protection_to_save = ISNULL((SELECT id_hydrant_protection FROM #temp_hydrant_protection_table_report WHERE hydrant_protection_name = report.CORRECT_GRAMMAR(@hydrant_protection, 'paragraph')),
+																											NULL);
+																		IF (@id_hydrant_protection_to_save IS NULL)
+																			PRINT(CONCAT('Cannot find the hydrant protection with the name/id "', @hydrant_protection, '"'));
+																	END;
+															END;
+														ELSE IF (@hydrant_protection IS NULL)
+															SET @hydrant_protection = NULL;
+
+														IF (@hydrant_standpipe_type IS NOT NULL)
+															BEGIN
+																SET @hydrant_standpipe_type = report.REMOVE_EXTRA_SPACES(@hydrant_standpipe_type);
+																IF (TRY_CAST(@hydrant_standpipe_type AS INT) IS NOT NULL)
+																	BEGIN
+																		SET @id_hydrant_standpipe_type_to_save = ISNULL((SELECT id_hydrant_standpipe_type FROM #temp_hydrant_standpipe_type_report WHERE id_hydrant_standpipe_type = CAST(@hydrant_standpipe_type AS INT)), NULL);
+																		IF (@id_hydrant_standpipe_type_to_save IS NULL)
+																			PRINT(CONCAT('Cannot find the hydrant standpipe system type with the name/id "', @hydrant_standpipe_type, '"'));
+																	END;
+																ELSE IF (TRY_CAST(@hydrant_standpipe_type AS INT) IS NULL)
+																	BEGIN
+																		SET @id_hydrant_standpipe_type_to_save = ISNULL((SELECT id_hydrant_standpipe_type FROM #temp_hydrant_standpipe_type_report WHERE hydrant_standpipe_type_name = report.CORRECT_GRAMMAR(@hydrant_standpipe_type, 'name')), NULL);
+																		IF (@id_hydrant_standpipe_type_to_save IS NULL)
+																			PRINT(CONCAT('Cannot find the hydrant standpipe system type with the name/id "', @hydrant_standpipe_type, '"'));
+																	END;
+															END;
+														ELSE IF (@hydrant_standpipe_type IS NULL)
+															SET @hydrant_standpipe_type = NULL;
+
+														IF (@hydrant_standpipe_class IS NOT NULL)
+															BEGIN
+																SET @hydrant_standpipe_class = report.REMOVE_EXTRA_SPACES(@hydrant_standpipe_class);
+																IF (TRY_CAST(@hydrant_standpipe_class AS INT) IS NOT NULL)
+																	BEGIN
+																		SET @id_hydrant_standpipe_class_to_save = ISNULL((SELECT id_hydrant_standpipe_class FROM #temp_hydrant_standpipe_class_report WHERE id_hydrant_standpipe_class = CAST(@hydrant_standpipe_class AS INT)), NULL);
+																		IF (@id_hydrant_standpipe_class_to_save IS NULL)
+																			PRINT(CONCAT('Cannot find the hydrant standpipe system class with the name/id "', @hydrant_standpipe_class, '"'));
+																	END;
+																ELSE IF (TRY_CAST(@hydrant_standpipe_class AS INT) IS NULL)
+																	BEGIN
+																		SET @id_hydrant_standpipe_class_to_save = ISNULL((SELECT id_hydrant_standpipe_class FROM #temp_hydrant_standpipe_class_report WHERE hydrant_standpipe_class_name = report.CORRECT_GRAMMAR(@hydrant_standpipe_class, 'name')), NULL);
+																		IF (@id_hydrant_standpipe_class_to_save IS NULL)
+																			PRINT(CONCAT('Cannot find the hydrant standpipe system class with the name/id "', @hydrant_standpipe_class, '"'));
+																	END;
+															END;
+														ELSE IF (@hydrant_standpipe_class IS NULL)
+															SET @hydrant_standpipe_class = NULL;
+
+														BEGIN
+															INSERT INTO report.plant_parameters(id_report, id_plant, plant_certifications, plant_parameters_installed_capacity, id_capacity_type, plant_parameters_built_up, plant_parameters_workforce, plant_parameters_exposures,
+																								plant_parameters_has_hydrants, id_hydrant_protection, id_hydrant_standpipe_type, id_hydrant_standpipe_class, plant_parameters_has_foam_suppression_sys, plant_parameters_has_suppresion_sys,
+																								plant_parameters_has_sprinklers, plant_parameters_has_afds, plant_parameters_has_fire_detection_batteries, plant_parameters_has_private_brigade, plant_parameters_has_lighting_protection)
+																								VALUES((SELECT TOP 1 id_report FROM report.report_table ORDER BY id_report DESC), @id_plant, @certifications_to_save, @amount_installed_capacity, @id_installed_capacity,
+																										@built_up_to_save, @workforce_to_save, @exposures_to_save, @has_hydrants_to_save, @id_hydrant_protection_to_save, @id_hydrant_standpipe_type_to_save, @id_hydrant_standpipe_class_to_save,
+																										@has_foam_suppression_to_save, @has_suppression_to_save, @has_sprinklers_to_save, @has_afds_to_save, @has_fire_detector_bateries_to_save, @has_private_brigade_to_save, @has_lighting_protection_to_save)
+														END;
 													END;
 												END;
-											END;
-											PRINT CONCAT('The report for the plant with the name/id "', @plant, '" was correctly created');
-										END;	
+												PRINT CONCAT('The report for the plant with the name/id "', @plant, '" was correctly created');
+											END;	
+										ELSE
+											PRINT 'Cannot insert into the report table because the plant is null.';
 									ELSE
-										PRINT 'Cannot insert into the report table because the plant is null.';
-								ELSE
-									PRINT 'Cannot insert into the report table because the client is null.';
-							END;
+										PRINT 'Cannot insert into the report table because the client is null.';
+								END;
+							ELSE
+								PRINT 'Cannot insert the report because already exists in the database'
 						END;
 					ELSE
 						PRINT 'The engineer field cannot be left empty.';
