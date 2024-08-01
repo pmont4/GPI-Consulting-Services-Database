@@ -587,33 +587,18 @@ CREATE OR ALTER PROCEDURE report.proc_insert_plant
 AS
 	BEGIN TRY
 		BEGIN
-			CREATE TABLE #temp_business_turnover_plant (
-				id_business_turnover INT,
-				business_turnover_name VARCHAR(50)
-			);
-
-			CREATE TABLE #temp_merchandise_class_plant (
-				id_merchandise_class INT,
-				merchandise_class_type_name VARCHAR(4)
-			);
-
-			CREATE TABLE #temp_type_location_plant (
-				id_type_location_class INT,
-				type_location_class_name VARCHAR(15)
-			);
+			SELECT id_business_turnover, business_turnover_name INTO #temp_business_turnover_plant FROM report.business_turnover_class_table;
+			SELECT id_merchandise_classification_type, merchandise_classification_type_name INTO #temp_merchandise_class_plant FROM report.merchandise_classification_type_table;
+			SELECT id_type_location_class, type_location_class_name INTO #temp_type_location_plant FROM report.type_location_classification_table;
 
 			CREATE CLUSTERED INDEX idx_temp_business_turnover_table_plant ON #temp_business_turnover_plant(id_business_turnover);
 			CREATE NONCLUSTERED INDEX idx_business_turnover_name  ON #temp_business_turnover_plant(business_turnover_name);
 
-			CREATE CLUSTERED INDEX idx_temp_merchandise_class_plant ON #temp_merchandise_class_plant(id_merchandise_class);
-			CREATE NONCLUSTERED INDEX idx_temp_merchandise_class_name_plant ON #temp_merchandise_class_plant(merchandise_class_type_name);
+			CREATE CLUSTERED INDEX idx_temp_merchandise_class_plant ON #temp_merchandise_class_plant(id_merchandise_classification_type);
+			CREATE NONCLUSTERED INDEX idx_temp_merchandise_class_name_plant ON #temp_merchandise_class_plant(merchandise_classification_type_name);
 
 			CREATE CLUSTERED INDEX idx_temp_type_location_plant ON #temp_type_location_plant(id_type_location_class);
 			CREATE NONCLUSTERED INDEX idx_temp_type_location_name_plant  ON #temp_type_location_plant(type_location_class_name);
-
-			INSERT INTO #temp_business_turnover_plant SELECT id_business_turnover, business_turnover_name FROM report.business_turnover_class_table;
-			INSERT INTO #temp_merchandise_class_plant SELECT id_merchandise_classification_type, merchandise_classification_type_name FROM report.merchandise_classification_type_table;
-			INSERT INTO #temp_type_location_plant SELECT id_type_location_class, type_location_class_name FROM report.type_location_classification_table;
 		END;
 		DECLARE
 			@date_construction_year AS DATETIME,
@@ -650,14 +635,14 @@ AS
 								IF (@merchandise_classification IS NOT NULL)
 									IF ((SELECT TRY_CAST(@merchandise_classification AS INT)) IS NOT NULL)
 										BEGIN;
-											SET @id_merchandise = ISNULL((SELECT id_merchandise_class FROM #temp_merchandise_class_plant WHERE id_merchandise_class = @merchandise_classification),
+											SET @id_merchandise = ISNULL((SELECT id_merchandise_classification_type FROM #temp_merchandise_class_plant WHERE id_merchandise_classification_type = @merchandise_classification),
 																		NULL);
 											IF (@id_merchandise IS NULL)
 												PRINT(CONCAT('Cannot find the merchandise classification with the name/id "', @merchandise_classification, '"'));
 										END;
 									ELSE IF ((SELECT TRY_CAST(@merchandise_classification AS VARCHAR)) IS NOT NULL)
 										BEGIN
-											SET @id_merchandise = ISNULL((SELECT id_merchandise_class FROM #temp_merchandise_class_plant WHERE merchandise_class_type_name = UPPER(@merchandise_classification)),
+											SET @id_merchandise = ISNULL((SELECT id_merchandise_classification_type FROM #temp_merchandise_class_plant WHERE merchandise_classification_type_name = UPPER(@merchandise_classification)),
 																		NULL);
 											IF (@id_merchandise IS NULL)
 												PRINT(CONCAT('Cannot find the merchandise classification with the name/id "', @merchandise_classification, '"'));
@@ -750,9 +735,6 @@ AS
 	END CATCH;
 --
 
-ALTER TABLE report.plant_parameters
-ADD plant_parameters_workforce INT NULL;
-
 -- Report table data scripts
 --
 CREATE OR ALTER PROCEDURE report.proc_insert_report_table
@@ -779,41 +761,13 @@ CREATE OR ALTER PROCEDURE report.proc_insert_report_table
 AS 
 BEGIN TRY
 	BEGIN
-		CREATE TABLE #temp_client_table_report(
-			id_client INT,
-			client_name VARCHAR(150)
-		);
-		
-		CREATE TABLE #temp_plant_table_report(
-			id_plant INT,
-			plant_account_name VARCHAR(150),
-			plant_name VARCHAR(150)
-		);
-		
-		CREATE TABLE #temp_engineer_table_report(
-			id_engineer INT,
-			engineer_name VARCHAR(150)
-		);
-
-		CREATE TABLE #temp_capacity_type_table_report(
-			id_capacity_type INT,
-			capacity_type_name VARCHAR(30)
-		);
-
-		CREATE TABLE #temp_hydrant_protection_table_report(
-			id_hydrant_protection INT,
-			hydrant_protection_name VARCHAR(20)
-		);
-
-		CREATE TABLE #temp_hydrant_standpipe_type_report(
-			id_hydrant_standpipe_type INT,
-			hydrant_standpipe_type_name VARCHAR(20)
-		);
-
-		CREATE TABLE #temp_hydrant_standpipe_class_report(
-			id_hydrant_standpipe_class INT,
-			hydrant_standpipe_class_name VARCHAR(4)
-		);
+		SELECT id_client, client_name INTO #temp_client_table_report FROM report.client_table;
+		SELECT id_plant, plant_account_name, plant_name INTO #temp_plant_table_report FROM report.plant_table;
+		SELECT id_engineer, engineer_name INTO #temp_engineer_table_report FROM report.engineer_table;
+		SELECT id_capacity_type, capacity_type_name INTO #temp_capacity_type_table_report FROM report.capacity_type_table;
+		SELECT id_hydrant_protection_classification, hydrant_protection_classification_name INTO #temp_hydrant_protection_table_report FROM report.hydrant_protection_classification_table
+		SELECT id_hydrant_standpipe_system_type, hydrant_standpipe_system_type_name INTO #temp_hydrant_standpipe_type_report FROM report.hydrant_standpipe_system_type_table;
+		SELECT id_hydrant_standpipe_system_class, hydrant_standpipe_System_class_name INTO #temp_hydrant_standpipe_class_report FROM report.hydrant_standpipe_system_class_table;
 
 		CREATE CLUSTERED INDEX idx_temp_client_table_report ON #temp_client_table_report(id_client);
 		CREATE NONCLUSTERED INDEX idx_temp_client_table_report_name ON #temp_client_table_report(client_name);
@@ -828,22 +782,14 @@ BEGIN TRY
 		CREATE CLUSTERED INDEX idx_temp_capacity_type_table_report ON #temp_capacity_type_table_report(id_capacity_type);
 		CREATE NONCLUSTERED INDEX idx_temp_capacity_type_table_report_name ON #temp_capacity_type_table_report(capacity_type_name);
 
-		CREATE CLUSTERED INDEX idx_temp_hydrant_protection_table_report ON #temp_hydrant_protection_table_report(id_hydrant_protection);
-		CREATE NONCLUSTERED INDEX idx_temp_hydrant_protection_table_report_name ON #temp_hydrant_protection_table_report(hydrant_protection_name);
+		CREATE CLUSTERED INDEX idx_temp_hydrant_protection_table_report ON #temp_hydrant_protection_table_report(id_hydrant_protection_classification);
+		CREATE NONCLUSTERED INDEX idx_temp_hydrant_protection_table_report_name ON #temp_hydrant_protection_table_report(hydrant_protection_classification_name);
 
-		CREATE CLUSTERED INDEX idx_temp_hydrant_standpipe_type_table_report ON #temp_hydrant_standpipe_type_report(id_hydrant_standpipe_type);
-		CREATE NONCLUSTERED INDEX idx_temp_hydrant_standpipe_type_table_report_name ON #temp_hydrant_standpipe_type_report(hydrant_standpipe_type_name);
+		CREATE CLUSTERED INDEX idx_temp_hydrant_standpipe_type_table_report ON #temp_hydrant_standpipe_type_report(id_hydrant_standpipe_system_type);
+		CREATE NONCLUSTERED INDEX idx_temp_hydrant_standpipe_type_table_report_name ON #temp_hydrant_standpipe_type_report(hydrant_standpipe_system_type_name);
 
-		CREATE CLUSTERED INDEX idx_temp_hydrant_standpipe_class_table_report ON #temp_hydrant_standpipe_class_report(id_hydrant_standpipe_class);
-		CREATE NONCLUSTERED INDEX idx_temp_hydrant_standpipe_class_table_report_name ON  #temp_hydrant_standpipe_class_report(hydrant_standpipe_class_name);
-
-		INSERT INTO #temp_client_table_report SELECT id_client, client_name FROM report.client_table;
-		INSERT INTO #temp_plant_table_report SELECT id_plant, plant_account_name, plant_name FROM report.plant_table;
-		INSERT INTO #temp_engineer_table_report SELECT id_engineer, engineer_name FROM report.engineer_table;
-		INSERT INTO #temp_capacity_type_table_report SELECT id_capacity_type, capacity_type_name FROM report.capacity_type_table;
-		INSERT INTO #temp_hydrant_protection_table_report SELECT id_hydrant_protection_classification, hydrant_protection_classification_name FROM report.hydrant_protection_classification_table
-		INSERT INTO #temp_hydrant_standpipe_type_report SELECT id_hydrant_standpipe_system_type, hydrant_standpipe_system_type_name FROM report.hydrant_standpipe_system_type_table;
-		INSERT INTO #temp_hydrant_standpipe_class_report SELECT id_hydrant_standpipe_system_class, hydrant_standpipe_System_class_name FROM report.hydrant_standpipe_system_class_table;
+		CREATE CLUSTERED INDEX idx_temp_hydrant_standpipe_class_table_report ON #temp_hydrant_standpipe_class_report(id_hydrant_standpipe_system_class);
+		CREATE NONCLUSTERED INDEX idx_temp_hydrant_standpipe_class_table_report_name ON  #temp_hydrant_standpipe_class_report(hydrant_standpipe_System_class_name);
 	END;
 
 	BEGIN
@@ -1026,14 +972,14 @@ BEGIN TRY
 																SET @hydrant_protection = report.REMOVE_EXTRA_SPACES(@hydrant_protection);
 																IF (TRY_CAST(@hydrant_protection AS INT) IS NOT NULL)
 																	BEGIN
-																		SET @id_hydrant_protection_to_save = ISNULL((SELECT id_hydrant_protection FROM #temp_hydrant_protection_table_report WHERE id_hydrant_protection = CAST(@hydrant_protection AS INT)),
+																		SET @id_hydrant_protection_to_save = ISNULL((SELECT id_hydrant_protection_classification FROM #temp_hydrant_protection_table_report WHERE id_hydrant_protection_classification = CAST(@hydrant_protection AS INT)),
 																											NULL);
 																		IF (@id_hydrant_protection_to_save IS NULL)
 																			PRINT(CONCAT('Cannot find the hydrant protection with the name/id "', @hydrant_protection, '"'));
 																	END;
 																ELSE IF (TRY_CAST(@hydrant_protection AS INT) IS NULL)
 																	BEGIN
-																		SET @id_hydrant_protection_to_save = ISNULL((SELECT id_hydrant_protection FROM #temp_hydrant_protection_table_report WHERE hydrant_protection_name = report.CORRECT_GRAMMAR(@hydrant_protection, 'paragraph')),
+																		SET @id_hydrant_protection_to_save = ISNULL((SELECT id_hydrant_protection_classification FROM #temp_hydrant_protection_table_report WHERE hydrant_protection_classification_name = report.CORRECT_GRAMMAR(@hydrant_protection, 'paragraph')),
 																											NULL);
 																		IF (@id_hydrant_protection_to_save IS NULL)
 																			PRINT(CONCAT('Cannot find the hydrant protection with the name/id "', @hydrant_protection, '"'));
@@ -1047,13 +993,13 @@ BEGIN TRY
 																SET @hydrant_standpipe_type = report.REMOVE_EXTRA_SPACES(@hydrant_standpipe_type);
 																IF (TRY_CAST(@hydrant_standpipe_type AS INT) IS NOT NULL)
 																	BEGIN
-																		SET @id_hydrant_standpipe_type_to_save = ISNULL((SELECT id_hydrant_standpipe_type FROM #temp_hydrant_standpipe_type_report WHERE id_hydrant_standpipe_type = CAST(@hydrant_standpipe_type AS INT)), NULL);
+																		SET @id_hydrant_standpipe_type_to_save = ISNULL((SELECT id_hydrant_standpipe_system_type FROM #temp_hydrant_standpipe_type_report WHERE id_hydrant_standpipe_system_type = CAST(@hydrant_standpipe_type AS INT)), NULL);
 																		IF (@id_hydrant_standpipe_type_to_save IS NULL)
 																			PRINT(CONCAT('Cannot find the hydrant standpipe system type with the name/id "', @hydrant_standpipe_type, '"'));
 																	END;
 																ELSE IF (TRY_CAST(@hydrant_standpipe_type AS INT) IS NULL)
 																	BEGIN
-																		SET @id_hydrant_standpipe_type_to_save = ISNULL((SELECT id_hydrant_standpipe_type FROM #temp_hydrant_standpipe_type_report WHERE hydrant_standpipe_type_name = report.CORRECT_GRAMMAR(@hydrant_standpipe_type, 'name')), NULL);
+																		SET @id_hydrant_standpipe_type_to_save = ISNULL((SELECT id_hydrant_standpipe_system_type FROM #temp_hydrant_standpipe_type_report WHERE hydrant_standpipe_system_type_name = report.CORRECT_GRAMMAR(@hydrant_standpipe_type, 'name')), NULL);
 																		IF (@id_hydrant_standpipe_type_to_save IS NULL)
 																			PRINT(CONCAT('Cannot find the hydrant standpipe system type with the name/id "', @hydrant_standpipe_type, '"'));
 																	END;
@@ -1066,13 +1012,13 @@ BEGIN TRY
 																SET @hydrant_standpipe_class = report.REMOVE_EXTRA_SPACES(@hydrant_standpipe_class);
 																IF (TRY_CAST(@hydrant_standpipe_class AS INT) IS NOT NULL)
 																	BEGIN
-																		SET @id_hydrant_standpipe_class_to_save = ISNULL((SELECT id_hydrant_standpipe_class FROM #temp_hydrant_standpipe_class_report WHERE id_hydrant_standpipe_class = CAST(@hydrant_standpipe_class AS INT)), NULL);
+																		SET @id_hydrant_standpipe_class_to_save = ISNULL((SELECT id_hydrant_standpipe_system_class FROM #temp_hydrant_standpipe_class_report WHERE id_hydrant_standpipe_system_class = CAST(@hydrant_standpipe_class AS INT)), NULL);
 																		IF (@id_hydrant_standpipe_class_to_save IS NULL)
 																			PRINT(CONCAT('Cannot find the hydrant standpipe system class with the name/id "', @hydrant_standpipe_class, '"'));
 																	END;
 																ELSE IF (TRY_CAST(@hydrant_standpipe_class AS INT) IS NULL)
 																	BEGIN
-																		SET @id_hydrant_standpipe_class_to_save = ISNULL((SELECT id_hydrant_standpipe_class FROM #temp_hydrant_standpipe_class_report WHERE hydrant_standpipe_class_name = report.CORRECT_GRAMMAR(@hydrant_standpipe_class, 'name')), NULL);
+																		SET @id_hydrant_standpipe_class_to_save = ISNULL((SELECT id_hydrant_standpipe_system_class FROM #temp_hydrant_standpipe_class_report WHERE hydrant_standpipe_system_class_name = report.CORRECT_GRAMMAR(@hydrant_standpipe_class, 'name')), NULL);
 																		IF (@id_hydrant_standpipe_class_to_save IS NULL)
 																			PRINT(CONCAT('Cannot find the hydrant standpipe system class with the name/id "', @hydrant_standpipe_class, '"'));
 																	END;
@@ -1142,15 +1088,10 @@ CREATE OR ALTER PROCEDURE report.proc_insert_perils_and_risk_table
 AS
 	BEGIN TRY
 		BEGIN
-			CREATE TABLE #temp_report_table_pr (
-				id_report INT,
-				id_plant INT
-			);
+			SELECT id_report, id_plant INTO #temp_report_table_pr FROM report.report_table;
 
 			CREATE CLUSTERED INDEX idx_temp_report_table ON #temp_report_table_pr(id_report);
 			CREATE NONCLUSTERED INDEX idx_tempo_report_table_plant ON #temp_report_table_pr(id_plant);
-
-			INSERT INTO #temp_report_table_pr SELECT id_report, id_plant FROM report.report_table;
 		END;
 		BEGIN
 			IF (@id_report IS NOT NULL AND (SELECT id_report FROM #temp_report_table_pr WHERE id_report = @id_report) IS NOT NULL)
@@ -1227,17 +1168,11 @@ CREATE OR ALTER PROCEDURE report.proc_insert_loss_scenario_table
 	@mfl AS FLOAT(2)
 AS
 	BEGIN
-		CREATE TABLE #temp_report_table_loss (
-			id_report INT,
-			id_client INT,
-			id_plant INT
-		);
+		SELECT id_report, id_client, id_plant INTO #temp_report_table_loss FROM report.report_table;
 
 		CREATE CLUSTERED INDEX idx_temp_report_table_loss ON #temp_report_table_loss(id_report);
 		CREATE NONCLUSTERED INDEX idx_temp_report_table_loss_client ON #temp_report_table_loss(id_client);
 		CREATE NONCLUSTERED INDEX idx_temp_report_table_loss_plant ON #temp_report_table_loss(id_plant);
-
-		INSERT INTO #temp_report_table_loss SELECT id_report, id_client, id_plant FROM report.report_table;
 	END;
 	BEGIN TRY
 		BEGIN
