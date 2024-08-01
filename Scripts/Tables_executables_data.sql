@@ -44,6 +44,7 @@ EXEC report.proc_insert_client 'Grupo Generali';
 EXEC report.proc_insert_client 'Somit, Corredores de Seguros, S.A.'
 EXEC report.proc_insert_client 'Bowring Marsh';
 EXEC report.proc_insert_client 'Aseguradora General, S.A.'
+EXEC report.proc_insert_client 'Howden Specialty Ltd'
 
 -- Capacity type table executables for data insertion
 -- Data is being inserted in the following order
@@ -271,6 +272,19 @@ EXEC report.proc_insert_plant 'Generadora Eléctrica del Norte Limitada – GENO
 EXEC report.proc_insert_plant 'PVC Gerfor', null, 'C.A.', 'Guatemala', 'Sacatepequez', 1999, 2001, 'Production', 'Planta industrial dedicada a la producción y comercialización de tuberías y accesorios de PVC (cloruro de polivinilo).', 'I', 'Industrial, Residential, Rural', 'Km 34.5, Carretera de Antigua a Guatemala, Santa Lucía Milpas Altas, Sacatepéquez, Guatemala', '14°34m18.72s', '90°40m13.56s', 0;
 EXEC report.proc_insert_plant 'Airplane Services, S.A. – Hangar F-1 GAO', null, 'C.A.', 'Guatemala', 'Guatemala', 2009, null, 'Aeronautical revenue', 'Servicio y atención de aeronaves privadas', null, 'Commercial', 'Hangar F-1 Aeropuerto Internacional La Aurora, zona 13, Guatemala, C.A.', '14°34m30.68s', '90°31m37.73s', 1494;
 EXEC report.proc_insert_plant 'Inversiones Agrícolas Las Ánimas, S.A. – Finca La Vega de Talismán', null, 'C.A.', 'Guatemala', 'Izabal', null, null, 'Production', 'Jardín clonal, banco de tierra negra, producción y almacenamiento de almácigos y plantaciones en establecimiento de árboles de hule.', 'I', 'Rural', 'Interior Finca La Vega de Talismán, Río Dulce, Izabal, Guatemala, C.A.', '15°36m25.70s', '88°54m50.96s', 45;
+EXEC report.proc_insert_plant 'Agropalmeras, S.A. – Casa Recreo Manatí', null, 'C.A.', 'Guatemala', 'Izabal', 2007, null, 'Real state', 'Casa de recreo y marina privada de yates y lanchas.', null, 'Rural', 'Residencial Manatí, Río Dulce, Livingston, Izabal, Guatemala, C.A.', '15°38m00.24s', '88°58m51.72s', 6;
+EXEC report.proc_insert_plant 'Inversiones Agrícolas Palafox, S.A. – Palafox Norte', null, 'C.A.', 'Guatemala', 'Izabal', 2008, null, 'Aeronautical revenue', 'Centro de Operaciones Norte, Taller Agrícola y Hangar de aeronaves privadas', null, 'Rural', 'Finca Bello Horizonte, Río Dulce, Izabal, Guatemala, C.A.', '15°35m29.46s', '88°56m33.58s', 31;
+EXEC report.proc_insert_plant 'Inversiones Agrícolas Las Ánimas, S.A. – Finca Las Ánimas', null, 'C.A.', 'Guatemala', 'Suchitepequez', null, null, 'Aeronautical revenue', 'Casa de recreo, pista de aterrizaje y hangar de aeronaves propiedad de Grupo Agroindustrial Occidente, casa de pilotos y caballeriza.', null, 'Rural', 'Km. 155 Carretera CA2, Santo Domingo, Suchitepéquez, Guatemala, C.A.', '14°27m44.21s', '91°27m03.03s', 193;
+EXEC report.proc_insert_plant 'Inversiones Agrícolas Las Ánimas, S.A. – Finca Palafox Sur', null, 'C.A.', 'Guatemala', 'Suchitepequez', null, null, 'Production', 'Jardín Clonal, Almácigos y Plantación en establecimiento de árboles de hule.', null, 'Rural', 'Finca Palafox, Mazatenango, Suchitepéquez, Guatemala, C.A.', '14.458184', '-91.376966', 181;
+EXEC report.proc_insert_plant 'Grupo Agroindustrial Occidente - Producción, Industrialización, Comercialización y Asesoría de Hule Natural, S.A. (PICA I)', null, 'C.A.', 'Guatemala', 'Suchitepequez', null, 2005, 'Production', 'Recepción, almacenamiento, procesamiento y almacenamiento de hule natural, en forma granulada y látex líquido.', null, 'Rural', 'Km. 7.5 Carretera a la Máquina, Cuyotenango Suchitepéquez, Guatemala, C.A.', '14°28m57.78s', '91°34m15.68s', 206;
+EXEC report.proc_insert_plant 'Grupo Agroindustrial Occidente – Proyectos para la Industria del Hule, S.A. (PICA II)', null, 'C.A.', 'Guatemala', 'Quetzaltenango', null, null, 'Production', 'Planta de recepción, almacenamiento, procesamiento y almacenamiento de hule natural, en forma granulada y látex líquido.', 'I', 'Rural', 'Km. 224.5 Carretera CA2, Coatepeque, Quetzaltenango, Guatemala, C.A.', '14°42m58.09s', '91°54m33.54s', 375;
+EXEC report.proc_insert_plant 'Grupo K-66', null, 'C.A.', 'Guatemala', 'Guatemala', 2006, 1966, 'Production', 'Fabricación y almacenamiento de empaque plástico termo-formado para ali-mentos, productos de limpieza y artículos escolares', 'III', 'Industrial, Residential', '6 Avenida 6-31 Zona 2, San José Villa Nueva, Guatemala, C.A.', '14°32m49.54s', '90°35m47.64s', 1415;
+EXEC report.proc_insert_plant 'Grupo KUO', 'Kekén – Planta de Alimentos Umán', 'N.A.', 'Mexico', 'Yucatan', 1994, 1995, 'Production', 'Producción de alimento balanceado para cerdos', 'I', 'Industrial, Rural', 'Tablaje Catastral 1035 y 1039, 16-A y Carretera Federal 261 Umán, Yucatán, México.', '20.893774', '-89.741553', 10;
+EXEC report.proc_insert_plant 'Grupo KUO', 'Kekén – Planta Procesadora Sahé', 'N.A.', 'Mexico', 'Yucatan', 2016, 2018, 'Production', 'Planta procesadora de cerdos. Producción y distribución de productos derivados del cerdo.', 'I', 'Rural', 'Carretera Federal Mérida – Puerto Juárez, Km 15.68, Tixpeual, Yucatán, México.', '20.923410', '-89.482644', 13;
+EXEC report.proc_insert_plant 'Grupo KUO', 'Transmisión y Equipos Mecánicos, S.A. de C.V. TREMEC – 5 de Febrero', 'N.A.', 'Mexico', 'Queretaro', 1964, 1995, 'Production', 'Producción de componentes mecánicos para sistemas de transmisión para automóviles de aplicación agrícola y terracería', 'I', 'Industrial, Rural', 'Avenida 5 de Febrero, No. 2115, Fraccionamiento Industrial Benito Juárez, CP 76120, Querétaro, México.', '20.629340', '-100.429937', 1810;
+EXEC report.proc_insert_plant 'Grupo KUO', 'Resirene, S.A. de C.V. – Planta Tlaxcala', 'N.A.', 'Mexico', 'Tlaxcala', 1973, 1973, 'Production', 'Manufactura y comercialización de productos de Poliestireno: Poliesti-reno de alto impacto (HIPS) y cristal de Poliestireno (PS Cristal).', 'IV', 'Industrial, Residential', 'Carretera Federal Puebla-Tlaxcala Km15.5, Xicotzinco, Tlax-cala, México.', '19.170527', '-98.227973', 2205;
+EXEC report.proc_insert_plant 'Grupo KUO', 'Resirene, S.A. de C.V. – Planta Tlaxcala', 'N.A.', 'Mexico', 'Tlaxcala', 1973, 1973, 'Production', 'Manufactura y comercialización de productos de Poliestireno: Poliesti-reno de alto impacto (HIPS) y cristal de Poliestireno (PS Cristal).', 'IV', 'Industrial, Residential', 'Carretera Federal Puebla-Tlaxcala Km15.5, Xicotzinco, Tlax-cala, México.', '19.170527', '-98.227973', 2205;
+EXEC report.proc_insert_plant 'Grupo KUO', 'Transmisión y Equipos Mecánicos, S.A. de C.V. TREMEC – Pedro Escobedo', 'N.A', 'Mexico', 'Queretaro', 1978, 1980, 'Production', 'Producción de componentes mecánicos para sistemas de transmisión para automóviles de aplicación agrícola y terracería', 'I', 'Rural', 'Km 181.5 Autopista México - Querétaro, Pedro Escobedo, Querétaro., México.', '20.506622', '-100.141348', 1910;
 
 -- Report table executables for data insertion
 -- Data has to be inserted in the following order:
@@ -414,6 +428,18 @@ EXEC report.proc_insert_report_table '8/junio/2015', 'Reasinter, Intermadiario d
 EXEC report.proc_insert_report_table '5/enero/2018', 'Aseguradora General, S.A.', 4192, 'Rafael Grajeda', null, '6040,metric tons/hour', 7930, 128, 1, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'no';
 EXEC report.proc_insert_report_table '9/diciembre/2011', 'Tecniseguros, Corredores de Seguros, S.A.', 4193, 'Marlon Lira', null, null, 1202, null, 3, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
 EXEC report.proc_insert_report_table '7/diciembre/2011', 'Tecniseguros, Corredores de Seguros, S.A.', 4194, 'Marlon Lira', null, null, null, null, 2, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'no';
+EXEC report.proc_insert_report_table '7/diciembre/2011', 'Tecniseguros, Corredores de Seguros, S.A.', 4195, 'Marlon Lira', null, null, 2700, null, 2, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'no';
+EXEC report.proc_insert_report_table '7/diciembre/2011', 'Tecniseguros, Corredores de Seguros, S.A.', 4196, 'Marlon Lira', null, null, null, null, 2, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '7/marzo/2012', 'Tecniseguros, Corredores de Seguros, S.A.', 4197, 'Marlon Lira', null, null, null, null, 2, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '7/marzo/2012', 'Tecniseguros, Corredores de Seguros, S.A.', 4198, 'Marlon Lira', null, null, null, null, 3, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'no';
+EXEC report.proc_insert_report_table '12/diciembre/2011', 'Tecniseguros, Corredores de Seguros, S.A.', 4199, 'Marlon Lira', 'ISO 9001:2008', '8,metric tons/hour', 9500, 190, 2, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '12/diciembre/2011', 'Tecniseguros, Corredores de Seguros, S.A.', 4200, 'Marlon Lira', null, '1,metric tons/hour', 4000, null, 2, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '15/febrero/2022', 'Aseguradora General, S.A.', 4201, 'Juan Jose Lira', null, null, 11344, 310, 1, 'si', 'Major Fires', 'Automatic Dry', 'II', 'no', 'no', 'no', 'no', 'no', 'si', 'no';
+EXEC report.proc_insert_report_table '21/febrero/2022', 'Howden Specialty Ltd', 4202, 'Rafael Grajeda', 'HACCP, USDA', '43000,metric tons/month', 14162.71, 110, 1, 'si', 'Major Fires', 'Automatic Wet', 'II', 'no', 'si', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '24/febrero/2022', 'Howden Specialty Ltd', 4203, 'Rafael Grajeda', 'HACCP, USDA, TIF, FSSC 22000', '43000,units/month', 400000, 1650, 1, 'si', 'Major Fires', 'Automatic Wet', 'III', 'no', 'no', 'si', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '18/febrero/2022', 'Howden Specialty Ltd', 4204, 'Rafael Grajeda', 'ISO/TS 16949:2009, ISO 14001:2004, C-TPAT, IATF', '5933404,units/year', 95710, 1601, 1, 'si', 'Major Fires', 'Automatic Wet', 'II', 'no', 'no', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '25/febrero/2022', 'Howden Specialty Ltd', 4205, 'Rafael Grajeda', 'ISO 9001', '375,metric tons/day', 15181, 287, 2, 'si', 'Major Fires', 'Automatic Wet', 'III', 'no', 'no', 'si', 'si', 'si', 'si', 'si';
+EXEC report.proc_insert_report_table '15/febrero/2022', 'Howden Specialty Ltd', 4206, 'Rafael Grajeda', 'ISO/TS 16949:2009, ISO 14001:2004, C-TPAT', '3000000,units/year', 23810, 357, 1, 'si', 'Major Fires', 'Automatic Wet', 'II', 'no', 'no', 'no', 'si', 'no', 'si', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -552,6 +578,18 @@ EXEC report.proc_insert_perils_and_risk_table 4208, 3, 1, 2, 2.5, 2.5, 2.5, 1.5,
 EXEC report.proc_insert_perils_and_risk_table 4209, 2, 'none', 1, 2.5, 2.5, 2.5, 'none', 1, 1, 'none', 'none', 2;
 EXEC report.proc_insert_perils_and_risk_table 4210, 'none', 'none', 'none', 1, 1, 2.5, 'none', 1, 3, 'none', 'none', 2;
 EXEC report.proc_insert_perils_and_risk_table 4211, 'none', 'none', 2, 2, 2.5, 2, 'none', 'none', 2, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 4212, 'none', 'none', 2, 1, 1.5, 2.5, 'none', 1, 1, 'none', 'none', 1.5;
+EXEC report.proc_insert_perils_and_risk_table 4213, 'none', 'none', 2, 2, 2, 2.5, 'none', 1, 2, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 4214, 'none', 'none', 2.5, 1, 1, 2.5, 'none', 1, 2, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 4215, 'none', 'none', 3, 2, 2, 2, 'none', 'none', 2, 'none', 'none', 2.5;
+EXEC report.proc_insert_perils_and_risk_table 4216, 'none', 'none', 1, 2, 2, 2.5, 'none', 1, 1, 'none', 'none', 1.5;
+EXEC report.proc_insert_perils_and_risk_table 4217, 'none', 'none', 2, 2, 2, 2.5, 'none', 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 4219, 2, 1, 1, 1, 2.5, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4220, 2.5, 1, 2, 2.5, 2, 1, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4221, 2.5, 1, 2, 2.5, 2, 1, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4222, 2.5, 1, 1, 1, 2, 1, 'none', 1, 1, 1, 1, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 4223, 3, 1, 2, 2, 3, 1.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4224, 2.5, 1, 1, 1, 2, 1, 'none', 1, 1, 1, 1, 1.5;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -665,4 +703,15 @@ EXEC report.proc_insert_loss_scenario_table 4207, '$,79846925', null, '$,1793702
 EXEC report.proc_insert_loss_scenario_table 4208, '$,79846925', null, '$,17937027', null, null, null, null, null, '$,79846925', null, null, null;
 EXEC report.proc_insert_loss_scenario_table 4209, 'Q,84816447.00', null, 'Q,5104634.00', null, 'Q,5819120.00', 'Q,55822327.00+Q,175000.00', null, null, 'Q,23000000.00', null, 56, 55;
 EXEC report.proc_insert_loss_scenario_table 4210, 'Q,5077500.61', null, null, null, 'Q,100000.00+Q,35584.00+Q,42984.00+Q,4898932.61', null, null, null, null, null, null, null;
+EXEC report.proc_insert_loss_scenario_table 4212, 'Q,11135000.00', null, null, null, 'Q,10200000.00', null, null, null, 'Q,935000.00', null, null, null;
+EXEC report.proc_insert_loss_scenario_table 4213, 'Q,9551696.00', null, null, null, 'Q,8000000.00', 'Q,450000.00+Q,500000.00', 'Q,1696.00', null, 'Q,300000.00+Q,300000.00', null, null, null;
+EXEC report.proc_insert_loss_scenario_table 4214, 'Q,4476500.00', null, null, null, 'Q,3500000.00', 'Q,250000.00+Q,300000.00', 'Q,26500.00', null, 'Q,350000.00+Q,50000.00', null, null, null;
+EXEC report.proc_insert_loss_scenario_table 4216, 'Q,111777464.87', null, null, null, 'Q,21250000.00', 'Q,1700000.00+Q,3649732.12+Q,25500000.00', 'Q,302732.75', null, 'Q,14450000.00+Q,2000000.00+Q,1275000.00+Q,22950000.00+Q,18700000.00', null, null, null;
+EXEC report.proc_insert_loss_scenario_table 4217, 'Q,36943647.00', null, null, null, 'Q,3938419.00', 'Q,6255228.00', 'Q,302732.75', null, 'Q,15000000.00+Q,250000.00+Q,1000000.00+Q,10500000.00', null, null, null;
+EXEC report.proc_insert_loss_scenario_table 4219, 'Q,259130427.85', 50, 'Q,22925000', 51, 'Q,3938419.00', 'Q,72112000', 'Q,119888427.85', null, 'Q,67000000+Q,130000', null, 50, null;
+EXEC report.proc_insert_loss_scenario_table 4220, '$,73236222', 64.09, null, 100, '$,28884449', '$,24921969', null, null, '$,19429804', null, null, null;
+EXEC report.proc_insert_loss_scenario_table 4221, '$,52624567', 16.04, null, 50, '$,25623972', '$,24685661', null, null, '$,2314934', null, null, null;
+EXEC report.proc_insert_loss_scenario_table 4222, '$,329515205', 70.79, '$,46800765', 85, '$,27851822', '$,234374100', null, null, '$,67289283', null, 72.82, null;
+EXEC report.proc_insert_loss_scenario_table 4223, '$,85889569', 51.23, '$,46471898', 100, '$,7912049', '$,49143504.92', null, null, '$,28834015', null, 68.35, null;
+EXEC report.proc_insert_loss_scenario_table 4224, '$,63249225', 76.77, '$,14801687', 100, '$,7921052', '$,47624358', null, null, '$,7703815', null, 81.18, null;
 
