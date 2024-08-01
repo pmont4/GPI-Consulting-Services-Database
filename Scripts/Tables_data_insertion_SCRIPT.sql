@@ -320,6 +320,33 @@ AS
 		RETURN @to_return;
 	END;
 
+-- TRIGGERS
+
+CREATE OR ALTER TRIGGER report.verifying_duplicity_reports ON report.report_table INSTEAD OF INSERT
+AS
+	BEGIN
+		BEGIN
+			DECLARE 
+					@date_to_insert AS DATE = CAST((SELECT i.report_date FROM inserted i) AS DATE),
+					@plant_to_insert AS INT = (SELECT i.id_plant FROM inserted i);
+
+			SELECT id_report, report_date, id_plant INTO #temp_report_dup_trigger FROM report.report_table;
+
+			CREATE NONCLUSTERED INDEX idx_report_dup_trigger_1 ON #temp_report_dup_trigger(id_report) INCLUDE (report_date, id_plant)
+		END;
+
+		BEGIN
+			IF ((SELECT id_report FROM #temp_report_dup_trigger WHERE report_date = @date_to_insert AND id_plant = @plant_to_insert) IS NOT NULL)
+				BEGIN
+					RAISERROR('Cannot insert the report because already exists in the database', 10, 1)
+					ROLLBACK;
+					RETURN;
+				END;
+
+			DROP TABLE #temp_report_dup_trigger;
+		END;
+	END;
+
 -- ------------------------------------
 
 -- Engineer insertion data scripts.
