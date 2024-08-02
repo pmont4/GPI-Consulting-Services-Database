@@ -285,7 +285,12 @@ EXEC report.proc_insert_plant 'Grupo KUO', 'Transmisión y Equipos Mecánicos, S
 EXEC report.proc_insert_plant 'Grupo KUO', 'Resirene, S.A. de C.V. – Planta Tlaxcala', 'N.A.', 'Mexico', 'Tlaxcala', 1973, 1973, 'Production', 'Manufactura y comercialización de productos de Poliestireno: Poliesti-reno de alto impacto (HIPS) y cristal de Poliestireno (PS Cristal).', 'IV', 'Industrial, Residential', 'Carretera Federal Puebla-Tlaxcala Km15.5, Xicotzinco, Tlax-cala, México.', '19.170527', '-98.227973', 2205;
 EXEC report.proc_insert_plant 'Grupo KUO', 'Resirene, S.A. de C.V. – Planta Tlaxcala', 'N.A.', 'Mexico', 'Tlaxcala', 1973, 1973, 'Production', 'Manufactura y comercialización de productos de Poliestireno: Poliesti-reno de alto impacto (HIPS) y cristal de Poliestireno (PS Cristal).', 'IV', 'Industrial, Residential', 'Carretera Federal Puebla-Tlaxcala Km15.5, Xicotzinco, Tlax-cala, México.', '19.170527', '-98.227973', 2205;
 EXEC report.proc_insert_plant 'Grupo KUO', 'Transmisión y Equipos Mecánicos, S.A. de C.V. TREMEC – Pedro Escobedo', 'N.A', 'Mexico', 'Queretaro', 1978, 1980, 'Production', 'Producción de componentes mecánicos para sistemas de transmisión para automóviles de aplicación agrícola y terracería', 'I', 'Rural', 'Km 181.5 Autopista México - Querétaro, Pedro Escobedo, Querétaro., México.', '20.506622', '-100.141348', 1910;
-EXEC report.proc_insert_plant 'Grupo Moyel, S.A. de C.V. – Hilmex Lerma – ', null, 'N.A', 'Mexico', 'Estado de Mexico', 1988, 1988, 'Production', 'Textile Industry. Fabrics finishing plant, apparel cutting, apparel manu-facturing and finished products warehouse.', 'IV', 'Industrial, Commercial', 'Km 181.5 Autopista México - Querétaro, Pedro Escobedo, Querétaro., México.', '19°17m50s', '99°31m55s', 2580;
+EXEC report.proc_insert_plant 'Grupo Moyel, S.A. de C.V. – Hilmex Lerma – ', null, 'N.A', 'Mexico', 'Estado de Mexico', 1988, 1988, 'Production', 'Textile Industry. Fabrics finishing plant, apparel cutting, apparel manu-facturing and finished products warehouse.', 'IV', 'Industrial, Commercial', 'Avenida Camino de las Partidas No.18, Parque Industrial Lerma,  Edo. de México, CP 52004', '19°17m50s', '99°31m55s', 2580;
+EXEC report.proc_insert_plant 'Grupo Moyel, S.A. de C.V. – Hilmex Tlalnepantla –  ', null, 'N.A', 'Mexico', 'Estado de Mexico', 1970, 1970, 'Production', 'Textile Industry. Yarn knitting, spinning comprising and circular knitting.', 'IV', 'Industrial, Commercial', 'Avenida 1º. De Mayo No.79, 82 y 89 y Mariano Escobedo 305, Tlalne-pantla, Edo. de México, CP 54000', '19°32m26s', '99°12m31s', 2260;
+EXEC report.proc_insert_plant 'Molino Areca Sur - Grupo PAF', null, 'C.A', 'Guatemala', 'Escuintla', null, 2005, 'Production', 'Planta industrial dedicada a la producción de alimentos balan-ceados para animales (pollo, cerdo, macotas, camarón y peces).', 'I', 'Rural', 'Km 80 Autopista a Puerto Quetzal, Masagua, Escuintla, Guatemala', '14°7m42.49s', '90°46m49.39s', 70;
+EXEC report.proc_insert_plant 'Planta Modelo Rastro - Grupo PAF', null, 'C.A', 'Guatemala', 'Guatemala', null, 1958, 'Production', 'Planta industrial dedicada a la producción de alimentos cárnicos para el consumo humano. Principalmente carne de pollo y en menor proporción carne de cerdo.', 'I', 'Commercial, Residential', '1a Calle 2-91 zona 5, Villa Nueva, Calle Real, Villa Nueva', '14°31m03.61s', '90°34m39.77s', null;
+EXEC report.proc_insert_plant 'Grupo Polytec', 'División Lacoplast.', 'C.A', 'Guatemala', 'Guatemala', 1975, 2018, 'Production', 'Planta dedicada a la fabricación de envases plásticos mediante soplado e inyección. ', 'IV', 'Industrial, Residential', '1ª Calle “A” 2-58, zona 6 Villa Nueva, Guatemala.', '14.532228', '-90.589283', 1346;
+EXEC report.proc_insert_plant 'Grupo Polytec', 'Polytec Villa Nueva.', 'C.A', 'Guatemala', 'Guatemala', 1989, 1992, 'Production', 'Planta dedicada a la fabricación de envases plásticos flexibles mediante procesos de extrusión, laminación, slitter y corte', 'IV', 'Industrial, Residential', '1a. Calle 2-68, Zona 2, Colonia San José Villa Nueva, Guatemala.', '14.537709', '-90.593414', 1383;
 
 -- Report table executables for data insertion
 -- Data has to be inserted in the following order:
@@ -441,7 +446,12 @@ EXEC report.proc_insert_report_table '24/febrero/2022', 'Howden Specialty Ltd', 
 EXEC report.proc_insert_report_table '18/febrero/2022', 'Howden Specialty Ltd', 4204, 'Rafael Grajeda', 'ISO/TS 16949:2009, ISO 14001:2004, C-TPAT, IATF', '5933404,units/year', 95710, 1601, 1, 'si', 'Major Fires', 'Automatic Wet', 'II', 'no', 'no', 'no', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '25/febrero/2022', 'Howden Specialty Ltd', 4205, 'Rafael Grajeda', 'ISO 9001', '375,metric tons/day', 15181, 287, 2, 'si', 'Major Fires', 'Automatic Wet', 'III', 'no', 'no', 'si', 'si', 'si', 'si', 'si';
 EXEC report.proc_insert_report_table '15/febrero/2022', 'Howden Specialty Ltd', 4206, 'Rafael Grajeda', 'ISO/TS 16949:2009, ISO 14001:2004, C-TPAT', '3000000,units/year', 23810, 357, 1, 'si', 'Major Fires', 'Automatic Wet', 'II', 'no', 'no', 'no', 'si', 'no', 'si', 'si';
-EXEC report.proc_insert_report_table '7/noviembre/2017', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4208, 'Marlon Lira', null, '45000,kilograms/day', 26778, 716, 1, 'si', 'Minor Fires', null, null, 'no', 'no', 'no', 'no', 'si', 'si', 'no';
+EXEC report.proc_insert_report_table '7/noviembre/2017', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4208, 'Marlon Lira', null, '45000,kilograms/day', 26778, 716, 1, 'si', 'Minor Fires', null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'no';
+EXEC report.proc_insert_report_table '6/noviembre/2017', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4209, 'Marlon Lira', null, '28000,kilograms/day', 25000, 560, 1, 'si', 'Minor Fires', null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '8/noviembre/2017', 'Seguros Agromercantil, S.A.', 4210, 'Juan Jose Lira', null, '29800,metric tons/month', 24362, 260, 2, 'si', null, null, null, 'no', 'no', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '14/noviembre/2017', 'Seguros Agromercantil, S.A.', 4211, 'Rafael Grajeda', null, '115000,units/day', 12500, 1000, 1, 'si', null, null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '27/agosto/2021', 'Tecniseguros, Corredores de Seguros, S.A.', 4212, 'Rafael Grajeda', 'ISO 9001:2015', '34584,kilograms/day', 9200, 226, 2, 'si', null, 'Automatic Wet', 'II', 'no', 'no', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '8/septiembre/2021', 'Tecniseguros, Corredores de Seguros, S.A.', 4213, 'Rafael Grajeda', 'ISO 9001, FSSC 22000, GRS', '7744694,kilograms/month', 23500, 705, 2, 'si', null, 'Automatic Wet', 'II', 'si', 'no', 'no', 'no', 'no', 'si', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -593,6 +603,11 @@ EXEC report.proc_insert_perils_and_risk_table 4222, 2.5, 1, 1, 1, 2, 1, 'none', 
 EXEC report.proc_insert_perils_and_risk_table 4223, 3, 1, 2, 2, 3, 1.5, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 4224, 2.5, 1, 1, 1, 2, 1, 'none', 1, 1, 1, 1, 1.5;
 EXEC report.proc_insert_perils_and_risk_table 4225, 2.5, 'none', 1, 1, 2, 2, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4226, 2.5, 'none', 1, 1, 1.5, 2, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4227, 2.5, 1, 1.5, 2, 2, 2.5, 1, 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 4228, 3, 1, 1.5, 2.5, 2.5, 2.5, 'none', 1, 1, 'none', 'none', 2.5;
+EXEC report.proc_insert_perils_and_risk_table 4229, 3, 1, 1, 2, 2, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 4230, 3, 1, 1, 2, 2, 2.5, 'none', 1, 1, 1, 1, 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -718,4 +733,9 @@ EXEC report.proc_insert_loss_scenario_table 4222, '$,329515205', 70.79, '$,46800
 EXEC report.proc_insert_loss_scenario_table 4223, '$,85889569', 51.23, '$,46471898', 100, '$,7912049', '$,49143504.92', null, null, '$,28834015', null, 68.35, null;
 EXEC report.proc_insert_loss_scenario_table 4224, '$,63249225', 76.77, '$,14801687', 100, '$,7921052', '$,47624358', null, null, '$,7703815', null, 81.18, null;
 EXEC report.proc_insert_loss_scenario_table 4225, '$,39102596', 59, '$,6700000', 87, '$,11100000', null, null, null, '$,28002596', null, 63, null;
+EXEC report.proc_insert_loss_scenario_table 4226, '$,42483235', 100, '$,4600000', 100, '$,9000000', null, null, null, '$,33483235', null, 100, null;
+EXEC report.proc_insert_loss_scenario_table 4227, 'Q,261940335', null, null, null, 'Q,171940335', null, null, null, 'Q,90000000', null, null, 82;
+EXEC report.proc_insert_loss_scenario_table 4228, 'Q,90000000', null, null, null, 'Q,74000000', null, null, null, 'Q,16000000', null, null, 78;
+EXEC report.proc_insert_loss_scenario_table 4229, 'Q,97042026', 97, 'Q,57716637', 100, 'Q,23862849', 'Q,51707096.75', 'Q,372080+Q,50000', null, 'Q,21050000', null, 98, null;
+EXEC report.proc_insert_loss_scenario_table 4230, 'Q,352921949', 97, 'Q,144182509', 100, 'Q,23862849', 'Q,154542620.71+Q,3000000+Q,314000+Q,1312000', 'Q,2754290+Q,423200', null, 'Q,117250000', null, 98, null;
 
