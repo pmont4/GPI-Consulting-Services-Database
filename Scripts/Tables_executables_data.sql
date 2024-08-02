@@ -285,6 +285,7 @@ EXEC report.proc_insert_plant 'Grupo KUO', 'Transmisión y Equipos Mecánicos, S
 EXEC report.proc_insert_plant 'Grupo KUO', 'Resirene, S.A. de C.V. – Planta Tlaxcala', 'N.A.', 'Mexico', 'Tlaxcala', 1973, 1973, 'Production', 'Manufactura y comercialización de productos de Poliestireno: Poliesti-reno de alto impacto (HIPS) y cristal de Poliestireno (PS Cristal).', 'IV', 'Industrial, Residential', 'Carretera Federal Puebla-Tlaxcala Km15.5, Xicotzinco, Tlax-cala, México.', '19.170527', '-98.227973', 2205;
 EXEC report.proc_insert_plant 'Grupo KUO', 'Resirene, S.A. de C.V. – Planta Tlaxcala', 'N.A.', 'Mexico', 'Tlaxcala', 1973, 1973, 'Production', 'Manufactura y comercialización de productos de Poliestireno: Poliesti-reno de alto impacto (HIPS) y cristal de Poliestireno (PS Cristal).', 'IV', 'Industrial, Residential', 'Carretera Federal Puebla-Tlaxcala Km15.5, Xicotzinco, Tlax-cala, México.', '19.170527', '-98.227973', 2205;
 EXEC report.proc_insert_plant 'Grupo KUO', 'Transmisión y Equipos Mecánicos, S.A. de C.V. TREMEC – Pedro Escobedo', 'N.A', 'Mexico', 'Queretaro', 1978, 1980, 'Production', 'Producción de componentes mecánicos para sistemas de transmisión para automóviles de aplicación agrícola y terracería', 'I', 'Rural', 'Km 181.5 Autopista México - Querétaro, Pedro Escobedo, Querétaro., México.', '20.506622', '-100.141348', 1910;
+EXEC report.proc_insert_plant 'Grupo Moyel, S.A. de C.V. – Hilmex Lerma – ', null, 'N.A', 'Mexico', 'Estado de Mexico', 1988, 1988, 'Production', 'Textile Industry. Fabrics finishing plant, apparel cutting, apparel manu-facturing and finished products warehouse.', 'IV', 'Industrial, Commercial', 'Km 181.5 Autopista México - Querétaro, Pedro Escobedo, Querétaro., México.', '19°17m50s', '99°31m55s', 2580;
 
 -- Report table executables for data insertion
 -- Data has to be inserted in the following order:
@@ -440,6 +441,7 @@ EXEC report.proc_insert_report_table '24/febrero/2022', 'Howden Specialty Ltd', 
 EXEC report.proc_insert_report_table '18/febrero/2022', 'Howden Specialty Ltd', 4204, 'Rafael Grajeda', 'ISO/TS 16949:2009, ISO 14001:2004, C-TPAT, IATF', '5933404,units/year', 95710, 1601, 1, 'si', 'Major Fires', 'Automatic Wet', 'II', 'no', 'no', 'no', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '25/febrero/2022', 'Howden Specialty Ltd', 4205, 'Rafael Grajeda', 'ISO 9001', '375,metric tons/day', 15181, 287, 2, 'si', 'Major Fires', 'Automatic Wet', 'III', 'no', 'no', 'si', 'si', 'si', 'si', 'si';
 EXEC report.proc_insert_report_table '15/febrero/2022', 'Howden Specialty Ltd', 4206, 'Rafael Grajeda', 'ISO/TS 16949:2009, ISO 14001:2004, C-TPAT', '3000000,units/year', 23810, 357, 1, 'si', 'Major Fires', 'Automatic Wet', 'II', 'no', 'no', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '7/noviembre/2017', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4208, 'Marlon Lira', null, '45000,kilograms/day', 26778, 716, 1, 'si', 'Minor Fires', null, null, 'no', 'no', 'no', 'no', 'si', 'si', 'no';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -590,6 +592,7 @@ EXEC report.proc_insert_perils_and_risk_table 4221, 2.5, 1, 2, 2.5, 2, 1, 'none'
 EXEC report.proc_insert_perils_and_risk_table 4222, 2.5, 1, 1, 1, 2, 1, 'none', 1, 1, 1, 1, 1.5;
 EXEC report.proc_insert_perils_and_risk_table 4223, 3, 1, 2, 2, 3, 1.5, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 4224, 2.5, 1, 1, 1, 2, 1, 'none', 1, 1, 1, 1, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 4225, 2.5, 'none', 1, 1, 2, 2, 'none', 1, 1, 1, 1, 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -714,4 +717,5 @@ EXEC report.proc_insert_loss_scenario_table 4221, '$,52624567', 16.04, null, 50,
 EXEC report.proc_insert_loss_scenario_table 4222, '$,329515205', 70.79, '$,46800765', 85, '$,27851822', '$,234374100', null, null, '$,67289283', null, 72.82, null;
 EXEC report.proc_insert_loss_scenario_table 4223, '$,85889569', 51.23, '$,46471898', 100, '$,7912049', '$,49143504.92', null, null, '$,28834015', null, 68.35, null;
 EXEC report.proc_insert_loss_scenario_table 4224, '$,63249225', 76.77, '$,14801687', 100, '$,7921052', '$,47624358', null, null, '$,7703815', null, 81.18, null;
+EXEC report.proc_insert_loss_scenario_table 4225, '$,39102596', 59, '$,6700000', 87, '$,11100000', null, null, null, '$,28002596', null, 63, null;
 
