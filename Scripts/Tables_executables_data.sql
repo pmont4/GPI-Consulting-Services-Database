@@ -293,6 +293,7 @@ EXEC report.proc_insert_plant 'Grupo Polytec', 'División Lacoplast.', 'C.A', 'G
 EXEC report.proc_insert_plant 'Grupo Polytec', 'Polytec Villa Nueva.', 'C.A', 'Guatemala', 'Guatemala', 1989, 1992, 'Production', 'Planta dedicada a la fabricación de envases plásticos flexibles mediante procesos de extrusión, laminación, slitter y corte', 'IV', 'Industrial, Residential', '1a. Calle 2-68, Zona 2, Colonia San José Villa Nueva, Guatemala.', '14.537709', '-90.593414', 1383;
 EXEC report.proc_insert_plant 'Grupo Vical - Vicesa, S.A. -', null, 'C.A', 'Costa Rica', 'Cartago', 1976, 1978, 'Production', 'Manufacturing and commercialization of glass containers, glassware, common glass and solid sodium silicate.', 'I', 'Industrial, Commercial', 'Distrito de San Nicolás, Cantón Central de la provincia de Cartago, Costa Rica, C.A.', '9°52m56.16s', '83°55m50.49s', 1475;
 EXEC report.proc_insert_plant 'Grupo Vical - Vigua, S.A. -', null, 'C.A', 'Guatemala', 'Guatemala', 1965, 1966, 'Production', 'Manufacturing and commercialization of glass containers, glassware, common glass and solid sodium silicate.', 'I', 'Industrial, Commercial', 'Avenida Petapa 48-01, zona12 Guatemala, C.A', null, null, 36666;
+EXEC report.proc_insert_plant 'Grupo Vical', 'Sílice de Centroamérica, S.A. – Sicasa –', 'C.A', 'Guatemala', 'Chimaltenango', 1974, 1975, 'Production', 'Extraction and production of silica sand and feldspar.', 'I', 'Residential, Rural', 'San Miguel Pochuta, Chimaltenango, Guatemala, C.A.', '14.564506', '-90.547748', 890;
 
 -- Report table executables for data insertion
 -- Data has to be inserted in the following order:
@@ -458,6 +459,9 @@ EXEC report.proc_insert_report_table '16/mayo/2016', 'Seguros Agromercantil, S.A
 EXEC report.proc_insert_report_table '15/junio/2017', 'Seguros Agromercantil, S.A.', 4215, 'Marlon Lira, Carlos Grajeda', null, '30000000,units/month', 36666, 750, 2, 'si', 'Minor fires', null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '29/junio/2020', 'Unity Promotores, S.A.', 4215, 'Rafael Grajeda', 'FSSC 22000, ISO 9001, OEA', '450,metric tons/day', 65335.78, 750, 1, 'si', 'Major fires', null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '25/junio/2020', 'Unity Promotores, S.A.', 4214, 'Marlon Lira', 'FSSC 22000, ISO 9001', '40000,units/month', 40400, 325, 1, 'si', 'Major fires', null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '29/mayo/2021', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4214, 'Rafael Grajeda', 'FSSC 22000, ISO 9001, OEA', '40000,units/month', 40400, 654, 1, 'si', 'Major fires', 'Automatic Wet', 'II', 'no', 'no', 'si', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '15/abril/2021', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4215, 'Rafael Grajeda', 'FSSC 22000, ISO 9001, OEA', '450,metric tons/day', 42000, 750, 1, 'si', 'Major fires', 'Automatic Wet', 'II', 'no', 'no', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '20/september/2022', 'Unity Promotores, S.A.', 5214, 'Juan Jose Lira', null, '15200,metric tons/day', 7434, 64, 2, 'si', 'Major fires', 'Automatic Wet', 'III', 'no', 'no', 'no', 'no', 'no', 'si', 'no';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -618,6 +622,9 @@ EXEC report.proc_insert_perils_and_risk_table 4231, 2, 1, 2, 2, 2, 2.5, 'none', 
 EXEC report.proc_insert_perils_and_risk_table 4232, 'none', 1, 1, 1.5, 2.5, 2.5, 'none', 1, 2, 'none', 'none', 2;
 EXEC report.proc_insert_perils_and_risk_table 4233, 2.5, 'none', 1, 1.5, 2.5, 2.5, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 4234, 2, 'none', 1, 2, 2, 2.5, 'none', 1, 1, 1, 1.5, 2;
+EXEC report.proc_insert_perils_and_risk_table 5231, 2.5, 'none', 1, 2, 2, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5232, 2.5, 'none', 1, 1.5, 2.5, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5233, 2, 2, 2.5, 2, 3, 2.5, 'none', 1, 1, 1, 1, 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -752,4 +759,6 @@ EXEC report.proc_insert_loss_scenario_table 4231, '$,100703314.00', null, '$,393
 EXEC report.proc_insert_loss_scenario_table 4232, '$,97394147.00', null, '$,39384926', null, '$,18094105.00', '$,54391107.00+$,254139.00+$,3715376.00+$,129585.00', null, '$,5616018.00', '$,15193817.00', null, null, 80;
 EXEC report.proc_insert_loss_scenario_table 4233, '$,117423327.00', 82, '$,53471238.00', 100, '$,10602512', '$,82474303.00+$,258382+$,3923197+$,220831+$,3755933', null, '$,907928', '$,15280241', null, 88, null;
 EXEC report.proc_insert_loss_scenario_table 4234, '$,113404102', null, '$,20301569', 100, '$,10602512', '$,82474303.00+$,258382+$,3923197+$,220831+$,3755933', null, '$,907928', '$,15280241', null, 78, 74;
+EXEC report.proc_insert_loss_scenario_table 5231, '$,113404102', 75, '$,20301569', 100, '$,18945842', '$,73695253+$,501526+$,3293541+$,712949+$,1317783', null, '$,2012553', '$,12924655', null, 79, null;
+EXEC report.proc_insert_loss_scenario_table 5232, '$,117423327.00', 87, '$,53471238.00', 100, '$,10602512', '$,82474303.00+$,258382+$,3923197+$,220831+$,3755933', null, '$,907928', '$,15280241', null, 91, null;
 
