@@ -462,6 +462,8 @@ EXEC report.proc_insert_report_table '25/junio/2020', 'Unity Promotores, S.A.', 
 EXEC report.proc_insert_report_table '29/mayo/2021', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4214, 'Rafael Grajeda', 'FSSC 22000, ISO 9001, OEA', '40000,units/month', 40400, 654, 1, 'si', 'Major fires', 'Automatic Wet', 'II', 'no', 'no', 'si', 'no', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '15/abril/2021', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4215, 'Rafael Grajeda', 'FSSC 22000, ISO 9001, OEA', '450,metric tons/day', 42000, 750, 1, 'si', 'Major fires', 'Automatic Wet', 'II', 'no', 'no', 'no', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '20/september/2022', 'Unity Promotores, S.A.', 5214, 'Juan Jose Lira', null, '15200,metric tons/day', 7434, 64, 2, 'si', 'Major fires', 'Automatic Wet', 'III', 'no', 'no', 'no', 'no', 'no', 'si', 'no';
+EXEC report.proc_insert_report_table '6/september/2022', 'Unity Promotores, S.A.', 4214, 'Marlon Lira', null, '40000,units/month', 40400, 654, 1, 'si', 'Major fires', 'Automatic Wet', 'III', 'no', 'no', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '13/september/2022', 'Unity Promotores, S.A.', 4215, 'Juan Jose Lira', 'FSSC 22000-5.1, ISO 9001-2015, OEA, SMETA', '450,metric tons/day', 42000, 700, 1, 'si', 'Major fires', 'Automatic Wet', 'III', 'no', 'no', 'no', 'si', 'no', 'si', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -625,6 +627,8 @@ EXEC report.proc_insert_perils_and_risk_table 4234, 2, 'none', 1, 2, 2, 2.5, 'no
 EXEC report.proc_insert_perils_and_risk_table 5231, 2.5, 'none', 1, 2, 2, 2.5, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 5232, 2.5, 'none', 1, 1.5, 2.5, 2.5, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 5233, 2, 2, 2.5, 2, 3, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5234, 2.5, 'none', 1, 2, 2, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5235, 2.5, 'none', 1, 1.5, 2.5, 2.5, 'none', 1, 1, 1, 1, 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -761,4 +765,6 @@ EXEC report.proc_insert_loss_scenario_table 4233, '$,117423327.00', 82, '$,53471
 EXEC report.proc_insert_loss_scenario_table 4234, '$,113404102', null, '$,20301569', 100, '$,10602512', '$,82474303.00+$,258382+$,3923197+$,220831+$,3755933', null, '$,907928', '$,15280241', null, 78, 74;
 EXEC report.proc_insert_loss_scenario_table 5231, '$,113404102', 75, '$,20301569', 100, '$,18945842', '$,73695253+$,501526+$,3293541+$,712949+$,1317783', null, '$,2012553', '$,12924655', null, 79, null;
 EXEC report.proc_insert_loss_scenario_table 5232, '$,117423327.00', 87, '$,53471238.00', 100, '$,10602512', '$,82474303.00+$,258382+$,3923197+$,220831+$,3755933', null, '$,907928', '$,15280241', null, 91, null;
+EXEC report.proc_insert_loss_scenario_table 5234, '$,120408171', 58, '$,38330684', 100, '$,20175485', '$,75198853+$,531198+$,4160682+$,549189+$,1912927', null, '$,942589', '$,16937248', null, 68, null;
+EXEC report.proc_insert_loss_scenario_table 5235, '$,129431087', 57, '$,57154841', 100, '$,11639468', '$,90554339+$,386996+$,4501703+$,211440+$,2414016', null, '$,9737786', '$,9985339', null, 83, null;
 
