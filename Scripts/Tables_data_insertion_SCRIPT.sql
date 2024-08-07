@@ -820,7 +820,7 @@ BEGIN TRY
 										PRINT CONCAT('Cannot fint the plant "', @plant, '"');
 								END;
 
-							IF ((SELECT r.id_report FROM report.report_table r WHERE r.report_date = report.CONSTRUCT_DATE(@date) AND r.id_plant = @id_plant) IS NULL)
+							IF ((SELECT r.id_report FROM report.report_table r WHERE r.report_date = report.CONSTRUCT_DATE(@date) AND r.id_plant = @id_plant AND r.id_client = @id_client) IS NULL)
 								BEGIN
 									IF (@id_client IS NOT NULL)
 										IF (@id_plant IS NOT NULL)

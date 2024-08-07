@@ -17,6 +17,7 @@ EXEC report.proc_insert_engineer 'Juan Jose Lira', null;
 EXEC report.proc_insert_engineer 'Juan Diego Lacayo', 'jdlacayo@gpiconsultingservices.com';
 EXEC report.proc_insert_engineer 'Eduardo Bracamonte', 'ebracamonte@grupoprointegra.com';
 EXEC report.proc_insert_engineer 'Laura Palma', null;
+EXEC report.proc_insert_engineer 'Jaime Castillo', null;
 
 -- Client table executables for data insertion
 -- Data is being inserted in the following order
@@ -45,6 +46,8 @@ EXEC report.proc_insert_client 'Somit, Corredores de Seguros, S.A.'
 EXEC report.proc_insert_client 'Bowring Marsh';
 EXEC report.proc_insert_client 'Aseguradora General, S.A.'
 EXEC report.proc_insert_client 'Howden Specialty Ltd'
+EXEC report.proc_insert_client 'HAINA INTERNATIONAL TERMINALS';
+EXEC report.proc_insert_client 'Fountain Hydro Power Corp.';
 
 -- Capacity type table executables for data insertion
 -- Data is being inserted in the following order
@@ -78,6 +81,7 @@ EXEC report.proc_insert_capacity_type 'units/day';
 EXEC report.proc_insert_capacity_type 'units/year';
 EXEC report.proc_insert_capacity_type 'units';
 EXEC report.proc_insert_capacity_type 'MW';
+EXEC report.proc_insert_capacity_type 'MVA';
 EXEC report.proc_insert_capacity_type 'KW';
 EXEC report.proc_insert_capacity_type 'KVA';
 EXEC report.proc_insert_capacity_type 'Flights/Month';
@@ -294,6 +298,21 @@ EXEC report.proc_insert_plant 'Grupo Polytec', 'Polytec Villa Nueva.', 'C.A', 'G
 EXEC report.proc_insert_plant 'Grupo Vical - Vicesa, S.A. -', null, 'C.A', 'Costa Rica', 'Cartago', 1976, 1978, 'Production', 'Manufacturing and commercialization of glass containers, glassware, common glass and solid sodium silicate.', 'I', 'Industrial, Commercial', 'Distrito de San Nicolás, Cantón Central de la provincia de Cartago, Costa Rica, C.A.', '9°52m56.16s', '83°55m50.49s', 1475;
 EXEC report.proc_insert_plant 'Grupo Vical - Vigua, S.A. -', null, 'C.A', 'Guatemala', 'Guatemala', 1965, 1966, 'Production', 'Manufacturing and commercialization of glass containers, glassware, common glass and solid sodium silicate.', 'I', 'Industrial, Commercial', 'Avenida Petapa 48-01, zona12 Guatemala, C.A', null, null, 36666;
 EXEC report.proc_insert_plant 'Grupo Vical', 'Sílice de Centroamérica, S.A. – Sicasa –', 'C.A', 'Guatemala', 'Chimaltenango', 1974, 1975, 'Production', 'Extraction and production of silica sand and feldspar.', 'I', 'Residential, Rural', 'San Miguel Pochuta, Chimaltenango, Guatemala, C.A.', '14.564506', '-90.547748', 890;
+EXEC report.proc_insert_plant 'Grupo Vivatex, S.A. de C.V.', null, 'N.A', 'Mexico', 'Estado de Mexico', 1997, 1997, 'Production', 'Textile Industry. Yarn knitting , spinning comprising, circular knitting, dyeing , finishing and printing.', 'IV', 'Industrial, Commercial', 'Camino Real a San Pedro No. 105, Edificios A, B y C, San Pedro Totoltepec, Toluca, Edo. de México.', '19°18m41s', '99°33m33s', 2590;
+EXEC report.proc_insert_plant 'HAINA INTERNATIONAL TERMINALS', 'Haina International Terminals – HIT', 'Caribbean', 'Dominic Republic', 'Santo Domingo', null, 1953, 'Storage', 'Multipurpose Port Terminal', null, 'Industrial, Commercial', 'Km 13 Carretera Sánchez, Edif. Naviero, Puerto de Rio Haina, Santo Domingo, Dominican Republic', '18°25m10.96s', '70°00m55.53s', 0;
+EXEC report.proc_insert_plant 'AGEN, S.A. - Hidroeléctrica Finca Lorena', null, 'C.A', 'Guatemala', 'San Marcos', 2014, 2016, 'Electricity Generation', 'Generación y comercialización de Energía Eléctrica', null, 'Rural', 'Finca Lorena Km. 279, San Rafael Pie de la Cuesta, San Marcos, Guatemala, C.A.', '14°55m8.08s', '91°56m36.90s', null;
+EXEC report.proc_insert_plant 'Hidroeléctrica Coralito', null, 'C.A', 'Guatemala', 'Suchitepequez', 2012, 2013, 'Electricity Generation', 'Generación y comercialización de Energía Eléctrica', null, 'Rural', 'Fincas Los Andes y Panamá, Santa Bárbara, Suchitepéquez, Guatemala, C.A.', '14°29m35.7s', '90°11m37.9s', 955;
+EXEC report.proc_insert_plant 'Hidroeléctrica El Cóbano.', null, 'C.A', 'Guatemala', 'Escuintla', 2010, 2015, 'Electricity Generation', 'Planta de generación de energía eléctrica (hidrogeneración)', null, 'Rural', 'Finca El Cóbano, Aldea La Unión, Guangazapa, Escuintla, Guatemala, C.A.', '14°10m16s', '90°36m31s', null;
+EXEC report.proc_insert_plant 'Fountain Hydro Power Corp.', 'La Potra Hydroelectric Power Plant', 'C.A', 'Panama', 'Chiriqui', 2012, 2015, 'Electricity Generation', 'Electrical Power Plant: generation based on converting hydro power into electricity through six (6) Kaplan turbines and one (1) Francis tur-bine coupled to electrical generators.', null, 'Rural', 'Corregimientos de Santa Cruz y Breñon en Distrito de Renacimiento y Corregimiento de Gómez en Distrito de Bugaba, Provincia de Chiriquí, Panamá, C.A.', '8.5933', '82.7854', 215;
+EXEC report.proc_insert_plant 'Fountain Hydro Power Corp.', 'Salsipuedes Hydroelectric Power Plant', 'C.A', 'Panama', 'Chiriqui', 2012, 2015, 'Electricity Generation', 'Electrical Power Plant: generation based on converting hydro power into electricity through six (6) Kaplan turbines and one (1) Francis tur-bine coupled to electrical generators.', null, 'Rural', 'Corregimientos de Santa Cruz y Breñon en Distrito de Renacimiento y Corregimiento de Gómez en Distrito de Bugaba, Provincia de Chiriquí, Panamá, C.A.', '8.5797', '82.7930', 207;
+EXEC report.proc_insert_plant 'Generadora del Itsmo, S.A. – GENISA', '“Barro Blanco” Hydroelectric Power Plant', 'C.A', 'Panama', 'Chiriqui', 2011, 2017, 'Electricity Generation', 'Electrical Power Plant: generation based on converting hydro power into electricity through two (2) Kaplan turbines and one (1) Francis turbine coupled to electrical generators.', null, 'Rural', 'Corregimientos de Veladero y Bella Vista, Distrito de Tolé, Provincia de Chiriquí, Panamá, C.A.', '8.214812', '-81.594413', 54;
+EXEC report.proc_insert_plant 'Hidroeléctrica Guayacán.', null, 'C.A', 'Guatemala', 'Santa Rosa', null, null, 'Electricity Generation', 'Generación y Venta de Energía Eléctrica', null, 'Rural', 'Fincas Tacuilula. Km. 100.5 Taxisco, Santa Rosa, Guatemala, C.A.', '14.106008', '-90.519404', 275;
+EXEC report.proc_insert_plant 'Planta Hidroeléctrica Nare', 'HidroNare Power Plant', 'C.A', 'Colombia', 'Antioquia', 1933, 1938, 'Electricity Generation', 'Electrical Power Plant: generation based on converting hydro power into electricity through two (2) Francis turbines, and two (2) Turgo Pel-ton turbines coupled to electrical generators ', null, 'Rural', 'Municipio Puerto Nare, departamento de Antioquia, Colombia.', '6.2912', '-74.6876', 239;
+EXEC report.proc_insert_plant 'Hidropower SDMM, S.A.', 'Hidropower SDMM Hydroelectric Power Plant', 'C.A', 'Guatemala', 'Escuintla', 2009, 2010, 'Electricity Generation', 'Power Plant, generation based on hydro power, with an installed capacity of 2.214 MW.', null, 'Rural', 'Finca San Diego, Escuintla, Guatemala, C.A.', '14.3582', '-90.8044', 554;
+EXEC report.proc_insert_plant 'Central Hidroeléctrica Sabaletas', 'HidroSabaletas Power Plant', 'S.A', 'Colombia', 'Antioquia', 1998, 2000, 'Electricity Generation', 'Electrical Power Plant: generation based on converting hydro power into electricity through one (1) Francis turbines coupled to electrical generator', null, 'Rural', 'Municipio Puerto Nare, departamento de Antioquia, Colombia.', '5.8693', '-75.5355', 849;
+EXEC report.proc_insert_plant 'Proyecto Hidroeléctrico Yeguas', 'HidroYeguas Power Plant', 'S.A', 'Colombia', 'Antioquia', 1940, 1943, 'Electricity Generation', 'Electrical Power Plant: generation based on converting hydro power into electricity through three (3) horizontal axis Pelton turbines coupled to electrical generators.', null, 'Rural', 'Vía Santa Barbara a Abejorral km 3.8, Abejorral, Antioquia, Colombia.', '5.8605', '-75.5081', 1025;
+EXEC report.proc_insert_plant 'Compañía Hondureña de Energía Renovable, S.A. (COHERSA)', 'La Vegona Hydroelectric Power Plant', 'C.A', 'Honduras', 'Cortes', 2010, 2015, 'Electricity Generation', 'Electrical Power Plant: generation based on converting hydro power into electricity through two (2) Kaplan turbines coupled to electrical generators.', null, 'Rural', 'Vía Santa Barbara a Abejorral km 3.8, Abejorral, Antioquia, Colombia.', '15.087949', '-87.734684', 100;
+EXEC report.proc_insert_plant 'Hidroeléctrica Las Fuentes II', null, 'C.A', 'Guatemala', 'Retalhuleu', 2015, 2016, 'Electricity Generation', 'Planta de generación de energía eléctrica (hidrogeneración)', null, 'Rural', 'Finca Las Fuentes, Municipios de El Palmar (Quetzaltenango) y de San Felipe (Retalhuleu), Guatemala, C.A.', '14°37m21.77s', '91°38m12.83s', null;
 
 -- Report table executables for data insertion
 -- Data has to be inserted in the following order:
@@ -464,6 +483,25 @@ EXEC report.proc_insert_report_table '15/abril/2021', 'Reasinter, Intermadiario 
 EXEC report.proc_insert_report_table '20/september/2022', 'Unity Promotores, S.A.', 5214, 'Juan Jose Lira', null, '15200,metric tons/day', 7434, 64, 2, 'si', 'Major fires', 'Automatic Wet', 'III', 'no', 'no', 'no', 'no', 'no', 'si', 'no';
 EXEC report.proc_insert_report_table '6/september/2022', 'Unity Promotores, S.A.', 4214, 'Marlon Lira', null, '40000,units/month', 40400, 654, 1, 'si', 'Major fires', 'Automatic Wet', 'III', 'no', 'no', 'si', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '13/september/2022', 'Unity Promotores, S.A.', 4215, 'Juan Jose Lira', 'FSSC 22000-5.1, ISO 9001-2015, OEA, SMETA', '450,metric tons/day', 42000, 700, 1, 'si', 'Major fires', 'Automatic Wet', 'III', 'no', 'no', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '8/noviembre/2017', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5215, 'Marlon Lira', null, '1330,tons/month', 22800, 520, 1, 'si', 'Minor fires', null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'no';
+EXEC report.proc_insert_report_table '20/junio/2021', 'HAINA INTERNATIONAL TERMINALS', 5218, 'Marlon Lira, Jaime Castillo', null, null, 190000, null, 3, 'no', null, null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '25/junio/2018', 'Unity Promotores, S.A.', 5219, 'Rafael Grajeda', null, null, null, 15, 1, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '26/julio/2013', 'Seguros Agromercantil, S.A.', 5220, 'Marlon Lira', null, '2.1,mw', 45313.84, 2, 1, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '26/julio/2013', 'Grupo Generali', 5220, 'Marlon Lira', null, '2.1,mw', 45313.84, 2, 1, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '6/septiembre/2016', 'Unity Promotores, S.A.', 5221, 'Marlon Lira', null, '10.0,mw', null, 32, 2, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '3/noviembre/2022', 'Seguros Universales S.A.', 5221, 'Marlon Lira', null, '10.0,mw', null, 32, 2, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '22/mayo/2023', 'Fountain Hydro Power Corp.', 5222, 'Marlon Lira', null, '30.0,mw', 166800, 21, 2, 'si', 'Major fires', 'Automatic Wet', 'II', 'no', 'no', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '22/mayo/2023', 'Fountain Hydro Power Corp.', 5223, 'Marlon Lira', null, '27.9,mw', 166800, 21, 2, 'si', 'Major fires', 'Automatic Wet', 'II', 'no', 'no', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '28/abril/2022', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5224, 'Juan Diego Lacayo', null, '28.56,mw', 42860, 20, 2, 'no', null, null, null, 'si', 'si', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '16/septiembre/2021', 'Aseguradora General, S.A.', 5225, 'Rafael Grajeda', null, '2.80,mw', null, 9, 1, 'no', null, null, null, 'no', 'no', 'no', 'si', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '30/noviembre/2022', 'Tecniseguros, Corredores de Seguros, S.A.', 5225, 'Marlon Lira', null, '2.80,mw', null, 9, 1, 'no', null, null, null, 'no', 'no', 'no', 'si', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '22/noviembre/2022', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5226, 'Juan Diego Lacayo', null, '9.68,mw', null, 5, 2, 'no', null, null, null, 'no', 'no', 'no', 'si', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '26/noviembre/2022', 'Seguros Agromercantil, S.A.', 4097, 'Jorge Cifuentes Garcia', null, '10,mw', null, 15, 2, 'no', null, null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '15/noviembre/2022', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5227, 'Marlon Lira', null, '2.214,mw', null, 6, 2.5, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '24/noviembre/2022', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5228, 'Juan Diego Lacayo', null, '2.2,mw', null, 3, 2, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '21/noviembre/2022', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5229, 'Juan Diego Lacayo', null, '8.8,mw', null, 6, 2, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '13/enero/2021', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5230, 'Rafael Grajeda', null, '36.12,mw', null, 32, 2, 'si', 'Major fires', 'Automatic Wet', null, 'no', 'si', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '6/febrero/2020', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5231, 'Rafael Grajeda', null, '14.5,mw', null, 5, 2, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -629,6 +667,25 @@ EXEC report.proc_insert_perils_and_risk_table 5232, 2.5, 'none', 1, 1.5, 2.5, 2.
 EXEC report.proc_insert_perils_and_risk_table 5233, 2, 2, 2.5, 2, 3, 2.5, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 5234, 2.5, 'none', 1, 2, 2, 2.5, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 5235, 2.5, 'none', 1, 1.5, 2.5, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5236, 2, 'none', 1, 1, 1.5, 2, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5237, 1.5, 1, 2.5, 3, 2.5, 2, 2.5, 1, 1, 1, 'none', 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5238, 2, 2, 2, 1.5, 2.5, 2.5, 'none', 1, 1, 1.5, 1, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 5239, 'none', 1, 1, 2, 2, 2, 'none', 1, 1, 'none', 'none', 1.5;
+EXEC report.proc_insert_perils_and_risk_table 5240, 'none', 1, 1, 2, 2, 2, 'none', 1, 1, 'none', 'none', 1.5;
+EXEC report.proc_insert_perils_and_risk_table 5241, 2, 2, 1, 2, 2, 2.5, 'none', 1, 1, 1, 1.5, 2;
+EXEC report.proc_insert_perils_and_risk_table 5242, 2, 2, 1, 2, 2, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5243, 2, 2, 2.5, 2, 2, 2, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5244, 2, 2, 2.5, 2, 2, 2, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5245, 2, 2, 2.5, 2.5, 2, 2, 'none', 1, 1, 2, 2, 2;
+EXEC report.proc_insert_perils_and_risk_table 5246, 2, 1, 1, 2, 2, 2.5, 'none', 1, 1, 1, 1, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 5247, 2, 1, 1, 2, 2, 2.5, 'none', 1, 1, 1, 1, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 5248, 2.5, 2.5, 2.5, 2, 2, 2.5, 'none', 1, 1, 1, 1, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 5249, 'none', 2, 2, 3, 2.5, 2.5, 1, 2, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5250, 2, 1.5, 2, 2, 2, 2.5, 'none', 1, 1, 1, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5251, 2.5, 2, 2.5, 2, 2, 1.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5252, 2, 2, 2, 2, 2, 2, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5253, 2, 1, 2, 1, 2, 2, 'none', 1, 1, 1, 1, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 5254, 2, 1, 1, 2, 2, 2.5, 'none', 1, 1, 1, 1.5, 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -767,4 +824,23 @@ EXEC report.proc_insert_loss_scenario_table 5231, '$,113404102', 75, '$,20301569
 EXEC report.proc_insert_loss_scenario_table 5232, '$,117423327.00', 87, '$,53471238.00', 100, '$,10602512', '$,82474303.00+$,258382+$,3923197+$,220831+$,3755933', null, '$,907928', '$,15280241', null, 91, null;
 EXEC report.proc_insert_loss_scenario_table 5234, '$,120408171', 58, '$,38330684', 100, '$,20175485', '$,75198853+$,531198+$,4160682+$,549189+$,1912927', null, '$,942589', '$,16937248', null, 68, null;
 EXEC report.proc_insert_loss_scenario_table 5235, '$,129431087', 57, '$,57154841', 100, '$,11639468', '$,90554339+$,386996+$,4501703+$,211440+$,2414016', null, '$,9737786', '$,9985339', null, 83, null;
+EXEC report.proc_insert_loss_scenario_table 5236, '$,30290000', 64, '$,12000000', 100, '$,5500000', null, null, null, '$,24790000', null, 74, null;
+EXEC report.proc_insert_loss_scenario_table 5237, '$,65745696.72', 4, null, null, null, '$,46396600+$,8830000+$,10519096.72', null, null, null, null, null, null;
+EXEC report.proc_insert_loss_scenario_table 5238, '$,14500000.00', 48, '$,2438825', 100, '$,1400000.00+$,1300000.00+$,2500000.00+$,2050000.00+$,1250000.00+$,750000.00', '$,1500000.00+$,2200000.00+$,1550000.00', null, null, null, null, 55, null;
+EXEC report.proc_insert_loss_scenario_table 5239, '$,5678016.93', null, '$,1255000', null, null, null, null, null, null, null, null, 26;
+EXEC report.proc_insert_loss_scenario_table 5240, '$,5678016.93', null, '$,1255000', null, null, null, null, null, null, null, null, 26;
+EXEC report.proc_insert_loss_scenario_table 5241, '$,20800000.00', 30, '$,5400000.00', null, null, null, null, null, null, null, null, null;
+EXEC report.proc_insert_loss_scenario_table 5242, '$,20255000.00', 28, '$,5400000.00', 100, null, null, null, null, null, null, 43, null;
+EXEC report.proc_insert_loss_scenario_table 5243, '$,150488649', 23, '$,25729873', 67, '$,11067832+$,1188729+$,34257374+$,32793512+$,5350713+$,1451069+$,8538896', '$,47577770+$,8262753', null, null, null, null, 32, null;
+EXEC report.proc_insert_loss_scenario_table 5244, '$,150488649', 23, '$,25729873', 67, '$,11067832+$,1188729+$,34257374+$,32793512+$,5350713+$,1451069+$,8538896', '$,47577770+$,8262753', null, null, null, null, 32, null;
+EXEC report.proc_insert_loss_scenario_table 5245, '$,94735755.10', 25, '$,8000000', 100, '$,62467990+$,2541881+$,876805+$,537324', '$,28311755', null, null, null, null, 31, null;
+EXEC report.proc_insert_loss_scenario_table 5246, '$,9093515.22', null, '$,1301100.67', 67, null, null, null, null, null, null, 37, 32;
+EXEC report.proc_insert_loss_scenario_table 5247, '$,9093515.22', null, '$,1301100.67', 67, null, null, null, null, null, null, 37, 32;
+EXEC report.proc_insert_loss_scenario_table 5248, '$,16600000', 40, '$,3400000', 100, '$,500000+$,2000000+$,1560000+$,1425000+$,3520000', '$,685000+$,4549600+$,1000000+$,520400', null, null, null, null, 50, null;
+EXEC report.proc_insert_loss_scenario_table 5249, 'Q,186645634', 50, 'Q,32830774', 100, 'Q,67777342', 'Q,110705791', null, null, 'Q,8162501.58', null, 58, null;
+EXEC report.proc_insert_loss_scenario_table 5250, '$,10074400', 54, '$,1100000', 100, null, '$,8974400', null, null, null, null, 59, null;
+EXEC report.proc_insert_loss_scenario_table 5251, '$,3200000', 47, '$,352500', 100, '$,800000+$,600000+$,350000+$,200000+$,99000', '$,1012000+$,139000', null, null, null, null, 52, null;
+EXEC report.proc_insert_loss_scenario_table 5252, '$,20660000', 39, '$,1997500', 100, '$,3500000+$,6125000+$,700000+$,1500000+$,2310000', '$,4840000+$,1685000', null, null, null, null, 44, null;
+EXEC report.proc_insert_loss_scenario_table 5253, '$,84870214', 70.3, '$,16845011', 100, '$,34130828+$,4898490+$,11349711+$,7499622+$,2614882', '$,15847622+$,6012848+$,108120+$,1795345+$,500000', '$,112746', null, null, null, 75.2, null;
+EXEC report.proc_insert_loss_scenario_table 5254, '$,30000000', null, '$,4000000', null, null, null, null, null, null, null, 42, null;
 
