@@ -48,6 +48,8 @@ EXEC report.proc_insert_client 'Aseguradora General, S.A.'
 EXEC report.proc_insert_client 'Howden Specialty Ltd'
 EXEC report.proc_insert_client 'HAINA INTERNATIONAL TERMINALS';
 EXEC report.proc_insert_client 'Fountain Hydro Power Corp.';
+EXEC report.proc_insert_client 'Carpenter Marsh Fac / Marsh Rehder';
+
 
 -- Capacity type table executables for data insertion
 -- Data is being inserted in the following order
@@ -324,6 +326,7 @@ EXEC report.proc_insert_plant 'Hidroeléctrica Candelaria', null, 'C.A', 'Guatem
 EXEC report.proc_insert_plant 'Hidroeléctrica Cholomá', null, 'C.A', 'Guatemala', 'Alta Verapaz', 2011, 2012, 'Electricity Generation', 'Generación de Energía Eléctrica', null, 'Rural', 'Finca Trece Aguas, Senahú, Alta Verapaz, Guatemala, C.A.', '15°25m00.4s', '89°44m31.3s', null;
 EXEC report.proc_insert_plant '“Xacbal” Hydroelectric Power Plant', null, 'C.A', 'Guatemala', 'Quiche', 2007, 2010, 'Electricity Generation', 'Electrical Power Plant: generation based on converting hydro power into electricity through two (2) Francis turbines coupled to electrical generators. ', null, 'Rural', 'Chajul, Quiché, Guatemala, C.A.', '15.668833', '-91.096696', 645;
 EXEC report.proc_insert_plant 'Energía Limpia de Guatemala, S.A. – ELGUA', 'Hydro Xacbal Delta Power Plant', 'C.A', 'Guatemala', 'Quiche', 2015, 2017, 'Electricity Generation', 'Electrical Power Plant: generation based on converting hydro power into electricity through two (2) Francis turbines coupled to electrical generators. ', null, 'Rural', 'Chajul, Quiché, Guatemala, C.A.', '15.620100', '-91.087802', 855;
+EXEC report.proc_insert_plant 'Sindicato Energético, S.A. - SINERSA, Empresa de Generación Eléctrica Río Baños de S.A.C - EGERBA', 'Chancay” Hydroelectric Power Plant - SINERSA, “Rucuy” Hydroelectric Power Plant - EGERBA', 'S.A', 'Peru', 'Lima', 2013, 2016, 'Electricity Generation', 'Electrical Power Plant: generation based on converting hydro power into electricity through four (4) Pelton turbines coupled to electrical generators.', null, 'Rural', 'Distrito de Acos, Huaral, Lima, Perú.', '11°15m33s', '76°44m24s', null;
 
 -- Report table executables for data insertion
 -- Data has to be inserted in the following order:
@@ -528,6 +531,7 @@ EXEC report.proc_insert_report_table '9/septiembre/2021', 'Aseguradora General, 
 EXEC report.proc_insert_report_table '9/septiembre/2021', 'Aseguradora General, S.A.', 5241, 'Marlon Lira', null, '9.70,mw', null, 65, 2, 'no', null, null, null, 'no', 'no', 'no', 'si', 'no', 'no', 'si';
 EXEC report.proc_insert_report_table '7/marzo/2021', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5242, 'Marlon Lira', 'ISO 9000, ISO 14000, ISO 18000.', '95.6,mw', 880, 30, 2, 'no', null, null, null, 'no', 'si', 'si', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '7/marzo/2023', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5243, 'Marlon Lira', 'ISO 9000, ISO 14000, ISO 18000.', '57.7,mw', 2750, 18, 2, 'si', 'Major Fires', 'Automatic Wet', 'II', 'no', 'si', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '11/febrero/2020', 'Carpenter Marsh Fac / Marsh Rehder', 5244, 'Marlon Lira', null, '40,mw', 27460, 52, 3, 'no', null, null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -727,6 +731,7 @@ EXEC report.proc_insert_perils_and_risk_table 5267, 2, 2.5, 1, 2, 2.5, 2.5, 'non
 EXEC report.proc_insert_perils_and_risk_table 5268, 2, 2.5, 1, 2, 2.5, 2.5, 'none', 1, 1.5, 1.5, 1, 2.5;
 EXEC report.proc_insert_perils_and_risk_table 5269, 2, 1.5, 2.5, 2, 2, 2.5, 'none', 1, 1, 1.5, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 5270, 2, 2.5, 2.5, 2, 2, 2.5, 'none', 1, 1, 1.5, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5271, 2, 3, 2.5, 2.5, 1.5, 2.5, 'none', 1, 1, 1, 1.5, 2.5;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -896,4 +901,5 @@ EXEC report.proc_insert_loss_scenario_table 5267, '$,82278483.39', 17, '$,132562
 EXEC report.proc_insert_loss_scenario_table 5268, '$,82278483.39', 17, '$,13256249.33', 50, null, null, null, null, null, null, 25, null;
 EXEC report.proc_insert_loss_scenario_table 5269, '$,226180291', 16, '$,79649889', 100, null, null, null, null, null, null, 38, null;
 EXEC report.proc_insert_loss_scenario_table 5270, '$,160322012', 18, '$,51909782', 100, null, null, null, null, null, null, 38, null;
+EXEC report.proc_insert_loss_scenario_table 5271, '$,99924707', 14, '$,12301988', 50, '$,75114798+$,4831737', '$,19978173', null, null, null, null, 21, null;
 
