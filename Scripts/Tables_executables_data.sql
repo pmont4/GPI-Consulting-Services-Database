@@ -313,6 +313,17 @@ EXEC report.proc_insert_plant 'Central Hidroeléctrica Sabaletas', 'HidroSabalet
 EXEC report.proc_insert_plant 'Proyecto Hidroeléctrico Yeguas', 'HidroYeguas Power Plant', 'S.A', 'Colombia', 'Antioquia', 1940, 1943, 'Electricity Generation', 'Electrical Power Plant: generation based on converting hydro power into electricity through three (3) horizontal axis Pelton turbines coupled to electrical generators.', null, 'Rural', 'Vía Santa Barbara a Abejorral km 3.8, Abejorral, Antioquia, Colombia.', '5.8605', '-75.5081', 1025;
 EXEC report.proc_insert_plant 'Compañía Hondureña de Energía Renovable, S.A. (COHERSA)', 'La Vegona Hydroelectric Power Plant', 'C.A', 'Honduras', 'Cortes', 2010, 2015, 'Electricity Generation', 'Electrical Power Plant: generation based on converting hydro power into electricity through two (2) Kaplan turbines coupled to electrical generators.', null, 'Rural', 'Vía Santa Barbara a Abejorral km 3.8, Abejorral, Antioquia, Colombia.', '15.087949', '-87.734684', 100;
 EXEC report.proc_insert_plant 'Hidroeléctrica Las Fuentes II', null, 'C.A', 'Guatemala', 'Retalhuleu', 2015, 2016, 'Electricity Generation', 'Planta de generación de energía eléctrica (hidrogeneración)', null, 'Rural', 'Finca Las Fuentes, Municipios de El Palmar (Quetzaltenango) y de San Felipe (Retalhuleu), Guatemala, C.A.', '14°37m21.77s', '91°38m12.83s', null;
+EXEC report.proc_insert_plant 'Hidroeléctrica Luarca', null, 'C.A', 'Guatemala', 'Suchitepequez', 2015, 2016, 'Electricity Generation', 'Generación de Energía Eléctrica ', null, 'Commercial, Residential', 'Cantón La Otra Banda, Zona 3, Mazatenango, Suchitepéquez, Guatemala, C.A.', '14°31m50.3s', '91°30m01.5s', null;
+EXEC report.proc_insert_plant 'Hidroeléctrica Maxanal.', null, 'C.A', 'Guatemala', 'Suchitepequez', 2014, 2016, 'Electricity Generation', 'Generación de Energía Eléctrica ', null, 'Rural', 'Finca Moca Grande, Santa Bárbara, Suchitepéquez, Guatemala, C.A.', '14°30m38s', '91°15m20s', null;
+EXEC report.proc_insert_plant 'Hidropantasma, S.A.', 'Pantasma Hydroelectric Power Plant', 'C.A', 'Nicaragua', 'Jinotega', 2011, 2013, 'Electricity Generation', 'Generación de Energía Eléctrica ', null, 'Rural', 'Pantasma, Jinotega, Nicaragua, C.A. (at 250 Km from Managua)', '13°18m05.63s', '85°58m11.27s', 444;
+EXEC report.proc_insert_plant 'Inversiones Pasabien, S.A. ', 'Pasabien Hydroelectric Power Plant', 'C.A', 'Guatemala', 'Zacapa', 1996, 2000, 'Electricity Generation', 'Electrical Power Plant: generation based on converting hydro power into electricity through two (2) Pelton turbines coupled to electrical generators.', null, 'Rural', 'Aldea Santa Rosalía, Río Hondo, Zacapa, Guatemala, C.A.', '15.0413', '-89.6850', 308;
+EXEC report.proc_insert_plant 'Paso Ancho Hydro Power S.A.', 'Paso Ancho Hydropower', 'C.A', 'Panama', 'Chiriqui', 2007, 2010, 'Electricity Generation', 'Electrical Power Plant: generation based on converting hydro power into electricity through two (2) Francis turbines coupled to electrical generator.', null, 'Rural', 'Distrito de Bugaba, Corregimiento de Volcán, Chiriquí, Panamá.', '8.8010', '-82.6453', 1406;
+EXEC report.proc_insert_plant 'Hidroeléctrica Río Las Vacas – HRLV', null, 'C.A', 'Guatemala', 'Guatemala', 1999, 2022, 'Electricity Generation', 'Generación de Energía Eléctrica', null, 'Rural', 'Aldea San Antonio Las Flores, Municipio de Chinautla, Guatemala, Guatemala, C.A.', '14°48m14s', '90°29m50s', null;
+EXEC report.proc_insert_plant 'Hidroeléctrica Secacao', null, 'C.A', 'Guatemala', 'Alta Verapaz', 1998, 1998, 'Electricity Generation', 'Generación de Energía Eléctrica y Venta Potencia', null, 'Rural', 'Finca Trece Aguas, Senahú, Alta Verapaz, Guatemala, C.A.', '15°23m42.6s', '89°45m49.0s', null;
+EXEC report.proc_insert_plant 'Hidroeléctrica Candelaria', null, 'C.A', 'Guatemala', 'Alta Verapaz', 2004, 2006, 'Electricity Generation', 'Generación de Energía Eléctrica', null, 'Rural', 'Finca Trece Aguas, Senahú, Alta Verapaz, Guatemala, C.A.', '15°23m19.8s', '89°45m17.9s', null;
+EXEC report.proc_insert_plant 'Hidroeléctrica Cholomá', null, 'C.A', 'Guatemala', 'Alta Verapaz', 2011, 2012, 'Electricity Generation', 'Generación de Energía Eléctrica', null, 'Rural', 'Finca Trece Aguas, Senahú, Alta Verapaz, Guatemala, C.A.', '15°25m00.4s', '89°44m31.3s', null;
+EXEC report.proc_insert_plant '“Xacbal” Hydroelectric Power Plant', null, 'C.A', 'Guatemala', 'Quiche', 2007, 2010, 'Electricity Generation', 'Electrical Power Plant: generation based on converting hydro power into electricity through two (2) Francis turbines coupled to electrical generators. ', null, 'Rural', 'Chajul, Quiché, Guatemala, C.A.', '15.668833', '-91.096696', 645;
+EXEC report.proc_insert_plant 'Energía Limpia de Guatemala, S.A. – ELGUA', 'Hydro Xacbal Delta Power Plant', 'C.A', 'Guatemala', 'Quiche', 2015, 2017, 'Electricity Generation', 'Electrical Power Plant: generation based on converting hydro power into electricity through two (2) Francis turbines coupled to electrical generators. ', null, 'Rural', 'Chajul, Quiché, Guatemala, C.A.', '15.620100', '-91.087802', 855;
 
 -- Report table executables for data insertion
 -- Data has to be inserted in the following order:
@@ -333,10 +344,10 @@ EXEC report.proc_insert_report_table '10/agosto/2020', 'Tecniseguros, Corredores
 EXEC report.proc_insert_report_table '18/agosto/2021', 'Reasinter, Intermadiario de Reaseguro, S.A.', 1005, 'Rafael Grajeda', 'Class B: IFR, SVFR, or VFR', '284,flights/month', 12575, 150, 'light', 1, 1000, 'manual dry', 'III', 'si', 'no', 'no', 'si', 'si', 'si', 'si';
 EXEC report.proc_insert_report_table '13/noviembre/2012', 'Seguros Mapfre - Guatemala', 1009, 'Marlon Lira', null, '220,tons/hour', null, 84, 'moderate', 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '14/noviembre/2012', 'Seguros Mapfre - Guatemala', 1010, 'Marlon Lira', null, '80,metric tons/hour', 10500, 27, 'moderate', 'si', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
-EXEC report.proc_insert_report_table '14/septiembre/2011', 'Seguros Mapfre - Guatemala', 2009, 'Marlon Lira', null, '53,metric tons/hour', 62000, 2085, 'moderate / severe', 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
-EXEC report.proc_insert_report_table '14/septiembre/2011', 'Seguros Mapfre - Guatemala', 2011, 'Marlon Lira', null, '80,metric tons/hour', null, null, 'moderate', 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '14/septiembre/2011', 'Seguros Mapfre - Guatemala', 2009, 'Marlon Lira', null, '53,metric tons/hour', 62000, 2085, 'moderate ', 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '17/mayo/2017', 'Unity Promotores, S.A.', 2012, 'Juan Jose Lira', 'ISO 9001:2008', '1000000,liters', 7500, 152, 'moderate', 'no', null, null, null, 'si', 'no', 'no', 'no', 'no', 'si', 'si';
-EXEC report.proc_insert_report_table '27/marzo/2019', 'Unity Promotores, S.A.', 2013, 'Rafael Grajeda', 'RSPO, ISCC', '45,metric tons/hour', 6000 ,32, 'light', 'si', 'minor fires', null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '27/marzo/2019', 'Unity Promotores, S.A.', 2013, 'Rafael Grajeda', 'RSPO, ISCC', '45,metric tons/hour', 6000 ,32, '/ severe', 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '14/septiembre/2011', 'Seguros Mapfre - Guatemala', 2011, 'Marlon Lira', null, '80,metric tons/hour', null, null, 'moderatelight', 'si', 'minor fires', null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '12/october/2011', 'Seguros Agromercantil, S.A.', 2015, 'Marlon Lira', null, null, 17000, 15, 'moderate', 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'no';
 EXEC report.proc_insert_report_table '7/agosto/2019', 'Grupo Protegemos Asesores', 2016, 'Rafael Grajeda', 'ISO 14001, KOSHER, FSSC 22000, RSPO', '200,metric tons/day', 4060, 71, 'moderate', 'no', null, null, null, 'si', 'no', 'no', 'no', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '22/septiembre/2017', 'Seguros Agromercantil, S.A.', 2017, 'Juan Jose Lira', 'ISCC, RSPO', '30,metric tons/hour', 60000, 70, 'light', 'si', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
@@ -502,6 +513,21 @@ EXEC report.proc_insert_report_table '24/noviembre/2022', 'Reasinter, Intermadia
 EXEC report.proc_insert_report_table '21/noviembre/2022', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5229, 'Juan Diego Lacayo', null, '8.8,mw', null, 6, 2, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '13/enero/2021', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5230, 'Rafael Grajeda', null, '36.12,mw', null, 32, 2, 'si', 'Major fires', 'Automatic Wet', null, 'no', 'si', 'si', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '6/febrero/2020', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5231, 'Rafael Grajeda', null, '14.5,mw', null, 5, 2, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '15/agosto/2013', 'Seguros Agromercantil, S.A.', 5233, 'Marlon Lira', null, '0.61,mw', null, 4, 1, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '2/febrero/2016', 'Seguros Agromercantil, S.A.', 5234, 'Marlon Lira, Juan Jose Lira', null, '2.8,mw', null, 7, 1, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '3/junio/2016', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5235, 'Marlon Lira', null, '13,mw', null, 17, 2, 'no', null, null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '8/julio/2020', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5236, 'Marlon Lira', null, '12.5,mw', null, 52, 2, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '6/febrero/2023', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5237, 'Juan Diego Lacayo', null, '6.78,mw', null, 13, 2, 'si', 'Minor fires', null, null, 'no', 'si', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '9/junio/2011', 'Tecniseguros, Corredores de Seguros, S.A.', 5238, 'Marlon Lira', null, '45,mw', null, 65, 3, 'no', null, null, null, 'no', 'si', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '9/junio/2011', 'Seguros Mapfre - Guatemala', 5238, 'Marlon Lira', null, '45,mw', null, 65, 3, 'no', null, null, null, 'no', 'si', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '14/noviembre/2022', 'Tecniseguros, Corredores de Seguros, S.A.', 5239, 'Marlon Lira', null, '16.20,mw', null, 65, 2, 'no', null, null, null, 'no', 'no', 'no', 'si', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '14/noviembre/2022', 'Tecniseguros, Corredores de Seguros, S.A.', 5240, 'Marlon Lira', null, '4.30,mw', null, 65, 2, 'no', null, null, null, 'no', 'no', 'no', 'si', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '14/noviembre/2022', 'Tecniseguros, Corredores de Seguros, S.A.', 5241, 'Marlon Lira', null, '9.70,mw', null, 65, 2, 'no', null, null, null, 'no', 'no', 'no', 'si', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '9/septiembre/2021', 'Aseguradora General, S.A.', 5239, 'Marlon Lira', null, '16.20,mw', null, 65, 2, 'no', null, null, null, 'no', 'no', 'no', 'si', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '9/septiembre/2021', 'Aseguradora General, S.A.', 5240, 'Marlon Lira', null, '4.30,mw', null, 65, 2, 'no', null, null, null, 'no', 'no', 'no', 'si', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '9/septiembre/2021', 'Aseguradora General, S.A.', 5241, 'Marlon Lira', null, '9.70,mw', null, 65, 2, 'no', null, null, null, 'no', 'no', 'no', 'si', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '7/marzo/2021', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5242, 'Marlon Lira', 'ISO 9000, ISO 14000, ISO 18000.', '95.6,mw', 880, 30, 2, 'no', null, null, null, 'no', 'si', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '7/marzo/2023', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5243, 'Marlon Lira', 'ISO 9000, ISO 14000, ISO 18000.', '57.7,mw', 2750, 18, 2, 'si', 'Major Fires', 'Automatic Wet', 'II', 'no', 'si', 'si', 'si', 'no', 'si', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -686,6 +712,21 @@ EXEC report.proc_insert_perils_and_risk_table 5251, 2.5, 2, 2.5, 2, 2, 1.5, 'non
 EXEC report.proc_insert_perils_and_risk_table 5252, 2, 2, 2, 2, 2, 2, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 5253, 2, 1, 2, 1, 2, 2, 'none', 1, 1, 1, 1, 1.5;
 EXEC report.proc_insert_perils_and_risk_table 5254, 2, 1, 1, 2, 2, 2.5, 'none', 1, 1, 1, 1.5, 2;
+EXEC report.proc_insert_perils_and_risk_table 5256, 'none', 2.5, 1, 2, 2, 2, 'none', 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5257, 'none', 1, 1, 2, 2, 2.5, 'none', 1, 1, 1, 2, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 5258, 2, 2, 1, 1.5, 2, 1.5, 'none', 1, 1, 1, 1, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 5259, 2, 2, 2, 2, 2, 2.5, 'none', 1, 1, 2.5, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5260, 2, 2, 2, 2, 2, 2, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5261, 'none', 3, 3, 3, 2, 3, 'none', 1, 1, 'none', 'none', 3;
+EXEC report.proc_insert_perils_and_risk_table 5262, 'none', 3, 3, 3, 2, 3, 'none', 1, 1, 'none', 'none', 3;
+EXEC report.proc_insert_perils_and_risk_table 5263, 2, 2.5, 1, 2, 2.5, 2.5, 'none', 1, 1.5, 1.5, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5264, 2, 2.5, 1, 2, 2.5, 2.5, 'none', 1, 1.5, 1.5, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5265, 2, 2.5, 1, 2, 2.5, 2.5, 'none', 1, 1.5, 1.5, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5266, 2, 2.5, 1, 2, 2.5, 2.5, 'none', 1, 1.5, 1.5, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5267, 2, 2.5, 1, 2, 2.5, 2.5, 'none', 1, 1.5, 1.5, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5268, 2, 2.5, 1, 2, 2.5, 2.5, 'none', 1, 1.5, 1.5, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5269, 2, 1.5, 2.5, 2, 2, 2.5, 'none', 1, 1, 1.5, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5270, 2, 2.5, 2.5, 2, 2, 2.5, 'none', 1, 1, 1.5, 1, 2.5;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -843,4 +884,16 @@ EXEC report.proc_insert_loss_scenario_table 5251, '$,3200000', 47, '$,352500', 1
 EXEC report.proc_insert_loss_scenario_table 5252, '$,20660000', 39, '$,1997500', 100, '$,3500000+$,6125000+$,700000+$,1500000+$,2310000', '$,4840000+$,1685000', null, null, null, null, 44, null;
 EXEC report.proc_insert_loss_scenario_table 5253, '$,84870214', 70.3, '$,16845011', 100, '$,34130828+$,4898490+$,11349711+$,7499622+$,2614882', '$,15847622+$,6012848+$,108120+$,1795345+$,500000', '$,112746', null, null, null, 75.2, null;
 EXEC report.proc_insert_loss_scenario_table 5254, '$,30000000', null, '$,4000000', null, null, null, null, null, null, null, 42, null;
+EXEC report.proc_insert_loss_scenario_table 5257, '$,6692300.00', null, null, null, null, null, null, null, null, null, 32, null;
+EXEC report.proc_insert_loss_scenario_table 5258, '$,29273884', 32, '$,6000000', 100, '$,485008+$,2512010+$,1651150+$,3325753+$,3184164+$,73394+$,1537798+$,143282+$,1811836', '$,1583233+$,1583233+$,731254+$,731254+$,286150+$,286150+$,1538346+$,805138+$,528021+$,133158', null, null, null, null, 43, null;
+EXEC report.proc_insert_loss_scenario_table 5259, '$,27450717', 39, '$,6924000', 100, '$,26450339+$,1000378', null, null, null, null, null, 51, null;
+EXEC report.proc_insert_loss_scenario_table 5260, '$,16734920', 40, '$,2800000', 100, '$,12321104', '$,4191139+$,222678', null, null, null, null, 49, null;
+EXEC report.proc_insert_loss_scenario_table 5263, '$,82823483.39', 16, '$,13256249.33', 53, null, null, null, null, null, null, 25, null;
+EXEC report.proc_insert_loss_scenario_table 5264, '$,82823483.39', 16, '$,13256249.33', 53, null, null, null, null, null, null, 25, null;
+EXEC report.proc_insert_loss_scenario_table 5265, '$,82823483.39', 16, '$,13256249.33', 53, null, null, null, null, null, null, 25, null;
+EXEC report.proc_insert_loss_scenario_table 5266, '$,82278483.39', 17, '$,13256249.33', 50, null, null, null, null, null, null, 25, null;
+EXEC report.proc_insert_loss_scenario_table 5267, '$,82278483.39', 17, '$,13256249.33', 50, null, null, null, null, null, null, 25, null;
+EXEC report.proc_insert_loss_scenario_table 5268, '$,82278483.39', 17, '$,13256249.33', 50, null, null, null, null, null, null, 25, null;
+EXEC report.proc_insert_loss_scenario_table 5269, '$,226180291', 16, '$,79649889', 100, null, null, null, null, null, null, 38, null;
+EXEC report.proc_insert_loss_scenario_table 5270, '$,160322012', 18, '$,51909782', 100, null, null, null, null, null, null, 38, null;
 
