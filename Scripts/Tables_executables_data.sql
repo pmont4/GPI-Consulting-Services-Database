@@ -341,6 +341,9 @@ EXEC report.proc_insert_plant 'Alimentos Ideal, S.A. – IDEALSA', null, 'C.A', 
 EXEC report.proc_insert_plant 'Alimentos Ideal, S.A. – IODESA', null, 'C.A', 'Guatemala', 'Guatemala', null, 1970, 'Distribution', 'Idealsa storage and distribution center and snacks production and commercialization plant.', 'IV', 'Industrial, Rural', 'Km. 56.5 Antigua Carretera a Puerto San José Escuintla, Guatemala', '14°18m45.31s', '90°46m37.84s', 380;
 EXEC report.proc_insert_plant 'IDEALSA', 'Industrial Envasadora de Lácteos y Derivados, S.A.P.I. de C.V. - INELAC.', 'N.A', 'Mexico', 'Chiapas', 2019, 2021, 'Production', 'Producción de Bebidas no Carbonatadas (lácteos y néctares) – BNC. Refinación de aceites vegetales, para producción de margarinas y aceites refinados – IDEALSA. Almacenamiento y distribución de producto envasado (aceites, lácteos y néctares) – CEDIS', 'IV', 'Rural', 'Rancho Jr Carretera Playa Linda Km.1.+114.34 Lado Izquierdo Tramo Ramal A Base Naval De La Carretera Puerto Madero Ciudad Hidalgo, Tapachula Chiapas, Cp.30837', '14.739109', '-92.394611', 12;
 EXEC report.proc_insert_plant 'Industria La Popular - ILPSA', null, 'C.A', 'Guatemala', 'Escuintla', null, 1949, 'Production', 'Industrial plant dedicated to the production and distribution of commodities, soaps, shampoo bases, detergents, chlorine and personal care products. Additionally, the facilities include a plastic container manufacturing plant.', 'IV', 'Industrial, Rural', 'Km. 55.5 Antigua Carretera a Puerto San José Escuintla, Guatemala', '14°18m48.34s', '90°46m32.80s', 380;
+EXEC report.proc_insert_plant 'Grupo Ingenios Santos', 'Alianza Popular Sugar Mill', 'N.A', 'Mexico', 'San Luis Potosi', 1974, 1974, 'Production', 'Sugar production', 'III', 'Industrial, Rural', 'Tambaca, San Luis Potosí, México', '21°57m56.21s', '99°17m51.37s', 326;
+EXEC report.proc_insert_plant 'Azucarera del Norte, S.A. (Azunosa Sugar Mill)', null, 'C.A', 'Honduras', 'Yoro', 1975, 1978, 'Production', 'Sugar mill (production of sugar) and bagasse turbines (electricity).', 'III', 'Rural', 'Aldea Finca 7, El Progreso, Yoro, Honduras, C.A.', '15.282994', '-87.888188', 31;
+EXEC report.proc_insert_plant 'Calípam Sugar Mill', null, 'N.A', 'Mexico', 'Puebla', 1921, null, 'Production', 'Sugar production', 'III', 'Residential', 'Avenida 2 de Abril S/N. CP 75985. Calípam, Puebla, México', '18°17m38.67s', '97°9m52.10s', 1135;
 
 -- Report table executables for data insertion
 -- Data has to be inserted in the following order:
@@ -560,6 +563,9 @@ EXEC report.proc_insert_report_table '23/junio/2020', 'Unity Promotores, S.A.', 
 EXEC report.proc_insert_report_table '23/junio/2020', 'Unity Promotores, S.A.', 5253, 'Rafael Grajeda', 'ISO 9001:2015, FSSC 22000', null, 32000, 100, 2, 'si', 'Minor Fires', null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '17/marzo/2021', 'Seguros y Fianzas "El Roble"', 5254, 'Rafael Grajeda', null, '600,tons/day', 62973.32, 1000, 2, 'si', 'Major Fires', 'Automatic Wet', 'III', 'si', 'no', 'no', 'no', 'no', 'no', 'si';
 EXEC report.proc_insert_report_table '8/mayo/2019', 'Unity Promotores, S.A.', 5255, 'Rafael Grajeda', null, '125.5,tons/day', 40881.25, 970, 2, 'si', 'Major Fires', null, null, 'si', 'no', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '13/julio/2015', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5256, 'Marlon Lira', null, '7200,Short tons/Day', null, 455, 2, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '29/julio/2021', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5257, 'Rafael Grajeda', 'FSSC 22000, ISO 9001, BONSUCRO', '7000.68,Short tons/Day', 21000, 290, 2.5, 'si', 'Minor Fires', 'Automatic Wet', null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '23/enero/2019', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5258, 'Rafael Grajeda', null, '2645.54,Short tons/Day', 12135, 316, 1, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -774,6 +780,9 @@ EXEC report.proc_insert_perils_and_risk_table 5281, 3, 1, 1, 2, 2.5, 2.5, 'none'
 EXEC report.proc_insert_perils_and_risk_table 5282, 3, 1, 1, 2, 2.5, 2.5, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 5283, 2.5, 'none', 2, 2, 2, 2.5, 'none', 1, 1, 1, 1.5, 2;
 EXEC report.proc_insert_perils_and_risk_table 5284, 2.5, 1, 1, 1.5, 2.5, 2.5, 'none', 1.5, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5285, 2, 'none', 2, 2, 2, 2.5, 'none', 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5286, 2.5, 'none', 3, 1.5, 2.5, 2, 'none', 1, 1, 1, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5287, 2.5, 'none', 1, 1, 2, 2.5, 'none', 1, 1, 2, 2, 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -954,3 +963,6 @@ EXEC report.proc_insert_loss_scenario_table 5281, '$,68779228', 49, null, null, 
 EXEC report.proc_insert_loss_scenario_table 5282, '$,68779228', 49, null, null, '$,4475193+$,2921461', '$,32975129+$,2257955', null, null, '$,14334825+$,11814665', null, 49, null;
 EXEC report.proc_insert_loss_scenario_table 5283, '$,55376316', 83, '$,8925000', 100, '$,16062985', '$,39213331', '$,100000', null, null, null, 85, null;
 EXEC report.proc_insert_loss_scenario_table 5284, '$,32651810', 53, '$,21869232', 80, '$,5393477', null, null, null, '$,27258333', null, 65, null;
+EXEC report.proc_insert_loss_scenario_table 5285, null, 70, null, null, null, null, null, null, null, null, null, null;
+EXEC report.proc_insert_loss_scenario_table 5286, null, 85, null, null, null, null, null, null, null, null, null, null;
+EXEC report.proc_insert_loss_scenario_table 5287, '$,324516564', 92, null, null, '$,11000690+$,47954988.67', '$,229223907.84+$,2862761.88+$,2730211.97', '$,206498.55', '$,7229110.70', '$,23308395', null, null, null;
