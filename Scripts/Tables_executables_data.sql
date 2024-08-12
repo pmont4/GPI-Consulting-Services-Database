@@ -49,7 +49,7 @@ EXEC report.proc_insert_client 'Howden Specialty Ltd'
 EXEC report.proc_insert_client 'HAINA INTERNATIONAL TERMINALS';
 EXEC report.proc_insert_client 'Fountain Hydro Power Corp.';
 EXEC report.proc_insert_client 'Carpenter Marsh Fac / Marsh Rehder';
-
+EXEC report.proc_insert_client 'Garret Unicem Corredora';
 
 -- Capacity type table executables for data insertion
 -- Data is being inserted in the following order
@@ -98,6 +98,7 @@ EXEC report.proc_insert_capacity_type 'Metric tons';
 EXEC report.proc_insert_capacity_type 'Liters';
 EXEC report.proc_insert_capacity_type 'm2';
 EXEC report.proc_insert_capacity_type 'yards/month';
+EXEC report.proc_insert_capacity_type 'rooms';
 
 -- Merchandise classification table executables for data insertion
 -- Data is being inserted in the following order
@@ -327,6 +328,15 @@ EXEC report.proc_insert_plant 'Hidroeléctrica Cholomá', null, 'C.A', 'Guatemal
 EXEC report.proc_insert_plant '“Xacbal” Hydroelectric Power Plant', null, 'C.A', 'Guatemala', 'Quiche', 2007, 2010, 'Electricity Generation', 'Electrical Power Plant: generation based on converting hydro power into electricity through two (2) Francis turbines coupled to electrical generators. ', null, 'Rural', 'Chajul, Quiché, Guatemala, C.A.', '15.668833', '-91.096696', 645;
 EXEC report.proc_insert_plant 'Energía Limpia de Guatemala, S.A. – ELGUA', 'Hydro Xacbal Delta Power Plant', 'C.A', 'Guatemala', 'Quiche', 2015, 2017, 'Electricity Generation', 'Electrical Power Plant: generation based on converting hydro power into electricity through two (2) Francis turbines coupled to electrical generators. ', null, 'Rural', 'Chajul, Quiché, Guatemala, C.A.', '15.620100', '-91.087802', 855;
 EXEC report.proc_insert_plant 'Sindicato Energético, S.A. - SINERSA, Empresa de Generación Eléctrica Río Baños de S.A.C - EGERBA', 'Chancay” Hydroelectric Power Plant - SINERSA, “Rucuy” Hydroelectric Power Plant - EGERBA', 'S.A', 'Peru', 'Lima', 2013, 2016, 'Electricity Generation', 'Electrical Power Plant: generation based on converting hydro power into electricity through four (4) Pelton turbines coupled to electrical generators.', null, 'Rural', 'Distrito de Acos, Huaral, Lima, Perú.', '11°15m33s', '76°44m24s', null;
+EXEC report.proc_insert_plant '“Oxec I” Hydroelectric Power Plant', '“Oxec I” Hydroelectric Power Plant', 'C.A', 'Guatemala', 'Alta Verapaz', 2013, 2015, 'Electricity Generation', 'Electrical Power Plant: generation based on converting hydro power into electricity through two (2) Francis turbines coupled to electrical generators.', null, 'Rural', 'Santa María Cahabón, Alta Verapaz, Guatemala, C.A.', '15°33m33.74s', '89°42m21.55s', 122;
+EXEC report.proc_insert_plant '“Oxec II” Hydroelectric Power Plant', '“Oxec I” Hydroelectric Power Plant', 'C.A', 'Guatemala', 'Alta Verapaz', 2015, 2018, 'Electricity Generation', 'Electrical Power Plant: generation based on converting hydro power into electricity through two (2) Kaplan turbines coupled to electrical generators.', null, 'Rural', 'Santa María Cahabón, Alta Verapaz, Guatemala, C.A.', '15°33m30.71s', '89°42m26.39s', 118;
+EXEC report.proc_insert_plant 'Hidroeléctrica El Libertador.', null, 'C.A', 'Guatemala', 'Santa Rosa', 2011, 2013, 'Electricity Generation', 'Generación de Energía Eléctrica', null, 'Rural', 'Finca La Bendición, Chiquimulilla , Santa Rosa, Guatemala, C.A.', '14°10m24.9s', '90°21m14.5s', null;
+EXEC report.proc_insert_plant 'Hidroeléctrica El Panal', null, 'C.A', 'Guatemala', 'Santa Rosa', 2013, 2015, 'Electricity Generation', 'Generación de Energía Eléctrica', null, 'Rural', 'Finca La Morena, Chiquimulilla , Santa Rosa, Guatemala, C.A.', '14°10m23.79s', '90°21m16.77s', null;
+EXEC report.proc_insert_plant 'Reserva Conchal, Desarrollos Hoteleros Guanacaste S.A. (DHG)', null, 'C.A', 'Costa Rica', 'Guanacaste', 1996, null, 'Real State', 'Centro recreacional', null, 'Rural', 'Guanacaste Province, Brasilito, Costa Rica, C.A.', '10.397002', '-85.810244', null;
+EXEC report.proc_insert_plant 'IMERCA.', null, 'C.A', 'Guatemala', 'Guatemala', null, 1989, 'Distribution', 'Importación, comercialización y venta al mayoreo de repuestos para vehículo liviano japonés.', null, 'Industrial, Commercial', '23 Calle 14-58 Zona 4, Mixco, Guatemala, Condado El Naranjo, Distribodegas 3, Bodega C1.', '14.650127', '-90.539120', 1510;
+EXEC report.proc_insert_plant 'BNC - Alimentos Ideal', null, 'C.A', 'Guatemala', 'Guatemala', null, 1998, 'Production', 'Industrial plant dedicated to the production and distribution of non-carbonated drinks such as milk (white and flavored), nectar and soft drinks.', 'II', 'Commercial, Residential', 'Calzada Raúl Aguilar Batres 38-11, Zona 12, Guatemala', '14°18m48.34s', '90°46m32.80s', 1480;
+EXEC report.proc_insert_plant 'Alimentos Ideal, S.A. – IDEALSA', null, 'C.A', 'Guatemala', 'Guatemala', null, 1970, 'Production', 'Production and commercialization of vegetable oils, butter, margarines, fats and margarine bases.', 'IV', 'Industrial, Rural', 'Km. 56.5 Antigua Carretera a Puerto San José Escuintla, Guatemala', '14°18m43.23s', '90°46m42.08s', 380;
+EXEC report.proc_insert_plant 'Alimentos Ideal, S.A. – IODESA', null, 'C.A', 'Guatemala', 'Guatemala', null, 1970, 'Distribution', 'Idealsa storage and distribution center and snacks production and commercialization plant.', 'IV', 'Industrial, Rural', 'Km. 56.5 Antigua Carretera a Puerto San José Escuintla, Guatemala', '14°18m45.31s', '90°46m37.84s', 380;
 
 -- Report table executables for data insertion
 -- Data has to be inserted in the following order:
@@ -532,6 +542,18 @@ EXEC report.proc_insert_report_table '9/septiembre/2021', 'Aseguradora General, 
 EXEC report.proc_insert_report_table '7/marzo/2021', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5242, 'Marlon Lira', 'ISO 9000, ISO 14000, ISO 18000.', '95.6,mw', 880, 30, 2, 'no', null, null, null, 'no', 'si', 'si', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '7/marzo/2023', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5243, 'Marlon Lira', 'ISO 9000, ISO 14000, ISO 18000.', '57.7,mw', 2750, 18, 2, 'si', 'Major Fires', 'Automatic Wet', 'II', 'no', 'si', 'si', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '11/febrero/2020', 'Carpenter Marsh Fac / Marsh Rehder', 5244, 'Marlon Lira', null, '40,mw', 27460, 52, 3, 'no', null, null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '4/septiembre/2019', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5245, 'Rafael Grajeda', null, '26.1,mw', null, 15, 2, 'no', null, null, null, 'no', 'no', 'no', 'si', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '4/septiembre/2019', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5246, 'Rafael Grajeda', null, '60.0,mw', null, 15, 2, 'no', null, null, null, 'no', 'no', 'no', 'si', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '12/septiembre/2022', 'Seguros Agromercantil, S.A.', 5245, 'Juan Diego Lacayo', null, '26.1,mw', null, 15, 2, 'no', null, null, null, 'no', 'no', 'no', 'si', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '13/septiembre/2022', 'Seguros Agromercantil, S.A.', 5246, 'Juan Diego Lacayo', null, '60.0,mw', null, 15, 2, 'no', null, null, null, 'no', 'no', 'no', 'si', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '3/marzo/2016', 'Seguros Agromercantil, S.A.', 5247, 'Marlon Lira, Juan Jose Lira', null, '2.4,mw', null, 6, 2.5, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '3/marzo/2016', 'Seguros Agromercantil, S.A.', 5248, 'Marlon Lira, Juan Jose Lira', null, '3.49,mw', null, 6, 2.5, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '16/junio/2023', 'Garret Unicem Corredora', 5249, 'Marlon Lira', null, '565,rooms', 65000, 1170, 2, 'si', 'Major Fires', 'Automatic Wet', 'II', 'si', 'no', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '30/abril/2012', 'Tecniseguros, Corredores de Seguros, S.A.', 5250, 'Marlon Lira', null, null, 2000, 65, 2, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '8/junio/2011', 'Grupo Generali', 5250, 'Marlon Lira', null, null, 2000, 65, 2, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '25/junio/2020', 'Unity Promotores, S.A.', 5251, 'Rafael Grajeda', null, '19600,liters/hour', 3428, 95, 1, 'si', 'Minor Fires', null, null, 'no', 'no', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '23/junio/2020', 'Unity Promotores, S.A.', 5252, 'Rafael Grajeda', 'ISO 9001:2015, FSSC 22000', '520,metric tons/day', 30000, 200, 2, 'si', 'Minor Fires', null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '23/junio/2020', 'Unity Promotores, S.A.', 5253, 'Rafael Grajeda', 'ISO 9001:2015, FSSC 22000', null, 32000, 100, 2, 'si', 'Minor Fires', null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -716,22 +738,34 @@ EXEC report.proc_insert_perils_and_risk_table 5251, 2.5, 2, 2.5, 2, 2, 1.5, 'non
 EXEC report.proc_insert_perils_and_risk_table 5252, 2, 2, 2, 2, 2, 2, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 5253, 2, 1, 2, 1, 2, 2, 'none', 1, 1, 1, 1, 1.5;
 EXEC report.proc_insert_perils_and_risk_table 5254, 2, 1, 1, 2, 2, 2.5, 'none', 1, 1, 1, 1.5, 2;
-EXEC report.proc_insert_perils_and_risk_table 5256, 'none', 2.5, 1, 2, 2, 2, 'none', 1, 1, 'none', 'none', 2;
-EXEC report.proc_insert_perils_and_risk_table 5257, 'none', 1, 1, 2, 2, 2.5, 'none', 1, 1, 1, 2, 1.5;
-EXEC report.proc_insert_perils_and_risk_table 5258, 2, 2, 1, 1.5, 2, 1.5, 'none', 1, 1, 1, 1, 1.5;
-EXEC report.proc_insert_perils_and_risk_table 5259, 2, 2, 2, 2, 2, 2.5, 'none', 1, 1, 2.5, 1, 2;
-EXEC report.proc_insert_perils_and_risk_table 5260, 2, 2, 2, 2, 2, 2, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5255, 'none', 2.5, 1, 2, 2, 2, 'none', 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5256, 'none', 1, 1, 2, 2, 2.5, 'none', 1, 1, 1, 2, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 5257, 2, 2, 1, 1.5, 2, 1.5, 'none', 1, 1, 1, 1, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 5258, 2, 2, 2, 2, 2, 2.5, 'none', 1, 1, 2.5, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5259, 2, 2, 2, 2, 2, 2, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5260, 'none', 3, 3, 3, 2, 3, 'none', 1, 1, 'none', 'none', 3;
 EXEC report.proc_insert_perils_and_risk_table 5261, 'none', 3, 3, 3, 2, 3, 'none', 1, 1, 'none', 'none', 3;
-EXEC report.proc_insert_perils_and_risk_table 5262, 'none', 3, 3, 3, 2, 3, 'none', 1, 1, 'none', 'none', 3;
+EXEC report.proc_insert_perils_and_risk_table 5262, 2, 2.5, 1, 2, 2.5, 2.5, 'none', 1, 1.5, 1.5, 1, 2.5;
 EXEC report.proc_insert_perils_and_risk_table 5263, 2, 2.5, 1, 2, 2.5, 2.5, 'none', 1, 1.5, 1.5, 1, 2.5;
 EXEC report.proc_insert_perils_and_risk_table 5264, 2, 2.5, 1, 2, 2.5, 2.5, 'none', 1, 1.5, 1.5, 1, 2.5;
 EXEC report.proc_insert_perils_and_risk_table 5265, 2, 2.5, 1, 2, 2.5, 2.5, 'none', 1, 1.5, 1.5, 1, 2.5;
 EXEC report.proc_insert_perils_and_risk_table 5266, 2, 2.5, 1, 2, 2.5, 2.5, 'none', 1, 1.5, 1.5, 1, 2.5;
 EXEC report.proc_insert_perils_and_risk_table 5267, 2, 2.5, 1, 2, 2.5, 2.5, 'none', 1, 1.5, 1.5, 1, 2.5;
-EXEC report.proc_insert_perils_and_risk_table 5268, 2, 2.5, 1, 2, 2.5, 2.5, 'none', 1, 1.5, 1.5, 1, 2.5;
-EXEC report.proc_insert_perils_and_risk_table 5269, 2, 1.5, 2.5, 2, 2, 2.5, 'none', 1, 1, 1.5, 1, 2;
-EXEC report.proc_insert_perils_and_risk_table 5270, 2, 2.5, 2.5, 2, 2, 2.5, 'none', 1, 1, 1.5, 1, 2.5;
-EXEC report.proc_insert_perils_and_risk_table 5271, 2, 3, 2.5, 2.5, 1.5, 2.5, 'none', 1, 1, 1, 1.5, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5268, 2, 1.5, 2.5, 2, 2, 2.5, 'none', 1, 1, 1.5, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5279, 2, 2.5, 2.5, 2, 2, 2.5, 'none', 1, 1, 1.5, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5270, 2, 3, 2.5, 2.5, 1.5, 2.5, 'none', 1, 1, 1, 1.5, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5271, 2, 2.5, 2.5, 1.5, 2, 2.5, 'none', 1, 1, 2, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5272, 2, 2.5, 2.5, 1.5, 2, 2.5, 'none', 1, 1, 2, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5273, 2, 2.5, 2.5, 1.5, 2, 2.5, 'none', 1, 1, 2, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5274, 2, 2.5, 2.5, 1.5, 2, 2.5, 'none', 1, 1, 2, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5275, 'none', 3, 2.5, 2, 2, 2.5, 'none', 1, 1, 1.5, 2.5, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5276, 'none', 3, 2.5, 2, 2, 2.5, 'none', 1, 1, 1.5, 2.5, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5277, 2, 1, 2, 1.5, 2, 2.5, 2, 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5278, 'none', 2, 1, 2, 1, 3, 'none', 1, 1, 'none', 'none', 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5279, 'none', 2, 1, 2, 1, 3, 'none', 1, 1, 'none', 'none', 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5280, 2.5, 'none', 1, 1.5, 2, 2.5, 'none', 1, 1, 1.5, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5281, 3, 1, 1, 2, 2.5, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5282, 3, 1, 1, 2, 2.5, 2.5, 'none', 1, 1, 1, 1, 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -889,17 +923,24 @@ EXEC report.proc_insert_loss_scenario_table 5251, '$,3200000', 47, '$,352500', 1
 EXEC report.proc_insert_loss_scenario_table 5252, '$,20660000', 39, '$,1997500', 100, '$,3500000+$,6125000+$,700000+$,1500000+$,2310000', '$,4840000+$,1685000', null, null, null, null, 44, null;
 EXEC report.proc_insert_loss_scenario_table 5253, '$,84870214', 70.3, '$,16845011', 100, '$,34130828+$,4898490+$,11349711+$,7499622+$,2614882', '$,15847622+$,6012848+$,108120+$,1795345+$,500000', '$,112746', null, null, null, 75.2, null;
 EXEC report.proc_insert_loss_scenario_table 5254, '$,30000000', null, '$,4000000', null, null, null, null, null, null, null, 42, null;
-EXEC report.proc_insert_loss_scenario_table 5257, '$,6692300.00', null, null, null, null, null, null, null, null, null, 32, null;
-EXEC report.proc_insert_loss_scenario_table 5258, '$,29273884', 32, '$,6000000', 100, '$,485008+$,2512010+$,1651150+$,3325753+$,3184164+$,73394+$,1537798+$,143282+$,1811836', '$,1583233+$,1583233+$,731254+$,731254+$,286150+$,286150+$,1538346+$,805138+$,528021+$,133158', null, null, null, null, 43, null;
-EXEC report.proc_insert_loss_scenario_table 5259, '$,27450717', 39, '$,6924000', 100, '$,26450339+$,1000378', null, null, null, null, null, 51, null;
-EXEC report.proc_insert_loss_scenario_table 5260, '$,16734920', 40, '$,2800000', 100, '$,12321104', '$,4191139+$,222678', null, null, null, null, 49, null;
+EXEC report.proc_insert_loss_scenario_table 5256, '$,6692300.00', null, null, null, null, null, null, null, null, null, 32, null;
+EXEC report.proc_insert_loss_scenario_table 5257, '$,29273884', 32, '$,6000000', 100, '$,485008+$,2512010+$,1651150+$,3325753+$,3184164+$,73394+$,1537798+$,143282+$,1811836', '$,1583233+$,1583233+$,731254+$,731254+$,286150+$,286150+$,1538346+$,805138+$,528021+$,133158', null, null, null, null, 43, null;
+EXEC report.proc_insert_loss_scenario_table 5258, '$,27450717', 39, '$,6924000', 100, '$,26450339+$,1000378', null, null, null, null, null, 51, null;
+EXEC report.proc_insert_loss_scenario_table 5259, '$,16734920', 40, '$,2800000', 100, '$,12321104', '$,4191139+$,222678', null, null, null, null, 49, null;
+EXEC report.proc_insert_loss_scenario_table 5262, '$,82823483.39', 16, '$,13256249.33', 53, null, null, null, null, null, null, 25, null;
 EXEC report.proc_insert_loss_scenario_table 5263, '$,82823483.39', 16, '$,13256249.33', 53, null, null, null, null, null, null, 25, null;
 EXEC report.proc_insert_loss_scenario_table 5264, '$,82823483.39', 16, '$,13256249.33', 53, null, null, null, null, null, null, 25, null;
-EXEC report.proc_insert_loss_scenario_table 5265, '$,82823483.39', 16, '$,13256249.33', 53, null, null, null, null, null, null, 25, null;
+EXEC report.proc_insert_loss_scenario_table 5265, '$,82278483.39', 17, '$,13256249.33', 50, null, null, null, null, null, null, 25, null;
 EXEC report.proc_insert_loss_scenario_table 5266, '$,82278483.39', 17, '$,13256249.33', 50, null, null, null, null, null, null, 25, null;
 EXEC report.proc_insert_loss_scenario_table 5267, '$,82278483.39', 17, '$,13256249.33', 50, null, null, null, null, null, null, 25, null;
-EXEC report.proc_insert_loss_scenario_table 5268, '$,82278483.39', 17, '$,13256249.33', 50, null, null, null, null, null, null, 25, null;
-EXEC report.proc_insert_loss_scenario_table 5269, '$,226180291', 16, '$,79649889', 100, null, null, null, null, null, null, 38, null;
-EXEC report.proc_insert_loss_scenario_table 5270, '$,160322012', 18, '$,51909782', 100, null, null, null, null, null, null, 38, null;
-EXEC report.proc_insert_loss_scenario_table 5271, '$,99924707', 14, '$,12301988', 50, '$,75114798+$,4831737', '$,19978173', null, null, null, null, 21, null;
-
+EXEC report.proc_insert_loss_scenario_table 5268, '$,226180291', 16, '$,79649889', 100, null, null, null, null, null, null, 38, null;
+EXEC report.proc_insert_loss_scenario_table 5269, '$,160322012', 18, '$,51909782', 100, null, null, null, null, null, null, 38, null;
+EXEC report.proc_insert_loss_scenario_table 5270, '$,99924707', 14, '$,12301988', 50, '$,75114798+$,4831737', '$,19978173', null, null, null, null, 21, null;
+EXEC report.proc_insert_loss_scenario_table 5271, '$,83197496', 14, '$,11443579', 100, '$,83197496', null, null, null, null, null, 25, null;
+EXEC report.proc_insert_loss_scenario_table 5272, '$,220331188', 27, '$,30000000', 100, '$,220331188', null, null, null, null, null, 36, null;
+EXEC report.proc_insert_loss_scenario_table 5275, '$,3061256.47', null, null, null, null, null, null, null, null, null, null, 35;
+EXEC report.proc_insert_loss_scenario_table 5276, '$,5100959.72', null, null, null, null, null, null, null, null, null, null, 30;
+EXEC report.proc_insert_loss_scenario_table 5277, '$,224459809', 6, '$,2322755', 10, null, null, null, null, null, null, 6, null;
+EXEC report.proc_insert_loss_scenario_table 5280, '$,11333066', 100, null, null, '$,1124721', '$,5028009', null, null, '$,5180336', null, 100, null;
+EXEC report.proc_insert_loss_scenario_table 5281, '$,68779228', 49, null, null, '$,4475193+$,2921461', '$,32975129+$,2257955', null, null, '$,14334825+$,11814665', null, 49, null;
+EXEC report.proc_insert_loss_scenario_table 5282, '$,68779228', 49, null, null, '$,4475193+$,2921461', '$,32975129+$,2257955', null, null, '$,14334825+$,11814665', null, 49, null;
