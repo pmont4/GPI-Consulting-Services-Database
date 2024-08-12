@@ -50,6 +50,7 @@ EXEC report.proc_insert_client 'HAINA INTERNATIONAL TERMINALS';
 EXEC report.proc_insert_client 'Fountain Hydro Power Corp.';
 EXEC report.proc_insert_client 'Carpenter Marsh Fac / Marsh Rehder';
 EXEC report.proc_insert_client 'Garret Unicem Corredora';
+EXEC report.proc_insert_client 'Seguros y Fianzas "El Roble"';
 
 -- Capacity type table executables for data insertion
 -- Data is being inserted in the following order
@@ -64,6 +65,7 @@ EXEC report.proc_insert_capacity_type 'Metric tons/Day';
 EXEC report.proc_insert_capacity_type 'Metric tons/Year';
 EXEC report.proc_insert_capacity_type 'Metric tons/Month';
 EXEC report.proc_insert_capacity_type 'Liters/year';
+EXEC report.proc_insert_capacity_type 'Liters/hour';
 EXEC report.proc_insert_capacity_type 'Hectoliters/Year';
 EXEC report.proc_insert_capacity_type 'Short tons/Day';
 EXEC report.proc_insert_capacity_type 'Pounds/Week';
@@ -337,6 +339,8 @@ EXEC report.proc_insert_plant 'IMERCA.', null, 'C.A', 'Guatemala', 'Guatemala', 
 EXEC report.proc_insert_plant 'BNC - Alimentos Ideal', null, 'C.A', 'Guatemala', 'Guatemala', null, 1998, 'Production', 'Industrial plant dedicated to the production and distribution of non-carbonated drinks such as milk (white and flavored), nectar and soft drinks.', 'II', 'Commercial, Residential', 'Calzada Raúl Aguilar Batres 38-11, Zona 12, Guatemala', '14°18m48.34s', '90°46m32.80s', 1480;
 EXEC report.proc_insert_plant 'Alimentos Ideal, S.A. – IDEALSA', null, 'C.A', 'Guatemala', 'Guatemala', null, 1970, 'Production', 'Production and commercialization of vegetable oils, butter, margarines, fats and margarine bases.', 'IV', 'Industrial, Rural', 'Km. 56.5 Antigua Carretera a Puerto San José Escuintla, Guatemala', '14°18m43.23s', '90°46m42.08s', 380;
 EXEC report.proc_insert_plant 'Alimentos Ideal, S.A. – IODESA', null, 'C.A', 'Guatemala', 'Guatemala', null, 1970, 'Distribution', 'Idealsa storage and distribution center and snacks production and commercialization plant.', 'IV', 'Industrial, Rural', 'Km. 56.5 Antigua Carretera a Puerto San José Escuintla, Guatemala', '14°18m45.31s', '90°46m37.84s', 380;
+EXEC report.proc_insert_plant 'IDEALSA', 'Industrial Envasadora de Lácteos y Derivados, S.A.P.I. de C.V. - INELAC.', 'N.A', 'Mexico', 'Chiapas', 2019, 2021, 'Production', 'Producción de Bebidas no Carbonatadas (lácteos y néctares) – BNC. Refinación de aceites vegetales, para producción de margarinas y aceites refinados – IDEALSA. Almacenamiento y distribución de producto envasado (aceites, lácteos y néctares) – CEDIS', 'IV', 'Rural', 'Rancho Jr Carretera Playa Linda Km.1.+114.34 Lado Izquierdo Tramo Ramal A Base Naval De La Carretera Puerto Madero Ciudad Hidalgo, Tapachula Chiapas, Cp.30837', '14.739109', '-92.394611', 12;
+EXEC report.proc_insert_plant 'Industria La Popular - ILPSA', null, 'C.A', 'Guatemala', 'Escuintla', null, 1949, 'Production', 'Industrial plant dedicated to the production and distribution of commodities, soaps, shampoo bases, detergents, chlorine and personal care products. Additionally, the facilities include a plastic container manufacturing plant.', 'IV', 'Industrial, Rural', 'Km. 55.5 Antigua Carretera a Puerto San José Escuintla, Guatemala', '14°18m48.34s', '90°46m32.80s', 380;
 
 -- Report table executables for data insertion
 -- Data has to be inserted in the following order:
@@ -554,6 +558,8 @@ EXEC report.proc_insert_report_table '8/junio/2011', 'Grupo Generali', 5250, 'Ma
 EXEC report.proc_insert_report_table '25/junio/2020', 'Unity Promotores, S.A.', 5251, 'Rafael Grajeda', null, '19600,liters/hour', 3428, 95, 1, 'si', 'Minor Fires', null, null, 'no', 'no', 'si', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '23/junio/2020', 'Unity Promotores, S.A.', 5252, 'Rafael Grajeda', 'ISO 9001:2015, FSSC 22000', '520,metric tons/day', 30000, 200, 2, 'si', 'Minor Fires', null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '23/junio/2020', 'Unity Promotores, S.A.', 5253, 'Rafael Grajeda', 'ISO 9001:2015, FSSC 22000', null, 32000, 100, 2, 'si', 'Minor Fires', null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '17/marzo/2021', 'Seguros y Fianzas "El Roble"', 5254, 'Rafael Grajeda', null, '600,tons/day', 62973.32, 1000, 2, 'si', 'Major Fires', 'Automatic Wet', 'III', 'si', 'no', 'no', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '8/mayo/2019', 'Unity Promotores, S.A.', 5255, 'Rafael Grajeda', null, '125.5,tons/day', 40881.25, 970, 2, 'si', 'Major Fires', null, null, 'si', 'no', 'si', 'si', 'no', 'si', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -766,6 +772,8 @@ EXEC report.proc_insert_perils_and_risk_table 5279, 'none', 2, 1, 2, 1, 3, 'none
 EXEC report.proc_insert_perils_and_risk_table 5280, 2.5, 'none', 1, 1.5, 2, 2.5, 'none', 1, 1, 1.5, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 5281, 3, 1, 1, 2, 2.5, 2.5, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 5282, 3, 1, 1, 2, 2.5, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5283, 2.5, 'none', 2, 2, 2, 2.5, 'none', 1, 1, 1, 1.5, 2;
+EXEC report.proc_insert_perils_and_risk_table 5284, 2.5, 1, 1, 1.5, 2.5, 2.5, 'none', 1.5, 1, 1, 1, 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -944,3 +952,5 @@ EXEC report.proc_insert_loss_scenario_table 5277, '$,224459809', 6, '$,2322755',
 EXEC report.proc_insert_loss_scenario_table 5280, '$,11333066', 100, null, null, '$,1124721', '$,5028009', null, null, '$,5180336', null, 100, null;
 EXEC report.proc_insert_loss_scenario_table 5281, '$,68779228', 49, null, null, '$,4475193+$,2921461', '$,32975129+$,2257955', null, null, '$,14334825+$,11814665', null, 49, null;
 EXEC report.proc_insert_loss_scenario_table 5282, '$,68779228', 49, null, null, '$,4475193+$,2921461', '$,32975129+$,2257955', null, null, '$,14334825+$,11814665', null, 49, null;
+EXEC report.proc_insert_loss_scenario_table 5283, '$,55376316', 83, '$,8925000', 100, '$,16062985', '$,39213331', '$,100000', null, null, null, 85, null;
+EXEC report.proc_insert_loss_scenario_table 5284, '$,32651810', 53, '$,21869232', 80, '$,5393477', null, null, null, '$,27258333', null, 65, null;
