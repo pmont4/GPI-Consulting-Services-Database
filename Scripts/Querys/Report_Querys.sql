@@ -236,16 +236,12 @@ AS
 		
 							IIF(pp.plant_parameters_installed_capacity IS NOT NULL AND pp.plant_parameters_installed_capacity > 0, 
 								IIF(pp.id_capacity_type IS NOT NULL, 
-									IIF(TRY_CAST(pp.plant_parameters_installed_capacity AS INT) IS NOT NULL, 
-										CONCAT(CAST(CAST(pp.plant_parameters_installed_capacity AS INT) AS VARCHAR(30)), ' ', ct.capacity_type_name),
-										CONCAT(FORMAT(pp.plant_parameters_installed_capacity, 'N2'), ' ', ct.capacity_type_name)), 
-											FORMAT(pp.plant_parameters_installed_capacity, 'N2')), 
+									CONCAT(FORMAT(pp.plant_parameters_installed_capacity, 'N2'), ' ', ct.capacity_type_name), 
+										   FORMAT(pp.plant_parameters_installed_capacity, 'N2')), 
 								'No installed capacity was saved') AS 'Installed capacity',
 		
 							IIF(pp.plant_parameters_built_up IS NOT NULL AND pp.plant_parameters_built_up > 0, 
-								IIF(TRY_CAST(pp.plant_parameters_built_up AS INT) IS NOT NULL, 
-									CAST(CAST(pp.plant_parameters_built_up AS INT) AS VARCHAR(20)),
-									FORMAT(ROUND(pp.plant_parameters_built_up, 2), 'N2')), 
+									FORMAT(pp.plant_parameters_built_up, 'N2'), 
 								'No built-up area saved') AS 'Built-up area (m2)',
 
 							IIF(pp.plant_parameters_workforce IS NOT NULL AND pp.plant_parameters_workforce > 0,
