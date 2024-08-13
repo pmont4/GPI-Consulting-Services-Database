@@ -577,7 +577,7 @@ CREATE OR ALTER PROCEDURE report.proc_insert_plant
 	@construction_year AS INT,
 	@operation_startup_year AS INT,
 	@business_turnover AS VARCHAR(50),
-	@specific_turnover AS VARCHAR(150),
+	@specific_turnover AS VARCHAR(700),
 	@merchandise_classification AS VARCHAR(8),
 	@type_location AS VARCHAR(150),
 	@address AS VARCHAR(100),
@@ -1169,56 +1169,65 @@ CREATE OR ALTER PROCEDURE report.proc_insert_loss_scenario_table
 AS
 	BEGIN
 		SELECT id_report, id_client, id_plant INTO #temp_report_table_loss FROM report.report_table;
+		SELECT id_report INTO #temp_loss_table_loss FROM report.loss_scenario_table;
 
 		CREATE CLUSTERED INDEX idx_temp_report_table_loss ON #temp_report_table_loss(id_report);
 		CREATE NONCLUSTERED INDEX idx_temp_report_table_loss_client ON #temp_report_table_loss(id_client);
 		CREATE NONCLUSTERED INDEX idx_temp_report_table_loss_plant ON #temp_report_table_loss(id_plant);
+
+		CREATE CLUSTERED INDEX idx_temp_loss_table_loss ON #temp_loss_table_loss(id_report);
 	END;
 	BEGIN TRY
 		BEGIN
-			IF (SELECT id_report FROM #temp_report_table_loss WHERE id_report = @id_report) IS NOT NULL
+			IF (SELECT id_report FROM #temp_loss_table_loss WHERE id_report = @id_report) IS NULL
 				BEGIN
-					DECLARE 
-						@id_client AS INT = (SELECT id_client FROM #temp_report_table_loss WHERE id_report = @id_report),
-						@id_plant AS INT = (SELECT id_plant FROM #temp_report_table_loss WHERE id_report = @id_report);
-
-					IF (@id_client IS NOT NULL AND @id_plant IS NOT NULL)
+					IF (SELECT id_report FROM #temp_report_table_loss WHERE id_report = @id_report) IS NOT NULL
 						BEGIN
-							DECLARE
-								@material_damage_amount_to_save AS DECIMAL(19, 2) = ISNULL(report.CALCULATE_LOSS_VALUE(@material_damage_amount), 0),
-								@material_damage_percentage_to_save AS FLOAT(2) = ISNULL(@material_damage_percentage, 0),
-								@business_interruption_amount_to_save AS DECIMAL(19, 2) = ISNULL(report.CALCULATE_LOSS_VALUE(@business_interruption_amount), 0),
-								@business_interruption_percentage_to_save AS FLOAT(2) = ISNULL(@business_interruption_percentage, 0),
-								@buildings_amount_to_save AS DECIMAL(19, 2) = ISNULL(report.CALCULATE_LOSS_VALUE(@buildings_amount), 0),
-								@machinary_equipment_to_save AS DECIMAL(19, 2) = ISNULL(report.CALCULATE_LOSS_VALUE(@machinary_equipment), 0),
-								@electronic_equipment_to_save AS DECIMAL(19, 2) = ISNULL(report.CALCULATE_LOSS_VALUE(@electronic_equipment), 0),
-								@expansions_investment_works_amount_to_save AS DECIMAL(19, 2) = ISNULL(report.CALCULATE_LOSS_VALUE(@expansions_investment_works_amount), 0),
-								@stock_amount_to_save AS DECIMAL(19, 2) = ISNULL(report.CALCULATE_LOSS_VALUE(@stock_amount), 0),
-								@total_insured_values_to_save AS DECIMAL(19, 2) = ISNULL(report.CALCULATE_LOSS_VALUE(@total_insured_values), 0),
-								@pml_percentage_to_save AS FLOAT(2) = ISNULL(@pml_percentage, 0),
-								@mfl_to_save AS FLOAT(2) = ISNULL(@mfl, 0);
+							DECLARE 
+								@id_client AS INT = (SELECT id_client FROM #temp_report_table_loss WHERE id_report = @id_report),
+								@id_plant AS INT = (SELECT id_plant FROM #temp_report_table_loss WHERE id_report = @id_report);
 
-								IF (@material_damage_amount_to_save = 0)
-									SET @material_damage_amount_to_save = @buildings_amount_to_save + @machinary_equipment_to_save + @electronic_equipment_to_save + @expansions_investment_works_amount_to_save + @stock_amount_to_save
-								IF (@total_insured_values_to_save = 0)
-									SET @total_insured_values_to_save = @material_damage_amount_to_save + @business_interruption_amount_to_save;
-
+							IF (@id_client IS NOT NULL AND @id_plant IS NOT NULL)
 								BEGIN
-									INSERT INTO report.loss_scenario_table(id_report, id_client, id_plant, loss_scenario_material_damage_amount, loss_scenario_material_damage_percentage, loss_scenario_business_interruption_amount,
-																			loss_scenario_business_interruption_percentage, loss_scenario_buildings_amount, loss_scenario_machinery_equipment_amount, loss_scenario_electronic_equipment_amount,
-																			loss_scenario_expansions_investment_works_amount, loss_scenario_stock_amount, loss_scenario_total_insured_values, loss_scenario_pml_percentage,
-																			loss_scenario_mfl)
-																			VALUES (@id_report, @id_client, @id_plant, @material_damage_amount_to_save, @material_damage_percentage_to_save, @business_interruption_amount_to_save, @business_interruption_percentage_to_save,
-																					@buildings_amount_to_save, @machinary_equipment_to_save, @electronic_equipment_to_save, @expansions_investment_works_amount_to_save, @stock_amount_to_save,
-																					@total_insured_values_to_save, @pml_percentage_to_save, @mfl_to_save);
-									PRINT CONCAT('The loss scenarios for the report with the ID: "', @id_report, '" was correctly saved in the database.');
+									DECLARE
+										@material_damage_amount_to_save AS DECIMAL(19, 2) = ISNULL(report.CALCULATE_LOSS_VALUE(@material_damage_amount), 0),
+										@material_damage_percentage_to_save AS FLOAT(2) = ISNULL(@material_damage_percentage, 0),
+										@business_interruption_amount_to_save AS DECIMAL(19, 2) = ISNULL(report.CALCULATE_LOSS_VALUE(@business_interruption_amount), 0),
+										@business_interruption_percentage_to_save AS FLOAT(2) = ISNULL(@business_interruption_percentage, 0),
+										@buildings_amount_to_save AS DECIMAL(19, 2) = ISNULL(report.CALCULATE_LOSS_VALUE(@buildings_amount), 0),
+										@machinary_equipment_to_save AS DECIMAL(19, 2) = ISNULL(report.CALCULATE_LOSS_VALUE(@machinary_equipment), 0),
+										@electronic_equipment_to_save AS DECIMAL(19, 2) = ISNULL(report.CALCULATE_LOSS_VALUE(@electronic_equipment), 0),
+										@expansions_investment_works_amount_to_save AS DECIMAL(19, 2) = ISNULL(report.CALCULATE_LOSS_VALUE(@expansions_investment_works_amount), 0),
+										@stock_amount_to_save AS DECIMAL(19, 2) = ISNULL(report.CALCULATE_LOSS_VALUE(@stock_amount), 0),
+										@total_insured_values_to_save AS DECIMAL(19, 2) = ISNULL(report.CALCULATE_LOSS_VALUE(@total_insured_values), 0),
+										@pml_percentage_to_save AS FLOAT(2) = ISNULL(@pml_percentage, 0),
+										@mfl_to_save AS FLOAT(2) = ISNULL(@mfl, 0);
+
+										IF (@material_damage_amount_to_save = 0)
+											SET @material_damage_amount_to_save = @buildings_amount_to_save + @machinary_equipment_to_save + @electronic_equipment_to_save + @expansions_investment_works_amount_to_save + @stock_amount_to_save
+										IF (@total_insured_values_to_save = 0)
+											SET @total_insured_values_to_save = @material_damage_amount_to_save + @business_interruption_amount_to_save;
+
+										BEGIN
+											INSERT INTO report.loss_scenario_table(id_report, id_client, id_plant, loss_scenario_material_damage_amount, loss_scenario_material_damage_percentage, loss_scenario_business_interruption_amount,
+																					loss_scenario_business_interruption_percentage, loss_scenario_buildings_amount, loss_scenario_machinery_equipment_amount, loss_scenario_electronic_equipment_amount,
+																					loss_scenario_expansions_investment_works_amount, loss_scenario_stock_amount, loss_scenario_total_insured_values, loss_scenario_pml_percentage,
+																					loss_scenario_mfl)
+																					VALUES (@id_report, @id_client, @id_plant, @material_damage_amount_to_save, @material_damage_percentage_to_save, @business_interruption_amount_to_save, @business_interruption_percentage_to_save,
+																							@buildings_amount_to_save, @machinary_equipment_to_save, @electronic_equipment_to_save, @expansions_investment_works_amount_to_save, @stock_amount_to_save,
+																							@total_insured_values_to_save, @pml_percentage_to_save, @mfl_to_save);
+											PRINT CONCAT('The loss scenarios for the report with the ID: "', @id_report, '" was correctly saved in the database.');
+										END;
 								END;
 						END;
+					ELSE IF (SELECT id_report FROM #temp_report_table_loss WHERE id_report = @id_report) IS NULL
+							PRINT CONCAT('The report with the ID "', @id_report, '" was not found in the database');
 				END;
-			ELSE IF (SELECT id_report FROM #temp_report_table_loss WHERE id_report = @id_report) IS NULL
-				PRINT CONCAT('The report with the ID "', @id_report, '" was not found in the database');
-			END;
+			ELSE
+				PRINT CONCAT('There is already a loss scenario saved for the report with the id: "', @id_report, '"');
+		END;
 		DROP TABLE #temp_report_table_loss;
+		DROP TABLE #temp_loss_table_loss;
 	END TRY
 	BEGIN CATCH
 		PRINT CONCAT('Cannot insert into the loss scenario table due to this error: ("', ERROR_MESSAGE(), '")');
