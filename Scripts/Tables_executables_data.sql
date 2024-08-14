@@ -357,6 +357,15 @@ EXEC report.proc_insert_plant 'Magdalena Sugar Mill', null, 'C.A', 'Guatemala', 
 EXEC report.proc_insert_plant 'Asociación de Azucareros de Guatemala (ASAZGUA)', 'Ingenio Magdalena (Área de almacenamiento de azúcar).', 'C.A', 'Guatemala', 'Escuintla', null, null, 'Storage', 'Planta de recepción, almacenamiento, fortificación, empaquetado y despacho de azúcar.', 'III', 'Rural', 'Carretera al Parcelamiento Los Angeles, Buganvilia, La Democracia, Escuintla, Guatemala, C.A.', '14°07m24.77s', '90°55m47.82s', 57;
 EXEC report.proc_insert_plant 'Palo Gordo Sugar Mill', null, 'C.A', 'Guatemala', 'Suchitepequez', 1929, 1930, 'Production', 'Sugar production, alcohol production and electricity cogeneration', 'III', 'Rural', 'Km. 142.5 Carretera al Pacífico, San Antonio, Suchitepéquez, Guatemala, C.A.', '14°29m15.93s', '91°23m50.49s', 252;
 EXEC report.proc_insert_plant 'Grupo Santos', 'Plan de Ayala Sugar Mill', 'N.A', 'Mexico', 'San Luis Potosi', 1963, 1963, 'Production', 'Sugar production', 'III', 'Rural', 'Km. 3.5 de Ciudad de Valles, San Luis Potosí, Mexico.', '22°00m53.34s', '99°02m49.74s', 89;
+EXEC report.proc_insert_plant 'Nicaragua Sugar Estates Limited (NSEL)', 'San Antonio Sugar Mill', 'C.A', 'Nicaragua', 'Chinandega', 1890, 1890, 'Production', 'Sugar production, power cogeneration and distillery plant', 'III', 'Rural', 'Chichigalpa, Chinandega, Nicaragua, C.A.', '12°31m54.50s', '87°02m45.97s', 35;
+EXEC report.proc_insert_plant 'Corporación San Diego', 'San Diego / Trinidad Sugar Mill', 'C.A', 'Guatemala', 'Escuintla', 1887, 1901, 'Production', 'Production of raw and white sugar, molasses, and electricity cogeneration.', 'III', 'Rural', 'Km 72.5, Antigua Carretera a El Pacífico, Masagua, Escuintla, Guatemala, C.A.', '14.150266', '-90.842399', 69;
+EXEC report.proc_insert_plant 'Azucarera San José de Abajo, S.A. de C.V.', null, 'N.A', 'Mexico', 'Veracruz', 1898, 1936, 'Production', 'Sugar production, electricity cogeneration for self-consumption and distillery (sporadically).', 'III', 'Residential, Rural', 'Ignacio Vallarta, Municipio Cuitláhuac, Veracruz, México', '18.774158', '-96.777972', 405;
+EXEC report.proc_insert_plant 'Grupo Corporativo Santa Ana', 'Santa Ana Sugar Mill', 'C.A', 'Guatemala', 'Escuintla', 1898, 1936, 'Production', 'Production of different types of sugar from sugar cane. Additionally, generates and sells electricity that is supplied to the national grid.', 'III', 'Rural', 'Km. 64.5 Carretera a Santa Lucía Cotzumalguapa, Interior Finca Cerritos, Escuintla, Guatemala, C.A.', '14°14m32.90s', '90°50m37.02s', 165;
+EXEC report.proc_insert_plant 'Santander Sugar Group', 'Ingenio Santander', 'C.A', 'Belice', 'Belmopan', 2013, 2016, 'Production', 'Producción de azúcar y Cogeneración de energía eléctrica.', 'III', 'Rural', '#21 St. Vincent St. City of Belmopan, Belize, Central America', '17°20m22s', '88°44m37s', 32;
+EXEC report.proc_insert_plant 'Compañía Azucarera Tres Valles S.A. de C.V. (Tres Valles Sugar Mill)', null, 'C.A', 'Honduras', 'Francisco Morazan', 1975, 1994, 'Production', 'Sugar production and electricity cogeneration.', 'III', 'Rural', 'Aldea el Porvenir, San Juan de Flores, Francisco Morazan, Honduras', '14.247176', '-86.994069', 652;
+EXEC report.proc_insert_plant 'Azúcar Grupo Sáenz', 'Aáron Sáenz (Xicoténcatl) Sugar Mill', 'N.A', 'Mexico', 'Tamaulipas', 1946, 1948, 'Production', 'Sugar production, anhydrous alcohol production and electricity cogeneration', 'III', 'Rural', 'Carretera Mante – Xicoténcatl, Km.8, Xicoténcatl, Tamaulipas, México', '22°57m28.49s', '98°57m57.05s', 102;
+EXEC report.proc_insert_plant 'Azúcar Grupo Sáenz', 'El Mante Sugar Mill', 'N.A', 'Mexico', 'Tamaulipas', 1930, 1930, 'Production', 'Sugar production, anhydrous alcohol production and electricity cogeneration', 'III', 'Rural', 'Av. Gral. Aarón Sáenz Garza 901, Ciudad Mante, Tamaulipas, México', '22°43m36.12s', '98°58m49.16s', 57;
+EXEC report.proc_insert_plant 'Azúcar Grupo Sáenz', 'Tamazula Sugar Mill', 'N.A', 'Mexico', 'Jalisco', 1924, 1924, 'Production', 'Sugar production, anhydrous alcohol production and electricity cogeneration', 'III', 'Rural', 'Av. Ramón Corona No. 1126, Colonia Centro, Tamazula de Gordiano, Jalisco, México', '19°41m56.85s', '103°14m44.74s', 1300;
 
 -- Report table executables for data insertion
 -- Data has to be inserted in the following order:
@@ -595,8 +604,18 @@ EXEC report.proc_insert_report_table '12/septiembre/2012', 'Seguros Agromercanti
 EXEC report.proc_insert_report_table '12/septiembre/2012', 'Aseguradora General, S.A.', 5268, 'Marlon Lira', null, '175000,kilograms', 23500, 117, 2, 'si', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '3/octubre/2019', 'Unity Promotores, S.A.', 5269, 'Rafael Grajeda', null, '12000,Short tons/day', 50700, 1400, 2, 'si', 'Mayor Fires', null, null, 'no', 'no', 'si', 'no', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '14/julio/2015', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5270, 'Marlon Lira', null, '7000,Short tons/day', null, 94, 2, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '3/octubre/2019', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5271, 'Marlon Lira', 'ISO 9000, HACCP, FSSC 22000, OHSAS 18001, ISCC, Kosher, Bonsucro', '20000,Short tons/day', 90000, 400, 2, 'si', 'Minor fires', null, null, 'si', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '16/octubre/2020', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5272, 'Marlon Lira', 'ISO 9001:2015, ISO 17025, FSSC 22000', '15200,Short tons/day', 50000, 552, 2, 'si', 'Mayor fires', 'Automatic Wet', 'I', 'si', 'no', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '1/marzo/2023', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5273, 'Rafael Grajeda', 'Kosher', '7000,Short tons/day', null, 600, 1, 'si', 'Minor fires', 'Automatic Wet', 'II', 'no', 'no', 'no', 'si', 'si', 'si', 'si';
+EXEC report.proc_insert_report_table '18/febrero/2016', 'Grupo Generali', 5274, 'Marlon Lira', null, '19500,Short tons/day', null, 1200, 2, 'si', null, null, null, 'no', 'no', 'si', 'no', 'no', 'si', 'no';
+EXEC report.proc_insert_report_table '19/marzo/2021', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5274, 'Marlon Lira', 'ISO 9001:2000, FSSC 22000, Kosher, HACCP, ISCC Plus, Bonsucro.', '19500,Short tons/day', null, 1200, 2, 'si', 'Mayor fires', 'Automatic Wet', 'II', 'no', 'no', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '21/febrero/2018', 'Grupo Protegemos Asesores', 5275, 'Marlon Lira', null, '6613.86,Short tons/day', null, 850, 1.5, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '5/mayo/2021', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5276, 'Rafael Grajeda', null, '5344.19,Short tons/day', 30000, 300, 2, 'si', null, 'Automatic Wet', 'II', 'no', 'si', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '7/diciembre/2015', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5277, 'Marlon Lira', 'ISO 9001-2008, ISO 22000-2005, HACCP, FSSC 22000-2013', '7150.01,Short tons/day', 23305, 1060, 2, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '6/diciembre/2016', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5278, 'Marlon Lira', 'ISO 9001-2008, ISO 22000-2005, HACCP, FSSC 22000-2013', '6000,Short tons/day', 42699, 900, 2, 'si', 'Minor fires', null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '5/diciembre/2016', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5279, 'Marlon Lira', 'HACCP', '7500,Short tons/day', 35752.5, 900, 2, 'si', 'Minor fires', null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
 
-UPDATE report.plant_parameters SET plant_parameters_installed_capacity = 7000, id_capacity_type = 1009 WHERE id_report = 5303;
+UPDATE report.plant_parameters SET plant_parameters_installed_capacity = 7500, id_capacity_type = 1009 WHERE id_report = 5314;
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -830,6 +849,16 @@ EXEC report.proc_insert_perils_and_risk_table 5300, 'none', 1, 2, 2, 2, 2.5, 'no
 EXEC report.proc_insert_perils_and_risk_table 5301, 'none', 1, 2, 2, 2, 2.5, 'none', 1, 1, 'none', 'none', 2;
 EXEC report.proc_insert_perils_and_risk_table 5302, 2.5, 'none', 1.5, 1, 2, 2.5, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 5303, 2, 'none', 2, 2, 2, 1, 1, 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5304, 2.5, 'none', 1.5, 2, 2.5, 2.5, 1, 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5305, 2.5, 'none', 1, 2, 2, 2.5, 'none', 1, 1, 1, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5306, 2.5, 'none', 1, 1.5, 2, 1.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5308, 'none', 1, 1, 2, 3, 3, 1, 'none', 1, 2, 3, 2;
+EXEC report.proc_insert_perils_and_risk_table 5309, 2.5, 1, 2, 2, 2, 2.5, 'none', 1, 1, 1.5, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5310, 2, 1, 2, 2, 2, 1.5, 'none', 1, 1, 1, 'none', 1.5;
+EXEC report.proc_insert_perils_and_risk_table 5311, 2.5, 'none', 1, 1, 2.5, 1.5, 'none', 1, 1, 1, 1, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 5312, 2.5, 'none', 1.5, 2.5, 2.5, 1.5, 'none', 1, 1, 2, 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5313, 3, 'none', 1.5, 1.5, 2.5, 1.5, 'none', 1, 1, 2, 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5314, 3, 'none', 2, 2, 2.5, 2.5, 'none', 1, 1, 1.5, 'none', 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -1024,3 +1053,12 @@ EXEC report.proc_insert_loss_scenario_table 5297, '$,206250000', 67, '$,51250000
 EXEC report.proc_insert_loss_scenario_table 5299, '$,666500000', 59, '$,79000000', 87, '$,273000000+$,20000000+$,190000000+$,30000000+$,3000000+$,17000000+$,3000000+$,78000000', '$,20000000+$,20000000', null, null, '$,12500000', null, 62, null;
 EXEC report.proc_insert_loss_scenario_table 5302, null, 80, null, 100, null, null, null, null, null, null, 85, null;
 EXEC report.proc_insert_loss_scenario_table 5303, null, 55, null, null, null, null, null, null, null, null, null, null;
+EXEC report.proc_insert_loss_scenario_table 5304, '$,136914833', 72, '$,70000000', 100, '$,55013299', '$,15800000+$,25845899+$,40255635', null, null, null, null, 81, null;
+EXEC report.proc_insert_loss_scenario_table 5305, '$,295642244', 34, '$,40465304', 74, '$,10671406+$,200000', '$,43977375+$,57756576+$,55872931+$,77500', null, null, '$,7442160+$,525000+$,21000', null, 40, null;
+EXEC report.proc_insert_loss_scenario_table 5306, null, 90, null, 100, null, null, null, null, null, null, null, null;
+EXEC report.proc_insert_loss_scenario_table 5308, '$,265472407', 90, '$,68500536', 77, '$,111250000+$,5000000+$,51700000+$,61189407+$,12250000', '$,19083000', null, null, null, null, 63, null;
+EXEC report.proc_insert_loss_scenario_table 5309, '$,250802791', 62, '$,43394376', 91, '$,123500000+$,5000000+$,35543750+$,61353507', '$,20405534', null, null, null, null, 66, null;
+EXEC report.proc_insert_loss_scenario_table 5311, '$,77792609', 53, '$,18500000', 72.5, '$,9500000+$,2000000+$,156762', '$,2000000+$,25335870+$,1006115+$,6000000+$,20000000+$,1894108+$,82475', '$,12285', null, '$,9805000', null, 57.8, null;
+EXEC report.proc_insert_loss_scenario_table 5312, null, 85, null, null, null, null, null, null, null, null, null, null;
+EXEC report.proc_insert_loss_scenario_table 5313, null, 80, null, null, null, null, null, null, null, null, null, null;
+EXEC report.proc_insert_loss_scenario_table 5314, null, 95, null, null, null, null, null, null, null, null, null, null;

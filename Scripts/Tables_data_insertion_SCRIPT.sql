@@ -920,33 +920,12 @@ BEGIN TRY
 																SET @installed_capacity = report.REMOVE_EXTRA_SPACES(@installed_capacity);
 																IF (@installed_capacity LIKE '%,%')
 																	BEGIN
-																		DECLARE @value_installed_capacity AS VARCHAR(50)
-																		DECLARE cur_installed_capacity CURSOR DYNAMIC FORWARD_ONLY
-																										FOR SELECT * FROM STRING_SPLIT(@installed_capacity, ',');
-																		OPEN cur_installed_capacity;
-																		FETCH NEXT FROM cur_installed_capacity INTO @value_installed_capacity;
-																		WHILE @@FETCH_STATUS = 0
-																			BEGIN TRY
-																				SET @value_installed_capacity = report.REMOVE_EXTRA_SPACES(@value_installed_capacity);
-
-																				IF (TRY_CAST(@value_installed_capacity AS FLOAT) IS NOT NULL)
-																					SET @amount_installed_capacity = CAST(@value_installed_capacity AS FLOAT(2));
-																				ELSE IF (TRY_CAST(@value_installed_capacity AS VARCHAR) IS NOT NULL)
-																					BEGIN
-																						SET @id_installed_capacity = ISNULL((SELECT id_capacity_type FROM #temp_capacity_type_table_report WHERE capacity_type_name = @value_installed_capacity),
-																														NULL);
-																						IF (@id_installed_capacity IS NULL)
-																							PRINT (CONCAT('Cannot find the installed capacity type "', @value_installed_capacity, '"'));
-																					END;
-																				FETCH NEXT FROM cur_installed_capacity INTO @value_installed_capacity;
-																			END TRY
-																			BEGIN CATCH
-																				PRINT (CONCAT('Cannot save the installed capacity "', ERROR_MESSAGE(), '"'))
-																				CLOSE cur_installed_capacity;
-																				DEALLOCATE cur_installed_capacity;
-																			END CATCH;
-																		CLOSE cur_installed_capacity;
-																		DEALLOCATE cur_installed_capacity;
+																		SELECT value INTO #temp_installed_capacity_report FROM string_split(@installed_capacity, ',');
+																		
+																		SET @amount_installed_capacity = (SELECT TOP 1 TRIM(value) FROM #temp_installed_capacity_report WHERE TRY_CAST(value AS FLOAT) IS NOT NULL)
+																		
+																		DECLARE @capacity_to_search AS VARCHAR(30) = (SELECT TOP 1 TRIM(value) FROM #temp_installed_capacity_report WHERE TRY_CAST(value AS VARCHAR) IS NOT NULL)
+																		SET @id_installed_capacity = (SELECT id_capacity_type FROM #temp_capacity_type_table_report WHERE capacity_type_name = @capacity_to_search);
 																	END;
 																ELSE IF (@installed_capacity NOT LIKE '%,%')
 																	BEGIN
@@ -1063,6 +1042,7 @@ BEGIN TRY
 	DROP TABLE #temp_hydrant_protection_table_report;
 	DROP TABLE #temp_hydrant_standpipe_type_report;
 	DROP TABLE #temp_hydrant_standpipe_class_report;
+	DROP TABLE #temp_installed_capacity_report;
 END TRY
 BEGIN CATCH
 	PRINT CONCAT('Cannot insert into the report table because an error ocurred: ', ERROR_MESSAGE());
