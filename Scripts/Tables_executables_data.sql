@@ -368,6 +368,12 @@ EXEC report.proc_insert_plant 'Azúcar Grupo Sáenz', 'El Mante Sugar Mill', 'N.
 EXEC report.proc_insert_plant 'Azúcar Grupo Sáenz', 'Tamazula Sugar Mill', 'N.A', 'Mexico', 'Jalisco', 1924, 1924, 'Production', 'Sugar production, anhydrous alcohol production and electricity cogeneration', 'III', 'Rural', 'Av. Ramón Corona No. 1126, Colonia Centro, Tamazula de Gordiano, Jalisco, México', '19°41m56.85s', '103°14m44.74s', 1300;
 EXEC report.proc_insert_plant 'La Gloria Sugar Mill – Grupo Azucarero del Trópico', null, 'N.A', 'Mexico', 'Veracruz', 1917, 1947, 'Production', 'Sugar mill, cogeneration plant and distillery plant.', 'III', 'Residential, Rural', 'Congregación La Gloria, Mpio. Úrsulo Galván, Veracruz, México', '19.427991', '-96.400724', 25;
 EXEC report.proc_insert_plant 'La Joya Sugar Mill – Grupo Azucarero del Trópico', null, 'N.A', 'Mexico', 'Yucatan', 1947, 1949, 'Production', 'Sugar mill', 'III', 'Rural', 'Calle Hacienda Haltunchen S/N, Colonia La Joya, Champotón, Campeche, México', '19.481787', '-90.673679', 6;
+EXEC report.proc_insert_plant 'Grupo Beta San Miguel – Ingenio Constancia', null, 'N.A', 'Mexico', 'Veracruz', 1910, 1912, 'Production', 'Ingenio Constancia, planta industrial dedicada a la producción de azúcar a partir de caña de azúcar', 'III', 'Residential, Rural', 'Saavedra 18, Tezonapa, Veracruz, México', '18°36m19.91s', '90°41m10.84s', 236;
+EXEC report.proc_insert_plant 'Grupo Beta San Miguel – Corporativo Azucarero Emiliano Zapata', null, 'N.A', 'Mexico', 'Morelos', 1936, 1938, 'Production', 'Corporativo Azucarero Emiliano Zapata, planta industrial dedicada a la producción de azúcar a partir de caña de azúcar.', 'III', 'Residential', 'Lázaro Cárdenas 51, Lazaro Cardenas, 62780 Zacatepec de Hidalgo, Morelos, México', '18°39m13.84s', '99°11m09.95s', 924;
+EXEC report.proc_insert_plant 'Grupo Beta San Miguel – Ingenio San Francisco Ameca', null, 'N.A', 'Mexico', 'Jalisco', 1903, 1903, 'Production', 'Ingenio San Francisco Ameca, planta industrial dedicada a la producción de azúcar a partir de caña de azúcar.', 'III', 'Industrial, Residential', 'Calle Dr. Luis Romera Arias 85, Centro 46600 Ciudad de Ameca, Jalisco, México.', '20°32m43.01s', '104°03m12.63s', 1233;
+EXEC report.proc_insert_plant 'Grupo Beta San Miguel – Ingenio San Rafael de Pucté', null, 'N.A', 'Mexico', 'Quintana Roo', 1975, 1976, 'Production', 'Producción de azúcar', 'III', 'Residential, Rural', 'Ejido Pucté – Álvaro Obregón. Pob. Javier R. Gómez, Municipio Othón P Blanco, Quintana Roo, México', '18°16m40.16s', '88°40m63s', 46;
+EXEC report.proc_insert_plant 'Grupo Beta San Miguel', 'Santa Rosalía de la Chontalpa', 'N.A', 'Mexico', 'Tabasco', null, 1961, 'Production', 'Sugar production and electrical power cogeneration', 'III', 'Residential', 'Calle del Ingenio No. 1, Santa Rosalía, Cárdenas H. Cárdenas, Tabasco, México.', '18°5m18.81s', '93°21m23.38s', 20;
+EXEC report.proc_insert_plant 'Compañia Azucarera Salvadoreña - CASSA', 'Chaparrastique Sugar Mill', 'C.A', 'Guatemala', 'San Miguel', null, 1982, 'Production', 'Sugar production and electricity cogeneration.', 'III', 'Industrial, Rural', 'Km. 144 ½ , carretera al Cuco, San Miguel, El Salvador, C.A.', '13.4389', '-88.1520', 95;
 
 -- Report table executables for data insertion
 -- Data has to be inserted in the following order:
@@ -618,6 +624,13 @@ EXEC report.proc_insert_report_table '6/diciembre/2016', 'Reasinter, Intermadiar
 EXEC report.proc_insert_report_table '5/diciembre/2016', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5279, 'Marlon Lira', 'HACCP', '7500,Short tons/day', 35752.5, 900, 2, 'si', 'Minor fires', null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '2/march/2023', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5280, 'Rafael Grajeda', 'ISO 9001:2015, FSSC 22000 v.5.1, ISO 45001:2018, ISO 14001:2015, Kosher, BONSUCRO, FDA, USP, SMETA 6.1, SEDEX, U-RSA, ESR', '12840,tons/day', null, 982, 1, 'si', 'Minor fires', 'Automatic Wet', null, 'si', 'si', 'si', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '20/abril/2023', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5281, 'Rafael Grajeda', 'ISO 9001, ISO 22000, OHSAS 18001, Kosher', '7680,short tons/day', 75000, 580, 1, 'si', 'Minor fires', 'Automatic Wet', 'I', 'no', 'no', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '17/febrero/2017', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5282, 'Marlon Lira, Eduardo Bracamonte', 'ISO 9001, FSSC 22000.', '5500,short tons/day', 20461, 370, 2, 'si', null, null, null, 'no', 'no', 'si', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '13/febrero/2017', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5283, 'Marlon Lira, Eduardo Bracamonte', 'ISO 9001, ISO 14000, FSSC 22000', '7500,short tons/day', 26781, 690, 2, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '14/febrero/2017', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5284, 'Marlon Lira, Eduardo Bracamonte', 'ISO 9001, ISO 14000, FSSC 22000, Kosher, “Industria Limpia.”', '7200,short tons/day', 14157, 350, 2, 'si', null, null, null, 'no', 'no', 'si', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '15/febrero/2017', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5285, 'Marlon Lira, Eduardo Bracamonte', 'ISO 9001, ISO 14000, FSSC 22000, Kosher, “Industria Limpia.”', '10000,short tons/day', 26000, 430, 2, 'si', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '16/junio/2017', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5286, 'Juan Jose Lira', '9001-2008, FSSC22,000, ISO 14,000-2004, Kosher.', '6000,short tons/day', 37540, 344, 2, 'si', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '12/marzo/2021', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5259, 'Marlon Lira', 'ISO 9001, FSSC 22000, FAIRTRADE, Kosher, HALAL, Bonsucro.', '13750,short tons/day', 43648, 1516, 2, 'si', 'Mayor fires', 'Automatic Wet', 'III', 'no', 'si', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '11/marzo/2021', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5260, 'Marlon Lira', null, '13750,short tons/day', 30720, 660, 2, 'si', 'Mayor fires', 'Automatic Wet', 'III', 'no', 'si', 'si', 'si', 'no', 'si', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -863,6 +876,13 @@ EXEC report.proc_insert_perils_and_risk_table 5313, 3, 'none', 1.5, 1.5, 2.5, 1.
 EXEC report.proc_insert_perils_and_risk_table 5314, 3, 'none', 2, 2, 2.5, 2.5, 'none', 1, 1, 1.5, 'none', 2;
 EXEC report.proc_insert_perils_and_risk_table 5315, 2.5, 'none', 1, 1.5, 2, 1.5, 1, 1, 1, 1.5, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 5316, 2.5, 'none', 1, 2, 2, 1, 1.5, 1, 1, 1.5, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5317, 3, 'none', 1, 2, 2.5, 2, 'none', 1, 1, 2.5, 2, 2;
+EXEC report.proc_insert_perils_and_risk_table 5318, 3, 'none', 1, 2, 2.5, 2, 'none', 1, 1, 1.5, 'none', 1.5;
+EXEC report.proc_insert_perils_and_risk_table 5319, 3, 'none', 1, 2, 2.5, 2, 'none', 1, 1, 1.5, 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5320, 3, 1, 1, 2, 2.5, 1, 1, 1, 1, 1, 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5321, 2.5, 1, 1, 2, 2.5, 1, 2, 1, 1, 1.5, 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5322, 2.5, 1, 1, 2, 2, 2.5, 'none', 1, 1, 1.5, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5323, 2.5, 1, 1, 2, 2, 2.5, 'none', 1, 1, 1.5, 1, 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -1068,3 +1088,11 @@ EXEC report.proc_insert_loss_scenario_table 5313, null, 80, null, null, null, nu
 EXEC report.proc_insert_loss_scenario_table 5314, null, 95, null, null, null, null, null, null, null, null, null, null;
 EXEC report.proc_insert_loss_scenario_table 5315, '$,128474819', 36, '$,6678218', 100, '$,8368439+$,1531139+$,5133850', '$,46324655+$,10175282+$,49244623', null, null, '$,2538803+$,1893564+$,175587+$,72680+$,31223+$,2984975', null, 40, null;
 EXEC report.proc_insert_loss_scenario_table 5316, '$,36784502', 92, null, null, '$,7563193', '$,25582843', null, null, '$,2591106+$,1047360', null, null, null;
+EXEC report.proc_insert_loss_scenario_table 5317, '$,100911000', 56, null, null, '$,6789000', '$,221000+$,63901000', null, null, '$,30000000', null, null, null;
+EXEC report.proc_insert_loss_scenario_table 5318, '$,74950000', 89, null, null, '$,157000', '$,44907000', null, null, '$,25000000', null, null, null;
+EXEC report.proc_insert_loss_scenario_table 5319, '$,110876000', 84, null, null, '$,8242000', '$,57508000+$,126000', null, null, '$,45000000', null, null, null;
+EXEC report.proc_insert_loss_scenario_table 5320, '$,138859000', 90, null, null, '$,10137000', '$,213000+$,93509000', null, null, '$,35000000', null, null, null;
+EXEC report.proc_insert_loss_scenario_table 5321, '$,98391000', 85, null, null, '$,10073000', '$,208000+$,66110000', null, null, '$,22000000', null, null, null;
+EXEC report.proc_insert_loss_scenario_table 5322, '$,200000000', 24, '$,38500000', 100, '$,13500000', '$,100000000+$,11000000+$,38000000', null, null, '$,37500000', null, 36, null;
+EXEC report.proc_insert_loss_scenario_table 5323, '$,174560000', 16, '$,12000000', 48, '$,14000000+$,5900000', '$,43000000+$,15000000+$,74660000', null, null, '$,22000000', null, 20, null;
+EXEC report.proc_insert_loss_scenario_table 5323, '$,174560000', 32, '$,12000000', 95, '$,14000000+$,5900000', '$,43000000+$,15000000+$,74660000', null, null, '$,22000000', null, 40, null; -- HAS 2 LOSS SCENARIO
