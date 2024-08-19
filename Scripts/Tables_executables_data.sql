@@ -366,6 +366,8 @@ EXEC report.proc_insert_plant 'Compañía Azucarera Tres Valles S.A. de C.V. (Tr
 EXEC report.proc_insert_plant 'Azúcar Grupo Sáenz', 'Aáron Sáenz (Xicoténcatl) Sugar Mill', 'N.A', 'Mexico', 'Tamaulipas', 1946, 1948, 'Production', 'Sugar production, anhydrous alcohol production and electricity cogeneration', 'III', 'Rural', 'Carretera Mante – Xicoténcatl, Km.8, Xicoténcatl, Tamaulipas, México', '22°57m28.49s', '98°57m57.05s', 102;
 EXEC report.proc_insert_plant 'Azúcar Grupo Sáenz', 'El Mante Sugar Mill', 'N.A', 'Mexico', 'Tamaulipas', 1930, 1930, 'Production', 'Sugar production, anhydrous alcohol production and electricity cogeneration', 'III', 'Rural', 'Av. Gral. Aarón Sáenz Garza 901, Ciudad Mante, Tamaulipas, México', '22°43m36.12s', '98°58m49.16s', 57;
 EXEC report.proc_insert_plant 'Azúcar Grupo Sáenz', 'Tamazula Sugar Mill', 'N.A', 'Mexico', 'Jalisco', 1924, 1924, 'Production', 'Sugar production, anhydrous alcohol production and electricity cogeneration', 'III', 'Rural', 'Av. Ramón Corona No. 1126, Colonia Centro, Tamazula de Gordiano, Jalisco, México', '19°41m56.85s', '103°14m44.74s', 1300;
+EXEC report.proc_insert_plant 'La Gloria Sugar Mill – Grupo Azucarero del Trópico', null, 'N.A', 'Mexico', 'Veracruz', 1917, 1947, 'Production', 'Sugar mill, cogeneration plant and distillery plant.', 'III', 'Residential, Rural', 'Congregación La Gloria, Mpio. Úrsulo Galván, Veracruz, México', '19.427991', '-96.400724', 25;
+EXEC report.proc_insert_plant 'La Joya Sugar Mill – Grupo Azucarero del Trópico', null, 'N.A', 'Mexico', 'Yucatan', 1947, 1949, 'Production', 'Sugar mill', 'III', 'Rural', 'Calle Hacienda Haltunchen S/N, Colonia La Joya, Champotón, Campeche, México', '19.481787', '-90.673679', 6;
 
 -- Report table executables for data insertion
 -- Data has to be inserted in the following order:
@@ -614,8 +616,8 @@ EXEC report.proc_insert_report_table '5/mayo/2021', 'Reasinter, Intermadiario de
 EXEC report.proc_insert_report_table '7/diciembre/2015', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5277, 'Marlon Lira', 'ISO 9001-2008, ISO 22000-2005, HACCP, FSSC 22000-2013', '7150.01,Short tons/day', 23305, 1060, 2, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '6/diciembre/2016', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5278, 'Marlon Lira', 'ISO 9001-2008, ISO 22000-2005, HACCP, FSSC 22000-2013', '6000,Short tons/day', 42699, 900, 2, 'si', 'Minor fires', null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '5/diciembre/2016', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5279, 'Marlon Lira', 'HACCP', '7500,Short tons/day', 35752.5, 900, 2, 'si', 'Minor fires', null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
-
-UPDATE report.plant_parameters SET plant_parameters_installed_capacity = 7500, id_capacity_type = 1009 WHERE id_report = 5314;
+EXEC report.proc_insert_report_table '2/march/2023', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5280, 'Rafael Grajeda', 'ISO 9001:2015, FSSC 22000 v.5.1, ISO 45001:2018, ISO 14001:2015, Kosher, BONSUCRO, FDA, USP, SMETA 6.1, SEDEX, U-RSA, ESR', '12840,tons/day', null, 982, 1, 'si', 'Minor fires', 'Automatic Wet', null, 'si', 'si', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '20/abril/2023', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5281, 'Rafael Grajeda', 'ISO 9001, ISO 22000, OHSAS 18001, Kosher', '7680,short tons/day', 75000, 580, 1, 'si', 'Minor fires', 'Automatic Wet', 'I', 'no', 'no', 'no', 'si', 'no', 'si', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -859,6 +861,8 @@ EXEC report.proc_insert_perils_and_risk_table 5311, 2.5, 'none', 1, 1, 2.5, 1.5,
 EXEC report.proc_insert_perils_and_risk_table 5312, 2.5, 'none', 1.5, 2.5, 2.5, 1.5, 'none', 1, 1, 2, 'none', 2;
 EXEC report.proc_insert_perils_and_risk_table 5313, 3, 'none', 1.5, 1.5, 2.5, 1.5, 'none', 1, 1, 2, 'none', 2;
 EXEC report.proc_insert_perils_and_risk_table 5314, 3, 'none', 2, 2, 2.5, 2.5, 'none', 1, 1, 1.5, 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5315, 2.5, 'none', 1, 1.5, 2, 1.5, 1, 1, 1, 1.5, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5316, 2.5, 'none', 1, 2, 2, 1, 1.5, 1, 1, 1.5, 1, 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -1062,3 +1066,5 @@ EXEC report.proc_insert_loss_scenario_table 5311, '$,77792609', 53, '$,18500000'
 EXEC report.proc_insert_loss_scenario_table 5312, null, 85, null, null, null, null, null, null, null, null, null, null;
 EXEC report.proc_insert_loss_scenario_table 5313, null, 80, null, null, null, null, null, null, null, null, null, null;
 EXEC report.proc_insert_loss_scenario_table 5314, null, 95, null, null, null, null, null, null, null, null, null, null;
+EXEC report.proc_insert_loss_scenario_table 5315, '$,128474819', 36, '$,6678218', 100, '$,8368439+$,1531139+$,5133850', '$,46324655+$,10175282+$,49244623', null, null, '$,2538803+$,1893564+$,175587+$,72680+$,31223+$,2984975', null, 40, null;
+EXEC report.proc_insert_loss_scenario_table 5316, '$,36784502', 92, null, null, '$,7563193', '$,25582843', null, null, '$,2591106+$,1047360', null, null, null;

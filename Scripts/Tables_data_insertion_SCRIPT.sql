@@ -742,7 +742,7 @@ CREATE OR ALTER PROCEDURE report.proc_insert_report_table
 	@client VARCHAR(100),
 	@plant VARCHAR(150),
 	@prepared_by VARCHAR(250),
-	@plant_certifications VARCHAR(200),
+	@plant_certifications VARCHAR(400),
 	@installed_capacity VARCHAR(100),
 	@built_up FLOAT(2),
 	@workforce INT,
@@ -917,28 +917,23 @@ BEGIN TRY
 													BEGIN
 														IF (@installed_capacity IS NOT NULL)
 															BEGIN
-																SET @installed_capacity = report.REMOVE_EXTRA_SPACES(@installed_capacity);
-																IF (@installed_capacity LIKE '%,%')
+																DECLARE @fixed_installed VARCHAR(60) = (SELECT SUBSTRING(@installed_capacity, 5, LEN(@installed_capacity)));
+
+																IF (@fixed_installed LIKE '%,%')
 																	BEGIN
-																		SELECT value INTO #temp_installed_capacity_report FROM string_split(@installed_capacity, ',');
+																		SELECT value INTO #temp_values_installed FROM string_split(@fixed_installed, ',')
 																		
-																		SET @amount_installed_capacity = (SELECT TOP 1 TRIM(value) FROM #temp_installed_capacity_report WHERE TRY_CAST(value AS FLOAT) IS NOT NULL)
-																		
-																		DECLARE @capacity_to_search AS VARCHAR(30) = (SELECT TOP 1 TRIM(value) FROM #temp_installed_capacity_report WHERE TRY_CAST(value AS VARCHAR) IS NOT NULL)
-																		SET @id_installed_capacity = (SELECT id_capacity_type FROM #temp_capacity_type_table_report WHERE capacity_type_name = @capacity_to_search);
+																		DECLARE 
+																			@amount FLOAT(2) = (SELECT value FROM #temp_values_installed WHERE TRY_CAST(value AS FLOAT) IS NOT NULL),
+																			@value_id VARCHAR(30) = (SELECT value FROM #temp_values_installed WHERE TRY_CAST(value AS FLOAT) IS NULL);
+
+																		SET @amount_installed_capacity = @amount;
+																		SET @id_installed_capacity = (SELECT id_capacity_type FROM #temp_capacity_type_table_report WHERE capacity_type_name = @value_id);
+
+																		DROP TABLE #temp_values_installed;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
 																	END;
-																ELSE IF (@installed_capacity NOT LIKE '%,%')
-																	BEGIN
-																		IF (TRY_CAST(@installed_capacity AS FLOAT) IS NOT NULL)
-																			SET @amount_installed_capacity = CAST(@installed_capacity AS FLOAT(2));
-																		ELSE IF (TRY_CAST(@installed_capacity AS VARCHAR) IS NOT NULL)
-																			BEGIN
-																				SET @id_installed_capacity = ISNULL((SELECT id_capacity_type FROM #temp_capacity_type_table_report WHERE capacity_type_name = @installed_capacity),
-																														NULL);
-																				IF (@id_installed_capacity IS NULL)
-																					PRINT (CONCAT('Cannot find the installed capacity type "', @installed_capacity, '"'));
-																			END;
-																	END;
+																ELSE
+																	PRINT 'No installed capacity was saved, installed capacity must be entered like this "100,units"';
 															END;
 														ELSE IF (@installed_capacity IS NULL)
 															BEGIN
@@ -1042,7 +1037,6 @@ BEGIN TRY
 	DROP TABLE #temp_hydrant_protection_table_report;
 	DROP TABLE #temp_hydrant_standpipe_type_report;
 	DROP TABLE #temp_hydrant_standpipe_class_report;
-	DROP TABLE #temp_installed_capacity_report;
 END TRY
 BEGIN CATCH
 	PRINT CONCAT('Cannot insert into the report table because an error ocurred: ', ERROR_MESSAGE());
@@ -1134,16 +1128,16 @@ AS
 --
 CREATE OR ALTER PROCEDURE report.proc_insert_loss_scenario_table
 	@id_report AS INT,
-	@material_damage_amount AS VARCHAR(300),
+	@material_damage_amount AS VARCHAR(500),
 	@material_damage_percentage AS FLOAT(2),
-	@business_interruption_amount AS VARCHAR(300),
+	@business_interruption_amount AS VARCHAR(500),
 	@business_interruption_percentage AS FLOAT(2),
-	@buildings_amount AS VARCHAR(300),
-	@machinary_equipment AS VARCHAR(300),
-	@electronic_equipment AS VARCHAR(300),
-	@expansions_investment_works_amount AS VARCHAR(300),
-	@stock_amount AS VARCHAR(300),
-	@total_insured_values AS VARCHAR(300),
+	@buildings_amount AS VARCHAR(500),
+	@machinary_equipment AS VARCHAR(500),
+	@electronic_equipment AS VARCHAR(500),
+	@expansions_investment_works_amount AS VARCHAR(500),
+	@stock_amount AS VARCHAR(500),
+	@total_insured_values AS VARCHAR(500),
 	@pml_percentage AS FLOAT(2),
 	@mfl AS FLOAT(2)
 AS
