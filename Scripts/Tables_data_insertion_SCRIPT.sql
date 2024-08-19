@@ -1153,8 +1153,6 @@ AS
 	END;
 	BEGIN TRY
 		BEGIN
-			IF (SELECT id_report FROM #temp_loss_table_loss WHERE id_report = @id_report) IS NULL
-				BEGIN
 					IF (SELECT id_report FROM #temp_report_table_loss WHERE id_report = @id_report) IS NOT NULL
 						BEGIN
 							DECLARE 
@@ -1196,9 +1194,6 @@ AS
 						END;
 					ELSE IF (SELECT id_report FROM #temp_report_table_loss WHERE id_report = @id_report) IS NULL
 							PRINT CONCAT('The report with the ID "', @id_report, '" was not found in the database');
-				END;
-			ELSE
-				PRINT CONCAT('There is already a loss scenario saved for the report with the id: "', @id_report, '"');
 		END;
 		DROP TABLE #temp_report_table_loss;
 		DROP TABLE #temp_loss_table_loss;
