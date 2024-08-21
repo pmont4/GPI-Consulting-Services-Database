@@ -387,6 +387,9 @@ EXEC report.proc_insert_plant 'INGENIO TULULÁ – Inversiones de Guatemala', nu
 EXEC report.proc_insert_plant 'Industrias Licoreras Guatemaltecas, S.A. – ILGSA – Inversiones de Guatemala', null, 'C.A', 'Guatemala', 'Guatemala', null, null, 'Production', 'Planta de preparación y envasado de bebidas alcohólicas.', 'III', 'Industrial, Residential', 'Km. 16 ½ Carretera Roosevelt, Guatemala, Guatemala, C.A', '14°37m45.72s', '90°35m49.72s', 1665;
 EXEC report.proc_insert_plant 'DARSA TULULÁ – Inversiones de Guatemala', null, 'C.A', 'Guatemala', 'Retalhuleu', 2007, null, 'Production', 'Producción y almacenamiento de alcohol.', 'III', 'Rural', 'Km. 4.5 Carretera a La Máquina, San Andrés Villaseca, Cuyotenango, Retalhuleu, Guatemala, C.A', '14°30m15.99s', '91°35m10.14s', 259;
 EXEC report.proc_insert_plant 'Inversiones de Guatemala – Complejo Mixco (edificaciones)', null, 'C.A', 'Guatemala', 'Retalhuleu', 1967, 1967, 'Real State', 'Propietaria y arrendamiento de instalaciones (edificaciones) a las empresas del Grupo.', null, 'Industrial, Residential', 'Km. 16 ½ Carretera Roosevelt, Guatemala, Guatemala, C.A', '14°37m45.72s', '90°35m49.72s', 1665;
+EXEC report.proc_insert_plant 'Cierres Metálicos de Seguridad, S.A. – CIMESSA – Inversiones de Guatemala', null, 'C.A', 'Guatemala', 'Guatemala', null, 1967, 'Production', 'Planta de fabricación de casquetes metálicos con anillo de seguridad.', 'I', 'Industrial, Residential', 'Km. 16 ½ Carretera Roosevelt, Guatemala, Guatemala, C.A', '14°37m45.72s', '90°35m49.72s', 1665;
+EXEC report.proc_insert_plant 'Centro de Añejamiento Quetzaltenango – CAX – Inversiones de Guatemala', null, 'C.A', 'Guatemala', 'Quetzaltenango', 2012, 2012, 'Storage', 'Centro de añejamiento de rones, planta de mezclas y dilución de rones.', 'III', 'Rural', 'Carretera a San Marcos, Quetzaltenango, Guatemala, C.A', '14°52m46.04s', '91°34m48.39s', 2475;
+EXEC report.proc_insert_plant 'Bebidas Preparadas, S.A. – BEPRESA – Inversiones de Guatemala', null, 'C.A', 'Guatemala', 'Guatemala', null, 1994, 'Production', 'Planta de extracción, tratamiento y envasado de agua purificada.', 'III', 'Industrial, Residential', 'Km. 16 ½ Carretera Roosevelt, Guatemala, Guatemala, C.A.', '14°37m45.72s', '90°35m49.72s', 1665;
 
 -- Report table executables for data insertion
 -- Data has to be inserted in the following order:
@@ -657,6 +660,9 @@ EXEC report.proc_insert_report_table '4/diciembre/2012', 'Seguros y Fianzas "El 
 EXEC report.proc_insert_report_table '4/diciembre/2012', 'Seguros y Fianzas "El Roble"', 5299, 'Marlon Lira', null, null, 12500, 100, 1, 'si', null, null, null, 'si', 'no', 'no', 'no', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '4/diciembre/2012', 'Seguros y Fianzas "El Roble"', 5300, 'Marlon Lira', null, '300000,liters/day', null, 84, 2, 'si', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '4/diciembre/2012', 'Seguros y Fianzas "El Roble"', 5301, 'Marlon Lira', null, null, 55000, null, 1, 'si', null, null, null, 'si', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '4/diciembre/2012', 'Seguros y Fianzas "El Roble"', 5302, 'Marlon Lira', null, '9000000,units/month', 1670, 19, 1, 'si', null, null, null, 'si', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '5/diciembre/2012', 'Seguros y Fianzas "El Roble"', 5303, 'Marlon Lira', null, '85000,barrels', 7500, 29, 1, 'si', null, null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '4/diciembre/2012', 'Seguros y Fianzas "El Roble"', 5304, 'Marlon Lira', null, '5350000,liters/month', 2300, 242, 1, 'no', null, null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -922,6 +928,9 @@ EXEC report.proc_insert_perils_and_risk_table 5333, 'none', 1, 2, 2, 2.5, 2.5, '
 EXEC report.proc_insert_perils_and_risk_table 5334, 'none', 1, 2, 2, 2, 2.5, 'none', 1, 2, 'none', 'none', 2;
 EXEC report.proc_insert_perils_and_risk_table 5335, 'none', 'none', 1, 2, 2.5, 2.5, 'none', 1, 1, 'none', 'none', 2;
 EXEC report.proc_insert_perils_and_risk_table 5336, 'none', 'none', 1, 2, 2, 2.5, 'none', 1, 2, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5337, 'none', 'none', 1, 2, 2, 2.5, 'none', 1, 2, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5338, 'none', 1, 'none', 2, 2, 2.5, 'none', 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5339, 'none', 'none', 1, 2, 2, 2.5, 'none', 1, 2, 'none', 'none', 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -1146,3 +1155,4 @@ EXEC report.proc_insert_loss_scenario_table 5331, '$,87296925', 39, null, null, 
 EXEC report.proc_insert_loss_scenario_table 5333, '$,87423882.32', null, '$,83466000.00', null, null, null, null, null, '$,3957882.32', null, null, 70;
 EXEC report.proc_insert_loss_scenario_table 5335, '$,62191060.64', null, '$,12592540.16', null, '$,929273.94', '$,50299999.74', null, null, '$,10961786.97', null, null, 56;
 EXEC report.proc_insert_loss_scenario_table 5336, '$,32313908.46', null, '$,18888810.24', null, '$,6918733.91', '$,12067896.93+$,2159216.11', null, null, '$,11168061.51', null, null, 70;
+EXEC report.proc_insert_loss_scenario_table 5338, '$,12395471.72', null, '$,2518508.03', null, '$,3530019.26', null, null, null, '$,8865452.46', null, null, 76;
