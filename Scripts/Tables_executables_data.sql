@@ -66,7 +66,8 @@ EXEC report.proc_insert_capacity_type 'Metric tons/Day';
 EXEC report.proc_insert_capacity_type 'Metric tons/Year';
 EXEC report.proc_insert_capacity_type 'Metric tons/Month';
 EXEC report.proc_insert_capacity_type 'Liters/year';
-EXEC report.proc_insert_capacity_type 'Liters/hour';
+EXEC report.proc_insert_capacity_type 'Liters/hour'
+EXEC report.proc_insert_capacity_type 'Liters/day';
 EXEC report.proc_insert_capacity_type 'Hectoliters/Year';
 EXEC report.proc_insert_capacity_type 'Short tons/Day';
 EXEC report.proc_insert_capacity_type 'Pounds/Week';
@@ -374,6 +375,18 @@ EXEC report.proc_insert_plant 'Grupo Beta San Miguel – Ingenio San Francisco A
 EXEC report.proc_insert_plant 'Grupo Beta San Miguel – Ingenio San Rafael de Pucté', null, 'N.A', 'Mexico', 'Quintana Roo', 1975, 1976, 'Production', 'Producción de azúcar', 'III', 'Residential, Rural', 'Ejido Pucté – Álvaro Obregón. Pob. Javier R. Gómez, Municipio Othón P Blanco, Quintana Roo, México', '18°16m40.16s', '88°40m63s', 46;
 EXEC report.proc_insert_plant 'Grupo Beta San Miguel', 'Santa Rosalía de la Chontalpa', 'N.A', 'Mexico', 'Tabasco', null, 1961, 'Production', 'Sugar production and electrical power cogeneration', 'III', 'Residential', 'Calle del Ingenio No. 1, Santa Rosalía, Cárdenas H. Cárdenas, Tabasco, México.', '18°5m18.81s', '93°21m23.38s', 20;
 EXEC report.proc_insert_plant 'Compañia Azucarera Salvadoreña - CASSA', 'Chaparrastique Sugar Mill', 'C.A', 'Guatemala', 'San Miguel', null, 1982, 'Production', 'Sugar production and electricity cogeneration.', 'III', 'Industrial, Rural', 'Km. 144 ½ , carretera al Cuco, San Miguel, El Salvador, C.A.', '13.4389', '-88.1520', 95;
+EXEC report.proc_insert_plant 'El Modelo Sugar Mill – Grupo Porres', null, 'N.A', 'Mexico', 'Veracruz', 1942, 1942, 'Production', 'Sugar mill (production of sugar from sugar cane).', 'III', 'Residential', 'Calle Salvador Esquer No. 9, Colonia El Modelo, Cd. Cardel, La Antigua, Veracruz, México', '19°22m39.27s', '96°22m14.10s', 23;
+EXEC report.proc_insert_plant 'Huixtla Sugar Mill – Grupo Porres', null, 'N.A', 'Mexico', 'Chiapas', 1975, 1980, 'Production', 'Sugar mill (production of sugar from sugar cane).', 'III', 'Industrial, Rural', 'Km. 8 Carretera a El Arenal, Huixtla, Chiapas, México', '15°05m19.7s', '92°29m42.0s', 20;
+EXEC report.proc_insert_plant 'San Pedro Sugar Mill – Grupo Porres', null, 'N.A', 'Mexico', 'Veracruz', 1963, 1963, 'Production', 'Sugar mill (production of sugar).', 'III', 'Rural', 'Camino Vecinal Lerdo - Saltabarranca, Km 2 s/n. Cd. Lerdo de Tejada, Veracruz, México', '18°36m39.45s', '95°31m45.49s', 3;
+EXEC report.proc_insert_plant 'Santa Clara Sugar Mill – Grupo Porres', null, 'N.A', 'Mexico', 'Michoacan', null, 1990, 'Production', 'Sugar mill (production of sugar).', 'III', 'Residential', 'Avenida del Trabajo 2, Col. Centro, Santa Clara, Tocumbo, Michoacán, México', '19°38m21.84s', '102°29m32.82s', 1338;
+EXEC report.proc_insert_plant 'La Fe-Pujiltic Sugar Mill – Grupo Zucarmex', null, 'N.A', 'Mexico', 'Chiapas', 1958, 1958, 'Production', 'Sugar mill (production of sugar from sugar cane).', 'III', 'Industrial, Residential', 'Población de San Francisco Pujiltic; Municipio Venustiano Carranza, C.P. 30310, Chiapas, México', '16°16m33.06s', '92°27m10.35s', 620;
+EXEC report.proc_insert_plant 'El Higo Sugar Mill – Grupo Zucarmex', null, 'N.A', 'Mexico', 'Veracruz', 1898, 1898, 'Production', 'Sugar mill (production of sugar from sugar cane).', 'III', 'Industrial, Residential', 'Ribera No.39, Zona Centro, El Higo, Veracruz, CP 30310, México', '21°46m26.85s', '98°27m15.47s', 37;
+EXEC report.proc_insert_plant 'Industrial Azucarera Atencingo – Grupo Zucarmex', null, 'N.A', 'Mexico', 'Puebla', 1980, 1986, 'Production', 'Sugar mill (production of sugar from sugar cane).', 'III', 'Industrial, Residential', 'Avenida Morelos 59, Atencingo, Chietla, Puebla, México, C.P. 74585', '18°30m18.23s', '98°36m26.18s', 1090;
+EXEC report.proc_insert_plant 'Distribuidora La Nacional – Inversiones de Guatemala', null, 'C.A', 'Guatemala', 'Guatemala', null, null, 'Distribution', 'Recepción, almacenamiento y despacho de productos para centros de ventas en el territorio de Guatemala', 'III', 'Industrial, Residential', 'Km. 16 ½ Carretera Roosevelt, Guatemala, Guatemala, C.A', '14°37m45.72s', '90°35m49.72s', 1665;
+EXEC report.proc_insert_plant 'INGENIO TULULÁ – Inversiones de Guatemala', null, 'C.A', 'Guatemala', 'Retalhuleu', null, null, 'Production', 'Producción de azúcar, miel virgen y cogeneración energía eléctrica', 'III', 'Rural', 'Km. 4.5 Carretera a La Máquina, San Andrés Villaseca, Cuyotenango, Retalhuleu, Guatemala, C.A', '14°30m17.85s', '91°35m00.96s', 251;
+EXEC report.proc_insert_plant 'Industrias Licoreras Guatemaltecas, S.A. – ILGSA – Inversiones de Guatemala', null, 'C.A', 'Guatemala', 'Guatemala', null, null, 'Production', 'Planta de preparación y envasado de bebidas alcohólicas.', 'III', 'Industrial, Residential', 'Km. 16 ½ Carretera Roosevelt, Guatemala, Guatemala, C.A', '14°37m45.72s', '90°35m49.72s', 1665;
+EXEC report.proc_insert_plant 'DARSA TULULÁ – Inversiones de Guatemala', null, 'C.A', 'Guatemala', 'Retalhuleu', 2007, null, 'Production', 'Producción y almacenamiento de alcohol.', 'III', 'Rural', 'Km. 4.5 Carretera a La Máquina, San Andrés Villaseca, Cuyotenango, Retalhuleu, Guatemala, C.A', '14°30m15.99s', '91°35m10.14s', 259;
+EXEC report.proc_insert_plant 'Inversiones de Guatemala – Complejo Mixco (edificaciones)', null, 'C.A', 'Guatemala', 'Retalhuleu', 1967, 1967, 'Real State', 'Propietaria y arrendamiento de instalaciones (edificaciones) a las empresas del Grupo.', null, 'Industrial, Residential', 'Km. 16 ½ Carretera Roosevelt, Guatemala, Guatemala, C.A', '14°37m45.72s', '90°35m49.72s', 1665;
 
 -- Report table executables for data insertion
 -- Data has to be inserted in the following order:
@@ -631,6 +644,19 @@ EXEC report.proc_insert_report_table '15/febrero/2017', 'Reasinter, Intermadiari
 EXEC report.proc_insert_report_table '16/junio/2017', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5286, 'Juan Jose Lira', '9001-2008, FSSC22,000, ISO 14,000-2004, Kosher.', '6000,short tons/day', 37540, 344, 2, 'si', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '12/marzo/2021', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5259, 'Marlon Lira', 'ISO 9001, FSSC 22000, FAIRTRADE, Kosher, HALAL, Bonsucro.', '13750,short tons/day', 43648, 1516, 2, 'si', 'Mayor fires', 'Automatic Wet', 'III', 'no', 'si', 'si', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '11/marzo/2021', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5260, 'Marlon Lira', null, '13750,short tons/day', 30720, 660, 2, 'si', 'Mayor fires', 'Automatic Wet', 'III', 'no', 'si', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '9/marzo/2020', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5289, 'Rafael Grajeda', 'ISO 9001, KOSHER, ISO 22000.', '5700,short tons/day', 20000, 576, 2, 'si', 'Minor fires', 'Automatic Wet', 'II', 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '20/agosto/2018', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5290, 'Marlon Lira', null, '7200,short tons/day', 35000, 600, 1, 'si', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '23/agosto/2018', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5291, 'Marlon Lira', null, '8000,short tons/day', 80000, 799, 1, 'si', 'Mayor fires', null, null, 'no', 'si', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '21/agosto/2018', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5292, 'Marlon Lira', null, '11023.1,short tons/day', 30237, 655, 1, 'si', 'Minor fires', null, null, 'no', 'si', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '27/agosto/2018', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5293, 'Rafael Grajeda', null, '5511.55,short tons/day', 18670, 300, 1, 'si', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '13/noviembre/2019', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5294, 'Marlon Lira, Rafael Grajeda', null, '9000,short tons/day', 80000, 715, 1, 'si', 'Mayor fires', null, null, 'si', 'no', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '12/noviembre/2019', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5295, 'Marlon Lira, Rafael Grajeda', null, '15000,short tons/day', 42500, 152, 1, 'si', 'Mayor fires', null, null, 'no', 'no', 'si', 'si', 'si', 'si', 'si';
+EXEC report.proc_insert_report_table '11/noviembre/2019', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5296, 'Marlon Lira, Rafael Grajeda', null, '10000,short tons/day', 60000, 680, 2, 'si', 'Minor fires', null, null, 'no', 'no', 'no', 'no', 'si', 'si', 'si';
+EXEC report.proc_insert_report_table '4/diciembre/2012', 'Seguros y Fianzas "El Roble"', 5297, 'Marlon Lira', null, '862,positions', 1620, 48, 1, 'si', null, null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '4/diciembre/2012', 'Seguros y Fianzas "El Roble"', 5298, 'Marlon Lira', null, '7156.02,short tons/day', null, 2000, 2, 'si', null, null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '4/diciembre/2012', 'Seguros y Fianzas "El Roble"', 5299, 'Marlon Lira', null, null, 12500, 100, 1, 'si', null, null, null, 'si', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '4/diciembre/2012', 'Seguros y Fianzas "El Roble"', 5300, 'Marlon Lira', null, '300000,liters/day', null, 84, 2, 'si', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '4/diciembre/2012', 'Seguros y Fianzas "El Roble"', 5301, 'Marlon Lira', null, null, 55000, null, 1, 'si', null, null, null, 'si', 'no', 'no', 'no', 'no', 'si', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -883,6 +909,19 @@ EXEC report.proc_insert_perils_and_risk_table 5320, 3, 1, 1, 2, 2.5, 1, 1, 1, 1,
 EXEC report.proc_insert_perils_and_risk_table 5321, 2.5, 1, 1, 2, 2.5, 1, 2, 1, 1, 1.5, 'none', 2;
 EXEC report.proc_insert_perils_and_risk_table 5322, 2.5, 1, 1, 2, 2, 2.5, 'none', 1, 1, 1.5, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 5323, 2.5, 1, 1, 2, 2, 2.5, 'none', 1, 1, 1.5, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5324, 2.5, 'none', 1.5, 1.5, 2.5, 2, 'none', 1, 1, 2, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5325, 2.5, 1, 1, 2, 2.5, 2, 1, 1, 1, 1.5, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5326, 2.5, 1, 1, 2, 2.5, 3, 'none', 2, 1, 1.5, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5327, 2.5, 'none', 1.5, 1, 2.5, 2, 'none', 1, 1, 1.5, 1, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 5328, 2.5, 1, 1, 1, 2, 2.5, 'none', 2, 1, 1.5, 1, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 5329, 2.5, 'none', 1, 2, 2.5, 3, 'none', 1, 1, 1.5, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5330, 2.5, 'none', 1, 2, 2.5, 2, 'none', 1, 1, 1.5, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5331, 2.5, 'none', 2, 2, 2.5, 3, 'none', 1, 1, 1.5, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5332, 'none', 'none', 1, 2, 2, 2.5, 'none', 1, 2, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5333, 'none', 1, 2, 2, 2.5, 2.5, 'none', 1, 2, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5334, 'none', 1, 2, 2, 2, 2.5, 'none', 1, 2, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5335, 'none', 'none', 1, 2, 2.5, 2.5, 'none', 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5336, 'none', 'none', 1, 2, 2, 2.5, 'none', 1, 2, 'none', 'none', 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -1096,3 +1135,14 @@ EXEC report.proc_insert_loss_scenario_table 5321, '$,98391000', 85, null, null, 
 EXEC report.proc_insert_loss_scenario_table 5322, '$,200000000', 24, '$,38500000', 100, '$,13500000', '$,100000000+$,11000000+$,38000000', null, null, '$,37500000', null, 36, null;
 EXEC report.proc_insert_loss_scenario_table 5323, '$,174560000', 16, '$,12000000', 48, '$,14000000+$,5900000', '$,43000000+$,15000000+$,74660000', null, null, '$,22000000', null, 20, null;
 EXEC report.proc_insert_loss_scenario_table 5323, '$,174560000', 32, '$,12000000', 95, '$,14000000+$,5900000', '$,43000000+$,15000000+$,74660000', null, null, '$,22000000', null, 40, null; -- HAS 2 LOSS SCENARIO
+EXEC report.proc_insert_loss_scenario_table 5324, '$,40061049', 95, null, 100, '$,3800305', '$,35593368', null, null, '$,667377', null, null, null;
+EXEC report.proc_insert_loss_scenario_table 5325, null, 85, null, null, null, null, null, null, null, null, null, null;
+EXEC report.proc_insert_loss_scenario_table 5326, null, 70, null, null, null, null, null, null, null, null, null, null;
+EXEC report.proc_insert_loss_scenario_table 5327, null, 85, null, null, null, null, null, null, null, null, null, null;
+EXEC report.proc_insert_loss_scenario_table 5328, null, 90, null, null, null, null, null, null, null, null, null, null;
+EXEC report.proc_insert_loss_scenario_table 5329, '$,57627857', 50, null, null, '$,6643980.11', '$,29326942.84', null, null, '$,21397598.13+$,259336.10', null, null, null;
+EXEC report.proc_insert_loss_scenario_table 5330, '$,73955866', 88, null, null, '$,9417065.79', '$,30970869.29', null, null, '$,33360461.66+$,207468.88', null, null, null;
+EXEC report.proc_insert_loss_scenario_table 5331, '$,87296925', 39, null, null, '$,7386311.44', '$,44467105.08', null, null, '$,35443508.32', null, null, null;
+EXEC report.proc_insert_loss_scenario_table 5333, '$,87423882.32', null, '$,83466000.00', null, null, null, null, null, '$,3957882.32', null, null, 70;
+EXEC report.proc_insert_loss_scenario_table 5335, '$,62191060.64', null, '$,12592540.16', null, '$,929273.94', '$,50299999.74', null, null, '$,10961786.97', null, null, 56;
+EXEC report.proc_insert_loss_scenario_table 5336, '$,32313908.46', null, '$,18888810.24', null, '$,6918733.91', '$,12067896.93+$,2159216.11', null, null, '$,11168061.51', null, null, 70;
