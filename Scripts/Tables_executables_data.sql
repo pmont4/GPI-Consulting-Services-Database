@@ -51,6 +51,7 @@ EXEC report.proc_insert_client 'Fountain Hydro Power Corp.';
 EXEC report.proc_insert_client 'Carpenter Marsh Fac / Marsh Rehder';
 EXEC report.proc_insert_client 'Garret Unicem Corredora';
 EXEC report.proc_insert_client 'Seguros y Fianzas "El Roble"';
+EXEC report.proc_insert_client 'Seguros G&T';
 
 -- Capacity type table executables for data insertion
 -- Data is being inserted in the following order
@@ -74,7 +75,6 @@ EXEC report.proc_insert_capacity_type 'Pounds/Week';
 EXEC report.proc_insert_capacity_type 'pounds/hour';
 EXEC report.proc_insert_capacity_type 'pounds/month';
 EXEC report.proc_insert_capacity_type 'Tons/Hour';
-EXEC report.proc_insert_capacity_type 'Ton/Hour';
 EXEC report.proc_insert_capacity_type 'Tons/Day';
 EXEC report.proc_insert_capacity_type 'Tons/Month';
 EXEC report.proc_insert_capacity_type 'qq/Day';
@@ -390,6 +390,8 @@ EXEC report.proc_insert_plant 'Inversiones de Guatemala – Complejo Mixco (edif
 EXEC report.proc_insert_plant 'Cierres Metálicos de Seguridad, S.A. – CIMESSA – Inversiones de Guatemala', null, 'C.A', 'Guatemala', 'Guatemala', null, 1967, 'Production', 'Planta de fabricación de casquetes metálicos con anillo de seguridad.', 'I', 'Industrial, Residential', 'Km. 16 ½ Carretera Roosevelt, Guatemala, Guatemala, C.A', '14°37m45.72s', '90°35m49.72s', 1665;
 EXEC report.proc_insert_plant 'Centro de Añejamiento Quetzaltenango – CAX – Inversiones de Guatemala', null, 'C.A', 'Guatemala', 'Quetzaltenango', 2012, 2012, 'Storage', 'Centro de añejamiento de rones, planta de mezclas y dilución de rones.', 'III', 'Rural', 'Carretera a San Marcos, Quetzaltenango, Guatemala, C.A', '14°52m46.04s', '91°34m48.39s', 2475;
 EXEC report.proc_insert_plant 'Bebidas Preparadas, S.A. – BEPRESA – Inversiones de Guatemala', null, 'C.A', 'Guatemala', 'Guatemala', null, 1994, 'Production', 'Planta de extracción, tratamiento y envasado de agua purificada.', 'III', 'Industrial, Residential', 'Km. 16 ½ Carretera Roosevelt, Guatemala, Guatemala, C.A.', '14°37m45.72s', '90°35m49.72s', 1665;
+EXEC report.proc_insert_plant 'Innovaciones Sostenibles de Látex, S.A. – ISLATEX', null, 'C.A', 'Guatemala', 'Suchitepequez', 2010, 2011, 'Production', 'Planta de producción de productos de látex.', 'III', 'Rural', 'Km. 117 Carretera al pacífico (CN-11), Patulul, Suchitepéquez, Guatemala, C.A.', '14.361036', '-91.211047', 184;
+EXEC report.proc_insert_plant 'Jinro Corporation', 'Jinro Power', 'C.A', 'Panama', 'Colon', 2015, 2016, 'Electricity Generation', 'Electrical Power Plant: Generation by thirty four Hyundai Himsen 9H 21/32 engines, each with a nominal capacity of 1.701 MW.', null, 'Rural', 'Santa Rita Arriba, Sabanitas, Colón, Panamá, C.A.', '09°19m38.45s', '79°47m41.88s', 77;
 
 -- Report table executables for data insertion
 -- Data has to be inserted in the following order:
@@ -663,6 +665,24 @@ EXEC report.proc_insert_report_table '4/diciembre/2012', 'Seguros y Fianzas "El 
 EXEC report.proc_insert_report_table '4/diciembre/2012', 'Seguros y Fianzas "El Roble"', 5302, 'Marlon Lira', null, '9000000,units/month', 1670, 19, 1, 'si', null, null, null, 'si', 'no', 'no', 'no', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '5/diciembre/2012', 'Seguros y Fianzas "El Roble"', 5303, 'Marlon Lira', null, '85000,barrels', 7500, 29, 1, 'si', null, null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '4/diciembre/2012', 'Seguros y Fianzas "El Roble"', 5304, 'Marlon Lira', null, '5350000,liters/month', 2300, 242, 1, 'no', null, null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '4/diciembre/2012', 'Grupo Generali', 5300, 'Marlon Lira', null, '300000,liters/day', null, 84, 2, 'si', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '5/diciembre/2012', 'Grupo Generali', 5303, 'Marlon Lira', null, '85000,barrels', 7500, 29, 1, 'si', null, null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '4/diciembre/2012', 'Grupo Generali', 5301, 'Marlon Lira', null, null, 55000, null, 1, 'si', null, null, null, 'si', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '4/diciembre/2012', 'Grupo Generali', 5298, 'Marlon Lira', null, '7156.02,short tons/day', null, 2000, 2, 'si', null, null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '4/diciembre/2012', 'Grupo Generali', 5304, 'Marlon Lira', null, '5350000,liters/month', 2300, 242, 1, 'no', null, null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '4/diciembre/2012', 'Grupo Generali', 5302, 'Marlon Lira', null, '9000000,units/month', 1670, 19, 1, 'si', null, null, null, 'si', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '4/diciembre/2012', 'Grupo Generali', 5299, 'Marlon Lira', null, null, 12500, 100, 1, 'si', null, null, null, 'si', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '4/diciembre/2012', 'Grupo Generali', 5297, 'Marlon Lira', null, '862,positions', 1620, 48, 1, 'si', null, null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '4/diciembre/2012', 'Seguros G&T', 5300, 'Marlon Lira', null, '300000,liters/day', null, 84, 2, 'si', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '5/diciembre/2012', 'Seguros G&T', 5303, 'Marlon Lira', null, '85000,barrels', 7500, 29, 1, 'si', null, null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '4/diciembre/2012', 'Seguros G&T', 5301, 'Marlon Lira', null, null, 55000, null, 1, 'si', null, null, null, 'si', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '4/diciembre/2012', 'Seguros G&T', 5298, 'Marlon Lira', null, '7156.02,short tons/day', null, 2000, 2, 'si', null, null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '4/diciembre/2012', 'Seguros G&T', 5304, 'Marlon Lira', null, '5350000,liters/month', 2300, 242, 1, 'no', null, null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '4/diciembre/2012', 'Seguros G&T', 5302, 'Marlon Lira', null, '9000000,units/month', 1670, 19, 1, 'si', null, null, null, 'si', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '4/diciembre/2012', 'Seguros G&T', 5299, 'Marlon Lira', null, null, 12500, 100, 1, 'si', null, null, null, 'si', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '4/diciembre/2012', 'Seguros G&T', 5297, 'Marlon Lira', null, '862,positions', 1620, 48, 1, 'si', null, null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '20/mayo/2011', 'Tecniseguros, Corredores de Seguros, S.A.', 5305, 'Marlon Lira', null, '3000,tons/year', 5500, 75, 2, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '13/septiembre/2019', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5306, 'Marlon Lira', null, '57.83,mw', null, 64, 1, 'si', 'Minor fires', null, null, 'si', 'si', 'si', 'si', 'no', 'si', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -931,6 +951,24 @@ EXEC report.proc_insert_perils_and_risk_table 5336, 'none', 'none', 1, 2, 2, 2.5
 EXEC report.proc_insert_perils_and_risk_table 5337, 'none', 'none', 1, 2, 2, 2.5, 'none', 1, 2, 'none', 'none', 2;
 EXEC report.proc_insert_perils_and_risk_table 5338, 'none', 1, 'none', 2, 2, 2.5, 'none', 1, 1, 'none', 'none', 2;
 EXEC report.proc_insert_perils_and_risk_table 5339, 'none', 'none', 1, 2, 2, 2.5, 'none', 1, 2, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5340, 'none', 'none', 1, 2, 2.5, 2.5, 'none', 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5341, 'none', 1, 'none', 2, 2, 2.5, 'none', 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5342, 'none', 'none', 1, 2, 2, 2.5, 'none', 1, 2, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5343, 'none', 1, 2, 2, 2.5, 2.5, 'none', 1, 2, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5344, 'none', 'none', 1, 2, 2, 2.5, 'none', 1, 2, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5345, 'none', 'none', 1, 2, 2, 2.5, 'none', 1, 2, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5346, 'none', 1, 2, 2, 2, 2.5, 'none', 1, 2, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5347, 'none', 'none', 1, 2, 2, 2.5, 'none', 1, 2, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5348, 'none', 'none', 1, 2, 2.5, 2.5, 'none', 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5349, 'none', 1, 'none', 2, 2, 2.5, 'none', 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5350, 'none', 'none', 1, 2, 2, 2.5, 'none', 1, 2, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5351, 'none', 1, 2, 2, 2.5, 2.5, 'none', 1, 2, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5352, 'none', 'none', 1, 2, 2, 2.5, 'none', 1, 2, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5353, 'none', 'none', 1, 2, 2, 2.5, 'none', 1, 2, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5354, 'none', 1, 2, 2, 2, 2.5, 'none', 1, 2, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5355, 'none', 'none', 1, 2, 2, 2.5, 'none', 1, 2, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5356, 'none', 1, 2, 2, 2, 2.5, 'none', 1, 1.5, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5357, 3, 1, 1, 2, 3, 2.5, 'none', 1, 1, 1, 1, 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -1156,3 +1194,12 @@ EXEC report.proc_insert_loss_scenario_table 5333, '$,87423882.32', null, '$,8346
 EXEC report.proc_insert_loss_scenario_table 5335, '$,62191060.64', null, '$,12592540.16', null, '$,929273.94', '$,50299999.74', null, null, '$,10961786.97', null, null, 56;
 EXEC report.proc_insert_loss_scenario_table 5336, '$,32313908.46', null, '$,18888810.24', null, '$,6918733.91', '$,12067896.93+$,2159216.11', null, null, '$,11168061.51', null, null, 70;
 EXEC report.proc_insert_loss_scenario_table 5338, '$,12395471.72', null, '$,2518508.03', null, '$,3530019.26', null, null, null, '$,8865452.46', null, null, 76;
+EXEC report.proc_insert_loss_scenario_table 5340, '$,62191060.64', null, '$,12592540.16', null, '$,929273.94', '$,50299999.74', null, null, '$,10961786.97', null, null, 56;
+EXEC report.proc_insert_loss_scenario_table 5341, '$,12395471.72', null, '$,2518508.03', null, '$,3530019.26', null, null, null, '$,8865452.46', null, null, 76;
+EXEC report.proc_insert_loss_scenario_table 5342, '$,32313908.46', null, '$,18888810.24', null, '$,6918733.91', '$,12067896.93+$,2159216.11', null, null, '$,11168061.51', null, null, 70;
+EXEC report.proc_insert_loss_scenario_table 5343, '$,87423882.32', null, '$,83466000.00', null, null, null, null, null, '$,3957882.32', null, null, 70;
+EXEC report.proc_insert_loss_scenario_table 5348, '$,62191060.64', null, '$,12592540.16', null, '$,929273.94', '$,50299999.74', null, null, '$,10961786.97', null, null, 56;
+EXEC report.proc_insert_loss_scenario_table 5349, '$,12395471.72', null, '$,2518508.03', null, '$,3530019.26', null, null, null, '$,8865452.46', null, null, 76;
+EXEC report.proc_insert_loss_scenario_table 5350, '$,32313908.46', null, '$,18888810.24', null, '$,6918733.91', '$,12067896.93+$,2159216.11', null, null, '$,11168061.51', null, null, 70;
+EXEC report.proc_insert_loss_scenario_table 5351, '$,87423882.32', null, '$,83466000.00', null, null, null, null, null, '$,3957882.32', null, null, 70;
+EXEC report.proc_insert_loss_scenario_table 5357, '$,62246702', 45, '$,7941176', 29, null, null, null, null, null, null, 40, null;
