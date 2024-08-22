@@ -392,6 +392,9 @@ EXEC report.proc_insert_plant 'Centro de Añejamiento Quetzaltenango – CAX –
 EXEC report.proc_insert_plant 'Bebidas Preparadas, S.A. – BEPRESA – Inversiones de Guatemala', null, 'C.A', 'Guatemala', 'Guatemala', null, 1994, 'Production', 'Planta de extracción, tratamiento y envasado de agua purificada.', 'III', 'Industrial, Residential', 'Km. 16 ½ Carretera Roosevelt, Guatemala, Guatemala, C.A.', '14°37m45.72s', '90°35m49.72s', 1665;
 EXEC report.proc_insert_plant 'Innovaciones Sostenibles de Látex, S.A. – ISLATEX', null, 'C.A', 'Guatemala', 'Suchitepequez', 2010, 2011, 'Production', 'Planta de producción de productos de látex.', 'III', 'Rural', 'Km. 117 Carretera al pacífico (CN-11), Patulul, Suchitepéquez, Guatemala, C.A.', '14.361036', '-91.211047', 184;
 EXEC report.proc_insert_plant 'Jinro Corporation', 'Jinro Power', 'C.A', 'Panama', 'Colon', 2015, 2016, 'Electricity Generation', 'Electrical Power Plant: Generation by thirty four Hyundai Himsen 9H 21/32 engines, each with a nominal capacity of 1.701 MW.', null, 'Rural', 'Santa Rita Arriba, Sabanitas, Colón, Panamá, C.A.', '09°19m38.45s', '79°47m41.88s', 77;
+EXEC report.proc_insert_plant 'Industrias Alimenticias Kern´s Y Cia. S.C.A.', null, 'C.A', 'Guatemala', 'Guatemala', 1959, 1959, 'Production', 'Producción, venta y distribución de productos alimenticios (frijoles, salsa de tomate, néctares y bebidas no carbonatadas)', 'II', 'Industrial, Residential', 'Km. 6.5 Carretera al Atlántico, Zona 18, Ciudad de Guatemala, C.A.', '14.6543', '-90.4638', 1504;
+EXEC report.proc_insert_plant 'La Reunión, S.A.', null, 'C.A', 'Guatemala', 'Sacatepequez', null, null, 'Real State', 'Centro recreacional exclusivo: Club de Golf, Hotel y otros servicios (restaurante, centro convenciones, piscinas, canchas de squash, tenis, futbol, entre otros).', null, 'Rural', 'Km. 91.5 Carretera CA-14, San Juan Alotenago, Sacatepéquez, Guatemala, C.A', '14°33m01.99s', '90°48m46.89s', 1812;
+EXEC report.proc_insert_plant 'Grupo Lamfer', 'Plantas Mixco Norte', 'C.A', 'Guatemala', 'Guatemala', 2002, 1994, 'Production', 'Desarrollo, producción y comercialización de medicamentos', 'II', 'Rural', 'Km. 16.5 Carretera a San Juan Sacatepéquez, Complejo Industrial Mixco Note, Lotes 24, B9, A6 (propios) y B5 (alquilado). Mixco, Guatemala, C.A.', '14°39m33.51s', '90°35m42.89s', 1670;
 
 -- Report table executables for data insertion
 -- Data has to be inserted in the following order:
@@ -683,6 +686,10 @@ EXEC report.proc_insert_report_table '4/diciembre/2012', 'Seguros G&T', 5299, 'M
 EXEC report.proc_insert_report_table '4/diciembre/2012', 'Seguros G&T', 5297, 'Marlon Lira', null, '862,positions', 1620, 48, 1, 'si', null, null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '20/mayo/2011', 'Tecniseguros, Corredores de Seguros, S.A.', 5305, 'Marlon Lira', null, '3000,tons/year', 5500, 75, 2, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
 EXEC report.proc_insert_report_table '13/septiembre/2019', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5306, 'Marlon Lira', null, '57.83,mw', null, 64, 1, 'si', 'Minor fires', null, null, 'si', 'si', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '17/septiembre/2014', 'Aseguradora General, S.A.', 5307, 'Marlon Lira', 'FSSC 22000, HACCP', '230000,units/month', 8000, 126, 2, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '22/junio/2023', 'Conseguros, Corredor de Seguros, S.A.', 5308, 'Jorge Cifuentes Garcia', 'FSSC 22000', '138240,tons/year', 23384, 714, 1, 'si', 'Mayor fires', 'Automatic Wet', 'II', 'no', 'no', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '2/diciembre/2009', 'Aseguradora Mundial, S.A.', 5309, 'Marlon Lira', null, null, null, null, 2.5, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '11/febrero/2022', 'Aseguradora General, S.A.', 5310, 'Juan Jose Lira', null, '700000000,units/year', 25000, 1000, 1.5, 'si', 'Mayor fires', 'Automatic Wet', 'III', 'no', 'si', 'no', 'si', 'no', 'si', 'no';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -969,6 +976,10 @@ EXEC report.proc_insert_perils_and_risk_table 5354, 'none', 1, 2, 2, 2, 2.5, 'no
 EXEC report.proc_insert_perils_and_risk_table 5355, 'none', 'none', 1, 2, 2, 2.5, 'none', 1, 2, 'none', 'none', 2;
 EXEC report.proc_insert_perils_and_risk_table 5356, 'none', 1, 2, 2, 2, 2.5, 'none', 1, 1.5, 'none', 'none', 2;
 EXEC report.proc_insert_perils_and_risk_table 5357, 3, 1, 1, 2, 3, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5358, 2.5, 1, 3, 2, 2, 2.5, 'none', 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5359, 2.5, 'none', 1, 1, 2, 2.5, 'none', 'none', 1, 2, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5360, 'none', 3, 2, 2, 3, 3, 'none', 1, 2, 'none', 'none', 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5361, 2, 1, 1, 1, 2.5, 2.5, 'none', 1, 1.5, 1, 1, 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -1203,3 +1214,5 @@ EXEC report.proc_insert_loss_scenario_table 5349, '$,12395471.72', null, '$,2518
 EXEC report.proc_insert_loss_scenario_table 5350, '$,32313908.46', null, '$,18888810.24', null, '$,6918733.91', '$,12067896.93+$,2159216.11', null, null, '$,11168061.51', null, null, 70;
 EXEC report.proc_insert_loss_scenario_table 5351, '$,87423882.32', null, '$,83466000.00', null, null, null, null, null, '$,3957882.32', null, null, 70;
 EXEC report.proc_insert_loss_scenario_table 5357, '$,62246702', 45, '$,7941176', 29, null, null, null, null, null, null, 40, null;
+EXEC report.proc_insert_loss_scenario_table 5359, '$,89348907.46', 87, '$,49052356', 100, '$,18291920.49', '$,46297586.64+$,994361.72+$,552542.55', null, '$,523208.75', '$,22689287.31', null, 91, null;
+EXEC report.proc_insert_loss_scenario_table 5361, 'Q,426061120', 72, 'Q,150000000', 100, 'Q,164938216.93', 'Q,141122903.22', null, null, 'Q,120000000', null, 80, null;
