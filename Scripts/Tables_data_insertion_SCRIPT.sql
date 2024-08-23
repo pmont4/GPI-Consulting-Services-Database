@@ -917,20 +917,36 @@ BEGIN TRY
 													BEGIN
 														IF (@installed_capacity IS NOT NULL)
 															BEGIN
-																DECLARE @fixed_installed VARCHAR(60) = (SELECT SUBSTRING(@installed_capacity, 5, LEN(@installed_capacity)));
-
-																IF (@fixed_installed LIKE '%,%')
+																IF (@installed_capacity LIKE '%,%')
 																	BEGIN
-																		SELECT value INTO #temp_values_installed FROM string_split(@fixed_installed, ',')
-																		
-																		DECLARE 
-																			@amount FLOAT(2) = (SELECT value FROM #temp_values_installed WHERE TRY_CAST(value AS FLOAT) IS NOT NULL),
-																			@value_id VARCHAR(30) = (SELECT value FROM #temp_values_installed WHERE TRY_CAST(value AS FLOAT) IS NULL);
+																		IF (SELECT value FROM string_split(@installed_capacity, ',') WHERE ISNUMERIC(value) = 1) IS NOT NULL
+																			BEGIN
+																				SELECT value INTO #temp_values_installed FROM string_split(@installed_capacity, ',')
+																				
+																				DECLARE 
+																					@amount FLOAT(2) = (SELECT value FROM #temp_values_installed WHERE TRY_CAST(value AS FLOAT) IS NOT NULL),
+																					@value_id VARCHAR(30) = (SELECT value FROM #temp_values_installed WHERE TRY_CAST(value AS FLOAT) IS NULL);
 
-																		SET @amount_installed_capacity = @amount;
-																		SET @id_installed_capacity = (SELECT id_capacity_type FROM #temp_capacity_type_table_report WHERE capacity_type_name = @value_id);
+																				SET @amount_installed_capacity = @amount;
+																				SET @id_installed_capacity = (SELECT id_capacity_type FROM #temp_capacity_type_table_report WHERE capacity_type_name = @value_id);
 
-																		DROP TABLE #temp_values_installed;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+																				DROP TABLE #temp_values_installed;
+																			END;
+																		ELSE
+																			BEGIN
+																				DECLARE @fixed_installed VARCHAR(60) = (SELECT SUBSTRING(@installed_capacity, 5, LEN(@installed_capacity)));
+
+																				SELECT value INTO #temp_values_installed_2 FROM string_split(@fixed_installed, ',');
+
+																				DECLARE 
+																					@amount_2 FLOAT(2) = (SELECT value FROM #temp_values_installed_2 WHERE TRY_CAST(value AS FLOAT) IS NOT NULL),
+																					@value_id_2 VARCHAR(30) = (SELECT value FROM #temp_values_installed_2 WHERE TRY_CAST(value AS FLOAT) IS NULL);
+
+																				SET @amount_installed_capacity = @amount_2;
+																				SET @id_installed_capacity = (SELECT id_capacity_type FROM #temp_capacity_type_table_report WHERE capacity_type_name = @value_id_2);
+																				
+																				DROP TABLE #temp_values_installed_2;
+																			END;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
 																	END;
 																ELSE
 																	PRINT 'No installed capacity was saved, installed capacity must be entered like this "100,units"';
