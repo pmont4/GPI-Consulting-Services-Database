@@ -104,6 +104,7 @@ EXEC report.proc_insert_capacity_type 'Liters';
 EXEC report.proc_insert_capacity_type 'm2';
 EXEC report.proc_insert_capacity_type 'yards/month';
 EXEC report.proc_insert_capacity_type 'rooms';
+EXEC report.proc_insert_capacity_type 'hangar';
 
 -- Merchandise classification table executables for data insertion
 -- Data is being inserted in the following order
@@ -407,6 +408,14 @@ EXEC report.proc_insert_plant '
 EXEC report.proc_insert_plant 'Roytex, S.A.', 'San Fernando Power Plant', 'C.A', 'Guatemala', 'Escuintla', 2012, 2014, 'Electricity Generation', 'Power Plant, generation based on fossil fuel (mineral coal) and bio-mass (wood chip), with an installed capacity of 62.5 MW.', null, 'Rural', 'Km. 50.5 Carretera al Pacífico, Palín, Escuintla, Guatemala, C.A.', '14°21m04.98s', '90°45m29.69s', 580;
 EXEC report.proc_insert_plant 'Luz y Fuerza Eléctrica de Guatemala - LUFGUA -', 'Alborada Power Plant', 'C.A', 'Guatemala', 'Escuintla', 1994, 1995, 'Electricity Generation', 'Thermal Power Plant. Electricity generation for sale through the National Grid.', null, 'Rural', 'Km. 65.5, CA-9 Road (to Puerto San José) Escuintla, Escuintla, Guatemala, C.A.', '14°15m0.72s', '90°48m24.80s', 30;
 EXEC report.proc_insert_plant 'Máquinas Exactas, S.A.', null, 'C.A', 'Guatemala', 'Escuintla', 2010, 2011, 'Distribution', 'Planta de recepción, fortificación, empaquetado y distribución de azúcar.', 'III', 'Rural', 'Km. 63 Carretera CA-2, Santa Lucía Cotzumalguapa, Escuintla, Guatemala, C.A.', '14°16m51.66s', '90°49m02.68s', null;
+EXEC report.proc_insert_plant 'Mar Marine Yacht Club.', null, 'C.A', 'Guatemala', 'Izabal', 1994, 1994, 'Real state', 'Marina de lanchas, yates y veleros (muelles, parqueo, taller mecánico, taller fibra de vidrio), hotel y restaurant.', null, 'Commercial, Rural', 'Aldea El Relleno, Río Dulce, Livingston, Izabal, Guatemala, C.A.', '15.656494', '-88.996290', 5;
+EXEC report.proc_insert_plant 'Merendon Power Plant, S.A. – (Fruit of the Loom Inc.)', 'Merendon Power Plant', 'C.A', 'Honduras', 'Cortes', 2013, 2015, 'Electricity Generation', 'Generation based on biomass fuel (wood chip, sawdust, oil palm residues, sugar bagasse, among othes) and fossil fuel (mineral coal).', null, 'Industrial', 'Km. 2.5 Carretera a La Jutosa, Choloma, Cortes, Honduras, C.A.', '15°37m27.85s', '87°58m47.93s', 59;
+EXEC report.proc_insert_plant 'Molino Harinero Sula, S.A. - MHS', null, 'C.A', 'Honduras', 'Cortes', 1965, null, 'Production', 'Planta industrial para la producción de harina de trigo y pastas.', 'I', 'Industrial', 'Km. 2 Salida a Puerto Cortés desvió a Expocentro, San Pedro Sula, Honduras, C. A.', '15°31m43.36s', '88°01m10.17s', 78;
+EXEC report.proc_insert_plant 'Momotombo Power Company', 'Momotombo Power Plant', 'C.A', 'Nicaragua', 'Leon', 1978, 1983, 'Electricity Generation', 'Geothermal Power Plant. Electricity generation for sale through the National Grid.', null, 'Rural', 'Empalme hacia León Viejo, 2.7 Km al Norte, 12.5 al Noreste, Faldas del Volcán Momotombo, La Paz Centro, León, Nicaragua, C.A.', '12°23m39.63s', '86°32m28.09s', 90;
+EXEC report.proc_insert_plant 'Multigroup', 'Planta Candelaria', 'C.A', 'Guatemala', 'Escuintla', null, null, 'Production', 'Manufactura y comercialización de materiales industriales de acero.', 'I', 'Residential, Rural', 'Km.33.5 Carretera al Pacífico, Guatemala, C.A.', '14°26m21.26s', '90°39m01.71s', 1185;
+EXEC report.proc_insert_plant 'Multigroup', 'Megaplanta', 'C.A', 'Guatemala', 'Escuintla', 2002, 2003, 'Production', 'Manufactura y comercialización de materiales industriales de acero.', 'I', 'Residential, Rural', 'Km.39 Palín, Escuintla, Guatemala, C.A.', '14°24m22.71s', '90°41m14.83s', 1162;
+EXEC report.proc_insert_plant 'Nacional Agro Industrial, S.A. – NAISA', null, 'C.A', 'Guatemala', 'Peten', 2010, 2012, 'Production', 'Extraction of African palm oil, palmiste (African palm walnut) oil andpalmiste flour.', 'IV', 'Rural', 'Finca La Primavera, Km. 366.5, Carretera a Sayaxché, Petén, Guatemala, C.A.', '16°14m0.50s', '90°09m19.22s', 150;
+EXEC report.proc_insert_plant 'Naturaceites - Zolic', null, 'C.A', 'Guatemala', 'Izabal', null, 2014, 'Storage', 'Almacenamiento y despacho de aceites de exportación (palma africana y palmiste) y ácidos grasos, así como importación (soya).', 'IV', 'Rural', 'Km. 293.5 Ruta al Atlántico Norte, Santo Tomás de Castilla Puerto Barrios, Izabal, Guatemala', '15°41m29.97s', '88°36m14.10s', 857;
 
 -- Report table executables for data insertion
 -- Data has to be inserted in the following order:
@@ -716,6 +725,14 @@ EXEC report.proc_insert_report_table '9/mayo/2017', 'Reasinter, Intermadiario de
 EXEC report.proc_insert_report_table '3/septiembre/2015', 'Seguros Agromercantil, S.A.', 5321, 'Marlon Lira', null, '1100000,units', 40800, 230, 2, 'no', null, null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '3/septiembre/2015', 'Aseguradora General, S.A.', 5321, 'Marlon Lira', null, '1100000,units', 40800, 230, 2, 'no', null, null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '3/septiembre/2015', 'Seguros Mapfre - Guatemala', 5321, 'Marlon Lira', null, '1100000,units', 40800, 230, 2, 'no', null, null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '28/abril/2011', 'Tecniseguros, Corredores de Seguros, S.A.', 5322, 'Marlon Lira', null, '78,hangar', 14000, 25, 2.5, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'no';
+EXEC report.proc_insert_report_table '11/diciembre/2018', 'Bowring Marsh', 5323, 'Marlon Lira', null, '18.6,mw', 27000, 92, 2, 'si', null, null, null, 'si', 'si', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '1/enero/2018', 'Tecniseguros, Corredores de Seguros, S.A.', 5324, 'Marlon Lira', 'FSSC 22000, ISO 9001:2015', '30830,metric tons', 49890, 300, 1.5, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'no';
+EXEC report.proc_insert_report_table '14/diciembre/2016', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5325, 'Marlon Lira', null, '77,mw', 20000, 62, 3, 'si', 'Major fires', null, null, 'no', 'no', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '8/junio/2018', 'Aseguradora General, S.A.', 5326, 'Marlon Lira', null, null, 18000, null, 2.5, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '8/junio/2018', 'Aseguradora General, S.A.', 5327, 'Marlon Lira', null, '15000,tons/month', 47600, null, 2.5, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '24/julio/2019', 'Unity Promotores, S.A.', 5328, 'Rafael Grajeda', null, '45,metric tons/hour', null, 35, 2, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '9/marzo/2020', 'Unity Promotores, S.A.', 5329, 'Rafael Grajeda', null, '28140,metric tons', 8170, 16, 3, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -1020,6 +1037,14 @@ EXEC report.proc_insert_perils_and_risk_table 5372, 3, 1, 1, 1.5, 2.5, 2.5, 'non
 EXEC report.proc_insert_perils_and_risk_table 5373, 2.5, 1, 2, 2, 2, 2.5, 'none', 1, 1, 'none', 'none', 2;
 EXEC report.proc_insert_perils_and_risk_table 5374, 2.5, 1, 2, 2, 2, 2.5, 'none', 1, 1, 'none', 'none', 2;
 EXEC report.proc_insert_perils_and_risk_table 5375, 2.5, 1, 2, 2, 2, 2.5, 'none', 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5376, 'none', 1, 2.5, 2.5, 2, 2, 'none', 1, 1, 'none', 'none', 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5377, 2.5, 1, 2.5, 2, 2, 2.5, 1, 1, 1, 2, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5379, 2.5, 1, 2, 2, 2.5, 2.5, 'none', 1, 1, 1, 'none', 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5380, 3, 2, 2, 2, 2.5, 3, 'none', 1, 1, 1, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5381, 1, 2.5, 1, 2, 2.5, 3, 'none', 1, 1.5, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5382, 1, 1, 1, 2, 2.5, 3, 'none', 1, 1.5, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5383, 2.5, 'none', 1, 1.5, 1, 1.5, 'none', 1, 1, 1, 'none', 1.5;
+EXEC report.proc_insert_perils_and_risk_table 5384, 3, 'none', 2, 2, 2, 2, 1, 1, 1, 1, 'none', 1.5;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -1265,3 +1290,8 @@ EXEC report.proc_insert_loss_scenario_table 5368, 'Q,51837470.83', 97, 'Q,433613
 EXEC report.proc_insert_loss_scenario_table 5369, 'Q,124204675.24', 98, 'Q,25912600', 50, 'Q,36000000', 'Q,44204675.24', null, null, 'Q,44000000', null, 84, null;
 EXEC report.proc_insert_loss_scenario_table 5371, '$,64126547.54', 44, '$,32517235', 100, '$,18212492.84', '$,44765794.70+$,620260.00', null, null, '$,528000.00', null, 63, null;
 EXEC report.proc_insert_loss_scenario_table 5372, '$,43932100', 60, '$,5624178', 100, null, null, null, null, null, null, 65, null;
+EXEC report.proc_insert_loss_scenario_table 5377, '$,12728474', 73, '$,15591441', 100, '$,12728474', '$,28641500+$,205750', '$,980197', null, null, null, 80, null;
+EXEC report.proc_insert_loss_scenario_table 5379, '$,35333335.43', 65, null, null, '$,13590322', '$,10093136.05+$,344539.02', null, null, '$,11309406.72', null, 65, null;
+EXEC report.proc_insert_loss_scenario_table 5380, '$,124040073', 54, '$,14074442', 77, '$,3848737.07', '$,71399398.00+$,15471152.80+$,30270784.94', null, null, '$,3050000.00', null, 57, null;
+EXEC report.proc_insert_loss_scenario_table 5383, '$,20640105.00', 86, '$,3500000', 100, '$,3797452.00', '$,15101944.00+$,359007.00', null, null, '$,1381702.00', null, 88, null;
+EXEC report.proc_insert_loss_scenario_table 5384, '$,20250000', 52, null, null, '$,3670000+$,1580000', null, null, null, '$,6000000+$,9000000', null, 52, null;

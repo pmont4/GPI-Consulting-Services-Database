@@ -237,7 +237,7 @@ AS
 							IIF(pp.plant_parameters_installed_capacity IS NOT NULL AND pp.plant_parameters_installed_capacity > 0, 
 								IIF(pp.id_capacity_type IS NOT NULL,
 									IIF(pp.id_capacity_type = 1085 OR pp.id_capacity_type = 1024 OR pp.id_capacity_type = 1025 OR pp.id_capacity_type = 1026 OR pp.id_capacity_type = 1027 OR pp.id_capacity_type = 1042 OR pp.id_capacity_type = 1083
-										OR pp.id_capacity_type = 1035 OR pp.id_capacity_type = 1036 OR pp.id_capacity_type = 1037 OR pp.id_capacity_type = 1016 OR pp.id_capacity_type = 1017, CONCAT(FORMAT(pp.plant_parameters_installed_capacity, 'N0'), ' ', ct.capacity_type_name),
+										OR pp.id_capacity_type = 1035 OR pp.id_capacity_type = 1036 OR pp.id_capacity_type = 1037 OR pp.id_capacity_type = 1016 OR pp.id_capacity_type = 1017 OR pp.id_capacity_type = 1092, CONCAT(FORMAT(pp.plant_parameters_installed_capacity, 'N0'), ' ', ct.capacity_type_name),
 									CONCAT(FORMAT(pp.plant_parameters_installed_capacity, 'N2'), ' ', ct.capacity_type_name)), 
 								FORMAT(pp.plant_parameters_installed_capacity, 'N2')), 
 								'No installed capacity was saved') AS 'Installed capacity',
@@ -401,7 +401,5 @@ EXEC report.general_querys 'reportes'
 EXEC report.general_querys 'reportes por planta'
 EXEC report.general_querys 'reportes por ingeniero'
 EXEC report.general_querys 'cantidad de reportes'
-
-
 
 
