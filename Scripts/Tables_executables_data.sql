@@ -427,6 +427,12 @@ EXEC report.proc_insert_plant '
 EXEC report.proc_insert_plant 'Pan-Am Generating Limited S.A.', 'Pan-Am Generating Plant', 'C.A', 'Panama', 'Panama Oeste', 1997, 1999, 'Electricity Generation', 'Thermal Power Plant. Electricity generation for sale through the National Grid.', null, 'Rural', 'La Chorrera, Panamá Oeste', '8.909116', '-79.781068', 48;
 EXEC report.proc_insert_plant 'Panifresh', null, 'C.A', 'Guatemala', 'Guatemala', null, 1997, 'Production', 'Production and commercialization of bread based foods', null, 'Residential', '21-80 Av. Mariscal zona 11, Guatemala, Guatemala', '14°36m13.53s', '90°33m21.01s', 1512;
 EXEC report.proc_insert_plant 'Consorcio Eólico Amayo, S.A.', 'Amayo I & Amayo II', 'C.A', 'Nicaragua', 'Rivas', null, 2009, 'Electricity Generation', 'Wind Farm Power Plant; generation based on wind energy, with an installed capacity of 63 MW', null, 'Rural', '129 Km Pan-American Highway South, Municipality of Rivas, Nicara-gua, C.A.', '11.3233', '-85.7165', 39;
+EXEC report.proc_insert_plant 'Vientos de Electrotecnia, S.A. – Grupo Terra –', 'Chinchayote Wind Farm', 'C.A', 'Honduras', 'Choluteca', 2016, 2018, 'Electricity Generation', 'Electrical Power Plant: generation based on wind energy converting into electricity through fourteen (14) wind turbines.', null, 'Rural', 'Wind Farm Power Plant; generation based on wind energy, with an installed capacity of 48.3 MW', '13.3816', '-86.9560', 1250;
+EXEC report.proc_insert_plant 'Blue Power & Energy, S.A. – Grupo Terra –', 'La Fe - San Martín Wind Farm', 'C.A', 'Honduras', 'Rivas', 2011, 2012, 'Electricity Generation', 'Wind Farm Power Plant; generation based on wind energy, with an installed capacity of 39.6 MW', null, 'Rural', 'Rivas, Rivas, Honduras, C.A.', '11°24m12.63s', '85°48m11.04s', 60;
+EXEC report.proc_insert_plant 'Transmisión de Electricidad, S.A. (Tresa) – Grupo Terra –', 'Las Cumbres Wind Farm', 'C.A', 'Guatemala', 'Jutiapa', 2017, 2018, 'Electricity Generation', 'Wind Farm Power Plant; generation based on wind energy, with an installed capacity of 31.5 MW', null, 'Rural', 'Aldea Agua Blanca, Jutiapa, Guatemala, C.A.', '14.4440', '-89.5708', 900;
+EXEC report.proc_insert_plant 'San Antonio Wind Farm', 'San Antonio Wind Farm', 'C.A', 'Guatemala', 'Guatemala', 2014, 2015, 'Electricity Generation', 'Wind Farm Power Plant; generation based on wind energy, with an installed capacity of 55.2 MW.', null, 'Rural', 'Aldea Los Llanos, Villa Canales, Guatemala, C.A.', '14.360162', '-90.555872', 1226;
+EXEC report.proc_insert_plant 'Vientos de Electrotecnia, S.A. – Grupo Terra –', 'San Marcos Wind Farm', 'C.A', 'Honduras', 'Choluteca', 2013, 2015, 'Electricity Generation', 'Electrical Power Plant: generation based on wind energy converting into electricity through twenty nine (29) wind turbines.', null, 'Rural', 'Aldea Los Llanos, Villa Canales, Guatemala, C.A.', '13.4211', '-86.9268', 1370;
+EXEC report.proc_insert_plant 'Ventus Wind Farm', 'Ventus Wind Farm', 'C.A', 'El Salvador', 'Metapan', 2019, 2020, 'Electricity Generation', 'Wind Farm Power Plant; generation based on wind energy, with an installed capacity of 54 MW.', null, 'Rural', 'Metapán, El Salvador, C. A.', '14.3670', '-89.5012', 739;
 
 -- Report table executables for data insertion
 -- Data has to be inserted in the following order:
@@ -755,6 +761,12 @@ EXEC report.proc_insert_report_table '28/mayo/2013', 'Seguros Agromercantil, S.A
 EXEC report.proc_insert_report_table '29/abril/2022', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5336, 'Juan Diego Lacayo', 'ISO 9001, ISO 14001, ISO 45000', '145.5,mw', 9816, 45, 1, 'si', 'Major fires', 'Automatic Dry', 'III', 'si', 'no', 'si', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '20/mayo/2021', 'Unity Promotores, S.A.', 5337, 'Rafael Grajeda', 'HACCP, FSSC 22000, OEA, BRC', '96500,units/hour', 7162, 453, 1, 'no', null, null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'no';
 EXEC report.proc_insert_report_table '1/junio/2023', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5338, 'Jorge Cifuentes Garcia', null, '63,mw', 5034.59, 21, 2, 'no', null, null, null, 'no', 'si', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '19/septiembre/2022', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5339, 'Juan Diego Lacayo', null, '48.3,mw', 5439, 6, 2, 'no', null, null, null, 'no', 'si', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '5/septiembre/2018', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5340, 'Rafael Grajeda', null, '39.6,mw', null, 11, 2, 'no', null, null, null, 'no', 'si', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '23/septiembre/2022', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5341, 'Juan Diego Lacayo', null, '31.5,mw', null, 11, 1, 'no', null, null, null, 'no', 'si', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '6/abril/2022', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5342, 'Marlon Lira, Juan Diego Lacayo', null, '55.2,mw', 1751.87, 17, 2, 'no', null, null, null, 'no', 'si', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '19/septiembre/2022', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5343, 'Juan Diego Lacayo', null, '63.8,mw', null, 10, 2, 'no', null, null, null, 'no', 'si', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '15/marzo/2022', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5344, 'Marlon Lira, Juan Diego Lacayo', null, '54,mw', 611.44, 27, 2, 'no', null, null, null, 'no', 'si', 'no', 'si', 'no', 'si', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -1078,6 +1090,12 @@ EXEC report.proc_insert_perils_and_risk_table 5392, 'none', 1, 1.5, 2, 2, 1.5, '
 EXEC report.proc_insert_perils_and_risk_table 5393, 3, 1, 1, 2, 3, 2, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 5394, 2.5, 'none', 1, 1.5, 2, 2.5, 'none', 1, 1, 1, 1, 1.5;
 EXEC report.proc_insert_perils_and_risk_table 5395, 2, 1, 2.5, 2, 2, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5396, 2, 1, 1, 3, 3, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5397, 3, 1, 1, 2, 3, 3, 'none', 1, 1, 2, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5398, 2, 1, 1, 1, 2.5, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5399, 2.5, 1, 1, 2, 3, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5400, 2, 1, 1, 3, 3, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5401, 2, 1, 1, 2, 3, 2.5, 'none', 1, 1, 1, 1, 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -1337,3 +1355,9 @@ EXEC report.proc_insert_loss_scenario_table 5390, '$,98128582', 25, '$,20809069'
 EXEC report.proc_insert_loss_scenario_table 5393, '$,152928431', 78, '$,48500000', 100, null, null, null, null, null, null, 83, null;
 EXEC report.proc_insert_loss_scenario_table 5394, 'Q,141520674', 99, null, null, 'Q,25310000', 'Q,95856350.07+Q,5235835.59', null, null, 'Q,9412744.70+Q,5705743.76', null, 99, null;
 EXEC report.proc_insert_loss_scenario_table 5395, '$,105951000', 4, '$,21864025', 100, null, null, null, null, null, null, 20, null;
+EXEC report.proc_insert_loss_scenario_table 5396, '$,81155484', 4, '$,32168854', 100, null, '$,3246219', null, null, null, null, 31, null; 
+EXEC report.proc_insert_loss_scenario_table 5397, '$,90756000', 10, '$,17965000', 100, null, null, null, null, null, null, 25, null; 
+EXEC report.proc_insert_loss_scenario_table 5398, '$,59236186', 4, '$,15019500', 100, null, '$,2369447', null, null, null, null, 23, null; 
+EXEC report.proc_insert_loss_scenario_table 5399, '$,77393090', 5.4, '$,19400000', 100, '$,6088000', '$,4174000+$,6036000+$,55200000+$,3702000', null, null, null, null, 24.4, null; 
+EXEC report.proc_insert_loss_scenario_table 5400, '$,119725420', 4, '$,36446999', 100, null, '$,5036059', null, null, null, null, 27, null; 
+EXEC report.proc_insert_loss_scenario_table 5401, '$,64403925', 8, '$,19200000', 100, null, null, null, null, null, null, 29, null; 
