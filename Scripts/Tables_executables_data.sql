@@ -18,6 +18,8 @@ EXEC report.proc_insert_engineer 'Juan Diego Lacayo', 'jdlacayo@gpiconsultingser
 EXEC report.proc_insert_engineer 'Eduardo Bracamonte', 'ebracamonte@grupoprointegra.com';
 EXEC report.proc_insert_engineer 'Laura Palma', null;
 EXEC report.proc_insert_engineer 'Jaime Castillo', null;
+EXEC report.proc_insert_engineer 'Byron de Leon', 'bdeleon@gpiconsultingservices.com';
+
 
 -- Client table executables for data insertion
 -- Data is being inserted in the following order
@@ -416,6 +418,15 @@ EXEC report.proc_insert_plant '
 EXEC report.proc_insert_plant 'Multigroup', 'Megaplanta', 'C.A', 'Guatemala', 'Escuintla', 2002, 2003, 'Production', 'Manufactura y comercialización de materiales industriales de acero.', 'I', 'Residential, Rural', 'Km.39 Palín, Escuintla, Guatemala, C.A.', '14°24m22.71s', '90°41m14.83s', 1162;
 EXEC report.proc_insert_plant 'Nacional Agro Industrial, S.A. – NAISA', null, 'C.A', 'Guatemala', 'Peten', 2010, 2012, 'Production', 'Extraction of African palm oil, palmiste (African palm walnut) oil andpalmiste flour.', 'IV', 'Rural', 'Finca La Primavera, Km. 366.5, Carretera a Sayaxché, Petén, Guatemala, C.A.', '16°14m0.50s', '90°09m19.22s', 150;
 EXEC report.proc_insert_plant 'Naturaceites - Zolic', null, 'C.A', 'Guatemala', 'Izabal', null, 2014, 'Storage', 'Almacenamiento y despacho de aceites de exportación (palma africana y palmiste) y ácidos grasos, así como importación (soya).', 'IV', 'Rural', 'Km. 293.5 Ruta al Atlántico Norte, Santo Tomás de Castilla Puerto Barrios, Izabal, Guatemala', '15°41m29.97s', '88°36m14.10s', 857;
+EXEC report.proc_insert_plant 'Naturaceites – Escuintla', 'Naturaceites Refinery Plant', 'C.A', 'Guatemala', 'Escuintla', null, 1984, 'Production', 'Refinement (Refined, Bleached and Deodorized), Fractioning (Stearin and Olein), manufacturing and packaging of finished goods (palm oil, vegetable shortening, among others).', 'IV', 'Industrial, Rural', 'Km. 60.4 Antigua Carretera a Puerto San José, Escuintla, Guatemala', '14.277148', '-90.791103', 290;
+EXEC report.proc_insert_plant 'Naturaceites - Pataxte', null, 'C.A', 'Guatemala', 'Izabal', 2001, 2002, 'Production', 'Industrial plant dedicated to the ex-traction of Crude Palm Oil (CPO), Palm Kernel oil (PKO) and palmiste flour.', 'IV', 'Rural', 'Km 265, Finca Pataxte, El Estor, Izabal, Guatemala, C.A.', '15.3464', '-89.2933', 31;
+EXEC report.proc_insert_plant 'Necasa, S.A.', null, 'C.A', 'Guatemala', 'Guatemala', 2015, null, 'Real State', 'Obras de preparación y mitigación para futuro desarrollo inmobiliario', null, 'Industrial, Commercial, Residential', 'Diagonal 29, 21-06, zona 5, Guatemala, C.A.', '14.6252', '-90.4884', null;
+EXEC report.proc_insert_plant 'TC Transcontinental / Olefinas, S.A.', 'Olefinas, S.A.', 'C.A', 'Guatemala', 'Guatemala', 1979, 1959, 'Production', 'Producción de agro plásticos para agricultura moderna y artículos tales como sogas (pita agrícola), lazos, bolsas y etiquetas.', 'IV', 'Industrial, Residential', '1ª. Calle 2-01, Zona 6 Villa Nueva, Guatemala', '14.529412', '-90.588807', 1340;
+EXEC report.proc_insert_plant 'Operadora de Terminales, S.A.', 'OTSA', 'C.A', 'Guatemala', 'Escuintla', 2001, 2002, 'Storage', 'Fuels Tank Farm. Reception, storage and dispatch of fossil fuels: Diesel, Gasoline and Fuel Oil.', 'IV', 'Industrial, Residential', 'Km. 113, Carretera a Chulamar, Puerto San José, Escuintla, Guatemala.', '13.920308', '-90.849368', 10;
+EXEC report.proc_insert_plant 'Palmas del Ixcán', 'Palmas del Ixcán – Rubelsanto', 'C.A', 'Guatemala', 'Alta Verapaz', 2011, 2013, 'Production', 'Production of African Palm Oil, Palmiste Oil and Palmiste Flour', 'IV', 'Rural', 'Finca Victoria (Chiribiscal), Km. 330 Carretera a Playa Grande, Chisec, Alta Verapaz, Guatemala, C.A.', '15°59m24.21s', '90°28m00.43s', 150;
+EXEC report.proc_insert_plant 'Pan-Am Generating Limited S.A.', 'Pan-Am Generating Plant', 'C.A', 'Panama', 'Panama Oeste', 1997, 1999, 'Electricity Generation', 'Thermal Power Plant. Electricity generation for sale through the National Grid.', null, 'Rural', 'La Chorrera, Panamá Oeste', '8.909116', '-79.781068', 48;
+EXEC report.proc_insert_plant 'Panifresh', null, 'C.A', 'Guatemala', 'Guatemala', null, 1997, 'Production', 'Production and commercialization of bread based foods', null, 'Residential', '21-80 Av. Mariscal zona 11, Guatemala, Guatemala', '14°36m13.53s', '90°33m21.01s', 1512;
+EXEC report.proc_insert_plant 'Consorcio Eólico Amayo, S.A.', 'Amayo I & Amayo II', 'C.A', 'Nicaragua', 'Rivas', null, 2009, 'Electricity Generation', 'Wind Farm Power Plant; generation based on wind energy, with an installed capacity of 63 MW', null, 'Rural', '129 Km Pan-American Highway South, Municipality of Rivas, Nicara-gua, C.A.', '11.3233', '-85.7165', 39;
 
 -- Report table executables for data insertion
 -- Data has to be inserted in the following order:
@@ -733,6 +744,17 @@ EXEC report.proc_insert_report_table '8/junio/2018', 'Aseguradora General, S.A.'
 EXEC report.proc_insert_report_table '8/junio/2018', 'Aseguradora General, S.A.', 5327, 'Marlon Lira', null, '15000,tons/month', 47600, null, 2.5, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '24/julio/2019', 'Unity Promotores, S.A.', 5328, 'Rafael Grajeda', null, '45,metric tons/hour', null, 35, 2, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '9/marzo/2020', 'Unity Promotores, S.A.', 5329, 'Rafael Grajeda', null, '28140,metric tons', 8170, 16, 3, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '14/marzo/2023', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5330, 'Juan Diego Lacayo', null, '350,metric tons/day', 28190.91, 350, 1, 'si', 'Minor fires', 'Automatic Wet', 'II', 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '20/marzo/2023', 'Reasinter, Intermadiario de Reaseguro, S.A.', 4092, 'Juan Diego Lacayo', 'RSPO', '120,metric tons/hour', 65195.38, 240, 1, 'si', 'Minor fires', 'Manual Wet', 'II', 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '23/marzo/2023', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5331, 'Juan Jose Lira', 'RSPO', '60,metric tons/hour', 17080, 120, 1, 'si', 'Minor fires', 'Manual Wet', 'II', 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '16/octubre/2016', 'Tecniseguros, Corredores de Seguros, S.A.', 5332, 'Marlon Lira, Byron De Leon ', null, null, null, null, 2, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'no';
+EXEC report.proc_insert_report_table '5/abril/2022', 'Aseguradora General, S.A.', 5333, 'Juan Diego Lacayo', 'OSHA 1904', '2800,tons/month', 10000, 497, 2, 'si', 'Minor fires', 'Automatic Wet', 'II', 'no', 'no', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '5/abril/2022', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5334, 'Marlon Lira, Juan Diego Lacayo', 'PBIP, OSHA 3132', '1134000,barrels', 113500, 42, 2, 'si', 'Major fires', 'Automatic Wet', 'III', 'si', 'no', 'no', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '26/march/2019', 'Unity Promotores, S.A.', 5335, 'Rafael Grajeda', null, '60,metric tons/hour', 71717, 20, 2, 'si', 'Minor fires', null, null, 'si', 'no', 'no', 'si', 'si', 'si', 'si';
+EXEC report.proc_insert_report_table '28/mayo/2013', 'Seguros Agromercantil, S.A.', 5335, 'Marlon Lira', null, '40,metric tons/hour', 5000, 40, 1, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '29/abril/2022', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5336, 'Juan Diego Lacayo', 'ISO 9001, ISO 14001, ISO 45000', '145.5,mw', 9816, 45, 1, 'si', 'Major fires', 'Automatic Dry', 'III', 'si', 'no', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '20/mayo/2021', 'Unity Promotores, S.A.', 5337, 'Rafael Grajeda', 'HACCP, FSSC 22000, OEA, BRC', '96500,units/hour', 7162, 453, 1, 'no', null, null, null, 'no', 'no', 'no', 'si', 'no', 'si', 'no';
+EXEC report.proc_insert_report_table '1/junio/2023', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5338, 'Jorge Cifuentes Garcia', null, '63,mw', 5034.59, 21, 2, 'no', null, null, null, 'no', 'si', 'no', 'si', 'no', 'si', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -1045,6 +1067,17 @@ EXEC report.proc_insert_perils_and_risk_table 5381, 1, 2.5, 1, 2, 2.5, 3, 'none'
 EXEC report.proc_insert_perils_and_risk_table 5382, 1, 1, 1, 2, 2.5, 3, 'none', 1, 1.5, 'none', 'none', 2;
 EXEC report.proc_insert_perils_and_risk_table 5383, 2.5, 'none', 1, 1.5, 1, 1.5, 'none', 1, 1, 1, 'none', 1.5;
 EXEC report.proc_insert_perils_and_risk_table 5384, 3, 'none', 2, 2, 2, 2, 1, 1, 1, 1, 'none', 1.5;
+EXEC report.proc_insert_perils_and_risk_table 5385, 3, 2, 1.5, 2, 2, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5386, 2.5, 'none', 2, 2, 2.5, 2, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5387, 2.5, 'none', 2, 2, 2.5, 2.5, 'none', 1, 1, 2, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5388, 1, 1.5, 1, 1, 1, 2.5, 'none', 1, 1, 1, 1, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 5389, 3, 1, 1, 2, 2, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5390, 3, 'none', 2, 2, 3, 3, 3, 1, 1, 1, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5391, 2.5, 'none', 1, 1.5, 2, 2, 'none', 1, 1, 2, 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5392, 'none', 1, 1.5, 2, 2, 1.5, 'none', 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5393, 3, 1, 1, 2, 3, 2, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5394, 2.5, 'none', 1, 1.5, 2, 2.5, 'none', 1, 1, 1, 1, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 5395, 2, 1, 2.5, 2, 2, 2.5, 'none', 1, 1, 1, 1, 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -1295,3 +1328,12 @@ EXEC report.proc_insert_loss_scenario_table 5379, '$,35333335.43', 65, null, nul
 EXEC report.proc_insert_loss_scenario_table 5380, '$,124040073', 54, '$,14074442', 77, '$,3848737.07', '$,71399398.00+$,15471152.80+$,30270784.94', null, null, '$,3050000.00', null, 57, null;
 EXEC report.proc_insert_loss_scenario_table 5383, '$,20640105.00', 86, '$,3500000', 100, '$,3797452.00', '$,15101944.00+$,359007.00', null, null, '$,1381702.00', null, 88, null;
 EXEC report.proc_insert_loss_scenario_table 5384, '$,20250000', 52, null, null, '$,3670000+$,1580000', null, null, null, '$,6000000+$,9000000', null, 52, null;
+EXEC report.proc_insert_loss_scenario_table 5385, '$,29700000', 68, null, null, null, null, null, null, null, null, 68, null;
+EXEC report.proc_insert_loss_scenario_table 5386, '$,47315009', 55, null, null, null, '$,4025484+$,2974516', null, null, null, null, null, null;
+EXEC report.proc_insert_loss_scenario_table 5387, '$,23500000', 55, null, null, null, null, null, null, null, null, null, null;
+EXEC report.proc_insert_loss_scenario_table 5388, '$,24232305', 21, null, null, '$,5519481+$,12987+$,1875000+$,725000+$,850000+$,170455+$,81169+$,35714+$,74675+$,68182+$,7795455+$,24188+$,7000000', null, null, null, null, null, null, null;
+EXEC report.proc_insert_loss_scenario_table 5389, '$,113553544', 85, '$,81016905', 100, '$,35057550', '$,44378930', '$,14250', null, '$,34102814', null, 91, null;
+EXEC report.proc_insert_loss_scenario_table 5390, '$,98128582', 25, '$,20809069', 20, null, null, null, null, '$,32000000', null, 23, null;
+EXEC report.proc_insert_loss_scenario_table 5393, '$,152928431', 78, '$,48500000', 100, null, null, null, null, null, null, 83, null;
+EXEC report.proc_insert_loss_scenario_table 5394, 'Q,141520674', 99, null, null, 'Q,25310000', 'Q,95856350.07+Q,5235835.59', null, null, 'Q,9412744.70+Q,5705743.76', null, 99, null;
+EXEC report.proc_insert_loss_scenario_table 5395, '$,105951000', 4, '$,21864025', 100, null, null, null, null, null, null, 20, null;
