@@ -54,6 +54,7 @@ EXEC report.proc_insert_client 'Carpenter Marsh Fac / Marsh Rehder';
 EXEC report.proc_insert_client 'Garret Unicem Corredora';
 EXEC report.proc_insert_client 'Seguros y Fianzas "El Roble"';
 EXEC report.proc_insert_client 'Seguros G&T';
+EXEC report.proc_insert_client 'MESOAMERICA INDEMNITY LIMITED';
 
 -- Capacity type table executables for data insertion
 -- Data is being inserted in the following order
@@ -109,6 +110,7 @@ EXEC report.proc_insert_capacity_type 'm2';
 EXEC report.proc_insert_capacity_type 'yards/month';
 EXEC report.proc_insert_capacity_type 'rooms';
 EXEC report.proc_insert_capacity_type 'hangar';
+EXEC report.proc_insert_capacity_type 'm3/sec';
 
 -- Merchandise classification table executables for data insertion
 -- Data is being inserted in the following order
@@ -460,6 +462,13 @@ EXEC report.proc_insert_plant '
 EXEC report.proc_insert_plant 'Productos Alimenticios Diana', null, 'C.A', 'El Salvador', 'San Salvador', 1968, 1968, 'Production', 'Snacks production plant. Corn, plantain, extruded and potato snacks, seeds, cookies and candy.', 'III', 'Industrial, Residential', '12 Ave. Sur, #11, Colonia Guadalupe, Soyapango, Apartado Postal 177, San Salvador, El Salvador, C.A.', '13.7003', '-89.1428', 631;
 EXEC report.proc_insert_plant 'Pantaleon Sugar Holding – PSH', 'Bio-Etanol', 'C.A', 'Guatemala', 'Escuintla', 2003, 2007, 'Production', 'Ethanol (ethyl alcohol) production and storage', 'IV', 'Rural', 'Km. 86.5 Carretera al Pacífico, Siquinalá, Escuintla, Guatemala, C.A.', '14°19m57.63s', '90°59m39.75s', 427;
 EXEC report.proc_insert_plant 'Pantaleon Sugar Holding – PSH', 'Concepcion Sugar Mill', 'C.A', 'Guatemala', 'Escuintla', null, null, 'Production', 'Sugar production and Electrical Energy cogeneration.', 'III', 'Rural', 'Finca Concepción, Escuintla, Guatemala, C.A.', '14°19m49.40s', '90°47m14.10s', 447;
+EXEC report.proc_insert_plant 'Pantaleon Sugar Holding – PSH', 'La Grecia Mill', 'C.A', 'Honduras', 'Choluteca', 1976, null, 'Production', 'Sugar production and Electrical Energy cogeneration.', 'III', 'Rural', 'Km. 21 Carretera a Cedeño, Marcovia, Choluteca, Honduras, C.A.', '13°14m36.43s', '87°21m13.57s', 17;
+EXEC report.proc_insert_plant 'Pantaleon Sugar Holding – PSH', 'Monte Rosa Sugar Mill', 'C.A', 'Nicaragua', 'Chinandega', 1946, null, 'Production', 'Sugar production and Electrical Energy cogeneration.', 'III', 'Rural', 'Km. 148.5 Carretera El Viejo-Potosi, Chinandega, Nicaragua, C.A.', '12°42m27.87s', '87°14m01.93s', 37;
+EXEC report.proc_insert_plant 'Pantaleon Sugar Holding – PSH', 'Pantaleon Sugar Mill', 'C.A', 'Guatemala', 'Escuintla', 1984, null, 'Production', 'Sugar production and Electrical Energy cogeneration.', 'III', 'Rural', 'Km. 86.5 Carretera al Pacífico, Siquinalá, Escuintla, Guatemala, C.A.', '14°20m19.14s', '90°59m15.58s', 454;
+EXEC report.proc_insert_plant 'Pantaleon Sugar Holding – PSH', 'Panuco Sugar Mill', 'N.A', 'Mexico', 'Veracruz', 1876, null, 'Production', 'Sugar production and Electrical Energy cogeneration.', 'III', 'Rural', 'Calle Alto del Estero, localidad Alto del Estero, Pánuco, Veracruz, México', '22°01m03.86s', '98°10m49.22s', 19;
+EXEC report.proc_insert_plant 'Pantaleon Sugar Holding – PSH', 'El Mante Sugar Mill', 'N.A', 'Mexico', 'Tamaulipas', null, 1930, 'Production', 'Sugar manufacturing and power generation', 'III', 'Residential, Rural', 'Av. Gral. Aarón Sáenz Garza 901, Ciudad Mante, Tamaulipas, México', '22.7262', '-98.9809', 85;
+EXEC report.proc_insert_plant 'Planta de Tratamiento de Aguas Residuales (PTAR)', null, 'N.A', 'Mexico', 'Hidalgo', 2010, 2017, 'Waste Water Treatment', 'Planta de Tratamiento de aguas Residuales mediante procesos químicos y bilógicos.', null, 'Rural', 'Proyecto Atotonilco Km.6, Carretera Santa Antonio, San José Acoculco Ejido “Conejos”. C.P. 42990, Atotonilco de Tula, Hidalgo, México.', '19°57m22s', '99°17m42s', 2150;
+EXEC report.proc_insert_plant 'Repimex, S.A.', null, 'c.A', 'Guatemala', 'Escuintla', 2011, 2014, 'Storage', 'Reception, storage and dispatch of bulk mineral coal', null, 'Industrial', 'Recinto Portuario Puerto Quetzal, Escuintla, Guatemala, C.A.', '13°55m38.10s', '99°47m48.45s', 6;
 
 -- Report table executables for data insertion
 -- Data has to be inserted in the following order:
@@ -820,6 +829,18 @@ EXEC report.proc_insert_report_table '19/septiembre/2017', 'Seguros Agromercanti
 EXEC report.proc_insert_report_table '18/abril/2023', 'Tecniseguros, Corredores de Seguros, S.A.', 5366, 'Marlon Lira, Jorge Cifuentes Garcia', null, '68000,metric tons/year', 33199, 3000, 2, 'si', 'Minor fires', 'Automatic Wet', 'II', 'no', 'no', 'no', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '28/marzo/2014', 'Tecniseguros, Corredores de Seguros, S.A.', 5367, 'Laura Palma', null, '600000,liters/day', null, 45, 2, 'si', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '29/marzo/2014', 'Tecniseguros, Corredores de Seguros, S.A.', 5368, 'Marlon Lira', 'ISO 900:2000', '9233,short tons/day', null, 450, 2, 'si', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '8/abril/2014', 'Tecniseguros, Corredores de Seguros, S.A.', 5369, 'Marlon Lira', null, '8695,short tons/day', null, 385, 2, 'si', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '7/abril/2014', 'Tecniseguros, Corredores de Seguros, S.A.', 5370, 'Marlon Lira', 'ISO 9000:2000, ISO 14000, OHSAS 18000, HACCP', '16740,short tons/day', null, 350, 2, 'si', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '28/marzo/2014', 'Tecniseguros, Corredores de Seguros, S.A.', 5371, 'Marlon Lira', null, '30434,short tons/day', null, 350, 2, 'si', null, null, null, 'no', 'no', 'si', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '6/mayo/2014', 'Tecniseguros, Corredores de Seguros, S.A.', 5372, 'Marlon Lira', null, '10870,short tons/day', null, 500, 2.5, 'si', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'no';
+EXEC report.proc_insert_report_table '21/marzo/2016', 'Generali Global Corporate & Commercial', 5367, 'Juan Jose Lira', null, '450000,liters/day', 19440, 45, 2, 'si', null, null, null, 'si', 'no', 'si', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '17/marzo/2016', 'Generali Global Corporate & Commercial', 5368, 'Juan Jose Lira', null, '9364.6,short tons/day', 30345, 377, null, 'si', null, null, null, 'no', 'no', 'si', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '7/marzo/2016', 'Generali Global Corporate & Commercial', 5371, 'Juan Jose Lira', null, '31935,short tons/day', 32800, 875, null, 'si', null, null, null, 'no', 'no', 'si', 'no', 'no', 'si', 'no';
+EXEC report.proc_insert_report_table '6/abril/2016', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5367, 'Marlon Lira', null, '600000,liters/day', 23600, 48, 2, 'si', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '16/marzo/2018', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5371, 'Marlon Lira', 'ISO 9001:2000, FSSC 22000, Kosher, HACCP, ISCC Plus, Bonsucro.', '31520,short tons/day', null, 782, 2, 'si', 'Major fires', null, null, 'no', 'no', 'si', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '21/abril/2022', 'MESOAMERICA INDEMNITY LIMITED', 5373, 'Marlon Lira', null, '10000,short tons/day', null, 682, 1, 'si', 'Major fires', 'Automatic Wet', 'I', 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '27/marzo/2017', 'Generali Global Corporate & Commercial', 5374, 'Marlon Lira, Byron de Leon', null, '50,m3/sec', null, 130, 1, 'si', 'Major fires', null, null, 'si', 'no', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '7/julio/2015', 'Seguros Agromercantil, S.A.', 5375, 'Marlon Lira, Laura Palma', null, '300000,tons', null, 52, 2.5, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -1175,6 +1196,18 @@ EXEC report.proc_insert_perils_and_risk_table 5424, 'none', 'none', 2, 2, 2, 2.5
 EXEC report.proc_insert_perils_and_risk_table 5425, 3, 'none', 2, 1, 2, 3, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 5426, 2.5, 'none', 2, 2, 2.5, 2.5, 'none', 1, 1, 'none', 'none', 2.5;
 EXEC report.proc_insert_perils_and_risk_table 5427, 2, 'none', 1, 2, 2, 2.5, 'none', 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5428, 2, 'none', 3, 2, 1, 2.5, 1, 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5429, 2, 'none', 3, 2, 1, 2.5, 1, 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5430, 2, 'none', 2, 2, 2, 2.5, 'none', 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5431, 2, 'none', 2.5, 1, 2.5, 1, 1, 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5432, 'none', 1, 1, 2, 3, 3, 1, 'none', 1, 2, 3, 2;
+EXEC report.proc_insert_perils_and_risk_table 5433, 'none', 1, 1, 2, 3, 3, 1, 'none', 1, 2, 3, 2;
+EXEC report.proc_insert_perils_and_risk_table 5434, 'none', 1, 1, 2, 3, 3, 1, 'none', 1, 2, 3, 2;
+EXEC report.proc_insert_perils_and_risk_table 5435, 2.5, 1, 2, 2, 2.5, 2.5, 'none', 1, 1, 'none', 'none', 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5436, 2.5, 1, 2, 2, 2.5, 2.5, 'none', 1, 1, 1.5, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5437, 2.5, 'none', 1, 1.5, 2.5, 1, 'none', 1, 1, 2, 2, 2;
+EXEC report.proc_insert_perils_and_risk_table 5438, 2.5, 1, 2, 1, 2, 1.5, 'none', 1, 1, 1, 1.5, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 5439, 'none', 1, 3, 3, 3, 2.5, 2.5, 2, 1, 'none', 'none', 2.5;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -1459,3 +1492,11 @@ EXEC report.proc_insert_loss_scenario_table 5420, 'Q,28511000.00', 100, 'Q,35600
 EXEC report.proc_insert_loss_scenario_table 5421, 'Q,293924148.07', null, 'Q,67656238.00', null, 'Q,63314000.00', 'Q,147098148.07+Q,1312000.00', null, null, 'Q,82200000.00', null, null, 90; 
 EXEC report.proc_insert_loss_scenario_table 5425, '$,164385305.75', 100, '$,57772719', 90, '$,156359731.61', null, null, null, '$,8025574.14', null, null, 97; 
 EXEC report.proc_insert_loss_scenario_table 5426, '$,164385305.75', 100, '$,57772719', 90, '$,156359731.61', null, null, null, '$,8025574.14', null, null, 97; 
+EXEC report.proc_insert_loss_scenario_table 5432, '$,54000000', 65, '$,7810823', 75, null, null, null, null, null, null, 66, null; 
+EXEC report.proc_insert_loss_scenario_table 5433, '$,63044444', 67, '$,53012871', 100, null, null, null, null, null, null, 79, null; 
+EXEC report.proc_insert_loss_scenario_table 5434, '$,205151205', 64, '$,164233765', 100, null, null, null, null, null, null, 76, null; 
+EXEC report.proc_insert_loss_scenario_table 5435, '$,54000000', 65, '$,7810923', 75, null, null, null, null, null, null, 66, null; 
+EXEC report.proc_insert_loss_scenario_table 5436, '$,205336747', 69, '$,173947864', 100, null, null, null, null, null, null, 81, null; 
+EXEC report.proc_insert_loss_scenario_table 5437, '$,116400000', 46, '$,30869210', 100, '$,65336467+$,51063533', null, null, null, null, null, 58, null; 
+EXEC report.proc_insert_loss_scenario_table 5438, '$,704726292', null, null, null, '$,25356102+$,24833818+$,10174053+$,11236322+$,2983555+$,29942746+$,884656', '$,289825763+$,35313258+$,161385579+$,41323756+$,68834577+$,2632107', null, null, null, null, null, 16; 
+EXEC report.proc_insert_loss_scenario_table 5439, '$,13495597.00', null, '$,3500000', null, '$,2088077.00+$,2067547.00+$,1180392.00+$,3859581.00', '$,4300000.00', null, null, null, null, null, 35; 
