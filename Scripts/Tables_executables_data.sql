@@ -55,6 +55,7 @@ EXEC report.proc_insert_client 'Garret Unicem Corredora';
 EXEC report.proc_insert_client 'Seguros y Fianzas "El Roble"';
 EXEC report.proc_insert_client 'Seguros G&T';
 EXEC report.proc_insert_client 'MESOAMERICA INDEMNITY LIMITED';
+EXEC report.proc_insert_client 'SAE A INTERNACIONAL';
 
 -- Capacity type table executables for data insertion
 -- Data is being inserted in the following order
@@ -111,6 +112,7 @@ EXEC report.proc_insert_capacity_type 'yards/month';
 EXEC report.proc_insert_capacity_type 'rooms';
 EXEC report.proc_insert_capacity_type 'hangar';
 EXEC report.proc_insert_capacity_type 'm3/sec';
+EXEC report.proc_insert_capacity_type 'apartments';
 
 -- Merchandise classification table executables for data insertion
 -- Data is being inserted in the following order
@@ -469,6 +471,9 @@ EXEC report.proc_insert_plant '
 EXEC report.proc_insert_plant 'Pantaleon Sugar Holding – PSH', 'El Mante Sugar Mill', 'N.A', 'Mexico', 'Tamaulipas', null, 1930, 'Production', 'Sugar manufacturing and power generation', 'III', 'Residential, Rural', 'Av. Gral. Aarón Sáenz Garza 901, Ciudad Mante, Tamaulipas, México', '22.7262', '-98.9809', 85;
 EXEC report.proc_insert_plant 'Planta de Tratamiento de Aguas Residuales (PTAR)', null, 'N.A', 'Mexico', 'Hidalgo', 2010, 2017, 'Waste Water Treatment', 'Planta de Tratamiento de aguas Residuales mediante procesos químicos y bilógicos.', null, 'Rural', 'Proyecto Atotonilco Km.6, Carretera Santa Antonio, San José Acoculco Ejido “Conejos”. C.P. 42990, Atotonilco de Tula, Hidalgo, México.', '19°57m22s', '99°17m42s', 2150;
 EXEC report.proc_insert_plant 'Repimex, S.A.', null, 'c.A', 'Guatemala', 'Escuintla', 2011, 2014, 'Storage', 'Reception, storage and dispatch of bulk mineral coal', null, 'Industrial', 'Recinto Portuario Puerto Quetzal, Escuintla, Guatemala, C.A.', '13°55m38.10s', '99°47m48.45s', 6;
+EXEC report.proc_insert_plant 'Residenciales Petápolis – Torre A', null, 'c.A', 'Guatemala', 'Guatemala', 2019, null, 'Real State', 'Edificio para uso residencial (exclusivo para vivienda).', null, 'Industrial, Commercial', '48 calle 19-40 zona 12, Guatemala, Guatemala.', '14.565357', '-90.550267', 1443;
+EXEC report.proc_insert_plant 'SAE-A Trading Co. Ltd', 'Bodega Hilo (Palín)', 'C.A', 'Guatemala', 'Guatemala', 1986, null, 'Storage', 'Yarn warehousing (for fabric manufacturing)', 'IV', 'Industrial', 'Km 37.5 Carretera al Pacífico, Parque Nueva Esperanza, Bodega No.3, Palín, Escuintla, Guatemala, C.A.', '14.409738', '-90.679504', 1170;
+EXEC report.proc_insert_plant 'SAE-A Trading Co. Ltd - Parque Industrial Mixco', 'CENTEXSA I', 'C.A', 'Guatemala', 'Guatemala', 1986, null, 'Production', 'Garment Manufacturing (cutting and sewing)', 'IV', 'Industrial, Commercial, Residential', '1ª Avenida, La Brigada 13-30, zona 7 de Mixco, Guatemala, C.A.', '14.642124', '-90.597798', 1665;
 
 -- Report table executables for data insertion
 -- Data has to be inserted in the following order:
@@ -841,6 +846,9 @@ EXEC report.proc_insert_report_table '16/marzo/2018', 'Reasinter, Intermadiario 
 EXEC report.proc_insert_report_table '21/abril/2022', 'MESOAMERICA INDEMNITY LIMITED', 5373, 'Marlon Lira', null, '10000,short tons/day', null, 682, 1, 'si', 'Major fires', 'Automatic Wet', 'I', 'no', 'no', 'no', 'no', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '27/marzo/2017', 'Generali Global Corporate & Commercial', 5374, 'Marlon Lira, Byron de Leon', null, '50,m3/sec', null, 130, 1, 'si', 'Major fires', null, null, 'si', 'no', 'si', 'si', 'no', 'si', 'si';
 EXEC report.proc_insert_report_table '7/julio/2015', 'Seguros Agromercantil, S.A.', 5375, 'Marlon Lira, Laura Palma', null, '300000,tons', null, 52, 2.5, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '27/septiembre/2021', 'Seguros Agromercantil, S.A.', 5376, 'Rafael Grajeda', null, '238,apartments', 2500, null, 1, 'si', 'Minor fires', 'Automatic Wet', 'II', 'no', 'no', 'no', 'si', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '12/noviembre/2020', 'SAE A INTERNACIONAL', 5377, 'Rafael Grajeda', null, '2000000,kilograms', 3000, 8, 2, 'si', 'Minor fires', null, 'II', 'no', 'no', 'no', 'no', 'no', 'no', 'no';
+EXEC report.proc_insert_report_table '6/noviembre/2020', 'SAE A INTERNACIONAL', 5378, 'Rafael Grajeda', null, '25000,units/day', 6200, 513, 2, 'si', 'Minor fires', 'Automatic Wet', 'II', 'no', 'no', 'no', 'si', 'si', 'si', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -1208,6 +1216,9 @@ EXEC report.proc_insert_perils_and_risk_table 5436, 2.5, 1, 2, 2, 2.5, 2.5, 'non
 EXEC report.proc_insert_perils_and_risk_table 5437, 2.5, 'none', 1, 1.5, 2.5, 1, 'none', 1, 1, 2, 2, 2;
 EXEC report.proc_insert_perils_and_risk_table 5438, 2.5, 1, 2, 1, 2, 1.5, 'none', 1, 1, 1, 1.5, 1.5;
 EXEC report.proc_insert_perils_and_risk_table 5439, 'none', 1, 3, 3, 3, 2.5, 2.5, 2, 1, 'none', 'none', 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5440, 2, 'none', 1, 2, 2, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5441, 3, 'none', 'none', 2, 3, 2.5, 'none', 1, 1, 1, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5442, 2.5, 'none', 1, 2, 3, 2.5, 'none', 1, 1, 1, 1, 2.5;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -1500,3 +1511,5 @@ EXEC report.proc_insert_loss_scenario_table 5436, '$,205336747', 69, '$,17394786
 EXEC report.proc_insert_loss_scenario_table 5437, '$,116400000', 46, '$,30869210', 100, '$,65336467+$,51063533', null, null, null, null, null, 58, null; 
 EXEC report.proc_insert_loss_scenario_table 5438, '$,704726292', null, null, null, '$,25356102+$,24833818+$,10174053+$,11236322+$,2983555+$,29942746+$,884656', '$,289825763+$,35313258+$,161385579+$,41323756+$,68834577+$,2632107', null, null, null, null, null, 16; 
 EXEC report.proc_insert_loss_scenario_table 5439, '$,13495597.00', null, '$,3500000', null, '$,2088077.00+$,2067547.00+$,1180392.00+$,3859581.00', '$,4300000.00', null, null, null, null, null, 35; 
+EXEC report.proc_insert_loss_scenario_table 5441, '$,5719087', 100, null, null, null, '$,10000+$,3000', '$,5000', null, '$,5701087', null, null, null; 
+EXEC report.proc_insert_loss_scenario_table 5442, '$,8463076', null, null, null, null, '$,3175000+$,875000', '$,50000', null, '$,4363076', null, null, null; 

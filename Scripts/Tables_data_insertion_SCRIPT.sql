@@ -653,7 +653,7 @@ AS
 							INSERT INTO report.plant_table (plant_account_name, plant_name, plant_continent, plant_country, plant_country_state, 
 															plant_construction_year, plant_operation_startup_year, plant_address, plant_latitude, plant_longitude, 
 															plant_meters_above_sea_level, plant_business_specific_turnover, plant_merchandise_class)
-															VALUES (@account_name, @name, @continent, report.CORRECT_GRAMMAR(@country, 'name'), report.CORRECT_GRAMMAR(@state, 'name'), @date_construction_year, @date_operation_startup,
+															VALUES (@account_name, @name, UPPER(@continent), report.CORRECT_GRAMMAR(@country, 'name'), report.CORRECT_GRAMMAR(@state, 'name'), @date_construction_year, @date_operation_startup,
 																	@address, @latitude_to_save, @longitude_to_save, @meters_above_sea_level, report.CORRECT_GRAMMAR(@specific_turnover, 'paragraph'), @id_merchandise);
 							BEGIN
 								IF (@type_location IS NOT NULL)
