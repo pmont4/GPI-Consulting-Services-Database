@@ -474,6 +474,16 @@ EXEC report.proc_insert_plant '
 EXEC report.proc_insert_plant 'Residenciales Petápolis – Torre A', null, 'c.A', 'Guatemala', 'Guatemala', 2019, null, 'Real State', 'Edificio para uso residencial (exclusivo para vivienda).', null, 'Industrial, Commercial', '48 calle 19-40 zona 12, Guatemala, Guatemala.', '14.565357', '-90.550267', 1443;
 EXEC report.proc_insert_plant 'SAE-A Trading Co. Ltd', 'Bodega Hilo (Palín)', 'C.A', 'Guatemala', 'Guatemala', 1986, null, 'Storage', 'Yarn warehousing (for fabric manufacturing)', 'IV', 'Industrial', 'Km 37.5 Carretera al Pacífico, Parque Nueva Esperanza, Bodega No.3, Palín, Escuintla, Guatemala, C.A.', '14.409738', '-90.679504', 1170;
 EXEC report.proc_insert_plant 'SAE-A Trading Co. Ltd - Parque Industrial Mixco', 'CENTEXSA I', 'C.A', 'Guatemala', 'Guatemala', 1986, null, 'Production', 'Garment Manufacturing (cutting and sewing)', 'IV', 'Industrial, Commercial, Residential', '1ª Avenida, La Brigada 13-30, zona 7 de Mixco, Guatemala, C.A.', '14.642124', '-90.597798', 1665;
+EXEC report.proc_insert_plant 'SAE-A Trading Co. Ltd - Parque Industrial Mixco', 'GLOVIA', 'C.A', 'Guatemala', 'Guatemala', 1986, null, 'Production', 'Screen Printing and Heat Transfer Printing', 'I', 'Industrial, Commercial, Residential', '1ª Avenida, La Brigada 13-30, zona 7 de Mixco, Guatemala, C.A.', '14.642128', '-90.598230', 1665;
+EXEC report.proc_insert_plant 'SAE-A Trading Co. Ltd - Parque Industrial Mixco', 'WINNERS', 'C.A', 'Guatemala', 'Guatemala', 1986, null, 'Production', 'Garment Manufacturing (cutting and sewing)', 'IV', 'Industrial, Commercial, Residential', '1ª Avenida, La Brigada 13-30, zona 7 de Mixco, Guatemala, C.A.', '14.644528', '-90.598150', 1665;
+EXEC report.proc_insert_plant 'SAE-A Trading Co. Ltd - Parque Industrial Mixco', 'Bodega Accesorios', 'C.A', 'Guatemala', 'Guatemala', 1986, null, 'Storage', 'Accesories warehousing (buttons, thread, tags, labels, cloth hangers, etc.)', 'IV', 'Industrial, Commercial, Residential', '1ª Avenida, La Brigada 13-30, zona 7 de Mixco, Guatemala, C.A.', '14.644450', '-90.597195', 1665;
+EXEC report.proc_insert_plant 'SAE-A Trading Co. Ltd - Parque Industrial Mixco', 'Bodega Tela', 'C.A', 'Guatemala', 'Guatemala', 1986, null, 'Storage', 'Fabric warehousing (mainly rolls)', 'III', 'Industrial, Commercial, Residential', '1ª Avenida, La Brigada 13-30, zona 7 de Mixco, Guatemala, C.A.', '14.643644', '-90.598160', 1665;
+EXEC report.proc_insert_plant 'SAE-A Trading Co. Ltd - Parque Industrial Mixco', 'Bodega Stock', 'C.A', 'Guatemala', 'Guatemala', 1986, null, 'Storage', 'Finished product warehousing (excess or late delivery)', 'III', 'Industrial, Commercial, Residential', '1ª Avenida, La Brigada 13-30, zona 7 de Mixco, Guatemala, C.A.', '14.643644', '-90.598160', 1665;
+EXEC report.proc_insert_plant 'SAE-A Trading Co. Ltd', 'Texpia I', 'C.A', 'Guatemala', 'Guatemala', 1986, 2000, 'Production', 'Garment Manufacturing (cutting and sewing)', 'III', 'Industrial, Residential', '1ª calle, 1-07, zona 6 de Villa Nueva, Guatemala, C.A.', '14.531456', '-90.590959', 1345;
+EXEC report.proc_insert_plant 'SAE-A Trading Co. Ltd', 'TEXPIA II', 'C.A', 'Guatemala', 'Guatemala', 1986, 2002, 'Production', 'Garment Manufacturing (cutting and sewing)', 'III', 'Industrial, Residential', '0 Calle 12-35, Zona 10 San Miguel Petapa, 0 Avenida 0, Villa Nueva, Guatemala, C.A.', '14.506265', '-90.568961', 1285;
+EXEC report.proc_insert_plant 'SAE-A Trading Co. Ltd', 'CENTEXSA II', 'C.A', 'Guatemala', 'Guatemala', 1986, 2002, 'Production', 'Garment Manufacturing (cutting and sewing)', 'III', 'Industrial, Commercial, Residential', '0 Calle 12-35, Zona 10 San Miguel Petapa, 0 Avenida 0, Villa Nueva, Guatemala, C.A.', '14.506903', '-90.569439', 1285;
+EXEC report.proc_insert_plant 'SAE-A Trading Co. Ltd', 'Texpia III', 'C.A', 'Guatemala', 'Guatemala', null, 2014, 'Production', 'Garment Manufacturing (cutting and sewing)', 'III', 'Industrial', 'Km 18.5 Complejo Industrial Mayan Golf, 20-53, Bodega No.8, Zona 4 Villa Nueva, Guatemala, C.A.', '14.497592', '-90.580582', 1284;
+EXEC report.proc_insert_plant 'Samboro, S.A.', 'Samboro Ceramic Tile', 'C.A', 'Guatemala', 'Guatemala', null, 1989, 'Production', 'Recepción y almacenamiento de materias primas, producción de pisos, azulejos y fachaletas cerámicas.', 'I', 'Industrial, Residential', '8ª. Calle Final, colonia Marianita, zona 6, Villa Nueva, Guatemala, C.A.', '14.5259', '-90.5734', 1260;
 
 -- Report table executables for data insertion
 -- Data has to be inserted in the following order:
@@ -849,6 +859,27 @@ EXEC report.proc_insert_report_table '7/julio/2015', 'Seguros Agromercantil, S.A
 EXEC report.proc_insert_report_table '27/septiembre/2021', 'Seguros Agromercantil, S.A.', 5376, 'Rafael Grajeda', null, '238,apartments', 2500, null, 1, 'si', 'Minor fires', 'Automatic Wet', 'II', 'no', 'no', 'no', 'si', 'no', 'no', 'si';
 EXEC report.proc_insert_report_table '12/noviembre/2020', 'SAE A INTERNACIONAL', 5377, 'Rafael Grajeda', null, '2000000,kilograms', 3000, 8, 2, 'si', 'Minor fires', null, 'II', 'no', 'no', 'no', 'no', 'no', 'no', 'no';
 EXEC report.proc_insert_report_table '6/noviembre/2020', 'SAE A INTERNACIONAL', 5378, 'Rafael Grajeda', null, '25000,units/day', 6200, 513, 2, 'si', 'Minor fires', 'Automatic Wet', 'II', 'no', 'no', 'no', 'si', 'si', 'si', 'si';
+EXEC report.proc_insert_report_table '6/noviembre/2020', 'SAE A INTERNACIONAL', 5379, 'Rafael Grajeda', null, '1200000,units/day', 4650, 224, 2, 'si', 'Minor fires', 'Automatic Wet', 'II', 'no', 'no', 'no', 'si', 'si', 'si', 'si';
+EXEC report.proc_insert_report_table '6/noviembre/2020', 'SAE A INTERNACIONAL', 5380, 'Rafael Grajeda', null, '650000,units/month', 7350, 780, 2, 'si', 'Minor fires', 'Automatic Wet', 'II', 'no', 'no', 'no', 'si', 'si', 'si', 'si';
+EXEC report.proc_insert_report_table '6/noviembre/2020', 'SAE A INTERNACIONAL', 5381, 'Rafael Grajeda', null, null, 2600, 62, 2, 'no', null, null, null, 'no', 'no', 'no', 'si', 'si', 'si', 'si';
+EXEC report.proc_insert_report_table '6/noviembre/2020', 'SAE A INTERNACIONAL', 5382, 'Rafael Grajeda', null, '35000,fabric rolls', 4100, 27, 2, 'no', null, null, null, 'no', 'no', 'no', 'si', 'si', 'si', 'si';
+EXEC report.proc_insert_report_table '6/noviembre/2020', 'SAE A INTERNACIONAL', 5383, 'Rafael Grajeda', null, '2200000,units', 3050, 11, 2, 'no', null, null, null, 'no', 'no', 'no', 'si', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '6/noviembre/2020', 'SAE A INTERNACIONAL', 5384, 'Rafael Grajeda', null, '47500,units/day', 11113, 911, 2, 'si', 'Minor fires', 'Automatic Wet', 'II', 'no', 'no', 'no', 'si', 'si', 'si', 'no';
+EXEC report.proc_insert_report_table '10/noviembre/2020', 'SAE A INTERNACIONAL', 5385, 'Rafael Grajeda', null, '85000,units/day', 9000, 958, 2, 'si', 'Minor fires', 'Automatic Wet', 'II', 'no', 'no', 'no', 'si', 'si', 'si', 'si';
+EXEC report.proc_insert_report_table '10/noviembre/2020', 'SAE A INTERNACIONAL', 5386, 'Rafael Grajeda', null, '31000,units/day', 7500, 840, 2, 'si', 'Minor fires', 'Automatic Wet', 'II', 'no', 'no', 'no', 'si', 'si', 'si', 'no';
+EXEC report.proc_insert_report_table '11/noviembre/2020', 'SAE A INTERNACIONAL', 5387, 'Rafael Grajeda', null, '85000,units/day', 10250, 1100, 2, 'si', 'Minor fires', 'Automatic Wet', 'II', 'no', 'no', 'no', 'si', 'si', 'si', 'no';
+EXEC report.proc_insert_report_table '12/noviembre/2020', 'Tecniseguros, Corredores de Seguros, S.A.', 5377, 'Rafael Grajeda', null, '2000000,kilograms', 3000, 8, 2, 'si', 'Minor fires', null, 'II', 'no', 'no', 'no', 'no', 'no', 'no', 'no';
+EXEC report.proc_insert_report_table '6/noviembre/2020', 'Tecniseguros, Corredores de Seguros, S.A.', 5378, 'Rafael Grajeda', null, '25000,units/day', 6200, 513, 2, 'si', 'Minor fires', 'Automatic Wet', 'II', 'no', 'no', 'no', 'si', 'si', 'si', 'si';
+EXEC report.proc_insert_report_table '6/noviembre/2020', 'Tecniseguros, Corredores de Seguros, S.A.', 5379, 'Rafael Grajeda', null, '1200000,units/day', 4650, 224, 2, 'si', 'Minor fires', 'Automatic Wet', 'II', 'no', 'no', 'no', 'si', 'si', 'si', 'si';
+EXEC report.proc_insert_report_table '6/noviembre/2020', 'Tecniseguros, Corredores de Seguros, S.A.', 5380, 'Rafael Grajeda', null, '650000,units/month', 7350, 780, 2, 'si', 'Minor fires', 'Automatic Wet', 'II', 'no', 'no', 'no', 'si', 'si', 'si', 'si';
+EXEC report.proc_insert_report_table '6/noviembre/2020', 'Tecniseguros, Corredores de Seguros, S.A.', 5381, 'Rafael Grajeda', null, null, 2600, 62, 2, 'no', null, null, null, 'no', 'no', 'no', 'si', 'si', 'si', 'si';
+EXEC report.proc_insert_report_table '6/noviembre/2020', 'Tecniseguros, Corredores de Seguros, S.A.', 5382, 'Rafael Grajeda', null, '35000,fabric rolls', 4100, 27, 2, 'no', null, null, null, 'no', 'no', 'no', 'si', 'si', 'si', 'si';
+EXEC report.proc_insert_report_table '6/noviembre/2020', 'Tecniseguros, Corredores de Seguros, S.A.', 5383, 'Rafael Grajeda', null, '2200000,units', 3050, 11, 2, 'no', null, null, null, 'no', 'no', 'no', 'si', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '6/noviembre/2020', 'Tecniseguros, Corredores de Seguros, S.A.', 5384, 'Rafael Grajeda', null, '47500,units/day', 11113, 911, 2, 'si', 'Minor fires', 'Automatic Wet', 'II', 'no', 'no', 'no', 'si', 'si', 'si', 'no';
+EXEC report.proc_insert_report_table '10/noviembre/2020', 'Tecniseguros, Corredores de Seguros, S.A.', 5385, 'Rafael Grajeda', null, '85000,units/day', 9000, 958, 2, 'si', 'Minor fires', 'Automatic Wet', 'II', 'no', 'no', 'no', 'si', 'si', 'si', 'si';
+EXEC report.proc_insert_report_table '10/noviembre/2020', 'Tecniseguros, Corredores de Seguros, S.A.', 5386, 'Rafael Grajeda', null, '31000,units/day', 7500, 840, 2, 'si', 'Minor fires', 'Automatic Wet', 'II', 'no', 'no', 'no', 'si', 'si', 'si', 'no';
+EXEC report.proc_insert_report_table '11/noviembre/2020', 'Tecniseguros, Corredores de Seguros, S.A.', 5387, 'Rafael Grajeda', null, '85000,units/day', 10250, 1100, 2, 'si', 'Minor fires', 'Automatic Wet', 'II', 'no', 'no', 'no', 'si', 'si', 'si', 'no';
+EXEC report.proc_insert_report_table '15/marzo/2023', 'Aseguradora General, S.A.', 5388, 'Marlon Lira', null, '54000,m2/month', 70000, 500, 2, 'si', 'Minor fires', 'Manual Wet', 'III', 'no', 'no', 'no', 'no', 'no', 'si', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -1219,6 +1250,27 @@ EXEC report.proc_insert_perils_and_risk_table 5439, 'none', 1, 3, 3, 3, 2.5, 2.5
 EXEC report.proc_insert_perils_and_risk_table 5440, 2, 'none', 1, 2, 2, 2.5, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 5441, 3, 'none', 'none', 2, 3, 2.5, 'none', 1, 1, 1, 1, 2.5;
 EXEC report.proc_insert_perils_and_risk_table 5442, 2.5, 'none', 1, 2, 3, 2.5, 'none', 1, 1, 1, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5443, 2.5, 'none', 1, 2, 3, 2.5, 'none', 1, 1, 1, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5444, 2.5, 'none', 1, 2, 3, 2.5, 'none', 1, 1, 1, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5445, 2.5, 'none', 1, 2, 3, 2.5, 'none', 1, 1, 1, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5446, 2.5, 'none', 1, 2, 3, 2.5, 'none', 1, 1, 1, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5447, 2.5, 'none', 1, 2, 3, 2.5, 'none', 1, 1, 1, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5448, 2.5, 'none', 1, 2, 3, 2.5, 'none', 1, 1, 1, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5449, 2.5, 'none', 1, 2, 3, 2.5, 'none', 1, 1, 1, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5450, 2.5, 'none', 1, 2, 3, 2.5, 'none', 1, 1, 1, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5451, 2.5, 'none', 1, 2, 3, 2.5, 'none', 1, 1, 1, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5452, 3, 'none', 'none', 2, 3, 2.5, 'none', 1, 1, 1, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5453, 2.5, 'none', 1, 2, 3, 2.5, 'none', 1, 1, 1, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5454, 2.5, 'none', 1, 2, 3, 2.5, 'none', 1, 1, 1, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5455, 2.5, 'none', 1, 2, 3, 2.5, 'none', 1, 1, 1, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5456, 2.5, 'none', 1, 2, 3, 2.5, 'none', 1, 1, 1, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5457, 2.5, 'none', 1, 2, 3, 2.5, 'none', 1, 1, 1, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5458, 2.5, 'none', 1, 2, 3, 2.5, 'none', 1, 1, 1, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5459, 2.5, 'none', 1, 2, 3, 2.5, 'none', 1, 1, 1, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5460, 2.5, 'none', 1, 2, 3, 2.5, 'none', 1, 1, 1, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5461, 2.5, 'none', 1, 2, 3, 2.5, 'none', 1, 1, 1, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5462, 2.5, 'none', 1, 2, 3, 2.5, 'none', 1, 1, 1, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5463, 2.5, 2, 1, 1.5, 2.5, 3, 'none', 1, 1, 1, 1.5, 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -1513,3 +1565,24 @@ EXEC report.proc_insert_loss_scenario_table 5438, '$,704726292', null, null, nul
 EXEC report.proc_insert_loss_scenario_table 5439, '$,13495597.00', null, '$,3500000', null, '$,2088077.00+$,2067547.00+$,1180392.00+$,3859581.00', '$,4300000.00', null, null, null, null, null, 35; 
 EXEC report.proc_insert_loss_scenario_table 5441, '$,5719087', 100, null, null, null, '$,10000+$,3000', '$,5000', null, '$,5701087', null, null, null; 
 EXEC report.proc_insert_loss_scenario_table 5442, '$,8463076', null, null, null, null, '$,3175000+$,875000', '$,50000', null, '$,4363076', null, null, null; 
+EXEC report.proc_insert_loss_scenario_table 5443, '$,8463076', null, null, null, null, '$,3175000+$,875000', '$,50000', null, '$,4363076', null, null, null; 
+EXEC report.proc_insert_loss_scenario_table 5444, '$,10142235', 33, null, null, null, '$,3000000+$,500000', '$,100000', null, '$,6542235', null, null, null; 
+EXEC report.proc_insert_loss_scenario_table 5445, '$,2002754', null, null, null, null, '$,4000+$,3000', '$,10000', null, '$,8050466', null, null, null; 
+EXEC report.proc_insert_loss_scenario_table 5446, '$,8067466', null, null, null, null, '$,4000+$,3000', '$,10000', null, '$,8050466', null, null, null; 
+EXEC report.proc_insert_loss_scenario_table 5447, '$,1481049', null, null, null, null, '$,1000+$,1000', '$,1000', null, '$,1478049', null, null, null; 
+EXEC report.proc_insert_loss_scenario_table 5448, '$,15835535', 92, null, null, null, '$,4375000+$4375000', '$,50000', null, '$,7035535', null, null, null; 
+EXEC report.proc_insert_loss_scenario_table 5449, '$,13671565', 82, null, null, null, '$,3980000+$,4500000', '$,50000', null, '$,5141565', null, null, null; 
+EXEC report.proc_insert_loss_scenario_table 5450, '$,11901651', 82, null, null, null, '$,3980000+$,4500000', '$,50000', null, '$,3371651', null, null, null; 
+EXEC report.proc_insert_loss_scenario_table 5451, '$,17870385', 91, null, null, '$,4092247', '$,3896104+$,3896104', '$,50000', null, '$,5933982', null, null, null; 
+EXEC report.proc_insert_loss_scenario_table 5452, '$,5719087', 100, null, null, null, '$,10000+$,3000', '$,5000', null, '$,5701087', null, null, null; 
+EXEC report.proc_insert_loss_scenario_table 5453, '$,8463076', null, null, null, null, '$,3175000+$,875000', '$,50000', null, '$,4363076', null, null, null; 
+EXEC report.proc_insert_loss_scenario_table 5454, '$,10142235', 33, null, null, null, '$,3000000+$,500000', '$,100000', null, '$,6542235', null, null, null; 
+EXEC report.proc_insert_loss_scenario_table 5455, '$,2002754', null, null, null, null, '$,4000+$,3000', '$,10000', null, '$,8050466', null, null, null; 
+EXEC report.proc_insert_loss_scenario_table 5456, '$,8067466', null, null, null, null, '$,4000+$,3000', '$,10000', null, '$,8050466', null, null, null; 
+EXEC report.proc_insert_loss_scenario_table 5457, '$,1481049', null, null, null, null, '$,1000+$,1000', '$,1000', null, '$,1478049', null, null, null;
+EXEC report.proc_insert_loss_scenario_table 5458, '$,8463076', null, null, null, null, '$,3175000+$,875000', '$,50000', null, '$,4363076', null, null, null; 
+EXEC report.proc_insert_loss_scenario_table 5459, '$,15835535', 92, null, null, null, '$,4375000+$4375000', '$,50000', null, '$,7035535', null, null, null; 
+EXEC report.proc_insert_loss_scenario_table 5460, '$,13671565', 82, null, null, null, '$,3980000+$,4500000', '$,50000', null, '$,5141565', null, null, null; 
+EXEC report.proc_insert_loss_scenario_table 5461, '$,11901651', 82, null, null, null, '$,3980000+$,4500000', '$,50000', null, '$,3371651', null, null, null; 
+EXEC report.proc_insert_loss_scenario_table 5462, '$,17870385', 91, null, null, '$,4092247', '$,3896104+$,3896104', '$,50000', null, '$,5933982', null, null, null; 
+EXEC report.proc_insert_loss_scenario_table 5463, 'Q,458678304.67', 84, 'Q,60000000', 100, 'Q,60105000', 'Q,398573304.67', null, null, null, null, 86, null; 
