@@ -484,6 +484,10 @@ EXEC report.proc_insert_plant '
 EXEC report.proc_insert_plant 'SAE-A Trading Co. Ltd', 'CENTEXSA II', 'C.A', 'Guatemala', 'Guatemala', 1986, 2002, 'Production', 'Garment Manufacturing (cutting and sewing)', 'III', 'Industrial, Commercial, Residential', '0 Calle 12-35, Zona 10 San Miguel Petapa, 0 Avenida 0, Villa Nueva, Guatemala, C.A.', '14.506903', '-90.569439', 1285;
 EXEC report.proc_insert_plant 'SAE-A Trading Co. Ltd', 'Texpia III', 'C.A', 'Guatemala', 'Guatemala', null, 2014, 'Production', 'Garment Manufacturing (cutting and sewing)', 'III', 'Industrial', 'Km 18.5 Complejo Industrial Mayan Golf, 20-53, Bodega No.8, Zona 4 Villa Nueva, Guatemala, C.A.', '14.497592', '-90.580582', 1284;
 EXEC report.proc_insert_plant 'Samboro, S.A.', 'Samboro Ceramic Tile', 'C.A', 'Guatemala', 'Guatemala', null, 1989, 'Production', 'Recepción y almacenamiento de materias primas, producción de pisos, azulejos y fachaletas cerámicas.', 'I', 'Industrial, Residential', '8ª. Calle Final, colonia Marianita, zona 6, Villa Nueva, Guatemala, C.A.', '14.5259', '-90.5734', 1260;
+EXEC report.proc_insert_plant 'Naranjo Mall', null, 'C.A', 'Guatemala', 'Guatemala', 2015, 2015, 'Real State', 'Centro Comercial', null, 'Commercial', '23 calle 10-00 zona 4 de Mixco, Condado Naranjo, Guatemala, C.A.', '14°39m03s', '90°32m32s', null;
+EXEC report.proc_insert_plant 'Oakland Mall', null, 'C.A', 'Guatemala', 'Guatemala', 2008, 2008, 'Real State', 'Centro Comercial', null, 'Commercial, Residential', 'Diagonal 6 13-01, Zona 10, Guatemala, C.A.', '14°35m54s', '90°30m29s', null;
+EXEC report.proc_insert_plant 'Centro Comercial Portales', null, 'C.A', 'Guatemala', 'Guatemala', 2011, 2011, 'Real State', 'Centro Comercial', null, 'Commercial, Residential', 'Kilómetro 4.5 Carretera CA-9 Norte Ruta al Atlántico 3-20 zona 17, Guatemala, C.A.', '14°38m51s', '90°28m52s', null;
+EXEC report.proc_insert_plant 'Centro Comercial Miraflores', null, 'C.A', 'Guatemala', 'Guatemala', 2003, 2003, 'Real State', 'Centro Comercial', null, 'Commercial, Residential', 'Calzada Roosevelt 22-43 zona 11, Guatemala Ciudad.', '14°37m16s', '90°33m11s', null;
 
 -- Report table executables for data insertion
 -- Data has to be inserted in the following order:
@@ -880,6 +884,10 @@ EXEC report.proc_insert_report_table '10/noviembre/2020', 'Tecniseguros, Corredo
 EXEC report.proc_insert_report_table '10/noviembre/2020', 'Tecniseguros, Corredores de Seguros, S.A.', 5386, 'Rafael Grajeda', null, '31000,units/day', 7500, 840, 2, 'si', 'Minor fires', 'Automatic Wet', 'II', 'no', 'no', 'no', 'si', 'si', 'si', 'no';
 EXEC report.proc_insert_report_table '11/noviembre/2020', 'Tecniseguros, Corredores de Seguros, S.A.', 5387, 'Rafael Grajeda', null, '85000,units/day', 10250, 1100, 2, 'si', 'Minor fires', 'Automatic Wet', 'II', 'no', 'no', 'no', 'si', 'si', 'si', 'no';
 EXEC report.proc_insert_report_table '15/marzo/2023', 'Aseguradora General, S.A.', 5388, 'Marlon Lira', null, '54000,m2/month', 70000, 500, 2, 'si', 'Minor fires', 'Manual Wet', 'III', 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '24/agosto/2016', 'Tecniseguros, Corredores de Seguros, S.A.', 5389, 'Marlon Lira', null, null, 62844, null, 1.5, 'si', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '19/agosto/2016', 'Tecniseguros, Corredores de Seguros, S.A.', 5390, 'Marlon Lira', null, null, 191463, null, 1.5, 'si', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '24/agosto/2016', 'Tecniseguros, Corredores de Seguros, S.A.', 5391, 'Marlon Lira', null, null, 83000, null, 1.5, 'si', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '18/agosto/2016', 'Tecniseguros, Corredores de Seguros, S.A.', 5392, 'Marlon Lira', null, null, 181000, null, 2, 'si', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -1271,6 +1279,10 @@ EXEC report.proc_insert_perils_and_risk_table 5460, 2.5, 'none', 1, 2, 3, 2.5, '
 EXEC report.proc_insert_perils_and_risk_table 5461, 2.5, 'none', 1, 2, 3, 2.5, 'none', 1, 1, 1, 1, 2.5;
 EXEC report.proc_insert_perils_and_risk_table 5462, 2.5, 'none', 1, 2, 3, 2.5, 'none', 1, 1, 1, 1, 2.5;
 EXEC report.proc_insert_perils_and_risk_table 5463, 2.5, 2, 1, 1.5, 2.5, 3, 'none', 1, 1, 1, 1.5, 2;
+EXEC report.proc_insert_perils_and_risk_table 5464, 1.5, 1, 1, 1.5, 1.5, 2.5, 'none', 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5465, 1.5, 1, 1, 1.5, 1.5, 2.5, 'none', 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5466, 1.5, 1, 1, 1.5, 1.5, 2.5, 'none', 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5467, 1.5, 1, 1, 1.5, 1.5, 2.5, 'none', 1, 1, 'none', 'none', 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -1586,3 +1598,7 @@ EXEC report.proc_insert_loss_scenario_table 5460, '$,13671565', 82, null, null, 
 EXEC report.proc_insert_loss_scenario_table 5461, '$,11901651', 82, null, null, null, '$,3980000+$,4500000', '$,50000', null, '$,3371651', null, null, null; 
 EXEC report.proc_insert_loss_scenario_table 5462, '$,17870385', 91, null, null, '$,4092247', '$,3896104+$,3896104', '$,50000', null, '$,5933982', null, null, null; 
 EXEC report.proc_insert_loss_scenario_table 5463, 'Q,458678304.67', 84, 'Q,60000000', 100, 'Q,60105000', 'Q,398573304.67', null, null, null, null, 86, null; 
+EXEC report.proc_insert_loss_scenario_table 5464, '$,43109000.00', 90, '$,7317711', 100, '$,43109000', null, null, null, null, null, 91, null; 
+EXEC report.proc_insert_loss_scenario_table 5465, '$,100428735', 90, '$,17317647', 100, '$,100428735', null, null, null, null, null, 91, null; 
+EXEC report.proc_insert_loss_scenario_table 5466, '$,43073717.00', 80, '$,9142521', 100, '$,43073717', null, null, null, null, null, 84, null; 
+EXEC report.proc_insert_loss_scenario_table 5467, '$,86359994.00', 86, '$,24784405', 100, '$,84478594.00+$,1881400.00', null, null, null, null, null, 89, null; 
