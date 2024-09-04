@@ -742,7 +742,7 @@ CREATE OR ALTER PROCEDURE report.proc_insert_report_table
 	@client VARCHAR(100),
 	@plant VARCHAR(150),
 	@prepared_by VARCHAR(250),
-	@plant_certifications VARCHAR(400),
+	@plant_certifications VARCHAR(700),
 	@installed_capacity VARCHAR(100),
 	@built_up FLOAT(2),
 	@workforce INT,

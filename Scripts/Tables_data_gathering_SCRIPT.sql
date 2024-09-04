@@ -77,6 +77,8 @@ EXEC view_table 'pr';
 -- Loss scenario executable
 EXEC view_table 'ls';
 
+INSERT INTO report.business_turnover_table(id_plant, id_business_turnover) VALUES (5407, 1020)
+
 -- Columns
 SELECT C.COLUMN_NAME AS 'Nombre de la columna', C.DATA_TYPE AS 'Tipo de la columna' FROM INFORMATION_SCHEMA.COLUMNS C WHERE TABLE_NAME = 'plant_table';
 SELECT C.COLUMN_NAME AS 'Nombre de la columna', C.DATA_TYPE AS 'Tipo de la columna' FROM INFORMATION_SCHEMA.COLUMNS C WHERE TABLE_NAME = 'report_table';

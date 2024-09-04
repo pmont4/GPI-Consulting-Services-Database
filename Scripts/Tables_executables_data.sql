@@ -56,6 +56,8 @@ EXEC report.proc_insert_client 'Seguros y Fianzas "El Roble"';
 EXEC report.proc_insert_client 'Seguros G&T';
 EXEC report.proc_insert_client 'MESOAMERICA INDEMNITY LIMITED';
 EXEC report.proc_insert_client 'SAE A INTERNACIONAL';
+EXEC report.proc_insert_client 'Agostini Insurance Brokers Limited';
+EXEC report.proc_insert_client 'AON Commercial Risk Solutions';
 
 -- Capacity type table executables for data insertion
 -- Data is being inserted in the following order
@@ -177,7 +179,8 @@ EXEC report.proc_insert_business_turnover_class 'Retail';
 EXEC report.proc_insert_business_turnover_class 'Quality assurance';
 EXEC report.proc_insert_business_turnover_class 'Aeronautical revenue';
 EXEC report.proc_insert_business_turnover_class 'Production and electricity generation';
-
+EXEC report.proc_insert_business_turnover_class 'Telecommunications';
+EXEC report.proc_insert_business_turnover_class 'Highier education';
 
 -- Plant table executables for data insertion
 -- Data is being inserted in the following order:
@@ -488,6 +491,23 @@ EXEC report.proc_insert_plant '
 EXEC report.proc_insert_plant 'Oakland Mall', null, 'C.A', 'Guatemala', 'Guatemala', 2008, 2008, 'Real State', 'Centro Comercial', null, 'Commercial, Residential', 'Diagonal 6 13-01, Zona 10, Guatemala, C.A.', '14°35m54s', '90°30m29s', null;
 EXEC report.proc_insert_plant 'Centro Comercial Portales', null, 'C.A', 'Guatemala', 'Guatemala', 2011, 2011, 'Real State', 'Centro Comercial', null, 'Commercial, Residential', 'Kilómetro 4.5 Carretera CA-9 Norte Ruta al Atlántico 3-20 zona 17, Guatemala, C.A.', '14°38m51s', '90°28m52s', null;
 EXEC report.proc_insert_plant 'Centro Comercial Miraflores', null, 'C.A', 'Guatemala', 'Guatemala', 2003, 2003, 'Real State', 'Centro Comercial', null, 'Commercial, Residential', 'Calzada Roosevelt 22-43 zona 11, Guatemala Ciudad.', '14°37m16s', '90°33m11s', null;
+EXEC report.proc_insert_plant 'Centro Comercial Miraflores', null, 'C.A', 'Guatemala', 'Guatemala', 2003, 2003, 'Real State', 'Centro Comercial', null, 'Commercial, Residential', 'Calzada Roosevelt 22-43 zona 11, Guatemala Ciudad.', '14°37m16s', '90°33m11s', null;
+EXEC report.proc_insert_plant 'Staatsolie Power Company Suriname N.V. – SPCS –', 'Afobaka Hydroelectric Power Plant / Brokopondo Kracht Centrale', 'C.A', 'Suriname', 'Brokopondo', 1960, 1965, 'Electricity Generation', 'Power Plant, generation based on hydro power, with an installed capacity of 189.0 MW.', null, 'Rural', 'Afobaka, Brokopondo District, Suriname.', '4.982616', '-54.992212', 30;
+EXEC report.proc_insert_plant 'Staatsolie Power Company Suriname N.V. – SPCS –', 'Staatsolie Power Company Suriname – SPCS –', 'C.A', 'Suriname', 'Wanica', 2006, 2006, 'Electricity Generation', 'Thermal Power Plant. Electricity generation for sale through the National Grid', null, 'Rural', 'Sir Winston Churchillweg 79, Tout Lui Faut, Wanica District, Suriname', '5.765864', '-55.150282', 2;
+EXEC report.proc_insert_plant 'Tableros de Aglomerado, S.A.', null, 'C.A', 'Guatemala', 'Zacapa', 2004, 2006, 'Production', 'Manufactura de de tableros de madera de alta calidad en distintas presentaciones.', 'IV', 'Industrial, Rural', 'Km. 111.5 carretera al Atlántico, Usumatlán, Zacapa, Guatemala.', '14°57m29.38s', '89°47m56.27s', 240;
+EXEC report.proc_insert_plant 'Technofilms S.A. – Plastilene', 'Technofilms.', 'C.A', 'Guatemala', 'Guatemala', null, 2010, 'Production', 'Producción de empaque de alimentos y empaques industriales.', 'IV', 'Industrial, Rural', 'Km. 32 Carretera al Pacífico, Bodega A, Parque Industrial Flor de Campo, Amatitlán, Guatemala.', '14°27m12.38s', '90°38m16.12s', 1184;
+EXEC report.proc_insert_plant 'Telus International – Torre Pradera', null, 'C.A', 'Guatemala', 'Guatemala', null, 1994, 'Telecommunications', 'Contact Center and Business Process Outsourcing services (Technical Support, Customer Support and Digital Solutions).', null, 'Commercial', '18 Calle 25-85, zona 10, Torre Pradera, Guatemala, Guatemala', '14.580267', '-90.495390', 1543;
+EXEC report.proc_insert_plant 'Grupo Terra', 'Terminal de Combustibles Nicaragua - Plantel Pomares / Plantel Sandino I / Plantel Sandino II', 'C.A', 'Nicaragua', 'Chinandega', 1970, 2020, 'Storage', 'Fuels Tank Farm. Reception, storage and dispatch of fossil fuels: Diesel, Gasoline (Regular and Premium).', 'IV', 'Industrial', 'Puerto Corinto, Department of Chinandega, Nicaragua, C.A.', '12.488730', '-87.168946', 4;
+EXEC report.proc_insert_plant 'Grupo Luz y Fuerza Colombia, S.A.S.', 'Planta Sogamoso de Cementos Argos S.A. – Sogamoso –', 'S.A', 'Colombia', 'Boyacá', 2015, 2016, 'Electricity Generation', 'Electrical Power Plant: Generation based on fossil fuel (mineral coal).', null, 'Industrial, Commercial, Rural', 'Sogamoso, Boyacá, Colombia', '5.7620', '-72.8871', 2489;
+EXEC report.proc_insert_plant 'Tipitapa Power Company (TPC)', 'Tipitapa Power Plant', 'C.A', 'Nicaragua', 'Managua', 1998, 2023, 'Electricity Generation', 'Thermal Power Plant. Electricity generation for sale through the National Grid.', null, 'Industrial', 'Km 19.5, “Carretera Vieja”, Managua, Nicaragua, C.A.', '12.1697', '-86.1052', 59;
+EXEC report.proc_insert_plant 'Corporación AG', 'TUBAC – Galvanized Plant', 'C.A', 'Guatemala', 'Guatemala', null, 1995, 'Production', 'Galvanization and threading of steel pipes and profiles', 'I', 'Industrial, Residential', 'Km 18.5 Carretera a San Miguel Petapa, Zona 2, Villa Nueva, Gua-temala, C.A.', '14.509802', '-90.572606', 1292;
+EXEC report.proc_insert_plant 'Corporación AG', 'TUBAC – Production Plant', 'C.A', 'Guatemala', 'Guatemala', null, 1994, 'Production', 'Manufacturing and commercialization steel pipes and profiles', 'I', 'Industrial, Residential', 'Km 11.5 Carretera a San Miguel Petapa (Planta San Miguel) Zona 7, San Miguel Petapa, Guatemala, C.A.', '14.527139', '-90.559868', 1252;
+EXEC report.proc_insert_plant 'Uniaceites', null, 'C.A', 'Guatemala', 'Peten', 2015, 2017, 'Production', 'Empresa dedicada a la producción de aceite de palma africana y extracción de almendra.', 'IV', 'Rural', 'Finca San Jorge, Aldea San Valentín, El Chal Petén, Guatemala', '16°32m15.5s', '89°51m45.6s', 185;
+EXEC report.proc_insert_plant 'Grupo Unipharm', null, 'C.A', 'Guatemala', 'Guatemala', null, null, 'Production', 'Planta de desarrollo, formulación, manufactura, envasado, empaque y despacho de productos farmacéuticos para salud humana (pharma) salud animal (veterinarios).', 'I', 'Industrial, Commercial', 'Km. 18 Carretera al Pacífico, Villa Nueva, Guatemala, C.A.', '14.524588', '-90.597881', 1402;
+EXEC report.proc_insert_plant 'Grupo Unipharm', 'Planta Milpas Altas', 'C.A', 'Guatemala', 'Sacatepequez', null, 2016, 'Production', 'Desarrollo, producción y comercialización de medicamentos para uso humano.', 'I', 'Rural', 'Lote 33 "A" Avenida Monte Casino zona 3, Aldea Santo Tomas, Municipio Santa Lucía Milpas Altas, Departamento Sacatepéquez, Guatemala.', '14°34m21.71s', '90°40m6.39s', 1985;
+EXEC report.proc_insert_plant 'Universidad del Valle de Guatemala', 'CIT', 'C.A', 'Guatemala', 'Guatemala', 2019, null, 'Higher education', 'Centros educativos, se realizan actividades complementarias de tipo deportivo, educativo (conferencias, talleres) y foros.', null, 'Residential', '18 Avenida, 11-95 Zona 15, Vista Hermosa III, Guatemala, Guatemala.', '14.604753', '-90.489876', 1504;
+EXEC report.proc_insert_plant 'Universidad del Valle de Guatemala', 'Campus Antiguo', 'C.A', 'Guatemala', 'Guatemala', 1970, 1970, 'Highier education', 'Centros educativos, se realizan actividades complementarias de tipo deportivo, educativo (conferencias, talleres) y foros.', null, 'Residential', '18 Avenida, 11-95 Zona 15, Vista Hermosa III, Guatemala, Guatemala.', '14.605027', '-90.488607', 1510;
+EXEC report.proc_insert_plant 'Universidad del Valle de Guatemala', 'Colegio Americano de Guatemala', 'C.A', 'Guatemala', 'Guatemala', 1962, null, 'Highier education', 'Centros educativos, se realizan actividades complementarias de tipo deportivo, educativo (conferencias, talleres) y foros.', null, 'Residential', '18 Avenida, 11-95 Zona 15, Vista Hermosa III, Guatemala, Guatemala.', '14.605430', '-90.491286', 1495;
 
 -- Report table executables for data insertion
 -- Data has to be inserted in the following order:
@@ -888,6 +908,26 @@ EXEC report.proc_insert_report_table '24/agosto/2016', 'Tecniseguros, Corredores
 EXEC report.proc_insert_report_table '19/agosto/2016', 'Tecniseguros, Corredores de Seguros, S.A.', 5390, 'Marlon Lira', null, null, 191463, null, 1.5, 'si', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
 EXEC report.proc_insert_report_table '24/agosto/2016', 'Tecniseguros, Corredores de Seguros, S.A.', 5391, 'Marlon Lira', null, null, 83000, null, 1.5, 'si', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
 EXEC report.proc_insert_report_table '18/agosto/2016', 'Tecniseguros, Corredores de Seguros, S.A.', 5392, 'Marlon Lira', null, null, 181000, null, 2, 'si', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '11/noviembre/2021', 'Agostini Insurance Brokers Limited', 5393, 'Rafael Grajeda', 'ISO 14001:2015, ISO 9001:2015, ISO 45001:2018, ICS 100, ICS 200, ICS 300', '189,mw', 3300, 36, 1, 'si', 'Minor fires', null, null, 'no', 'si', 'si', 'si', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '19/febrero/2020', 'AON Commercial Risk Solutions', 5393, 'Rafael Grajeda', null, '189,mw', 3300, 36, 1, 'si', 'Minor fires', null, null, 'no', 'si', 'si', 'si', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '10/noviembre/2021', 'Agostini Insurance Brokers Limited', 5394, 'Rafael Grajeda', 'ISO 9001:2015', '96,mw', 10900, 45, 1, 'si', 'Major fires', 'Automatic Wet', 'III', 'si', 'no', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '24/julio/2019', 'AON Commercial Risk Solutions', 5394, 'Marlon Lira', 'ISO 9001:2015', '96,mw', 9100, 37, 1, 'si', 'Major fires', 'Automatic Wet', 'III', 'si', 'no', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '5/marzo/2015', 'Seguros Agromercantil, S.A.', 5395, 'Marlon Lira, Laura Palma', null, '4450,m3/month', 6940, 105, 2, 'si', null, null, null, 'no', 'no', 'no', 'si', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '8/marzo/2016', 'Tecniseguros, Corredores de Seguros, S.A.', 5396, 'Marlon Lira, Eduardo Bracamonte', 'ISO 9000: 2008', '700,tons/month', 9500, 120, 1, 'si', null, null, null, 'no', 'no', 'si', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '3/junio/2020', 'Unity Promotores, S.A.', 5397, 'Rafael Grajeda', null, '2000,people', 25000, 2000, 2, 'si', 'Major fires', null, null, 'no', 'si', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '6/octubre/2020', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5398, 'Rafael Grajeda', 'PSC', '337384,bbls', null, 55, 2, 'si', 'Major fires', 'Automatic Wet', 'III', 'si', 'si', 'si', 'no', 'no', 'si', 'no';
+EXEC report.proc_insert_report_table '28/noviembre/2022', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5399, 'Juan Diego Lacayo', null, '15,mw', 15967 , 19, 2, 'si', 'Major fires', 'Automatic Dry', 'III', 'no', 'no', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '31/mayo/2023', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5400, 'Jorge Cifuentes Garcia', 'ISO 14001', '52.2,mw', 2876, 62, 2, 'si', 'Major fires', 'Automatic Wet', 'I', 'si', 'no', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '4/noviembre/2021', 'Tecniseguros, Corredores de Seguros, S.A.', 5401, 'Rafael Grajeda', 'ISO 9001, ISO 14001', '1500,tons/month', 6336, 30, 1, 'si', null, 'Automatic Wet', null, 'no', 'no', 'si', 'no', 'no', 'si', 'no';
+EXEC report.proc_insert_report_table '4/noviembre/2021', 'Tecniseguros, Corredores de Seguros, S.A.', 5402, 'Rafael Grajeda', 'ISO 9001, ISO 14001, UKAS', '7400,tons/month', 23746, 210, 1, 'si', null, 'Automatic Wet', null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '22/octubre/2014', 'Reasinter, Intermadiario de Reaseguro, S.A.', 1003, 'Marlon Lira', null, '1108400,tons/year', 161382, 1800, 2, 'si', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '20/enero/2017', 'Seguros Agromercantil, S.A.', 5403, 'Juan Jose Lira', null, '20,metric tons/hour', 35000, 50, 1, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '25/mayo/2011', 'Seguros Agromercantil, S.A.', 5404, 'Marlon Lira', null, '250,units', 15737, 400, 2, 'no', null, null, null, 'no', 'no', 'no', 'si', 'no', 'no', 'si';
+EXEC report.proc_insert_report_table '26/junio/2016', 'Unity Promotores, S.A.', 5405, 'Rafael Grajeda', 'Buenas Prácticas de Manufactura (BPM), de la Organización Mundial de la Salud –OMS-. OneKosher, RTCA, ISO 9001. Buenas Prácticas de Manufactura (BPM) de betalactámicos, no betalactámicos y corticoides, por INVIMA, reconocida por la Organiza-ción Panamericana de la Salud –OPS-, como Autoridad Nacional Reguladora de Medicamentos en América. DIGEMID', '50000,units/month', 2160, 65, 1.5, 'no', null, null, null, 'no', 'no', 'no', 'no', 'si', 'si', 'no';
+EXEC report.proc_insert_report_table '13/junio/2019', 'Unity Promotores, S.A.', 5404, 'Rafael Grajeda', 'Buenas Prácticas de Manufactura (BPM), de la Organización Mundial de la Salud –OMS-. OneKosher, RTCA, ISO 9001. Buenas Prácticas de Manufactura (BPM) de betalactámicos, no betalactámicos y corticoides, por INVIMA, reconocida por la Organiza-ción Panamericana de la Salud –OPS-, como Autoridad Nacional Reguladora de Medicamentos en América. DIGEMID, COFEPRIS', '3050000,units/month', 11728.90, 500, 1, 'no', null, null, null, 'no', 'no', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '5/abril/2022', 'Seguros Agromercantil, S.A.', 5406, 'Rafael Grajeda', null, '7000,people', 15000, 1500, 1, 'si', 'Minor fires', 'Automatic Wet', 'II', 'no', 'no', 'no', 'si', 'no', 'si', 'no';
+EXEC report.proc_insert_report_table '5/abril/2022', 'Seguros Agromercantil, S.A.', 5407, 'Rafael Grajeda', null, '1500,people', 27500, 1500, 1, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'no';
+EXEC report.proc_insert_report_table '5/abril/2022', 'Seguros Agromercantil, S.A.', 5408, 'Rafael Grajeda', null, '1680,people', 105000, 260, 1, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'no';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -1283,6 +1323,26 @@ EXEC report.proc_insert_perils_and_risk_table 5464, 1.5, 1, 1, 1.5, 1.5, 2.5, 'n
 EXEC report.proc_insert_perils_and_risk_table 5465, 1.5, 1, 1, 1.5, 1.5, 2.5, 'none', 1, 1, 'none', 'none', 2;
 EXEC report.proc_insert_perils_and_risk_table 5466, 1.5, 1, 1, 1.5, 1.5, 2.5, 'none', 1, 1, 'none', 'none', 2;
 EXEC report.proc_insert_perils_and_risk_table 5467, 1.5, 1, 1, 1.5, 1.5, 2.5, 'none', 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5468, 2, 1, 2.5, 1, 2, 1, 'none', 1, 1, 1, 1, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 5469, 2, 1, 2.5, 1, 2, 1, 'none', 1, 1, 1, 1, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 5470, 2.5, 1, 2.5, 2, 2, 1, 1, 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5471, 2.5, 1, 2.5, 2, 2, 1, 1, 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5472, 'none', 1, 2.5, 1, 1.5, 2.5, 'none', 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5473, 2.5, 'none', 1, 2, 2, 2.5, 'none', 1, 1, 'none', 1, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 5474, 2.5, 1, 1, 1.5, 2.5, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5475, 3, 'none', 1, 2, 3, 3, 3, 1, 1, 1, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5476, 3, 'none', 1, 2, 2.5, 2, 'none', 1, 1, 'none', 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5477, 3, 1, 1, 2, 2, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5478, 2, 1, 1, 2, 2.5, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5479, 1, 1, 1, 2, 2, 2.5, 'none', 1, 1, 1, 1, 1.5;
+EXEC report.proc_insert_perils_and_risk_table 5480, 2.5, 'none', 2, 2.5, 2.5, 2.5, 'none', 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5481, 2.5, 1, 2, 2, 2.5, 1.5, 'none', 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5482, 'none', 2, 1, 2, 2, 2, 'none', 1, 1, 'none', 'none', 2;
+EXEC report.proc_insert_perils_and_risk_table 5483, 2.5, 1.5, 1, 1.5, 3, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5484, 2.5, 1, 1, 1.5, 2.5, 2.5, 'none', 1, 1.5, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5485, 2.5, 1, 1, 1, 2, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5486, 2.5, 1, 1, 1, 2, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5487, 2.5, 1, 1, 1, 2, 2.5, 'none', 1, 1, 1, 1, 2;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -1602,3 +1662,19 @@ EXEC report.proc_insert_loss_scenario_table 5464, '$,43109000.00', 90, '$,731771
 EXEC report.proc_insert_loss_scenario_table 5465, '$,100428735', 90, '$,17317647', 100, '$,100428735', null, null, null, null, null, 91, null; 
 EXEC report.proc_insert_loss_scenario_table 5466, '$,43073717.00', 80, '$,9142521', 100, '$,43073717', null, null, null, null, null, 84, null; 
 EXEC report.proc_insert_loss_scenario_table 5467, '$,86359994.00', 86, '$,24784405', 100, '$,84478594.00+$,1881400.00', null, null, null, null, null, 89, null; 
+EXEC report.proc_insert_loss_scenario_table 5468, '$,190270450', 89, null, null, '$,14904000+$,1395000+$,3175000', '$,165696950', null, null, null, null, null, null; 
+EXEC report.proc_insert_loss_scenario_table 5469, '$,121242720', 96, null, null, '$,7452000+$,1395000', '$,112395720', null, null, null, null, null, null; 
+EXEC report.proc_insert_loss_scenario_table 5470, '$,123091349', 94, null, null, '$,3844000+$,10511342', '$,91638380+$,9376666+$,5553573+$,225000+$,1942388', null, null, null, null, null, null; 
+EXEC report.proc_insert_loss_scenario_table 5471, '$,128190854', 90, null, null, '$,3570315+$,16852730+$,2779000', '$,91938380+$,9376666+$,3423763+$,250000', null, null, null, null, null, null; 
+EXEC report.proc_insert_loss_scenario_table 5472, '$,12475000', null, '$,2500000', null, '$,925000', '$,9850000', '$,1500000', null, '$,200000', null, null, 86; 
+EXEC report.proc_insert_loss_scenario_table 5473, '$,19158500.00', 97, '$,8037000', 100, '$,2540000.00', '$,12118500.00', null, null, '$,4500000.00', null, 98, null; 
+EXEC report.proc_insert_loss_scenario_table 5474, null, 85, null, 10, null, null, null, null, null, null, null, null; 
+EXEC report.proc_insert_loss_scenario_table 5475, '$,9940000', 92, '$,39748292', 90, null, '$,4000000', null, null, '$,5940000', null, 91, null; 
+EXEC report.proc_insert_loss_scenario_table 5476, '$,28000000', 67, '$,2800000', 100, '$,500000+$,2200000', '$,1750000+$,200000+$,350000+$,3000000+$,18500000+$,1500000', null, null, null, null, 70, null; 
+EXEC report.proc_insert_loss_scenario_table 5477, '$,60423000', 84, '$,10413178', 100, null, null, null, null, null, null, 86, null; 
+EXEC report.proc_insert_loss_scenario_table 5478, '$,3350000', 84.3, null, 100, '$,1200000', '$,2150000', null, null, null, null, null, null; 
+EXEC report.proc_insert_loss_scenario_table 5479, '$,22500000', 78.2, null, 100, '$,6500000.00', '$,16000000.00', null, null, null, null, null, null; 
+EXEC report.proc_insert_loss_scenario_table 5480, '$,246571248', 71, null, null, null, null, null, null, '$,246571248', null, null, null; 
+EXEC report.proc_insert_loss_scenario_table 5481, '$,9009081.74', null, '$,5000000.00', null, '$,2569420.62', '$,4439661.12', null, null, '$,2000000.00', null, null, 74; 
+EXEC report.proc_insert_loss_scenario_table 5483, null, 98, null, null, null, null, null, null, null, null, null, null; 
+EXEC report.proc_insert_loss_scenario_table 5484, null, 85, null, null, null, null, null, null, null, null, null, null; 
