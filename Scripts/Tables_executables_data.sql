@@ -508,6 +508,8 @@ EXEC report.proc_insert_plant '
 EXEC report.proc_insert_plant 'Universidad del Valle de Guatemala', 'CIT', 'C.A', 'Guatemala', 'Guatemala', 2019, null, 'Higher education', 'Centros educativos, se realizan actividades complementarias de tipo deportivo, educativo (conferencias, talleres) y foros.', null, 'Residential', '18 Avenida, 11-95 Zona 15, Vista Hermosa III, Guatemala, Guatemala.', '14.604753', '-90.489876', 1504;
 EXEC report.proc_insert_plant 'Universidad del Valle de Guatemala', 'Campus Antiguo', 'C.A', 'Guatemala', 'Guatemala', 1970, 1970, 'Highier education', 'Centros educativos, se realizan actividades complementarias de tipo deportivo, educativo (conferencias, talleres) y foros.', null, 'Residential', '18 Avenida, 11-95 Zona 15, Vista Hermosa III, Guatemala, Guatemala.', '14.605027', '-90.488607', 1510;
 EXEC report.proc_insert_plant 'Universidad del Valle de Guatemala', 'Colegio Americano de Guatemala', 'C.A', 'Guatemala', 'Guatemala', 1962, null, 'Highier education', 'Centros educativos, se realizan actividades complementarias de tipo deportivo, educativo (conferencias, talleres) y foros.', null, 'Residential', '18 Avenida, 11-95 Zona 15, Vista Hermosa III, Guatemala, Guatemala.', '14.605430', '-90.491286', 1495;
+EXEC report.proc_insert_plant 'Unopetrol Honduras', 'Terminal II', 'C.A', 'Honduras', 'Cortes', 2007, 2007, 'Storage', 'Fuels Tank Farm. Reception, storage and dispatch of fossil fuels: Diesel, Gasoline and Dual-Purpose Kerosene (Jet Fuel).', null, 'Industrial', 'Puerto Cortés, Honduras, C.A.', '15.845928', '-87.959905', 8;
+EXEC report.proc_insert_plant 'Zeta Gas de Centroamérica, S.A.', 'Marine LPG Tank Farm and Distribution Terminal', 'C.A', 'Guatemala', 'Escuintla', 1999, null, 'Storage', 'Marine LPG tank farm and distribution terminal', null, 'Industrial', 'Km 97.3 Carretera a Puerto Quetzal, Escuintla, Guatemala, C.A.', '13°57m32.86s', '90°47m25.25s', 8;
 
 -- Report table executables for data insertion
 -- Data has to be inserted in the following order:
@@ -928,6 +930,10 @@ EXEC report.proc_insert_report_table '13/junio/2019', 'Unity Promotores, S.A.', 
 EXEC report.proc_insert_report_table '5/abril/2022', 'Seguros Agromercantil, S.A.', 5406, 'Rafael Grajeda', null, '7000,people', 15000, 1500, 1, 'si', 'Minor fires', 'Automatic Wet', 'II', 'no', 'no', 'no', 'si', 'no', 'si', 'no';
 EXEC report.proc_insert_report_table '5/abril/2022', 'Seguros Agromercantil, S.A.', 5407, 'Rafael Grajeda', null, '1500,people', 27500, 1500, 1, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'no';
 EXEC report.proc_insert_report_table '5/abril/2022', 'Seguros Agromercantil, S.A.', 5408, 'Rafael Grajeda', null, '1680,people', 105000, 260, 1, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'no';
+EXEC report.proc_insert_report_table '6/julio/2011', 'Tecniseguros, Corredores de Seguros, S.A.', 5408, 'Marlon Lira', null, '1500,people', 15000, 200, 1, 'si', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'no';
+EXEC report.proc_insert_report_table '3/julio/2011', 'Tecniseguros, Corredores de Seguros, S.A.', 5407, 'Marlon Lira', null, null, 25000, 500, 1, 'no', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'no';
+EXEC report.proc_insert_report_table '21/septiembre/2022', 'Reasinter, Intermadiario de Reaseguro, S.A.', 5409, 'Juan Diego Lacayo', null, '588000,barrels', null, 50, 2, 'si', 'Major fires', 'Automatic Wet', null, 'si', 'no', 'si', 'si', 'no', 'si', 'si';
+EXEC report.proc_insert_report_table '27/agosto/2015', 'Tecniseguros, Corredores de Seguros, S.A.', 5410, 'Marlon Lira', null, '18000000,units', null, 20, 2, 'si', null, null, null, 'no', 'no', 'no', 'no', 'no', 'si', 'no';
 
 -- Perils and risk executables for data insertion
 -- Data is being inserted in the following order:
@@ -1343,6 +1349,10 @@ EXEC report.proc_insert_perils_and_risk_table 5484, 2.5, 1, 1, 1.5, 2.5, 2.5, 'n
 EXEC report.proc_insert_perils_and_risk_table 5485, 2.5, 1, 1, 1, 2, 2.5, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 5486, 2.5, 1, 1, 1, 2, 2.5, 'none', 1, 1, 1, 1, 2;
 EXEC report.proc_insert_perils_and_risk_table 5487, 2.5, 1, 1, 1, 2, 2.5, 'none', 1, 1, 1, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5488, 'none', 1, 'none', 1, 1, 2.5, 'none', 1, 1, 'none', 'none', 1.5;
+EXEC report.proc_insert_perils_and_risk_table 5489, 'none', 'none', 'none', 1, 1.5, 2.5, 'none', 1, 1, 'none', 'none', 1.5;
+EXEC report.proc_insert_perils_and_risk_table 5490, 3, 'none', 1, 2.5, 3, 2, 3, 1, 1, 1, 1, 2.5;
+EXEC report.proc_insert_perils_and_risk_table 5491, 3, 1, 3, 3, 2.5, 3, 3, 1, 1, 'none', 'none', 2.5;
 
 -- Loss scenario executables for data insertion
 -- Data is being inserted in the following order:
@@ -1678,3 +1688,4 @@ EXEC report.proc_insert_loss_scenario_table 5480, '$,246571248', 71, null, null,
 EXEC report.proc_insert_loss_scenario_table 5481, '$,9009081.74', null, '$,5000000.00', null, '$,2569420.62', '$,4439661.12', null, null, '$,2000000.00', null, null, 74; 
 EXEC report.proc_insert_loss_scenario_table 5483, null, 98, null, null, null, null, null, null, null, null, null, null; 
 EXEC report.proc_insert_loss_scenario_table 5484, null, 85, null, null, null, null, null, null, null, null, null, null; 
+EXEC report.proc_insert_loss_scenario_table 5490, '$,43190000', 52, '$,12023916', 24, null, null, null, null, '$,19000000', null, 37, null; 
