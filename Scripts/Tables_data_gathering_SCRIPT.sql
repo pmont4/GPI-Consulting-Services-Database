@@ -42,6 +42,9 @@ CREATE OR ALTER PROCEDURE view_table
 				PRINT CONCAT('The table with name ', @Table, ' was not found');
 		END;
 
+ALTER TABLE report.plant_parameters
+ADD plant_parameters_hydrants_certified_by VARCHAR(50);
+
 -- Engineer executable
 EXEC view_table 'e';
 -- Report executable

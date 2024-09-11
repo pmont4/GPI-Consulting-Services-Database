@@ -751,6 +751,7 @@ CREATE OR ALTER PROCEDURE report.proc_insert_report_table
 	@hydrant_protection VARCHAR(20),
 	@hydrant_standpipe_type VARCHAR(20),
 	@hydrant_standpipe_class VARCHAR(20),
+	@hydrant_certified_by VARCHAR(50),
 	@has_foam_suppression VARCHAR(8),
 	@has_suppression VARCHAR(8),
 	@has_sprinklers VARCHAR(8),
@@ -907,6 +908,7 @@ BEGIN TRY
 														@id_hydrant_protection_to_save AS INT,
 														@id_hydrant_standpipe_type_to_save AS INT,
 														@id_hydrant_standpipe_class_to_save AS INT,
+														@hydrant_certified_by_to_save AS VARCHAR(50),
 														@has_foam_suppression_to_save AS BIT = ISNULL(report.CALCULATE_BIT_TO_SAVE(@has_foam_suppression), 0),
 														@has_suppression_to_save AS BIT = ISNULL(report.CALCULATE_BIT_TO_SAVE(@has_suppression), 0),
 														@has_sprinklers_to_save AS BIT = ISNULL(report.CALCULATE_BIT_TO_SAVE(@has_sprinklers), 0),
@@ -1016,13 +1018,22 @@ BEGIN TRY
 														ELSE IF (@hydrant_standpipe_class IS NULL)
 															SET @hydrant_standpipe_class = NULL;
 
+														IF (@hydrant_certified_by IS NOT NULL)
+															BEGIN
+																IF (UPPER(@hydrant_certified_by) LIKE '%NFPA%' OR UPPER(@hydrant_certified_by) LIKE '%FM%' OR UPPER(@hydrant_certified_by) LIKE '%UL%')
+																	SET @hydrant_certified_by_to_save = UPPER(@hydrant_certified_by)
+																ELSE
+																	SET @hydrant_certified_by_to_save = null;
+															END;
+
 														BEGIN
 															INSERT INTO report.plant_parameters(id_report, id_plant, plant_certifications, plant_parameters_installed_capacity, id_capacity_type, plant_parameters_built_up, plant_parameters_workforce, plant_parameters_exposures,
 																								plant_parameters_has_hydrants, id_hydrant_protection, id_hydrant_standpipe_type, id_hydrant_standpipe_class, plant_parameters_has_foam_suppression_sys, plant_parameters_has_suppresion_sys,
-																								plant_parameters_has_sprinklers, plant_parameters_has_afds, plant_parameters_has_fire_detection_batteries, plant_parameters_has_private_brigade, plant_parameters_has_lighting_protection)
+																								plant_parameters_has_sprinklers, plant_parameters_has_afds, plant_parameters_has_fire_detection_batteries, plant_parameters_has_private_brigade, plant_parameters_has_lighting_protection, plant_parameters_hydrants_certified_by)
 																								VALUES((SELECT TOP 1 id_report FROM report.report_table ORDER BY id_report DESC), @id_plant, @certifications_to_save, @amount_installed_capacity, @id_installed_capacity,
 																										@built_up_to_save, @workforce_to_save, @exposures_to_save, @has_hydrants_to_save, @id_hydrant_protection_to_save, @id_hydrant_standpipe_type_to_save, @id_hydrant_standpipe_class_to_save,
-																										@has_foam_suppression_to_save, @has_suppression_to_save, @has_sprinklers_to_save, @has_afds_to_save, @has_fire_detector_bateries_to_save, @has_private_brigade_to_save, @has_lighting_protection_to_save)
+																										@has_foam_suppression_to_save, @has_suppression_to_save, @has_sprinklers_to_save, @has_afds_to_save, @has_fire_detector_bateries_to_save, @has_private_brigade_to_save, @has_lighting_protection_to_save, 
+																										@hydrant_certified_by_to_save)
 														END;
 													END;
 												END;
