@@ -80,7 +80,38 @@ EXEC view_table 'pr';
 -- Loss scenario executable
 EXEC view_table 'ls';
 
+UPDATE report.hydrant_protection_classification_table SET hydrant_protection_classification_name = LOWER(hydrant_protection_classification_name);
+
+UPDATE report.hydrant_standpipe_system_type_table SET hydrant_standpipe_system_type_name = LOWER(hydrant_standpipe_system_type_name);
+
 INSERT INTO report.business_turnover_table(id_plant, id_business_turnover) VALUES (5407, 1020)
+
+ALTER TABLE report.plant_parameters
+DROP CONSTRAINT fk_plant_parameters_plant
+
+ALTER TABLE report.plant_parameters
+DROP COLUMN id_plant
+
+ALTER TABLE report.perils_and_risk_table
+DROP CONSTRAINT fk_perils_and_risk_plant_table
+
+ALTER TABLE report.perils_and_risk_table
+DROP COLUMN id_plant
+
+ALTER TABLE report.loss_scenario_table
+DROP CONSTRAINT fk_loss_scenario_plant_table
+
+ALTER TABLE report.loss_scenario_table
+DROP COLUMN id_plant
+
+ALTER TABLE report.loss_scenario_table
+DROP COLUMN id_client
+
+ALTER TABLE report.loss_scenario_table
+DROP CONSTRAINT fk_loss_scenario_client_table
+
+ALTER TABLE report.plant_parameters
+ALTER COLUMN plant_parameters_built_up VARCHAR(15)
 
 -- Columns
 SELECT C.COLUMN_NAME AS 'Nombre de la columna', C.DATA_TYPE AS 'Tipo de la columna' FROM INFORMATION_SCHEMA.COLUMNS C WHERE TABLE_NAME = 'plant_table';

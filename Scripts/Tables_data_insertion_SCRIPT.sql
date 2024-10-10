@@ -165,6 +165,9 @@ AS
 		RETURN @to_return;
 	END;
 
+ALTER TABLE report.plant_parameters
+ALTER COLUMN plant_parameters_installed_capacity VARCHAR(20);
+
 CREATE OR ALTER FUNCTION report.DETERMINATE_RATE_OF_RISK(@rate AS VARCHAR(20))
 RETURNS FLOAT
 AS
