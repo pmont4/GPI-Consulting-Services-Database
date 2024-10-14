@@ -20,7 +20,7 @@ BEGIN
 				BEGIN
 					IF ((SELECT COUNT(btt.plant_name) FROM #business_turnover_temp_table btt) > 0)
 						BEGIN
-							SELECT btt.plant_name AS 'Nombre de la planta', btt.plant_business_specific_turnover AS 'Giro de negocios', btt.plant_business_specific_turnover AS 'Actividad' FROM #business_turnover_temp_table btt;
+							SELECT btt.plant_name AS 'Nombre de la planta', btt.business_turnover_name AS 'Giro de negocios', btt.plant_business_specific_turnover AS 'Actividad' FROM #business_turnover_temp_table btt;
 						END;
 					ELSE
 						PRINT 'No se encontro ninguna planta guardada con este giro de negocios'
@@ -157,12 +157,12 @@ SELECT COUNT(id_plant) AS 'Plantas de generacion geotermica' FROM report.plant_t
 WHERE 
 	LOWER(plant_business_specific_turnover) LIKE '%geothermal%';
 
-SELECT COUNT(id_plant) AS 'Plantas de generacion hidroelectrica' FROM report.plant_table 
+SELECT COUNT(id_plant) AS 'Plantas de generacion de energia solar' FROM report.plant_table 
 WHERE 
 	LOWER(plant_account_name) LIKE '%solar%' OR
 	LOWER(plant_business_specific_turnover) LIKE '%solar%';
 
-SELECT COUNT(id_plant) AS 'Plantas de generacion hidroelectrica' FROM report.plant_table 
+SELECT COUNT(id_plant) AS 'Plantas de generacion eolicas' FROM report.plant_table 
 WHERE 
-	LOWER(plant_account_name) LIKE '%solar%' OR
-	LOWER(plant_business_specific_turnover) LIKE '%solar%';
+	LOWER(plant_account_name) LIKE '%wind farm%' OR
+	LOWER(plant_business_specific_turnover) LIKE '%wind farm%';
