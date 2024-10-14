@@ -1,3 +1,5 @@
+exec report.backup_db;
+
 /*
 * Procedimientos almacenados
 */
