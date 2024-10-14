@@ -197,7 +197,7 @@ BEGIN
 					LOWER(plant_business_specific_turnover) LIKE '%drink%' OR
 					LOWER(plant_business_specific_turnover) LIKE '%milk%' OR
 					LOWER(plant_business_specific_turnover) LIKE '%frijol%' OR
-					LOWER(plant_business_specific_turnover) LIKE '%derivados del cerdo%' OR
+					LOWER(plant_business_specific_turnover) LIKE '%cerdo%' OR
 					LOWER(plant_business_specific_turnover) LIKE '%chicken%' OR
 					LOWER(plant_business_specific_turnover) LIKE '%water%' OR
 					LOWER(plant_business_specific_turnover) LIKE '%agua%' OR
@@ -207,7 +207,9 @@ BEGIN
 					LOWER(plant_business_specific_turnover) LIKE '%café%' OR
 					LOWER(plant_business_specific_turnover) LIKE '%cardamom%' OR
 					LOWER(plant_business_specific_turnover) LIKE '%bebida%' OR
-					LOWER(plant_business_specific_turnover) LIKE '%condimentos%';
+					LOWER(plant_business_specific_turnover) LIKE '%legumbres%' OR
+					LOWER(plant_business_specific_turnover) LIKE '%condimentos%' OR
+					(LOWER(plant_business_specific_turnover) LIKE '%alcohol%' AND (LOWER(plant_business_specific_turnover) NOT LIKE '%ethanol%' AND LOWER(plant_business_specific_turnover) NOT LIKE '%sugar%'));
 
 				DROP TABLE #production_food_plant_table;
 			END;
@@ -234,6 +236,37 @@ BEGIN
 					LOWER(plant_business_specific_turnover) LIKE '%oil%' OR
 					LOWER(plant_business_specific_turnover) LIKE '%aceite%' OR
 					LOWER(plant_name) LIKE '%aceite%'
+				DROP TABLE #production_food_plant_table;
+			END;
+		ELSE
+			PRINT 'No se encontro ninguna planta guardada con este giro de negocios'
+			RETURN;
+	END;
+END;
+
+BEGIN
+	SELECT p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover INTO #production_food_plant_table
+	FROM report.plant_table p 
+		LEFT JOIN report.business_turnover_table bt ON bt.id_plant = p.id_plant
+		LEFT JOIN report.business_turnover_class_table btc ON bt.id_business_turnover = btc.id_business_turnover
+	WHERE LOWER(business_turnover_name) = 'production'
+
+	CREATE NONCLUSTERED INDEX idx_business_turnover_temp ON #production_food_plant_table(plant_name);
+
+	BEGIN
+		IF ((SELECT COUNT(pfpt.plant_name) FROM #production_food_plant_table pfpt) > 0)
+			BEGIN
+				SELECT pfpt.plant_name AS 'Nombre de la planta', pfpt.business_turnover_name AS 'Giro de negocios', pfpt.plant_business_specific_turnover AS 'Actividad' FROM #production_food_plant_table pfpt
+				WHERE
+					LOWER(plant_business_specific_turnover) LIKE '%steel%' OR
+					LOWER(plant_business_specific_turnover) LIKE '%alambre%' OR
+					LOWER(plant_business_specific_turnover) LIKE '%glass%' OR
+					LOWER(plant_business_specific_turnover) LIKE '%acero%' OR
+					LOWER(plant_business_specific_turnover) LIKE '%leather%' OR
+					LOWER(plant_business_specific_turnover) LIKE '%text%' OR
+					LOWER(plant_business_specific_turnover) LIKE '%cutt%' OR
+					LOWER(plant_business_specific_turnover) LIKE '%confección%' OR
+					LOWER(plant_business_specific_turnover) LIKE '%aluminio%'
 				DROP TABLE #production_food_plant_table;
 			END;
 		ELSE
