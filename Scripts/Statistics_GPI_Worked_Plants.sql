@@ -201,8 +201,6 @@ BEGIN
 	END;
 END;
 
-SELECT CAST(r.report_date AS DATE) AS 'Fecha', p.plant_account_name AS 'Nombre de cuenta', p.plant_name AS 'Nombre de planta' FROM report.report_table r LEFT JOIN report.plant_table p ON p.id_plant = r.id_plant WHERE p.plant_account_name LIKE '%ENERSA%' ORDER BY r.report_date DESC;
-
 BEGIN
 	SELECT p.plant_name, btc.business_turnover_name, p.plant_business_specific_turnover INTO #production_food_plant_table
 	FROM report.plant_table p 
