@@ -1132,6 +1132,7 @@ EXEC report.proc_insert_perils_and_risk_table 5265, 2, 2.5, 1, 2, 2.5, 2.5, 'non
 EXEC report.proc_insert_perils_and_risk_table 5266, 2, 2.5, 1, 2, 2.5, 2.5, 'none', 1, 1.5, 1.5, 1, 2.5;
 EXEC report.proc_insert_perils_and_risk_table 5267, 2, 2.5, 1, 2, 2.5, 2.5, 'none', 1, 1.5, 1.5, 1, 2.5;
 EXEC report.proc_insert_perils_and_risk_table 5268, 2, 1.5, 2.5, 2, 2, 2.5, 'none', 1, 1, 1.5, 1, 2;
+EXEC report.proc_insert_perils_and_risk_table 5269, 2, 2.5, 2.5, 2, 2, 2.5, 'none', 1, 1, 1.5, 1, 2.5
 EXEC report.proc_insert_perils_and_risk_table 5279, 2, 2.5, 2.5, 2, 2, 2.5, 'none', 1, 1, 1.5, 1, 2.5;
 EXEC report.proc_insert_perils_and_risk_table 5270, 2, 3, 2.5, 2.5, 1.5, 2.5, 'none', 1, 1, 1, 1.5, 2.5;
 EXEC report.proc_insert_perils_and_risk_table 5271, 2, 2.5, 2.5, 1.5, 2, 2.5, 'none', 1, 1, 2, 1, 2;
