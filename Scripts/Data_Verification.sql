@@ -25,6 +25,7 @@ c.client_name AS 'Cliente',
 report.REPORT_PREPARED_BY(r.id_report) as 'Preparado por',
 p.plant_account_name AS 'Nombre de cuenta', 
 p.plant_name AS 'Nombre de planta',
+p.plant_business_specific_turnover AS 'Actividad',
 p.plant_country AS 'Pais',
 IIF(pp.plant_parameters_has_hydrants > 0, 'Tiene hidrantes', 'No tiene hidrantes') AS 'Hidrantes',
 	(SELECT ISNULL(STRING_AGG(fs.fire_standard_name, ', '), 'No esta registrado') 
@@ -43,7 +44,8 @@ ISNULL(adts.afds_detection_type_system_name, 'No hay sistemas registrados') AS '
 		LEFT JOIN report.afds_detection_type_system adts ON pp.id_afds_detection_type_system = adts.id_afds_detection_type_system
 		LEFT JOIN report.client_table c ON r.id_client = c.id_client
 WHERE CAST(r.report_date AS VARCHAR) LIKE '%2024%' 
-AND pp.plant_parameters_has_afds = 1 AND pp.plant_parameters_has_hydrants = 1 AND pp.id_afds_detection_type_system IS NULL
 ORDER BY r.report_date DESC;
+
+
 
 
