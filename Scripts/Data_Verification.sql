@@ -43,7 +43,7 @@ ISNULL(adts.afds_detection_type_system_name, 'No hay sistemas registrados') AS '
 		LEFT JOIN report.plant_parameters pp ON r.id_report = pp.id_report
 		LEFT JOIN report.afds_detection_type_system adts ON pp.id_afds_detection_type_system = adts.id_afds_detection_type_system
 		LEFT JOIN report.client_table c ON r.id_client = c.id_client
-WHERE CAST(r.report_date AS VARCHAR) LIKE '%2024%' 
+WHERE CAST(r.report_date AS VARCHAR) LIKE '%2023%' 
 ORDER BY r.report_date DESC;
 
 
